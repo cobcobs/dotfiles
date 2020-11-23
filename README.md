@@ -1,2 +1,2 @@
 # dotfiles
-Managed with yadm
+Managed with [yadm](https://yadm.io/)
