@@ -1,0 +1,222 @@
+# Configuration for Alacritty, the GPU enhanced terminal emulator.
+
+# Any items in the `env` entry below will be added as
+# environment variables. Some entries may override variables
+# set by alacritty itself.
+env:
+  # TERM variable
+  #
+  # This value is used to set the `$TERM` environment variable for
+  # each instance of Alacritty. If it is not present, alacritty will
+  # check the local terminfo database and use `alacritty` if it is
+  # available, otherwise `xterm-256color` is used.
+  TERM: xterm-256color
+
+window:
+  # Window dimensions (changes require restart)
+  #dimensions:
+  #  columns: 0
+  #  lines: 0
+
+  # Window position (changes require restart)
+  #position:
+  #  x: 0
+  #  y: 0
+
+  # Window padding (changes require restart)
+  padding:
+   x: 15
+   y: 15
+
+  # Spread additional padding evenly around the terminal content.
+  dynamic_padding: true
+
+  # Allow terminal applications to change Alacritty's window title.
+  # dynamic_title: true
+
+  # Window decorations
+  #
+  # Values for `decorations`:
+  #     - full: Borders and title bar
+  #     - none: Neither borders nor title bar
+  #
+  # Values for `decorations` (macOS only):
+  #     - transparent: Title bar, transparent background and title bar buttons
+  #     - buttonless: Title bar, transparent background, but no title bar buttons
+  decorations: buttonless
+
+  # Startup Mode (changes require restart)
+  startup_mode: Windowed
+
+  # Window title
+  title: Alacritty
+
+scrolling:
+  history: 10000
+
+  # Number of lines the viewport will move for every line scrolled when
+  # scrollback is enabled (history > 0).
+  #multiplier: 3
+
+# Font configuration
+font:
+  # Normal (roman) font face
+  normal:
+    # Font family
+    family: SF Mono Square
+
+    # The `style` can be specified to pick a specific face.
+    style: Regular
+
+  # Bold font face
+  # bold:
+    # Font family
+    #
+    # If the bold family is not specified, it will fall back to the
+    # value specified for the normal font.
+    # family: SF Mono Square
+
+    # The `style` can be specified to pick a specific face.
+    #style: Bold
+
+  # Italic font face
+  # italic:
+    # Font family
+    #
+    # If the italic family is not specified, it will fall back to the
+    # value specified for the normal font.
+    # family: SF Mono Square
+
+    # The `style` can be specified to pick a specific face.
+    # style: Regular Italic
+
+  # Bold italic font face
+  # bold_italic:
+    # Font family
+    #
+    # If the bold italic family is not specified, it will fall back to the
+    # value specified for the normal font.
+    # family: SF Mono Square
+
+    # The `style` can be specified to pick a specific face.
+    # style: Bold Italic
+
+  # Point size
+  # why does alacritty render font smaller compared to iTerm
+  size: 16.0
+
+  # Offset is the extra space around each character. `offset.y` can be thought of
+  # as modifying the line spacing, and `offset.x` as modifying the letter spacing.
+  offset:
+   x: 0
+   y: 0
+
+  # Glyph offset determines the locations of the glyphs within their cells with
+  # the default being at the bottom. Increasing `x` moves the glyph to the right,
+  # increasing `y` moves the glyph upwards.
+  #glyph_offset:
+  #  x: 0
+  #  y: 0
+
+  # Thin stroke font rendering (macOS only)
+  #
+  # Thin strokes are suitable for retina displays, but for non-retina screens
+  # it is recommended to set `use_thin_strokes` to `false`
+  #
+  # macOS >= 10.14.x:
+  #
+  # If the font quality on non-retina display looks bad then set
+  # `use_thin_strokes` to `true` and enable font smoothing by running the
+  # following command:
+  #   `defaults write -g CGFontRenderingFontSmoothingDisabled -bool NO`
+  #
+  # This is a global setting and will require a log out or restart to take
+  # effect.
+  use_thin_strokes: false
+
+# If `true`, bold text is drawn using the bright color variants.
+#draw_bold_text_with_bright_colors: false
+
+# Background opacity
+background_opacity: 0.9
+
+selection:
+  #semantic_escape_chars: ",│`|:\"' ()[]{}<>\t"
+
+  save_to_clipboard: false
+
+cursor:
+  style: Beam
+  unfocused_hollow: true
+  #thickness: 0.15
+
+# Live config reload (changes require restart)
+live_config_reload: true
+
+# Shell
+#shell:
+#  program: /bin/bash
+#  args:
+#    - --login
+
+# Startup directory
+# working_directory: None
+
+alt_send_esc: true
+
+mouse:
+  hide_when_typing: true
+  url:
+    launcher:
+     program: open
+    #  args: []
+
+# Key bindings
+key_bindings:
+
+  # fonts and scrolling
+  - { key: Add,    mods: Command,            action: IncreaseFontSize }
+  - { key: Minus,  mods: Command,            action: DecreaseFontSize }
+  - { key: K,      mods: Alt|Shift,          action: IncreaseFontSize }
+  - { key: J,      mods: Alt|Shift,          action: DecreaseFontSize }
+  - { key: Equals, mods: Alt|Shift,          action: ResetFontSize    }
+  - { key: K,      mods: Alt,                action: ScrollLineUp     }
+  - { key: J,      mods: Alt,                action: ScrollLineDown   }
+  - { key: U,      mods: Alt,                action: ScrollPageUp     }
+  - { key: D,      mods: Alt,                action: ScrollPageDown   }
+
+  # basics
+  - { key: V,      mods: Command,            action: Paste            }
+  - { key: C,      mods: Command,            action: Copy             }
+  - { key: Q,      mods: Command,            command: { program: "killall", args: ["alacritty"] } }
+  - { key: W,      mods: Command,            action: Quit             }
+  - { key: N,      mods: Command,            action: SpawnNewInstance }
+
+# sync colorscheme with wal/colorlovers
+# BEGIN ACE
+colors:
+  primary:
+    background: '0x202020'
+    foreground: '0xfafafa'
+  cursor:
+    text:       '0x202020'
+    cursor:     '0xfafafa'
+  normal:
+    black:      '0x202020'
+    red:        '0xFFABAB'
+    green:      '0xFFDAAB'
+    yellow:     '0xDDFFAB'
+    blue:       '0xABE4FF'
+    magenta:    '0xD9ABFF'
+    cyan:       '0xa0a0a0'
+    white:      '0xfafafa'
+  bright:
+    black:      '0x484848'
+    red:        '0xFFABAB'
+    green:      '0xFFDAAB'
+    yellow:     '0xDDFFAB'
+    blue:       '0xABE4FF'
+    magenta:    '0xD9ABFF'
+    cyan:       '0xa0a0a0'
+    white:      '0xfafafa'
+

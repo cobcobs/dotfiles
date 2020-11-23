@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+# changes system dark mode
+
+
+input="$1"
+
+if [[ "$input" = "false" ]] ; then
+	osascript -e 'tell application "System Events" to tell appearance preferences to set dark mode to false'
+else
+	osascript -e 'tell application "System Events" to tell appearance preferences to set dark mode to true'
+fi
+
+yabai_color

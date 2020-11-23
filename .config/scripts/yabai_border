@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+
+if yabai -m config window_border | grep -q 'on' ; then
+	yabai -m config window_border off
+else
+	yabai -m config window_border on
+fi

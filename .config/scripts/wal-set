@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+# apply `wal` colors to additional programs
+
+# yabai colors
+yabai_color &
+
+# alacritty colors
+alacritty_wal &> /dev/null
+
+# check if the background is dark and apply darkmode if so
+source "${HOME}/.cache/wal/colors.sh"
+bg="$(echo $color0 | tr -d '#' | head -c 1)"
+if [[ $bg =~ [a-zA-Z] ]]; then darkmode false ; else darkmode true ; fi

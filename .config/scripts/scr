@@ -1,0 +1,50 @@
+#!/usr/bin/env bash
+
+dir="$HOME/Pictures/Screenshots/$(date +'%F')"
+file="$(date +'%H-%M-%S')"
+image="$dir/$file.png"
+
+screenshot() {
+	mkdir -p "$dir"
+	# screencapture -i "$image" &&
+	if [[ "$screen" ]] ; then
+		screencapture -S "$image"
+	else
+		screencapture -i "$image"
+        fi
+
+}
+
+up() {
+	if [[ "$upload" ]] ; then
+		upload "$image" &&
+		if [[ "$notify" ]] ; then
+			notify-send "$(pbpaste) uploaded"
+		fi
+	fi
+}
+
+flags() {
+	while getopts nusdh opt; do
+		case $opt in
+			n) notify="on"
+			;;
+			u) upload="on"
+			;;
+			s) screen="on"
+			;;
+			h) echo "-n to notify when finished, -u to upload"
+			;;
+			*) echo "-n to notify, -u to upload"
+			;;
+		esac
+	done
+}
+
+if [ "$#" -ne 0 ]; then
+	flags "$@"
+	screenshot &&
+	up
+else
+	screenshot
+fi

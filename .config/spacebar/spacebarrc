@@ -1,0 +1,24 @@
+#!/usr/bin/env sh
+
+# Import the colors
+. "${HOME}/.cache/wal/colors.sh"
+
+spacebar -m config position           top
+spacebar -m config height             25
+spacebar -m config spacing_left       20
+spacebar -m config spacing_right      15
+spacebar -m config text_font          "SF Pro Text:Bold:12.0"
+spacebar -m config icon_font          "SF Mono Square:Bold:14.0"
+spacebar -m config background_color   0xff"${color0//#}"
+spacebar -m config foreground_color   0xff"${color7//#}"
+spacebar -m config space_icon_color   0xff"${color4//#}"
+spacebar -m config power_icon_color   0xffcd950c
+spacebar -m config battery_icon_color 0xffd75f5f
+spacebar -m config dnd_icon_color     0xffa8a8a8
+spacebar -m config clock_icon_color   0xffa8a8a8
+spacebar -m config space_icon_strip   一 二 三 四 五 六 七 八 九 十
+spacebar -m config power_icon_strip    
+spacebar -m config space_icon         
+spacebar -m config clock_icon         
+spacebar -m config dnd_icon           
+spacebar -m config clock_format       "%m/%d/%y  %R"

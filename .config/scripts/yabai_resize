@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+
+
+is_floating="$(yabai -m query --windows --window | jq .floating)"
+if [ $is_floating -eq 0 ] ; then
+	west() { yabai -m window west --resize right:-20:0 2> /dev/null || yabai -m window --resize right:-20:0 ;}
+	south() { yabai -m window north --resize bottom:0:20 2> /dev/null || yabai -m window --resize bottom:0:20 ;}
+	north() { yabai -m window south --resize top:0:-20 2> /dev/null || yabai -m window --resize top:0:-20 ;}
+	east()  { yabai -m window east --resize left:20:0 2> /dev/null || yabai -m window --resize left:20:0 ;}
+else
+	west()  { yabai -m window --resize right:-20:0 ;}
+	south() { yabai -m window --resize bottom:0:20 ;}
+	north() { yabai -m window --resize bottom:0:-20 ;} 
+	east()  { yabai -m window --resize right:20:0 ;}
+fi
+
+case "$1" in
+	west)  west ;;
+	south) south ;;
+	north) north ;; 
+	east)  east ;;
+esac
