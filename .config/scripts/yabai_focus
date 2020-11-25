@@ -10,3 +10,5 @@ else
 	yabai -m space --focus last
     fi
 fi
+
+# single_monocle

@@ -35,14 +35,6 @@ yabai -m config mouse_action1                move
 yabai -m config mouse_action2                resize
 yabai -m config mouse_drop_action            swap
 
-# general space settings
-yabai -m config layout                       bsp
-yabai -m config top_padding                  10
-yabai -m config bottom_padding               10
-yabai -m config left_padding                 10
-yabai -m config right_padding                10
-yabai -m config window_gap                   10
-
 # borders
 yabai -m config window_border                on
 yabai -m config window_border_width          6
@@ -58,9 +50,23 @@ yabai -m rule --add app="^csgo_osx64$" border=off
 yabai -m rule --add app="^qutebrowser$" manage=on
 yabai -m rule --add app="^Spotify$" space=4
 
+# general space settings
+yabai -m config layout                       bsp
+yabai -m config top_padding                  10
+yabai -m config bottom_padding               10
+yabai -m config left_padding                 10
+yabai -m config right_padding                10
+yabai -m config window_gap                   10
+
 # signals
 yabai -m signal --add event=window_destroyed action="yabai -m query --windows --window &> /dev/null || yabai -m window --focus mouse"
 yabai -m signal --add event=application_terminated action="yabai -m query --windows --window &> /dev/null || yabai -m window --focus mouse"
+
+# yabai -m signal --add event=application_launched action="single_monocle"
+# yabai -m signal --add event=application_terminated action="single_monocle"
+
+# yabai -m signal --add event=window_created action="single_monocle"
+# yabai -m signal --add event=window_destroyed action="single_monocle"
 
 # autoupdate
 # YABAI_CERT=yabai-cert sh -c "$(curl -fsSL "https://git.io/update-yabai")" &
