@@ -175,7 +175,7 @@ mouse:
 key_bindings:
 
   # fonts and scrolling
-  - { key: Add,    mods: Command,            action: IncreaseFontSize }
+  - { key: Plus,   mods: Command,            action: IncreaseFontSize }
   - { key: Minus,  mods: Command,            action: DecreaseFontSize }
   - { key: K,      mods: Alt|Shift,          action: IncreaseFontSize }
   - { key: J,      mods: Alt|Shift,          action: DecreaseFontSize }
@@ -191,6 +191,8 @@ key_bindings:
   - { key: Q,      mods: Command,            command: { program: "killall", args: ["alacritty"] } }
   - { key: W,      mods: Command,            action: Quit             }
   - { key: N,      mods: Command,            action: SpawnNewInstance }
+  - { key: V,      mods: Shift|Control,      action: ToggleViMode     }
+  - { key: Return, mode: Vi,                 action: Open        }
 
 # sync colorscheme with wal/colorlovers
 # BEGIN ACE

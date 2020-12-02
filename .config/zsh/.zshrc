@@ -66,6 +66,8 @@ zle -N _zsh_cli_fg
 bindkey '^Z' _zsh_cli_fg
 
 # aliases
+eval $(thefuck --alias frick)
+
 alias config='chezmoi'
 alias bluetooth='bluetoothconnector'
 alias vrc='vim ~/.config/nvim/init.vim'
