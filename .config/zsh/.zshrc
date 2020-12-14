@@ -79,7 +79,7 @@ alias src='vim ~/.config/skhd/skhdrc'
 alias arc='vim ~/.config/alacritty/alacritty.yml'
 alias vim='nvim'
 alias vimdiff='nvim -d'
-alias projects='cd "/Users/jacobethandelarosa-frio/Library/Mobile Documents/com~apple~CloudDocs/Documents/Stuff/Programming/Python/projects"'
+alias pyprojects='cd "/Users/jacobethandelarosa-frio/Documents/Stuff/Engineering/Programming/Python/projects/"'
 
 # macfeh
 function feh() {
