@@ -8,16 +8,6 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'tpope/vim-repeat'
   Plug 'romainl/vim-cool'
   Plug 'dylanaraps/wal.vim'
-  Plug 'airblade/vim-gitgutter'
-  Plug 'tweekmonster/startuptime.vim'
-  Plug 'neoclide/coc.nvim', {'branch': 'release'}
-  Plug 'puremourning/vimspector'
-  Plug 'stevearc/vim-arduino'
-  Plug 'coddingtonbear/neomake-platformio'
-  " Plug 'lifepillar/vim-mucomplete'
-  " Plug 'neovim/nvim-lsp'
-  " Plug 'nvim-lua/diagnostic-nvim'
-  " Plug 'nvim-lua/completion-nvim'
 
 call plug#end()
 
@@ -50,36 +40,6 @@ set shortmess+=c
 
 
 " mappings
-" tab for trigger completion
-inoremap <silent><expr> <TAB>
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ coc#refresh()
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
-
-function! s:check_back_space() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~# '\s'
-endfunction
-
-" Make <CR> auto-select the first completion item and notify coc.nvim to
-" format on enter, <cr> could be remapped by other vim plugin
-inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
-                              \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
-
-" Use K to show documentation in preview window.
-nnoremap <silent> K :call <SID>show_documentation()<CR>
-
-function! s:show_documentation()
-  if (index(['vim','help'], &filetype) >= 0)
-    execute 'h '.expand('<cword>')
-  elseif (coc#rpc#ready())
-    call CocActionAsync('doHover')
-  else
-    execute '!' . &keywordprg . " " . expand('<cword>')
-  endif
-endfunction
-
 " Make Y work like D or C
 nnoremap Y y$
 
@@ -109,9 +69,6 @@ autocmd BufReadPost *
 " Disable auto commenting on newlines
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 
-" Automatically close preview window during completions
-" autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | silent! pclose | endif
-
 " change line numbers
 autocmd InsertEnter * :set norelativenumber
 autocmd	InsertLeave * :set relativenumber
@@ -123,9 +80,6 @@ autocmd filetype cpp nnoremap <F3> :w<CR> :make<CR>
 autocmd filetype cpp nnoremap <F4> :!time ./%:r < %:r.in <CR>
 autocmd filetype cpp nnoremap <F5> :w <bar> :make <bar> :!time ./%:r < %:r.in <CR>
 autocmd filetype cpp setlocal shiftwidth=2 softtabstop=2 expandtab
-
-" arduino stuff
-let g:arduino_cmd = '/Applications/Arduino.app/Contents/MacOS/Arduino'
 
 
 " colorscheme
