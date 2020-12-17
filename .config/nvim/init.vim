@@ -8,6 +8,9 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'tpope/vim-repeat'
   Plug 'romainl/vim-cool'
   Plug 'dylanaraps/wal.vim'
+  Plug 'JuliaEditorSupport/julia-vim'
+  Plug 'tmsvg/pear-tree'
+  Plug 'lifepillar/vim-mucomplete'
 
 call plug#end()
 
@@ -15,7 +18,7 @@ call plug#end()
 " various settings
 set clipboard+=unnamedplus
 set backspace=indent,eol,start
-set omnifunc=v:lua.vim.lsp.omnifunc
+set omnifunc=syntaxcomplete#Complete
 set hidden
 set ignorecase
 set smartcase
