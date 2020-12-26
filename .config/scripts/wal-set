@@ -5,7 +5,7 @@
 yabai_color &
 
 # alacritty colors
-alacritty_wal &> /dev/null
+# alacritty_wal &> /dev/null
 
 # check if the background is dark and apply darkmode if so
 source "${HOME}/.cache/wal/colors.sh"

@@ -201,8 +201,8 @@ colors:
     background: '0x1c1b1d'
     foreground: '0xdeaf9d'
   cursor:
-    text:       '0x202020'
-    cursor:     '0xfafafa'
+    text:       '0x1f1e20'
+    cursor:     '0xf2efed'
   normal:
     black:      '0x1f1e20'
     red:        '0xaa2f3b'
