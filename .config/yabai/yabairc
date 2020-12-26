@@ -1,6 +1,10 @@
 #!/usr/bin/env sh
 
 
+sudo yabai --load-sa
+yabai -m signal --add event=dock_did_restart action="sudo yabai --load-sa"
+
+
 # import the colors
 . "${HOME}/.cache/wal/colors.sh"
 
@@ -47,7 +51,7 @@ yabai -m config --space 5 layout             stack
 # rules
 yabai -m rule --add app="^System Preferences$" layer=above manage=off border=off
 yabai -m rule --add app="^csgo_osx64$" border=off
-yabai -m rule --add app="^qutebrowser$" manage=on
+yabai -m rule --add app="^julia$" manage=on
 yabai -m rule --add app="^SoundSource$" manage=off
 yabai -m rule --add app="^Spotify$" space=4
 

@@ -8,9 +8,13 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'tpope/vim-repeat'
   Plug 'romainl/vim-cool'
   Plug 'dylanaraps/wal.vim'
-  Plug 'JuliaEditorSupport/julia-vim'
+  " Plug 'neoclide/coc.nvim', {'branch': 'release'}
   Plug 'tmsvg/pear-tree'
   Plug 'lifepillar/vim-mucomplete'
+  Plug 'jpalardy/vim-slime'
+  Plug 'JuliaEditorSupport/julia-vim'
+  Plug 'mroavi/vim-julia-cell', { 'for': 'julia' }
+  Plug 'davidhalter/jedi-vim'
 
 call plug#end()
 
