@@ -86,11 +86,6 @@ function feh() {
     open -b "drabweb.macfeh" "$@"
 }
 
-# shfm
-function shfm() {
-    cd "$(command shfm "$@")"
-}
-
 # import colorscheme from 'wal' asynchronously
 # &   # Run the process in the background.
 # ( ) # Hide shell job control messages.
