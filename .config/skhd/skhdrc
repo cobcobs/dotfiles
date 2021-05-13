@@ -7,7 +7,7 @@ cmd + shift - t : open -nga firefox
 
 # screenshots
 alt + shift - 0  : scr
-ctrl + shift - 0 : scr -s
+# alt + shift - 0 : scr -s
 
 # cycle forwards
 alt - tab : yabai -m query --spaces \
