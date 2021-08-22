@@ -2,7 +2,7 @@
 cmd - return    : open -na alacritty
 # cmd - return    : alacritty
 cmd + shift - f : open-app finder
-cmd + shift - t : open -nga firefox
+cmd + shift - t : open -nja firefox
 # cmd + shift - 0x2A : killall KeyCastr || open -a KeyCastr --background
 
 # screenshots
@@ -40,7 +40,6 @@ ctrl - t             : yabai -m window --toggle topmost
 cmd + shift - space  : yabai -m space --layout $(yabai -m query --spaces --space | jq -r 'if .type == "bsp" then "float" elif .type == "float" then "stack" else "bsp" end')
 ctrl - i             : yabai -m window --toggle split
 ctrl - f             : yabai -m window --toggle zoom-fullscreen
-
 
 # focus node
 cmd - h : yabai -m window --focus west
