@@ -8,11 +8,11 @@ screenshot() {
 	mkdir -p "$dir"
 	# screencapture -i "$image" &&
 	if [[ "$screen" ]] ; then
-		screencapture -S "$image"
+		screencapture -Sc "$image"
 	else
-		screencapture -i "$image"
+		screencapture -ic "$image"
         fi
-
+	pngpaste "$image"
 }
 
 up() {

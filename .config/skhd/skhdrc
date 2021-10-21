@@ -1,9 +1,10 @@
-# open apps
+# open apps or other stuff
 cmd - return    : open -na alacritty
 # cmd - return    : alacritty
 cmd + shift - f : open-app finder
 cmd + shift - t : open -nja firefox
 # cmd + shift - 0x2A : killall KeyCastr || open -a KeyCastr --background
+cmd + shift - s : open -F ~/Documents/School/DP/Grade\ 12/Schedules/schedule.pdf
 
 # screenshots
 alt + shift - 0  : scr
@@ -35,11 +36,11 @@ cmd - 0x29           : yabai -m space --padding rel:-5:-5:-5:-5 ; yabai -m space
 cmd - 0x27           : yabai -m space --padding rel:5:5:5:5 ; yabai -m space --gap rel:5
 cmd + shift - p      : yabai -m space --toggle padding ; yabai -m space --toggle gap
 ctrl + shift - space : yabai -m window --toggle float && yabai -m window --grid 4:4:1:1:2:2 && /tmp/yabai-restore/$(yabai -m query --windows --window | jq -re '.id').restore 2>/dev/null || true
-ctrl - s             : yabai -m window --toggle sticky
-ctrl - t             : yabai -m window --toggle topmost
+# ctrl - s             : yabai -m window --toggle sticky
+# ctrl - t             : yabai -m window --toggle topmost
 cmd + shift - space  : yabai -m space --layout $(yabai -m query --spaces --space | jq -r 'if .type == "bsp" then "float" elif .type == "float" then "stack" else "bsp" end')
 ctrl - i             : yabai -m window --toggle split
-ctrl - f             : yabai -m window --toggle zoom-fullscreen
+# ctrl - f             : yabai -m window --toggle zoom-fullscreen
 
 # focus node
 cmd - h : yabai -m window --focus west
