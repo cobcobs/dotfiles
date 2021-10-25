@@ -7,7 +7,7 @@ cmd + shift - t : open -nja firefox
 cmd + shift - s : open -F ~/Documents/School/DP/Grade\ 12/Schedules/schedule.pdf
 
 # screenshots
-alt + shift - 0  : scr
+alt + shift - 0 : scr
 # alt + shift - 0 : scr -s
 
 # cycle forwards
