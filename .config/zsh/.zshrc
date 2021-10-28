@@ -68,7 +68,6 @@ bindkey '^Z' _zsh_cli_fg
 # aliases
 eval $(thefuck --alias frick)
 
-alias config='chezmoi'
 alias bluetooth='bluetoothconnector'
 alias vrc='vim ~/.config/nvim/init.vim'
 alias zrc='vim ~/.config/zsh/.zshrc'
@@ -79,35 +78,26 @@ alias src='vim ~/.config/skhd/skhdrc'
 alias arc='vim ~/.config/alacritty/alacritty.yml'
 alias vim='nvim'
 alias vimdiff='nvim -d'
-alias programming_projects='cd "/Users/jacobethandelarosa-frio/Documents/Stuff/Engineering/Programming"'
-
-# macfeh
-function feh() {
-    open -b "drabweb.macfeh" "$@"
-}
 
 # import colorscheme from 'wal' asynchronously
 # &   # Run the process in the background.
 # ( ) # Hide shell job control messages.
 (cat ~/.cache/wal/sequences &)
 
-# load pyenv
-# eval "$(pyenv init - zsh --no-rehash)"
-
-# conda
-# !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/usr/local/Caskroom/miniconda/base/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "/usr/local/Caskroom/miniconda/base/etc/profile.d/conda.sh" ]; then
-        . "/usr/local/Caskroom/miniconda/base/etc/profile.d/conda.sh"
-    else
-        export PATH="/usr/local/Caskroom/miniconda/base/bin:$PATH"
-    fi
-fi
-unset __conda_setup
-# <<< conda initialize <<<
+# # conda
+# # !! Contents within this block are managed by 'conda init' !!
+# __conda_setup="$('/usr/local/Caskroom/miniconda/base/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+# if [ $? -eq 0 ]; then
+#     eval "$__conda_setup"
+# else
+#     if [ -f "/usr/local/Caskroom/miniconda/base/etc/profile.d/conda.sh" ]; then
+#         . "/usr/local/Caskroom/miniconda/base/etc/profile.d/conda.sh"
+#     else
+#         export PATH="/usr/local/Caskroom/miniconda/base/bin:$PATH"
+#     fi
+# fi
+# unset __conda_setup
+# # <<< conda initialize <<<
 
 # Setup fzf
 # ---------
@@ -129,5 +119,7 @@ compinit -d ~/.config/zsh/zcompdump-$ZSH_VERSION
 source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
+# Terminal Prompt
+# ---------------
 source /usr/local/opt/powerlevel10k/powerlevel10k.zsh-theme
 [[ ! -f ~/.config/zsh/.p10k.zsh ]] || source ~/.config/zsh/.p10k.zsh

@@ -91,3 +91,4 @@ autocmd filetype cpp setlocal shiftwidth=2 softtabstop=2 expandtab
 
 " colorscheme
 colorscheme wal
+highlight Comment cterm=italic

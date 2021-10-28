@@ -308,6 +308,7 @@ if [ "$#" -ne 0 ]; then
 	walset
 	printpalette
 	notify
+	alacritty_wal &> /dev/null
 else
 	setup
 	colorlovers &&
@@ -315,6 +316,7 @@ else
 	walset
 	printpalette
 	notify
+	alacritty_wal &> /dev/null
 fi
 
 # todo
