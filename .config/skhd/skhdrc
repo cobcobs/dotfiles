@@ -1,6 +1,6 @@
 # open apps or other stuff
-# cmd - return    : open -na alacritty
-cmd - return    : alacritty
+cmd - return    : open -na alacritty
+# cmd - return    : alacritty
 cmd + shift - f : open-app finder
 cmd + shift - t : open -nja firefox
 # cmd + shift - 0x2A : killall KeyCastr || open -a KeyCastr --background
