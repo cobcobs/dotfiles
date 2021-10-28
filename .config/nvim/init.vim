@@ -8,18 +8,20 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'tpope/vim-repeat'
   Plug 'romainl/vim-cool'
   Plug 'dylanaraps/wal.vim'
-  " Plug 'neoclide/coc.nvim', {'branch': 'release'}
   Plug 'tmsvg/pear-tree'
   Plug 'lifepillar/vim-mucomplete'
   Plug 'jpalardy/vim-slime'
   Plug 'JuliaEditorSupport/julia-vim'
   Plug 'mroavi/vim-julia-cell', { 'for': 'julia' }
   Plug 'davidhalter/jedi-vim'
+  Plug 'lervag/vimtex'
+  Plug 'SirVer/ultisnips'
+  " Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 call plug#end()
 
 
-" various settings
+" settings
 set clipboard+=unnamedplus
 set backspace=indent,eol,start
 set omnifunc=syntaxcomplete#Complete
@@ -44,6 +46,44 @@ set undofile
 set undodir=$HOME/.config/nvim/undodir
 set completeopt=menuone,noinsert,noselect
 set shortmess+=c
+
+
+" plugin settings
+" ultisnips
+let g:UltiSnipsExpandTrigger = "<f5>"        " Do not use <tab>
+let g:UltiSnipsJumpForwardTrigger = "<c-b>"  " Do not use <c-j>
+let g:ulti_expand_or_jump_res = 0
+
+" vimtex
+let g:vimtex_compiler_progname = 'nvr'
+let g:vimtex_view_method = 'skim'
+
+" mucomplete
+let g:mucomplete#no_mappings = 1
+
+" plugin functions
+fun! TryUltiSnips()
+  if !pumvisible() " With the pop-up menu open, let Tab move down
+    call UltiSnips#ExpandSnippetOrJump()
+  endif
+  return ''
+endf
+
+fun! TryMUcomplete()
+  return g:ulti_expand_or_jump_res ? "" : "\<plug>(MUcompleteFwd)"
+endf
+
+" extend completion
+imap <expr> <right> mucomplete#extend_fwd("\<right>")
+
+" snippet first, completion later
+inoremap <plug>(TryUlti) <c-r>=TryUltiSnips()<cr>
+imap <expr> <silent> <plug>(TryMU) TryMUcomplete()
+imap <expr> <silent> <tab> "\<plug>(TryUlti)\<plug>(TryMU)"
+
+" expand if completed word is a snippet
+inoremap <silent> <expr> <plug>MyCR mucomplete#ultisnips#expand_snippet("\<cr>")
+imap <cr> <plug>MyCR
 
 
 " mappings
