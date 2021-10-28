@@ -80,6 +80,7 @@ imap <expr> <right> mucomplete#extend_fwd("\<right>")
 inoremap <plug>(TryUlti) <c-r>=TryUltiSnips()<cr>
 imap <expr> <silent> <plug>(TryMU) TryMUcomplete()
 imap <expr> <silent> <tab> "\<plug>(TryUlti)\<plug>(TryMU)"
+imap <s-tab> <plug>(MUcompleteBwd)
 
 " expand if completed word is a snippet
 inoremap <silent> <expr> <plug>MyCR mucomplete#ultisnips#expand_snippet("\<cr>")

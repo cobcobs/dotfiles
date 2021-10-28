@@ -35,7 +35,7 @@ snippet beg "begin{} / end{}" bA
 \end{$1}
 endsnippet
 
-snippet $m "Math" wA
+snippet imath "Math" wA
 $${1}$`!p
 if t[2] and t[2][0] not in [',', '.', '?', '-', ' ']:
     snip.rv = ' '
@@ -44,7 +44,7 @@ else:
 `$2
 endsnippet
 
-snippet $$m "Math" wA
+snippet dmath "Math" wA
 \[
 $1
 .\] $0
