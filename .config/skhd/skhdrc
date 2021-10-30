@@ -39,7 +39,7 @@ ctrl + shift - space : yabai -m window --toggle float && yabai -m window --grid 
 # ctrl - s             : yabai -m window --toggle sticky
 # ctrl - t             : yabai -m window --toggle topmost
 cmd + shift - space  : yabai -m space --layout $(yabai -m query --spaces --space | jq -r 'if .type == "bsp" then "float" elif .type == "float" then "stack" else "bsp" end')
-ctrl - i             : yabai -m window --toggle split
+ctrl + shift - i     : yabai -m window --toggle split
 # ctrl - f             : yabai -m window --toggle zoom-fullscreen
 
 # focus node
@@ -125,6 +125,24 @@ ctrl + shift - b : yabai -m space --balance
 
 # scratchpad
 alt + shift - return : scratchpad
+
+# scroll with vim keys in skim pdf viewer
+h [
+    "skim" : skhd -k left
+    *      ~
+]
+j [
+    "skim" : skhd -k "0x79"
+    *      ~
+]
+k [
+    "skim" : skhd -k "0x74"
+    *      ~
+]
+l [
+    "skim" : skhd -k right
+    *      ~
+]
 
 # passthrough mode
 :: passthrough
