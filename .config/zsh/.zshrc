@@ -109,6 +109,12 @@ fi
 # ---------------
 [[ $- == *i* ]] && source "/usr/local/opt/fzf/shell/completion.zsh" 2> /dev/null
 
+# Speed up tab completion for git commands
+# ----------------------------------------
+__git_files () { 
+    _wanted files expl 'local files' _files     
+}
+
 # Key bindings
 # ------------
 source "/usr/local/opt/fzf/shell/key-bindings.zsh"
