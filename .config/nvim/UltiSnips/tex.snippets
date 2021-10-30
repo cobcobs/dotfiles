@@ -12,8 +12,11 @@ def env(name):
 endglobal
 
 
-snippet template "Basic Template" b
+snippet "templ?a?t?e?" "Basic Template" rb
 \documentclass[a4paper]{article}
+\usepackage{amsmath}
+\usepackage{hyperref}
+\usepackage[siunitx]{circuitikz}
 
 \title{$1}
 \date{`date +"%B %d, %Y"`}
@@ -43,8 +46,18 @@ endsnippet
 
 snippet beg "begin{} / end{}" bA
 \begin{$1}
-	$0
+	$2
 \end{$1}
+
+$0
+endsnippet
+
+snippet cdraw "begin{} \draw / end{}" bA
+\begin{circuitikz} \draw
+	$1
+\end{circuitikz}
+
+$0
 endsnippet
 
 snippet mk "Math" wA
