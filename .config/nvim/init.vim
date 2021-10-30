@@ -48,16 +48,18 @@ set undodir=$HOME/.config/nvim/undodir
 set completeopt=menuone,noinsert,noselect
 set shortmess+=c
 set conceallevel=2
+setlocal spell
+set spelllang=en_us
 
 
 " plugin settings
-" ultisnips
+" Ultisnips
 let g:UltiSnipsExpandTrigger = "<f5>"        " Do not use <tab>
 let g:UltiSnipsJumpForwardTrigger = "<c-b>"  " Do not use <c-j>
 let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
 let g:ulti_expand_or_jump_res = 0
 
-" vimtex
+" Vimtex
 let g:vimtex_compiler_progname = 'nvr'
 let g:vimtex_view_method = 'skim'
 let g:tex_conceal='abdmg'
@@ -75,7 +77,7 @@ let g:vimtex_syntax_conceal = {
 	\ 'styles': 1,
 	\}
 
-" mucomplete
+" Mucomplete
 let g:mucomplete#no_mappings = 1
 
 " plugin functions
@@ -90,21 +92,8 @@ fun! TryMUcomplete()
   return g:ulti_expand_or_jump_res ? "" : "\<plug>(MUcompleteFwd)"
 endf
 
-" extend completion
-imap <expr> <right> mucomplete#extend_fwd("\<right>")
 
-" try to autocomplete snippet first, then completion later
-inoremap <plug>(TryUlti) <c-r>=TryUltiSnips()<cr>
-imap <expr> <silent> <plug>(TryMU) TryMUcomplete()
-imap <expr> <silent> <tab> "\<plug>(TryUlti)\<plug>(TryMU)"
-imap <s-tab> <plug>(MUcompleteBwd)
-
-" expand if completed word is a snippet
-inoremap <silent> <expr> <plug>MyCR mucomplete#ultisnips#expand_snippet("\<cr>")
-imap <cr> <plug>MyCR
-
-
-" mappings
+" general mappings
 " Make Y work like D or C
 nnoremap Y y$
 
@@ -122,6 +111,23 @@ nnoremap cN ?\<<C-R>=expand('<cword>')<CR>\>\C<CR>``cgN
 " Better j and k
 nnoremap <expr> j v:count ? 'j' : 'gj'
 nnoremap <expr> k v:count ? 'k' : 'gk'
+
+" Quickly correct spelling errors
+inoremap <C-l> <c-g>u<Esc>[s1z=`]a<c-g>u
+
+" plugin mappings
+" Extend completion
+imap <expr> <right> mucomplete#extend_fwd("\<right>")
+
+" Try to autocomplete snippet first, then completion later
+inoremap <plug>(TryUlti) <c-r>=TryUltiSnips()<cr>
+imap <expr> <silent> <plug>(TryMU) TryMUcomplete()
+imap <expr> <silent> <tab> "\<plug>(TryUlti)\<plug>(TryMU)"
+imap <s-tab> <plug>(MUcompleteBwd)
+
+" Expand if completed word is a snippet
+inoremap <silent> <expr> <plug>MyCR mucomplete#ultisnips#expand_snippet("\<cr>")
+imap <cr> <plug>MyCR
 
 
 " autocommands
