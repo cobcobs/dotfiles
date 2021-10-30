@@ -19,6 +19,8 @@ flags() {
 		case $opt in
 			s) screen="on"
 			;;
+			h) echo "-s to capture whole screen"
+			;;
 			*) echo "-s to capture whole screen"
 			;;
 		esac
