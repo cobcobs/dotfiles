@@ -80,6 +80,7 @@ let g:vimtex_syntax_conceal = {
 " Mucomplete
 let g:mucomplete#no_mappings = 1
 
+
 " plugin functions
 fun! TryUltiSnips()
   if !pumvisible() " With the pop-up menu open, let Tab move down
@@ -156,3 +157,4 @@ autocmd filetype cpp setlocal shiftwidth=2 softtabstop=2 expandtab
 " colorscheme
 colorscheme wal
 highlight Comment cterm=italic
+highlight Pmenu ctermbg=Black guibg=Black
