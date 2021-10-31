@@ -71,25 +71,6 @@ cmd + shift - j : yabai -m window --warp south
 cmd + shift - k : yabai -m window --warp north
 cmd + shift - l : yabai -m window --warp east
 
-# swap node
-ctrl + shift - h : yabai -m window --swap west
-ctrl + shift - j : yabai -m window --swap south
-ctrl + shift - k : yabai -m window --swap north
-ctrl + shift - l : yabai -m window --swap east
-
-# set insertion point
-cmd + ctrl - h : yabai -m window --insert west
-cmd + ctrl - j : yabai -m window --insert south
-cmd + ctrl - k : yabai -m window --insert north
-cmd + ctrl - l : yabai -m window --insert east
-cmd + ctrl - i : yabai -m window --insert stack
-
-# stack node
-cmd + ctrl - left  : yabai -m window west --stack $(yabai -m query --windows --window | jq -r '.id')
-cmd + ctrl - down  : yabai -m window south --stack $(yabai -m query --windows --window | jq -r '.id')
-cmd + ctrl - up    : yabai -m window north --stack $(yabai -m query --windows --window | jq -r '.id')
-cmd + ctrl - right : yabai -m window east --stack $(yabai -m query --windows --window | jq -r '.id')
-
 # warp node to space
 cmd + shift - 1 : yabai -m window --space 1 || { yabai -m space --create ; yabai -m window --space last; }
 cmd + shift - 2 : yabai -m window --space 2 || { yabai -m space --create ; yabai -m window --space last; }
@@ -102,12 +83,7 @@ cmd + shift - 8 : yabai -m window --space 8 || { yabai -m space --create ; yabai
 cmd + shift - 9 : yabai -m window --space 9 || { yabai -m space --create ; yabai -m window --space last; }
 cmd + shift - 0 : yabai -m window --space 10 || { yabai -m space --create ; yabai -m window --space last; }
 
-# create space and focus
-cmd + shift - n : yabai -m space --create && \
-                  index="$(yabai -m query --spaces --display | jq 'map(select(."native-fullscreen" == 0))[-1].index')" && \
-                  yabai -m space --focus "${index}"
-
-# remove current space
+# destroy current space
 cmd + shift - w : yabai -m space --focus "$(yabai -m query --spaces --display | jq 'nth(index(map(select(.focused == 1))) + 1).index // (reverse | nth(index(map(select(.focused == 1))) + 1).index) // 0')" && yabai -m space recent --destroy
 
 # resize node
@@ -120,21 +96,29 @@ ctrl + shift - b : yabai -m space --balance
 # scratchpad
 alt + shift - return : scratchpad
 
-# scroll with vim keys in skim pdf viewer
+# scroll with vim-style mappings in skim pdf viewer
 ctrl - h [
     "skim" : skhd -k left
     *      ~
 ]
 ctrl - j [
-    "skim" : skhd -k "cmd - right"
+    "skim" : skhd -k down
     *      ~
 ]
 ctrl - k [
-    "skim" : skhd -k "cmd - left"
+    "skim" : skhd -k up
     *      ~
 ]
 ctrl - l [
     "skim" : skhd -k right
+    *      ~
+]
+ctrl + shift - j [
+    "skim" : skhd -k "cmd - right"
+    *      ~
+]
+ctrl + shift - k [
+    "skim" : skhd -k "cmd - left"
     *      ~
 ]
 
