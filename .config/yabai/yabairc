@@ -57,6 +57,7 @@ yabai -m rule --add app="^csgo_osx64$" border=off
 yabai -m rule --add app="^julia$" manage=on
 yabai -m rule --add app="^SoundSource$" manage=off
 yabai -m rule --add app="^Spotify$" space=4
+yabai -m rule --add app="^choose$" manage=off
 
 # general space settings
 yabai -m config layout                       bsp
