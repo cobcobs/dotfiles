@@ -1,11 +1,12 @@
 # open apps or other stuff
+cmd - space     : opener
 cmd - return    : open -na alacritty
-cmd + shift - f : open-app finder
+cmd + shift - f : opener -f
 cmd + shift - s : open -F ~/Documents/School/DP/Grade\ 12/Schedules/schedule.pdf
 
 # screenshots
-alt + shift - 0       : scr
-alt + cmd + shift - 0 : scr -s
+alt + shift - 0       : scr -i
+alt + cmd + shift - 0 : scr
 
 # cycle forwards
 alt - tab : yabai -m query --spaces \
