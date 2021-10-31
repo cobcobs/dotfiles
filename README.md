@@ -8,6 +8,7 @@ Inspired by
 
 Reliant upon
 - [homebrew](https://brew.sh/)
+- [nvim](https://github.com/neovim/neovim)
 - [yabai](https://github.com/koekeishiya/yabai)
 - [skhd](https://github.com/koekeishiya/skhd)
 - [pngpaste](https://github.com/jcsalterego/pngpaste)
