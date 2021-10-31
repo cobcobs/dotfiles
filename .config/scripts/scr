@@ -6,18 +6,18 @@ image="$dir/$file.png"
 
 screenshot() {
 	mkdir -p "$dir"
-	if [[ "$screen" ]] ; then
-		screencapture -Sc "$image"
-	else
+	if [[ "$interactive" ]] ; then
 		screencapture -ic "$image"
+	else
+		screencapture -Sc "$image"
         fi
 	pngpaste "$image"
 }
 
 flags() {
-	while getopts nusdh opt; do
+	while getopts ih opt; do
 		case $opt in
-			s) screen="on"
+			i) interactive="on"
 			;;
 			h) echo "-s to capture whole screen"
 			;;
