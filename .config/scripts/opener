@@ -17,7 +17,7 @@ if [[ $1 = "finder" ]]; then
 		end tell
 	EOD
 else
-	directory="/Applications ~/Applications"
+	directory="/Applications ~/Applications /System/Applications"
 	app="$(ls $directory | grep -v / | grep .app | sed -e 's/\.app$//' | choose -f "Operator Mono" -c "deaf9d")"
 	open -a $app
 fi
