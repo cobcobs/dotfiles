@@ -12,4 +12,4 @@ Reliant upon
 - [skhd](https://github.com/koekeishiya/skhd)
 - [pngpaste](https://github.com/jcsalterego/pngpaste)
 - [jq](https://github.com/stedolan/jq)
-- [mac cli](https://github.com/guarinogabriel/Mac-CLI)
+- [lock-cli](https://github.com/sindresorhus/lock-cli)
