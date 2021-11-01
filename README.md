@@ -15,4 +15,3 @@ Reliant upon
 - [jq](https://github.com/stedolan/jq)
 - [lock-cli](https://github.com/sindresorhus/lock-cli)
 - [app](https://github.com/craigsapp/app)
-- [xdotool](https://github.com/jordansissel/xdotool)
