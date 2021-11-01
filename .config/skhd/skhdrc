@@ -10,8 +10,8 @@ cmd + ctrl - q : lock_screen
 # emoji picker
 cmd + ctrl - e : emoji
 
-# edit script
-cmd + ctrl - s : edit_script
+# quickly open a config file in vim
+cmd + ctrl - s : open_dots
 
 # screenshots
 alt + shift - 0       : scr -i
