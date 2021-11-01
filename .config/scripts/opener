@@ -17,7 +17,7 @@ if [[ $1 = "finder" ]]; then
 		end tell
 	EOD
 else
-	application="$(app | choose -f "Operator Mono" -c "deaf9d")"
+	application="$(app | choose -f "Operator Mono" -c "deaf9d" -b "1c1b1d")"
 	app "$application"
 fi
 
