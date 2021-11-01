@@ -1,0 +1,7 @@
+#!/bin/zsh
+
+
+directory="$HOME/.config/scripts"
+script="$(ls $directory | choose -f "Operator Mono" -c "deaf9d" -b "1c1b1d")"
+file="$directory/$script"
+alacritty --command nvim "$file"

@@ -10,6 +10,9 @@ cmd + ctrl - q : lock_screen
 # emoji picker
 cmd + ctrl - e : emoji
 
+# edit script
+cmd + ctrl - s : edit_script
+
 # screenshots
 alt + shift - 0       : scr -i
 alt + cmd + shift - 0 : scr
