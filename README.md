@@ -18,5 +18,5 @@ Reliant upon
 - [CopyQ](https://github.com/hluk/CopyQ)
 
 # TODO
-[] incorporate choose_edit into opener (use flags)
+-[ ] incorporate choose_edit into opener (use flags)
 
