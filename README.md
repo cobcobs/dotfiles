@@ -16,3 +16,7 @@ Reliant upon
 - [lock-cli](https://github.com/sindresorhus/lock-cli)
 - [app](https://github.com/craigsapp/app)
 - [CopyQ](https://github.com/hluk/CopyQ)
+
+# TODO
+[ ] incorporate choose_edit into opener (use flags)
+
