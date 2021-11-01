@@ -13,6 +13,9 @@ cmd + ctrl - e : emoji
 # quickly open a config file in vim
 cmd + ctrl - s : open_dots
 
+# quick search (for when firefox isn't open and I want to look at a reference as I search)
+cmd + ctrl - t : open_link
+
 # screenshots
 alt + shift - 0       : scr -i
 alt + cmd + shift - 0 : scr
