@@ -7,6 +7,9 @@ cmd + shift - s : open -F ~/Documents/School/DP/Grade\ 12/Schedules/schedule.pdf
 # lock screen
 cmd + ctrl - q : lock_screen
 
+# emoji picker
+cmd + ctrl - e : emoji
+
 # screenshots
 alt + shift - 0       : scr -i
 alt + cmd + shift - 0 : scr

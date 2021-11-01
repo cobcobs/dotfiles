@@ -1,0 +1,9 @@
+#!/bin/zsh
+
+
+# get user selection
+emoji=$(cut -d ';' -f1 ~/.config/emoji/emoji | choose -f "Operator Mono" -c "deaf9d" | sed "s/ .*//" | cb)
+
+# copy into clipboard
+# copyq is used as pbcopy messes up the output when used from skhd for some reason
+copyq copy $emoji
