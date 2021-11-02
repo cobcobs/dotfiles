@@ -1,13 +1,6 @@
 #!/usr/bin/env bash
 
 
-# directories="$HOME/.config"
-# script="$(ls $directories | choose -f "Operator Mono" -c "deaf9d" -b "1c1b1d")"
-# if [[ -n "$file" ]]; then
-# 	file="$directories/$script"
-# 	alacritty --command nvim "$file"
-# fi
-
 choice="$(echo -e "config\nscripts" | choose -f "Operator Mono" -c "deaf9d" -b "1c1b1d")"
 
 case "$choice" in

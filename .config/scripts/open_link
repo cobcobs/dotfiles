@@ -3,6 +3,6 @@
 
 input="$(echo -e "Search DuckDuckGo" | choose -f "Operator Mono" -c "deaf9d" -b "1c1b1d" -m)"
 search=${input// /+} # replace whitespace with a '+'
-if [[ -n "$search" ]]; then
+if [[ -n "$search" && "$input" != "Search DuckDuckGo" ]]; then
 	open "https://duckduckgo.com/?t=ffab&q=$search"
 fi
