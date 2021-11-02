@@ -16,6 +16,7 @@ Reliant upon
 - [lock-cli](https://github.com/sindresorhus/lock-cli)
 - [app](https://github.com/craigsapp/app)
 - [CopyQ](https://github.com/hluk/CopyQ)
+- [TexText](https://textext.github.io/textext/index.html)
 
 # TODO
 - [ ] incorporate choose_edit into opener (use flags)
