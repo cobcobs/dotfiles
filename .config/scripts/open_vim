@@ -1,0 +1,16 @@
+#!/bin/sh
+
+
+# script to quickly open a vim instance
+# after closing vim, the text gets copied to the clipboard
+
+# make temporary file
+TMPDIR='/tmp'
+file=$(mktemp "${TMPDIR}/XXXXXXXXXXXX_$(uuidgen)$1")
+
+# open vim instance and copy its contents after the instance is closed
+alacritty --title temp --command nvim "$file"
+copyq copy - < $file
+
+# remove the temporary file
+rm $file

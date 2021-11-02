@@ -13,6 +13,12 @@ cmd + ctrl - e : emoji
 # quickly open a config file in vim
 cmd + ctrl - s : open_dots
 
+# quickly open a vim buffer (the contents then get copied to the clipboard)
+t [
+    "inkscape" : open_vim .tex
+    *          ~
+]
+
 # quick search (for when firefox isn't open and I want to look at a reference as I search)
 cmd + ctrl - t : open_link
 
