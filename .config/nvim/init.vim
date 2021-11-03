@@ -17,7 +17,6 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'lervag/vimtex'
   Plug 'SirVer/ultisnips'
   Plug 'pechorin/any-jump.vim'
-  " Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 call plug#end()
 
