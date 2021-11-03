@@ -138,7 +138,7 @@ font:
 #draw_bold_text_with_bright_colors: false
 
 # Background opacity
-background_opacity: 0.9
+window.opacity: 0.9
 
 selection:
   #semantic_escape_chars: ",│`|:\"' ()[]{}<>\t"
@@ -190,7 +190,7 @@ key_bindings:
   - { key: C,      mods: Command,            action: Copy             }
   - { key: Q,      mods: Command,            command: { program: "killall", args: ["alacritty"] } }
   - { key: W,      mods: Command,            action: Quit             }
-  - { key: N,      mods: Command,            action: SpawnNewInstance }
+  - { key: N,      mods: Command,            action: CreateNewWindow  }
   - { key: V,      mods: Shift|Control,      action: ToggleViMode     }
   - { key: Return, mode: Vi,                 action: Open        }
 
