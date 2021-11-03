@@ -1,6 +1,6 @@
 # open apps or other stuff
 cmd - space     : opener
-cmd - return    : open -na alacritty
+cmd - return    : alacritty msg create-window
 cmd + shift - f : opener finder
 cmd + shift - s : open -F ~/Documents/School/DP/Grade\ 12/Schedules/schedule.pdf
 
