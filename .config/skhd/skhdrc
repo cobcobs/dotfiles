@@ -1,6 +1,6 @@
 # open apps or other stuff
 cmd - space     : opener
-cmd - return    : alacritty msg create-window
+cmd - return    : alacritty msg create-window || /Applications/Alacritty.app/Contents/MacOS/alacritty
 cmd + shift - f : opener finder
 cmd + shift - s : open -F ~/Documents/School/DP/Grade\ 12/Schedules/schedule.pdf
 
@@ -16,7 +16,7 @@ cmd + ctrl - s : open_dots
 # quickly open a vim buffer (the contents then get copied to the clipboard)
 cmd + ctrl - c : open_vim
 t [
-    "inkscape" : open_vim .tex
+    "inkscape"  : open_vim .tex
     "LaTeXDraw" : open_vim .tex
     *          ~
 ]
