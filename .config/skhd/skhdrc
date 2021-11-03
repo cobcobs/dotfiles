@@ -14,8 +14,10 @@ cmd + ctrl - e : emoji
 cmd + ctrl - s : open_dots
 
 # quickly open a vim buffer (the contents then get copied to the clipboard)
+cmd + ctrl - c : open_vim
 t [
     "inkscape" : open_vim .tex
+    "LaTeXDraw" : open_vim .tex
     *          ~
 ]
 
