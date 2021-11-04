@@ -29,7 +29,7 @@ window:
    y: 15
 
   # Spread additional padding evenly around the terminal content.
-  dynamic_padding: true
+  dynamic_padding: false
 
   # Allow terminal applications to change Alacritty's window title.
   # dynamic_title: true
@@ -56,7 +56,7 @@ scrolling:
 
   # Number of lines the viewport will move for every line scrolled when
   # scrollback is enabled (history > 0).
-  #multiplier: 3
+  # multiplier: 3
 
 # Font configuration
 font:
