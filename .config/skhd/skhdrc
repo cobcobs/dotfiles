@@ -147,3 +147,8 @@ ctrl + shift - k [
 :: passthrough
 ctrl - p ; passthrough
 passthrough < ctrl - p ; default
+
+# blacklist apps
+.blacklist [
+    "Roblox"
+]
