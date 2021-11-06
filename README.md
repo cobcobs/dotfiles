@@ -1,4 +1,4 @@
-# dotfiles
+# My Dotfiles
 Managed with [yadm](https://yadm.io/)
 
 # Inspired by
