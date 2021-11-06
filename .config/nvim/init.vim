@@ -18,6 +18,7 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'SirVer/ultisnips'
   Plug 'pechorin/any-jump.vim'
   Plug 'andweeb/presence.nvim'
+  Plug 'lifepillar/vim-colortemplate'
 
 call plug#end()
 
@@ -155,6 +156,6 @@ autocmd filetype cpp setlocal shiftwidth=2 softtabstop=2 expandtab
 
 
 " colorscheme
-colorscheme wal
-highlight Comment cterm=italic
-highlight Pmenu ctermbg=Black guibg=Black
+set termguicolors
+colorscheme olivia
+
