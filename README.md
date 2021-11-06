@@ -19,3 +19,4 @@ Managed with [yadm](https://yadm.io/)
 
 # Todo
 - [ ] [olivia.vim](https://github.com/jacob-ethan/olivia.vim)
+- [ ] Include screenshots
