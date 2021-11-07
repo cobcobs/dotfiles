@@ -1,6 +1,3 @@
-filetype plugin indent on
-syntax on
-
 call plug#begin('~/.config/nvim/plugged')
 
   Plug 'tpope/vim-surround'
@@ -19,6 +16,7 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'pechorin/any-jump.vim'
   Plug 'andweeb/presence.nvim'
   Plug 'lifepillar/vim-colortemplate'
+  Plug 'jacob-ethan/olivia.vim'
 
 call plug#end()
 
@@ -142,11 +140,11 @@ autocmd BufReadPost *
 " Disable auto commenting on newlines
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 
-" change line numbers
+" Change line numbers
 autocmd InsertEnter * :set norelativenumber
 autocmd	InsertLeave * :set relativenumber
 
-" c++ stuff
+" C++ stuff
 autocmd filetype cpp set mp=g++\ -O2\ -Wall\ --std=c++11\ -Wno-unused-result\ %:r.cpp\ -o\ %:r
 autocmd filetype cpp nnoremap <F2> :vs %:r.in <CR>
 autocmd filetype cpp nnoremap <F3> :w<CR> :make<CR>
