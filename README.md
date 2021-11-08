@@ -18,5 +18,5 @@ Managed with [yadm](https://yadm.io/)
 - [CopyQ](https://github.com/hluk/CopyQ)
 
 # Todo
-- [ ] [olivia.vim](https://github.com/jacob-ethan/olivia.vim)
+- [ ] Switch from [spacebar](https://github.com/cmacrae/spacebar) to [SketchyBar](https://github.com/FelixKratz/SketchyBar)
 - [ ] Include screenshots
