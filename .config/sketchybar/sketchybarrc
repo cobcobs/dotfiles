@@ -51,39 +51,39 @@ sketchybar -m --add event title_change                                          
 # spaces
 sketchybar -m --add space first left                                               \
 	      --set first associated_space=1                                       \
-			icon.padding_left=10                                       \
-			icon.padding_right=4                                       \
-			icon="一"                                                  \
-			click_script="yabai -m space --focus 1"                    \
+			  icon.padding_left=10                                     \
+			  icon.padding_right=4                                     \
+			  icon="一"                                                \
+			  click_script="yabai -m space --focus 1"                  \
 										   \
 	      --add space second left                                              \
 	      --set second associated_space=2                                      \
-			icon.padding_right=4                                       \
-			icon="二"                                                  \
-			click_script="yabai -m space --focus 2"                    \
+			   icon.padding_right=4                                    \
+			   icon="二"                                               \
+			   click_script="yabai -m space --focus 2"                 \
 										   \
 	      --add space third left                                               \
 	      --set third associated_space=3                                       \
-			icon.padding_right=4                                       \
-			icon="三"                                                  \
-			click_script="yabai -m space --focus 3"                    \
+			  icon.padding_right=4                                     \
+			  icon="三"                                                \
+			  click_script="yabai -m space --focus 3"                  \
 										   \
 	      --add space fourth left                                              \
 	      --set fourth associated_space=4                                      \
-			icon.padding_right=4                                       \
-			icon="四"                                                  \
-			click_script="yabai -m space --focus 4"                    \
+			   icon.padding_right=4                                    \
+			   icon="四"                                               \
+			   click_script="yabai -m space --focus 4"                 \
 									           \
 	      --add space fifth left                                               \
 	      --set fifth associated_space=5                                       \
-			icon.padding_right=4                                       \
-			icon="五"                                                  \
-			click_script="yabai -m space --focus 5"                    \
+			  icon.padding_right=4                                     \
+			  icon="五"                                                \
+			  click_script="yabai -m space --focus 5"                  \
 										   \
 	      --add bracket yabai_spaces                                           \
-			first second third fourth fifth                            \
+			  first second third fourth fifth                          \
 	      --set yabai_spaces                                                   \
-			background.color=0xAB"${color0//#}"                        \
+			  background.color=0xAB"${color0//#}"                      \
 
 # title
 sketchybar -m --add item title left                                                \
