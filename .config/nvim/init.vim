@@ -4,19 +4,18 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'tpope/vim-commentary'
   Plug 'tpope/vim-repeat'
   Plug 'romainl/vim-cool'
-  Plug 'dylanaraps/wal.vim'
   Plug 'tmsvg/pear-tree'
   Plug 'lifepillar/vim-mucomplete'
   Plug 'jpalardy/vim-slime'
-  Plug 'JuliaEditorSupport/julia-vim'
-  Plug 'mroavi/vim-julia-cell', { 'for': 'julia' }
   Plug 'davidhalter/jedi-vim'
   Plug 'lervag/vimtex'
   Plug 'SirVer/ultisnips'
   Plug 'pechorin/any-jump.vim'
-  Plug 'andweeb/presence.nvim'
   Plug 'lifepillar/vim-colortemplate'
   Plug 'jacob-ethan/olivia.vim'
+  " Plug 'andweeb/presence.nvim'
+  " Plug 'JuliaEditorSupport/julia-vim'
+  " Plug 'mroavi/vim-julia-cell', { 'for': 'julia' }
 
 call plug#end()
 
