@@ -5,20 +5,12 @@
 sudo yabai --load-sa
 yabai -m signal --add event=dock_did_restart action="sudo yabai --load-sa"
 
-
 # import the colors
 . "${HOME}/.cache/wal/colors.sh"
 
 # bar
-SPACEBAR_HEIGHT=$(spacebar -m config height)
-ps cax | grep spacebar &> /dev/null
-if [ $? -eq 0 ] ; then
-    yabai -m config external_bar all:$SPACEBAR_HEIGHT:0
-    yabai -m config top_padding 10
-else 
-    yabai -m config external_bar all:0:0
-    yabai -m config top_padding 10
-fi
+yabai -m config external_bar all:50:0
+yabai -m config top_padding 10
 
 # set border colors
 yabai_color
@@ -71,6 +63,8 @@ yabai -m config window_gap                   10
 # signals
 yabai -m signal --add event=window_destroyed action="yabai -m query --windows --window &> /dev/null || yabai -m window --focus mouse"
 yabai -m signal --add event=application_terminated action="yabai -m query --windows --window &> /dev/null || yabai -m window --focus mouse"
+yabai -m signal --add event=window_focused action="sketchybar -m --trigger window_focus &> /dev/null"
+    yabai -m signal --add event=window_title_changed action="sketchybar -m --trigger title_change &> /dev/null"
 
 # autoupdate
 # YABAI_CERT=yabai-cert sh -c "$(curl -fsSL "https://git.io/update-yabai")" &

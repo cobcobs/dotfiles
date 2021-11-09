@@ -4,16 +4,14 @@
 # current_padding = $(yabai -m config window_gap)
 # declare -i current_padding
 
-ps cax | grep spacebar > /dev/null
+ps cax | grep sketchybar > /dev/null
 if [ $? -eq 0 ] ; then
-	launchctl unload /usr/local/opt/spacebar/homebrew.mxcl.spacebar.plist
+	launchctl unload /usr/local/opt/sketchybar/homebrew.mxcl.sketchybar.plist
+	sketchybar -m --bar --hidden=on
 	yabai -m config external_bar all:0:0
-	spacebar -m config height 0
-	# yabai -m config top_padding $((current_padding * 2))
 else
-	launchctl load /usr/local/opt/spacebar/homebrew.mxcl.spacebar.plist
-	yabai -m config external_bar all:25:0
-	spacebar -m config height 25
-	# yabai -m config top_padding $((current_padding * 2))
+	launchctl load /usr/local/opt/sketchybar/homebrew.mxcl.sketchybar.plist
+	sketchybar -m --bar --hidden=off
+	yabai -m config external_bar all:45:0
 fi
 
