@@ -84,10 +84,10 @@
     --uc-inactive-tab-width: clamp( 50px, 15vw, 200px);
 
     /* if active always shows the tab close button */
-    --show-tab-close-button: none; /* DEFAULT: -moz-inline-box; */ 
+    /* --show-tab-close-button: none; /1* DEFAULT: -moz-inline-box; *1/ */ 
 
     /* if active only shows the tab close button on hover*/
-    --show-tab-close-button-hover: -moz-inline-box; /* DEFAULT: -moz-inline-box; */
+    /* --show-tab-close-button-hover: -moz-inline-box; /1* DEFAULT: -moz-inline-box; *1/ */
      
     /* adds left and right margin to the container-tabs indicator */
     --container-tabs-indicator-margin: 10px;
@@ -247,9 +247,36 @@ window,
 
 
 /* tab close button options */
-.tabbrowser-tab:not([pinned]) .tab-close-button { display: var(--show-tab-close-button) !important; }
-.tabbrowser-tab:not([pinned]):hover .tab-close-button { display: var(--show-tab-close-button-hover) !important }
+/* .tabbrowser-tab:not([pinned]) .tab-close-button { display: var(--show-tab-close-button) !important; } */
+/* .tabbrowser-tab:not([pinned]):hover .tab-close-button { display: var(--show-tab-close-button-hover) !important } */
 
+/* combine favicon and tab close button */
+.tab-close-button{
+  -moz-box-ordinal-group: 0;
+  display: -moz-box !important;
+  position: relative;
+  margin-inline: -1px -19px !important;
+  z-index: -1;
+  visibility: hidden;
+  width: unset !important;
+}
+.tabbrowser-tab[pinned] .tab-close-button{ display: none !important; }
+.tabbrowser-tab:hover .tab-close-button{
+  background-color: var(--lwt-selected-tab-background-color,var(--toolbar-bgcolor)) !important;
+  background-image: linear-gradient(var(--toolbarbutton-hover-background),var(--toolbarbutton-hover-background))
+}
+
+@media (-moz-proton){
+  .tab-close-button{
+    margin-inline: -4px -20px !important;
+    padding-inline-start: 7px !important;
+  }
+}
+
+.tab-icon-stack:hover ~ .tab-close-button,
+.tab-close-button:hover,
+.tabbrowser-tab:not([image]):hover .tab-close-button{ visibility: visible; z-index: 1;  }
+.tabbrowser-tab:not([image]):hover .tab-close-button{ margin-inline-end: 0 !important; }
 
 /* adaptive tab width */
 .tabbrowser-tab[selected][fadein]:not([pinned]) { max-width: var(--uc-active-tab-width) !important; }
