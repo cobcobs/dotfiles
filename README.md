@@ -19,4 +19,5 @@ Managed with [yadm](https://yadm.io/)
 
 # Todo
 - [x] Switch from [spacebar](https://github.com/cmacrae/spacebar) to [SketchyBar](https://github.com/FelixKratz/SketchyBar)
+- [ ] Switch from [alacritty](https://github.com/alacritty/alacritty) to [kitty](https://sw.kovidgoyal.net/kitty/)
 - [ ] Include screenshots
