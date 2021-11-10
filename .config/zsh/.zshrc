@@ -65,6 +65,9 @@ _zsh_cli_fg() { fg; }
 zle -N _zsh_cli_fg
 bindkey '^Z' _zsh_cli_fg
 
+# change terminal title to current working directory
+precmd () { print -Pn "\e]0;%~\a" }
+
 # aliases
 eval $(thefuck --alias frick)
 
