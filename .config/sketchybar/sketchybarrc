@@ -134,6 +134,19 @@ sketchybar -m --add item battery right                                          
 		    background.color=0xAB"${color0//#}"                                                      \
 		    background.padding_left=10                                                               \
 		    script="$PLUGINS_DIR/clock.sh"                                                           \
+													     \
+	      --add item date right                                                                          \
+	      --set date                                                                                     \
+		    icon=                                                                                   \
+		    update_freq=60                                                                           \
+		    y_offset=1                                                                               \
+		    icon.padding_left=10                                                                     \
+		    icon.padding_right=2                                                                     \
+		    label.padding_right=10                                                                   \
+                    label.font="SF Pro Text:Bold:12.0"                                                       \
+		    background.color=0xAB"${color0//#}"                                                      \
+		    background.padding_left=10                                                               \
+		    script="$PLUGINS_DIR/date.sh"                                                            \
 
 # Adding custom events which can listen on distributed notifications from other running processes
 sketchybar -m --add event spotify_change "com.spotify.client.PlaybackStateChanged"                           \
