@@ -18,5 +18,5 @@ Managed with [yadm](https://yadm.io/)
 - [CopyQ](https://github.com/hluk/CopyQ)
 
 # Todo
-- [ ] Switch from [spacebar](https://github.com/cmacrae/spacebar) to [SketchyBar](https://github.com/FelixKratz/SketchyBar)
+- [x] Switch from [spacebar](https://github.com/cmacrae/spacebar) to [SketchyBar](https://github.com/FelixKratz/SketchyBar)
 - [ ] Include screenshots
