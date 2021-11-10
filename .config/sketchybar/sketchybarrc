@@ -26,15 +26,15 @@ sketchybar -m --default drawing=on                                              
 
 # label defaults
 sketchybar -m --default label.color=0xff"${cursor//#}"                                                       \
-                        label.highlight_color=0xffdeaf9d                                                     \
                         label.font="SF Pro Text:Bold:12.0"                                                   \
+                        label.highlight_color=0xffdeaf9d                                                     \
                         label.padding_left=2                                                                 \
                         label.padding_right=5                                                                \
 
 # icon defaults
 sketchybar -m --default icon.color=0xff"${color7//#}"                                                        \
-                        icon.highlight_color=0xffdeaf9d                                                      \
                         icon.font="SF Mono Square:Bold:14.0"                                                 \
+                        icon.highlight_color=0xffdeaf9d                                                      \
                         icon.padding_left=0                                                                  \
                         icon.padding_right=0                                                                 \
 
@@ -50,45 +50,50 @@ sketchybar -m --add event title_change
 
 # spaces
 sketchybar -m --add space first left                                                                         \
-	      --set first associated_space=1                                                                 \
-			  icon.padding_left=10                                                               \
-			  icon.padding_right=4                                                               \
-			  icon="一"                                                                          \
-			  script="$PLUGINS_DIR/space.sh"                                                     \
-			  click_script="yabai -m space --focus 1"                                            \
+	      --set first                                                                                    \
+	            associated_space=1                                                                       \
+		    icon="一"                                                                                \
+		    icon.padding_left=10                                                                     \
+		    icon.padding_right=4                                                                     \
+		    script="$PLUGINS_DIR/space.sh"                                                           \
+		    click_script="yabai -m space --focus 1"                                                  \
 										                             \
 	      --add space second left                                                                        \
-	      --set second associated_space=2                                                                \
-			   icon.padding_right=4                                                              \
-			   icon="二"                                                                         \
-			  script="$PLUGINS_DIR/space.sh"                                                     \
-			   click_script="yabai -m space --focus 2"                                           \
+	      --set second                                                                                   \
+		    associated_space=2                                                                       \
+		    icon="二"                                                                                \
+		    icon.padding_right=4                                                                     \
+		    script="$PLUGINS_DIR/space.sh"                                                           \
+		    click_script="yabai -m space --focus 2"                                                  \
 										                             \
 	      --add space third left                                                                         \
-	      --set third associated_space=3                                                                 \
-			  icon.padding_right=4                                                               \
-			  icon="三"                                                                          \
-			  script="$PLUGINS_DIR/space.sh"                                                     \
-			  click_script="yabai -m space --focus 3"                                            \
+	      --set third                                                                                    \
+		    associated_space=3                                                                       \
+		    icon="三"                                                                                \
+		    icon.padding_right=4                                                                     \
+		    script="$PLUGINS_DIR/space.sh"                                                           \
+		    click_script="yabai -m space --focus 3"                                                  \
 										                             \
 	      --add space fourth left                                                                        \
-	      --set fourth associated_space=4                                                                \
-			   icon.padding_right=4                                                              \
-			   icon="四"                                                                         \
-			  script="$PLUGINS_DIR/space.sh"                                                     \
-			   click_script="yabai -m space --focus 4"                                           \
+	      --set fourth                                                                                   \
+		    associated_space=4                                                                       \
+		    icon="四"                                                                                \
+		    icon.padding_right=4                                                                     \
+		    script="$PLUGINS_DIR/space.sh"                                                           \
+		    click_script="yabai -m space --focus 4"                                                  \
 									                                     \
 	      --add space fifth left                                                                         \
-	      --set fifth associated_space=5                                                                 \
-			  icon.padding_right=4                                                               \
-			  icon="五"                                                                          \
-			  script="$PLUGINS_DIR/space.sh"                                                     \
-			  click_script="yabai -m space --focus 5"                                            \
+	      --set fifth                                                                                    \
+		    associated_space=5                                                                       \
+		    icon="五"                                                                                \
+		    icon.padding_right=4                                                                     \
+		    script="$PLUGINS_DIR/space.sh"                                                           \
+		    click_script="yabai -m space --focus 5"                                                  \
 										                             \
 	      --add bracket yabai_spaces                                                                     \
-			  first second third fourth fifth                                                    \
+		    first second third fourth fifth                                                          \
 	      --set yabai_spaces                                                                             \
-			  background.color=0xAB"${color0//#}"                                                \
+		    background.color=0xAB"${color0//#}"                                                      \
 
 # title
 sketchybar -m --add item title left                                                                          \
@@ -98,9 +103,8 @@ sketchybar -m --add item title left                                             
 		    icon.padding_left=9                                                                      \
 		    icon.padding_right=0                                                                     \
 		    label.padding_right=11                                                                   \
-		    y_offset=0                                                                               \
-		    background.padding_left=10					                             \
 		    background.color=0xAB"${color0//#}"                                                      \
+		    background.padding_left=10					                             \
 		    script="$PLUGINS_DIR/window_title.sh"                                                    \
 		    click_script="opener"                                                                    \
 	       --subscribe title                                                                             \
@@ -112,51 +116,46 @@ sketchybar -m --add item title left                                             
 # date, clock, and battery
 sketchybar -m --add item battery right                                                                       \
 	      --set battery                                                                                  \
-		    update_freq=10                                                                           \
-		    script="$PLUGINS_DIR/power.sh"                                                           \
-		    label.padding_right=10                                                                   \
+		    update_freq=60                                                                           \
 		    icon.padding_left=10                                                                     \
 		    icon.padding_right=2                                                                     \
-		    label.font="SF Pro Text:Bold:12.0"                                                       \
-		    y_offset=1                                                                               \
+		    label.padding_right=10                                                                   \
 		    background.color=0xAB"${color0//#}"                                                      \
 		    background.padding_left=10                                                               \
+		    script="$PLUGINS_DIR/power.sh"                                                           \
 										                             \
 	      --add item clock right                                                                         \
 	      --set clock                                                                                    \
-		    icon=                                                                                   \
 		    update_freq=5                                                                            \
-		    y_offset=1                                                                               \
+		    icon=                                                                                   \
 		    icon.padding_left=10                                                                     \
 		    icon.padding_right=2                                                                     \
 		    label.padding_right=10                                                                   \
-                    label.font="SF Pro Text:Bold:12.0"                                                       \
 		    background.color=0xAB"${color0//#}"                                                      \
 		    background.padding_left=10                                                               \
 		    script="$PLUGINS_DIR/clock.sh"                                                           \
 													     \
 	      --add item date right                                                                          \
 	      --set date                                                                                     \
-		    icon=                                                                                   \
 		    update_freq=60                                                                           \
-		    y_offset=1                                                                               \
+		    icon=                                                                                   \
 		    icon.padding_left=10                                                                     \
 		    icon.padding_right=2                                                                     \
 		    label.padding_right=10                                                                   \
-                    label.font="SF Pro Text:Bold:12.0"                                                       \
 		    background.color=0xAB"${color0//#}"                                                      \
 		    background.padding_left=10                                                               \
 		    script="$PLUGINS_DIR/date.sh"                                                            \
 
-# Adding custom events which can listen on distributed notifications from other running processes
-sketchybar -m --add event spotify_change "com.spotify.client.PlaybackStateChanged"                           \
-              --add item spotifyIndicator center                                                             \
-              --set spotifyIndicator script="~/.config/sketchybar/plugins/spotifyIndicator.sh"               \
-              --set spotifyIndicator click_script="osascript -e 'tell application \"Spotify\" to playpause'" \
-	      --set spotifyIndicator background.color=0xAB"${color0//#}"                                     \
-	      --set spotifyIndicator icon.padding_left=10                                                    \
-	      --set spotifyIndicator icon.padding_right=0                                                    \
-	      --set spotifyIndicator label.padding_right=10                                                  \
+# spotify
+sketchybar -m --add item spotifyIndicator right                                                              \
+              --set spotifyIndicator                                                                         \
+	            icon=                                                                                   \
+	            icon.padding_left=10                                                                     \
+	            icon.padding_right=2                                                                     \
+	            label.padding_right=10                                                                   \
+	            background.color=0xAB"${color0//#}"                                                      \
+	            script="~/.config/sketchybar/plugins/spotifyIndicator.sh"                                \
+                    click_script="osascript -e 'tell application \"Spotify\" to playpause'"                  \
               --subscribe spotifyIndicator spotify_change                                                    \
 
 # load
