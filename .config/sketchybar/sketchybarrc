@@ -8,142 +8,143 @@
 PLUGINS_DIR="$HOME/.config/sketchybar/plugins"
 
 # set bar
-sketchybar -m --bar height=32                                                                            \
-                    position=top                                                                         \
-		    margin=0                                                                             \
-		    y_offset=10                                                                          \
-                    padding_left=10                                                                      \
-                    padding_right=10                                                                     \
-		    topmost=off                                                                          \
-		    hidden=off                                                                           \
-                    color=0x00000000                                                                     \
-		    font_smoothing=on                                                                    \
-                    # blur_radius=50                                                                       \
+sketchybar -m --bar height=32                                                                                \
+                    position=top                                                                             \
+		    margin=0                                                                                 \
+		    y_offset=10                                                                              \
+                    padding_left=10                                                                          \
+                    padding_right=10                                                                         \
+		    topmost=off                                                                              \
+		    hidden=off                                                                               \
+                    color=0x00000000                                                                         \
+		    font_smoothing=on                                                                        \
+                    # blur_radius=50                                                                           \
 
 # global defaults
-sketchybar -m --default drawing=on                                                                       \
-			y_offset=0                                                                       \
+sketchybar -m --default drawing=on                                                                           \
+			y_offset=0                                                                           \
 
 # label defaults
-sketchybar -m --default label.color=0xff"${cursor//#}"                                                   \
-                        label.highlight_color=0xff"${color7//#}"                                         \
-                        label.font="SF Pro Text:Bold:12.0"                                               \
-                        label.padding_left=2                                                             \
-                        label.padding_right=4                                                            \
+sketchybar -m --default label.color=0xff"${cursor//#}"                                                       \
+                        label.highlight_color=0xffdeaf9d                                                     \
+                        label.font="SF Pro Text:Bold:12.0"                                                   \
+                        label.padding_left=2                                                                 \
+                        label.padding_right=4                                                                \
 
 # icon defaults
-sketchybar -m --default icon.color=0xff"${color7//#}"                                                    \
-                        icon.highlight_color=0xffdeaf9d                                                  \
-                        icon.font="SF Mono Square:Bold:14.0"                                             \
-                        icon.padding_left=0                                                              \
-                        icon.padding_right=0                                                             \
+sketchybar -m --default icon.color=0xff"${color7//#}"                                                        \
+                        icon.highlight_color=0xffdeaf9d                                                      \
+                        icon.font="SF Mono Square:Bold:14.0"                                                 \
+                        icon.padding_left=0                                                                  \
+                        icon.padding_right=0                                                                 \
 
 # background defaults
-sketchybar -m --default background.border_color=0xff"${color7//#}"                                       \
-			background.border_width=5                                                        \
-			background.height=32                                                             \
+sketchybar -m --default background.border_color=0xff"${color7//#}"                                           \
+			background.border_width=5                                                            \
+			background.height=32                                                                 \
 
 # events
-sketchybar -m --add event spotify_change "com.spotify.client.PlaybackStateChanged"                       \
-sketchybar -m --add event window_focus                                                                   \
-sketchybar -m --add event title_change                                                                   \
+sketchybar -m --add event spotify_change "com.spotify.client.PlaybackStateChanged"
+sketchybar -m --add event window_focus
+sketchybar -m --add event title_change
 
 # spaces
-sketchybar -m --add space first left                                                                     \
-	      --set first associated_space=1                                                             \
-			  icon.padding_left=10                                                           \
-			  icon.padding_right=4                                                           \
-                          icon.highlight_color=0xffdeaf9d                                                \
-			  icon="一"                                                                      \
-			  script="$PLUGINS_DIR/space.sh"                                                 \
-			  click_script="yabai -m space --focus 1"                                        \
-										                         \
-	      --add space second left                                                                    \
-	      --set second associated_space=2                                                            \
-			   icon.padding_right=4                                                          \
-			   icon="二"                                                                     \
-			   click_script="yabai -m space --focus 2"                                       \
-										                         \
-	      --add space third left                                                                     \
-	      --set third associated_space=3                                                             \
-			  icon.padding_right=4                                                           \
-			  icon="三"                                                                      \
-			  click_script="yabai -m space --focus 3"                                        \
-										                         \
-	      --add space fourth left                                                                    \
-	      --set fourth associated_space=4                                                            \
-			   icon.padding_right=4                                                          \
-			   icon="四"                                                                     \
-			   click_script="yabai -m space --focus 4"                                       \
-									                                 \
-	      --add space fifth left                                                                     \
-	      --set fifth associated_space=5                                                             \
-			  icon.padding_right=4                                                           \
-			  icon="五"                                                                      \
-			  click_script="yabai -m space --focus 5"                                        \
-										                         \
-	      --add bracket yabai_spaces                                                                 \
-			  first second third fourth fifth                                                \
-	      --set yabai_spaces                                                                         \
-			  background.color=0xAB"${color0//#}"                                            \
+sketchybar -m --add space first left                                                                         \
+	      --set first associated_space=1                                                                 \
+			  icon.padding_left=10                                                               \
+			  icon.padding_right=4                                                               \
+			  icon="一"                                                                          \
+			  script="$PLUGINS_DIR/space.sh"                                                     \
+			  click_script="yabai -m space --focus 1"                                            \
+										                             \
+	      --add space second left                                                                        \
+	      --set second associated_space=2                                                                \
+			   icon.padding_right=4                                                              \
+			   icon="二"                                                                         \
+			  script="$PLUGINS_DIR/space.sh"                                                     \
+			   click_script="yabai -m space --focus 2"                                           \
+										                             \
+	      --add space third left                                                                         \
+	      --set third associated_space=3                                                                 \
+			  icon.padding_right=4                                                               \
+			  icon="三"                                                                          \
+			  script="$PLUGINS_DIR/space.sh"                                                     \
+			  click_script="yabai -m space --focus 3"                                            \
+										                             \
+	      --add space fourth left                                                                        \
+	      --set fourth associated_space=4                                                                \
+			   icon.padding_right=4                                                              \
+			   icon="四"                                                                         \
+			  script="$PLUGINS_DIR/space.sh"                                                     \
+			   click_script="yabai -m space --focus 4"                                           \
+									                                     \
+	      --add space fifth left                                                                         \
+	      --set fifth associated_space=5                                                                 \
+			  icon.padding_right=4                                                               \
+			  icon="五"                                                                          \
+			  script="$PLUGINS_DIR/space.sh"                                                     \
+			  click_script="yabai -m space --focus 5"                                            \
+										                             \
+	      --add bracket yabai_spaces                                                                     \
+			  first second third fourth fifth                                                    \
+	      --set yabai_spaces                                                                             \
+			  background.color=0xAB"${color0//#}"                                                \
 
 # title
-sketchybar -m --add item title left                                                                      \
-	      --set title                                                                                \
-		    icon=""                                                                              \
-		    icon.color=0xFF"${cursor//#}"                                                        \
-		    icon.padding_left=9                                                                  \
-		    icon.padding_right=0                                                                 \
-		    label.padding_right=10                                                               \
-		    y_offset=0                                                                           \
-		    background.padding_left=10					                         \
-		    background.color=0xAB"${color0//#}"                                                  \
-		    update_freq=2                                                                        \
-		    script="$PLUGINS_DIR/window_title.sh"                                                \
-		    click_script="opener"                                                                \
-                                                                                                         \
-	       --subscribe title                                                                         \
-		    window_focus                                                                         \
-		    front_app_switched                                                                   \
-		    space_change                                                                         \
-		    title_change                                                                         \
+sketchybar -m --add item title left                                                                          \
+	      --set title                                                                                    \
+		    icon=""                                                                                  \
+		    icon.color=0xFF"${cursor//#}"                                                            \
+		    icon.padding_left=9                                                                      \
+		    icon.padding_right=0                                                                     \
+		    label.padding_right=10                                                                   \
+		    y_offset=0                                                                               \
+		    background.padding_left=10					                             \
+		    background.color=0xAB"${color0//#}"                                                      \
+		    script="$PLUGINS_DIR/window_title.sh"                                                    \
+		    click_script="opener"                                                                    \
+	       --subscribe title                                                                             \
+		    window_focus                                                                             \
+		    front_app_switched                                                                       \
+		    space_change                                                                             \
+		    title_change                                                                             \
 
 # date, clock, and battery
-sketchybar -m --add item battery right                                                                   \
-	      --set battery                                                                              \
-		    update_freq=10                                                                       \
-		    script="$PLUGINS_DIR/power.sh"                                                       \
-		    label.padding_right=10                                                               \
-		    icon.padding_left=10                                                                 \
-		    icon.padding_right=2                                                                 \
-		    label.font="SF Pro Text:Bold:12.0"                                                   \
-		    y_offset=1                                                                           \
-		    background.color=0xAB"${color0//#}"                                                  \
-		    background.padding_left=10                                                           \
-										                         \
-	      --add item clock right                                                                     \
-	      --set clock                                                                                \
-		    icon=                                                                               \
-		    update_freq=5                                                                        \
-		    y_offset=1                                                                           \
-		    icon.padding_left=10                                                                 \
-		    icon.padding_right=2                                                                 \
-		    label.padding_right=10                                                               \
-                    label.font="SF Pro Text:Bold:12.0"                                                   \
-		    background.color=0xAB"${color0//#}"                                                  \
-		    background.padding_left=10                                                           \
-		    script="$PLUGINS_DIR/clock.sh"                                                       \
+sketchybar -m --add item battery right                                                                       \
+	      --set battery                                                                                  \
+		    update_freq=10                                                                           \
+		    script="$PLUGINS_DIR/power.sh"                                                           \
+		    label.padding_right=10                                                                   \
+		    icon.padding_left=10                                                                     \
+		    icon.padding_right=2                                                                     \
+		    label.font="SF Pro Text:Bold:12.0"                                                       \
+		    y_offset=1                                                                               \
+		    background.color=0xAB"${color0//#}"                                                      \
+		    background.padding_left=10                                                               \
+										                             \
+	      --add item clock right                                                                         \
+	      --set clock                                                                                    \
+		    icon=                                                                                   \
+		    update_freq=5                                                                            \
+		    y_offset=1                                                                               \
+		    icon.padding_left=10                                                                     \
+		    icon.padding_right=2                                                                     \
+		    label.padding_right=10                                                                   \
+                    label.font="SF Pro Text:Bold:12.0"                                                       \
+		    background.color=0xAB"${color0//#}"                                                      \
+		    background.padding_left=10                                                               \
+		    script="$PLUGINS_DIR/clock.sh"                                                           \
 
 # Adding custom events which can listen on distributed notifications from other running processes
-sketchybar -m --add event spotify_change "com.spotify.client.PlaybackStateChanged"                       \
-              --add item spotifyIndicator center                                                         \
-              --set spotifyIndicator script="~/.config/sketchybar/plugins/spotifyIndicator.sh"           \
-              --set spotifyIndicator click_script="osascript -e 'tell application \"Spotify\" to pause'" \
-	      --set spotifyIndicator background.color=0xAB"${color0//#}"                                 \
-	      --set spotifyIndicator icon.padding_left=10                                                \
-	      --set spotifyIndicator icon.padding_right=0                                                \
-	      --set spotifyIndicator label.padding_right=10                                              \
-              --subscribe spotifyIndicator spotify_change                                                \
+sketchybar -m --add event spotify_change "com.spotify.client.PlaybackStateChanged"                           \
+              --add item spotifyIndicator center                                                             \
+              --set spotifyIndicator script="~/.config/sketchybar/plugins/spotifyIndicator.sh"               \
+              --set spotifyIndicator click_script="osascript -e 'tell application \"Spotify\" to playpause'" \
+	      --set spotifyIndicator background.color=0xAB"${color0//#}"                                     \
+	      --set spotifyIndicator icon.padding_left=10                                                    \
+	      --set spotifyIndicator icon.padding_right=0                                                    \
+	      --set spotifyIndicator label.padding_right=10                                                  \
+              --subscribe spotifyIndicator spotify_change                                                    \
 
 # load
 sketchybar -m --update

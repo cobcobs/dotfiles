@@ -21,7 +21,6 @@ yabai -m config focus_follows_mouse          autoraise
 yabai -m config window_placement             second_child
 yabai -m config window_topmost               on
 yabai -m config window_opacity               off
-yabai -m config window_opacity_duration      0.0
 yabai -m config window_shadow                off
 yabai -m config active_window_opacity        1.0
 yabai -m config normal_window_opacity        0.9
@@ -64,7 +63,7 @@ yabai -m config window_gap                   10
 yabai -m signal --add event=window_destroyed action="yabai -m query --windows --window &> /dev/null || yabai -m window --focus mouse"
 yabai -m signal --add event=application_terminated action="yabai -m query --windows --window &> /dev/null || yabai -m window --focus mouse"
 yabai -m signal --add event=window_focused action="sketchybar -m --trigger window_focus &> /dev/null"
-    yabai -m signal --add event=window_title_changed action="sketchybar -m --trigger title_change &> /dev/null"
+yabai -m signal --add event=window_title_changed action="sketchybar -m --trigger title_change &> /dev/null"
 
 # autoupdate
 # YABAI_CERT=yabai-cert sh -c "$(curl -fsSL "https://git.io/update-yabai")" &

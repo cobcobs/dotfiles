@@ -48,6 +48,7 @@ set shortmess+=c
 set conceallevel=2
 setlocal spell
 set spelllang=en_us
+set title
 
 
 " plugin settings

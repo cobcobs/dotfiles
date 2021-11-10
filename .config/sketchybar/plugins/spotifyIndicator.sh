@@ -14,13 +14,11 @@ if [ "$(osascript -e 'if application "Spotify" is running then tell application 
   ALBUM=$(osascript -e 'tell application "Spotify" to get album of current track')
 fi
 if [ $RUNNING -eq 0 ] && [ $PLAYING -eq 0 ]; then
-  sketchybar -m --set spotifyIndicator drawing=on
   if [ "$ARTIST" == "" ]; then
     sketchybar -m --set $NAME label="$TRACK ~ $ALBUM"
   else
     sketchybar -m --set $NAME label="$TRACK ~ $ARTIST"
   fi
 else
-  sketchybar -m --set $NAME label=""
-  sketchybar -m --set spotifyIndicator drawing=off
+  sketchybar -m --set $NAME label="Click to play Spotify"
 fi
