@@ -46,8 +46,8 @@ set undodir=$HOME/.config/nvim/undodir
 set completeopt=menuone,noinsert,noselect
 set shortmess+=c
 set conceallevel=2
-setlocal spell
-set spelllang=en_us
+" setlocal spell
+" set spelllang=en_us
 set title
 
 
