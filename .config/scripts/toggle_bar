@@ -12,6 +12,6 @@ if [ $? -eq 0 ] ; then
 else
 	launchctl load /usr/local/opt/sketchybar/homebrew.mxcl.sketchybar.plist
 	sketchybar -m --bar --hidden=off
-	yabai -m config external_bar all:45:0
+	yabai -m config external_bar all:40:0
 fi
 
