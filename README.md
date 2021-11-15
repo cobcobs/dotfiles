@@ -24,4 +24,5 @@ Managed with [yadm](https://yadm.io/)
   - [Guide](https://github.com/nanotee/nvim-lua-guide/)
   - [Article](https://oroques.dev/notes/neovim-init/)
 - [ ] Switch from vim-plug to [packer.nvim](https://github.com/wbthomason/packer.nvim)
+- [ ] Include [nvim-lspconfig](https://github.com/neovim/nvim-lspconfig) again
 - [ ] Include screenshots
