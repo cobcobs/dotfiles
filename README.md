@@ -20,4 +20,9 @@ Managed with [yadm](https://yadm.io/)
 # Todo
 - [x] Switch from [spacebar](https://github.com/cmacrae/spacebar) to [SketchyBar](https://github.com/FelixKratz/SketchyBar)
 - [x] Switch from [alacritty](https://github.com/alacritty/alacritty) to [kitty](https://sw.kovidgoyal.net/kitty/)
+- [ ] Switch from init.vim to init.lua
+  - [Guide](https://github.com/nanotee/nvim-lua-guide/)
+  - [Article](https://oroques.dev/notes/neovim-init/)
+- [ ] Switch from vim-plug to [packer.nvim](https://github.com/wbthomason/packer.nvim)
+- [ ] Include [nvim-lspconfig](https://github.com/neovim/nvim-lspconfig) again
 - [ ] Include screenshots
