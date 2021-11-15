@@ -10,7 +10,7 @@
 #         export PATH="/usr/local/Caskroom/miniconda/base/bin:$PATH"
 #     fi
 # fi
-unset __conda_setup
+# unset __conda_setup
 # <<< conda initialize <<<
 
 export ZDOTDIR=$HOME/.config/zsh
@@ -26,5 +26,6 @@ export LESSHISTFILE=$HOME/.cache/less/lesshst
 export VISUAL=nvim
 export EDITOR=$VISUAL
 export RANGER_LOAD_DEFAULT_RC=FALSE
+export PATH="/usr/local/opt/ruby/bin:$PATH"
 
 source $HOME/.cargo/env

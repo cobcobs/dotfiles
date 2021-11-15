@@ -72,6 +72,7 @@ alias src='vim ~/.config/skhd/skhdrc'
 alias arc='vim ~/.config/alacritty/alacritty.yml'
 alias vim='nvim'
 alias vimdiff='nvim -d'
+alias ranger='ranger --choosedir=$HOME/.rangerdir; LASTDIR=`cat $HOME/.rangerdir`; cd "$LASTDIR"' # cd into current directory after quitting ranger
 
 # import colorscheme from 'wal' asynchronously
 # &   # Run the process in the background.
@@ -124,5 +125,7 @@ source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source /usr/local/opt/powerlevel10k/powerlevel10k.zsh-theme
 [[ ! -f ~/.config/zsh/.p10k.zsh ]] || source ~/.config/zsh/.p10k.zsh
 
+# Functions
+# _________
 fpath+=${ZDOTDIR:-~}/.zsh_functions
 
