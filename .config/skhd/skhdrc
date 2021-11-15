@@ -3,7 +3,8 @@ cmd - space     : opener
 # cmd - return    : alacritty msg create-window || /Applications/Alacritty.app/Contents/MacOS/alacritty
 cmd - return    : /Applications/kitty.app/Contents/MacOS/kitty --single-instance -d ~
 cmd + shift - f : opener finder
-cmd + shift - s : open -F ~/Documents/School/DP/Grade\ 12/Schedules/schedule.pdf
+# cmd + shift - s : open -F ~/Documents/School/DP/Grade\ 12/Schedules/schedule.pdf
+cmd + shift - s : zathura ~/Documents/School/DP/Grade\ 12/Schedules/schedule.pdf
 
 # lock screen
 cmd + ctrl - q : lock_screen
