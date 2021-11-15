@@ -72,7 +72,7 @@ alias src='vim ~/.config/skhd/skhdrc'
 alias arc='vim ~/.config/alacritty/alacritty.yml'
 alias vim='nvim'
 alias vimdiff='nvim -d'
-alias ranger='ranger --choosedir=$HOME/.rangerdir; LASTDIR=`cat $HOME/.rangerdir`; cd "$LASTDIR"' # cd into current directory after quitting ranger
+alias ranger='ranger --choosedir=$HOME/.cache/ranger/rangerdir; LASTDIR=`cat $HOME/.cache/ranger/rangerdir`; cd "$LASTDIR"' # cd into current directory after quitting ranger
 
 # import colorscheme from 'wal' asynchronously
 # &   # Run the process in the background.
