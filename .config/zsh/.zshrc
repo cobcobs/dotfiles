@@ -63,7 +63,7 @@ precmd () { print -Pn "\e]0;%~\a" }
 eval $(thefuck --alias frick)
 
 alias bluetooth='bluetoothconnector'
-alias vrc='vim ~/.config/nvim/init.vim'
+alias vrc='vim ~/.config/nvim/init.lua'
 alias zrc='vim ~/.config/zsh/.zshrc'
 alias yrc='vim ~/.config/yabai/yabairc'
 alias frc='vim ~/.config/firefox/userChrome.css'
