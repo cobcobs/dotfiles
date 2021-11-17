@@ -7,8 +7,9 @@ require("packer").startup(function(use)
   use "tpope/vim-commentary"
   use "tpope/vim-repeat"
   use "romainl/vim-cool"
-  use "jacob-ethan/olivia.vim"
+  use "ggandor/lightspeed.nvim"
   use {"neoclide/coc.nvim", branch = "release"}
+  use "jacob-ethan/olivia.vim"
 end)
 
 
