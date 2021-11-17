@@ -1,18 +1,14 @@
 -- plugins
-require('impatient')
-require('packer').startup(function(use)
+require("impatient")
+require("packer").startup(function(use)
   use "wbthomason/packer.nvim"
   use "lewis6991/impatient.nvim"
   use "tpope/vim-surround"
   use "tpope/vim-commentary"
   use "tpope/vim-repeat"
   use "romainl/vim-cool"
-  use "tmsvg/pear-tree"
-  use "lervag/vimtex"
-  use "SirVer/ultisnips"
-  use "pechorin/any-jump.vim"
   use "jacob-ethan/olivia.vim"
-  -- use 'lifepillar/vim-colortemplate'
+  use {"neoclide/coc.nvim", branch = "release"}
 end)
 
 
