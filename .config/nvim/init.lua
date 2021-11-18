@@ -6,20 +6,19 @@ require("packer").startup(function()
   use "lewis6991/impatient.nvim"
   use "nathom/filetype.nvim"
   use "neovim/nvim-lspconfig"
-  use {"echasnovski/mini.nvim", event = "VimEnter"}
-  use {"tpope/vim-surround", event = "VimEnter"}
-  use {"tpope/vim-commentary", event = "VimEnter"}
-  use {"tpope/vim-repeat", event = "VimEnter"}
   use {"romainl/vim-cool", event = "VimEnter"}
   use {"ripxorip/aerojump.nvim", event = "VimEnter"}
   use {"jacob-ethan/olivia.vim", event = "ColorSchemePre"}
+  use {
+      "echasnovski/mini.nvim",
+      config = function()
+	require("mini.comment").setup()
+	require("mini.completion").setup()
+	require("mini.pairs").setup()
+	require("mini.surround").setup()
+      end,
+  }
 end)
-
--- mini.nvim
-require("mini.comment").setup()
-require("mini.completion").setup()
-require("mini.pairs").setup()
-require("mini.surround").setup()
 
 -- disable built in plugins
 vim.g.loaded_gzip = 0
@@ -38,7 +37,7 @@ vim.g.loaded_spec = 0
 vim.cmd("filetype plugin indent on")
 vim.opt.clipboard = vim.opt.clipboard + "unnamedplus"
 vim.opt.backspace = "indent,eol,start"
--- vim.opt.omnifunc = "syntaxcomplete#Complete"
+vim.opt.omnifunc = "v:lua.vim.lsp.omnifunc"
 vim.opt.hidden = true
 vim.opt.lazyredraw = true
 vim.opt.ignorecase = true
@@ -66,9 +65,6 @@ vim.opt.completeopt = "menuone,noinsert,noselect"
 vim.opt.shortmess = vim.opt.shortmess + "c"
 vim.opt.conceallevel = 2
 vim.opt.title = true
-
-
--- plugin settings
 
 
 -- mappings
@@ -100,8 +96,6 @@ map("n", "k", "v:count ? 'k' : 'gk'", {expr = true})
 
 -- repeat last edit n times
 map("n", ".", [[:<C-u>execute "norm! " . repeat(".", v:count1)<CR>]])
-
--- plugin mappings
 
 
 -- autocommands
