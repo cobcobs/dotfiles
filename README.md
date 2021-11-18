@@ -11,6 +11,7 @@ Managed with [yadm](https://yadm.io/)
 - [nvim](https://github.com/neovim/neovim)
 - [yabai](https://github.com/koekeishiya/yabai)
 - [skhd](https://github.com/koekeishiya/skhd)
+- [SketchyBar](https://github.com/FelixKratz/SketchyBar)
 - [pngpaste](https://github.com/jcsalterego/pngpaste)
 - [jq](https://github.com/stedolan/jq)
 - [lock-cli](https://github.com/sindresorhus/lock-cli)
@@ -18,11 +19,7 @@ Managed with [yadm](https://yadm.io/)
 - [CopyQ](https://github.com/hluk/CopyQ)
 
 # Todo
-- [x] Switch from [spacebar](https://github.com/cmacrae/spacebar) to [SketchyBar](https://github.com/FelixKratz/SketchyBar)
-- [x] Switch from [alacritty](https://github.com/alacritty/alacritty) to [kitty](https://sw.kovidgoyal.net/kitty/)
-- [x] Switch from init.vim to init.lua
-  - [Guide](https://github.com/nanotee/nvim-lua-guide/)
-  - [Article](https://oroques.dev/notes/neovim-init/)
-- [x] Switch from vim-plug to [packer.nvim](https://github.com/wbthomason/packer.nvim)
-- [x] [nvim-lspconfig](https://github.com/neovim/nvim-lspconfig) and [nvim-cmp](https://github.com/hrsh7th/nvim-cmp)
+- [ ] Configure nvim-cmp to only trigger completions when `tab` is pressed
+  - [ ] Fix snippets to work with nvim-cmp completions
 - [ ] Include screenshots
+- [ ] Write an install script
