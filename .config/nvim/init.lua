@@ -3,11 +3,11 @@ require("impatient")
 require("packer").startup(function(use)
   use "wbthomason/packer.nvim"
   use "lewis6991/impatient.nvim"
+  use "nathom/filetype.nvim"
   use "tpope/vim-surround"
   use "tpope/vim-commentary"
   use "tpope/vim-repeat"
   use "romainl/vim-cool"
-  use "ggandor/lightspeed.nvim"
   use {"neoclide/coc.nvim", branch = "release"}
   use "jacob-ethan/olivia.vim"
 end)
