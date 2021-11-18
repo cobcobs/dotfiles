@@ -131,6 +131,11 @@ cmp.setup {
   },
 }
 
+-- aerojump.nvim
+vim.cmd [[
+  let g:aerojump_keymaps = {"<tab>": "AerojumpSelNext", "<s-tab>": "AerojumpSelPrev", "<esc>": "AerojumpExit"}
+]]
+
 
 -- mappings
 -- helper function
@@ -159,13 +164,13 @@ map("n", "cN", [[?\<<C-R>=expand('<cword>')<CR>\>\C<CR>``cgN]])
 map("n", "j", "v:count ? 'j' : 'gj'", {expr = true})
 map("n", "k", "v:count ? 'k' : 'gk'", {expr = true})
 
+-- repeat last edit n times
+map("n", ".", [[:<C-u>execute "norm! " . repeat(".", v:count1)<CR>]])
+
 -- plugin mappings
--- better search with '/' key
--- caveat: n and N don't work with Aerojump
+-- better search with / and ?
 map("n", "/", "<Plug>(AerojumpSpace)", {noremap = false})
-vim.cmd [[
-  let g:aerojump_keymaps = {"<tab>": "AerojumpSelNext", "<s-tab>": "AerojumpSelPrev", "<esc>": "AerojumpExit"}
-]]
+map("n", "?", "<Plug>(AerojumpBolt)", {noremap = false})
 
 
 -- autocommands
