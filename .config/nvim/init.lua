@@ -6,11 +6,7 @@ require("packer").startup(function()
   use "lewis6991/impatient.nvim"
   use "nathom/filetype.nvim"
   use "neovim/nvim-lspconfig"
-  use "hrsh7th/nvim-cmp"
-  use "hrsh7th/cmp-nvim-lsp"
-  use "saadparwaiz1/cmp_luasnip"
-  use "L3MON4D3/LuaSnip"
-  use "windwp/nvim-autopairs"
+  use {"echasnovski/mini.nvim", event = "VimEnter"}
   use {"tpope/vim-surround", event = "VimEnter"}
   use {"tpope/vim-commentary", event = "VimEnter"}
   use {"tpope/vim-repeat", event = "VimEnter"}
@@ -18,6 +14,12 @@ require("packer").startup(function()
   use {"ripxorip/aerojump.nvim", event = "VimEnter"}
   use {"jacob-ethan/olivia.vim", event = "ColorSchemePre"}
 end)
+
+-- mini.nvim
+require("mini.comment").setup()
+require("mini.completion").setup()
+require("mini.pairs").setup()
+require("mini.surround").setup()
 
 -- disable built in plugins
 vim.g.loaded_gzip = 0
@@ -67,64 +69,6 @@ vim.opt.title = true
 
 
 -- plugin settings
--- autopairs
-require("nvim-autopairs").setup{}
-
--- lsp stuff
-require("lspconfig").pyright.setup{}
-
--- nvim-cmp
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
-
-local luasnip = require 'luasnip'
-local cmp = require 'cmp'
-cmp.setup {
-  snippet = {
-    expand = function(args)
-      require('luasnip').lsp_expand(args.body)
-    end,
-  },
-  mapping = {
-    ['<C-p>'] = cmp.mapping.select_prev_item(),
-    ['<C-n>'] = cmp.mapping.select_next_item(),
-    ['<C-d>'] = cmp.mapping.scroll_docs(-4),
-    ['<C-f>'] = cmp.mapping.scroll_docs(4),
-    ['<C-Space>'] = cmp.mapping.complete(),
-    ['<C-e>'] = cmp.mapping.close(),
-    ['<CR>'] = cmp.mapping.confirm {
-      behavior = cmp.ConfirmBehavior.Replace,
-      select = true,
-    },
-    ['<Tab>'] = function(fallback)
-      if cmp.visible() then
-        cmp.select_next_item()
-      elseif luasnip.expand_or_jumpable() then
-        luasnip.expand_or_jump()
-      else
-        fallback()
-      end
-    end,
-    ['<S-Tab>'] = function(fallback)
-      if cmp.visible() then
-        cmp.select_prev_item()
-      elseif luasnip.jumpable(-1) then
-        luasnip.jump(-1)
-      else
-        fallback()
-      end
-    end,
-  },
-  sources = {
-    { name = 'nvim_lsp' },
-    { name = 'luasnip' },
-  },
-}
-
--- aerojump.nvim
-vim.cmd [[
-  let g:aerojump_keymaps = {"<tab>": "AerojumpSelNext", "<s-tab>": "AerojumpSelPrev", "<esc>": "AerojumpExit"}
-]]
 
 
 -- mappings
@@ -158,9 +102,6 @@ map("n", "k", "v:count ? 'k' : 'gk'", {expr = true})
 map("n", ".", [[:<C-u>execute "norm! " . repeat(".", v:count1)<CR>]])
 
 -- plugin mappings
--- better search with / and ?
-map("n", "/", "<Plug>(AerojumpSpace)", {noremap = false})
-map("n", "?", "<Plug>(AerojumpBolt)", {noremap = false})
 
 
 -- autocommands
