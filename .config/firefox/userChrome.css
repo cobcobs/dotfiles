@@ -275,7 +275,7 @@ See the above repository for updates as well as full license text. */
 #sidebar-box{
   --uc-sidebar-width: 40px;
   --uc-sidebar-hover-width: 210px;
-  --uc-autohide-sidebar-delay: 600ms; /* Wait 0.6s before hiding sidebar */
+  --uc-autohide-sidebar-delay: 200ms; /* Wait 0.2s before hiding sidebar */
   position: relative;
   min-width: var(--uc-sidebar-width) !important;
   width: var(--uc-sidebar-width) !important;
