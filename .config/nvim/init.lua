@@ -1,48 +1,35 @@
 -- plugins
 -- packer.nvim
 require("impatient").enable_profile()
-require("packer").startup(function(use)
+require("packer").startup(function()
   use "wbthomason/packer.nvim"
   use "lewis6991/impatient.nvim"
   use "nathom/filetype.nvim"
-  use "tpope/vim-surround"
-  use "tpope/vim-commentary"
-  use "tpope/vim-repeat"
-  use "romainl/vim-cool"
-  use "ripxorip/aerojump.nvim"
   use "neovim/nvim-lspconfig"
   use "hrsh7th/nvim-cmp"
   use "hrsh7th/cmp-nvim-lsp"
   use "saadparwaiz1/cmp_luasnip"
   use "L3MON4D3/LuaSnip"
-  use "jacob-ethan/olivia.vim"
+  use "windwp/nvim-autopairs"
+  use {"tpope/vim-surround", event = "VimEnter"}
+  use {"tpope/vim-commentary", event = "VimEnter"}
+  use {"tpope/vim-repeat", event = "VimEnter"}
+  use {"romainl/vim-cool", event = "VimEnter"}
+  use {"ripxorip/aerojump.nvim", event = "VimEnter"}
+  use {"jacob-ethan/olivia.vim", event = "ColorSchemePre"}
 end)
 
 -- disable built in plugins
-local disabled_built_ins = {
-    "netrw",
-    "netrwPlugin",
-    "netrwSettings",
-    "netrwFileHandlers",
-    "gzip",
-    "zip",
-    "zipPlugin",
-    "tar",
-    "tarPlugin",
-    "getscript",
-    "getscriptPlugin",
-    "vimball",
-    "vimballPlugin",
-    "2html_plugin",
-    "logipat",
-    "rrhelper",
-    "spellfile_plugin",
-    "matchit"
-}
-
-for _, plugin in pairs(disabled_built_ins) do
-    vim.g["loaded_" .. plugin] = 1
-end
+vim.g.loaded_gzip = 0
+vim.g.loaded_tar = 0
+vim.g.loaded_tarPlugin = 0
+vim.g.loaded_zipPlugin = 0
+vim.g.loaded_2html_plugin = 0
+vim.g.loaded_netrw = 0
+vim.g.loaded_netrwPlugin = 0
+vim.g.loaded_matchit = 0
+vim.g.loaded_matchparen = 0
+vim.g.loaded_spec = 0
 
 
 -- nvim settings
@@ -80,6 +67,9 @@ vim.opt.title = true
 
 
 -- plugin settings
+-- autopairs
+require("nvim-autopairs").setup{}
+
 -- lsp stuff
 require("lspconfig").pyright.setup{}
 
