@@ -9,11 +9,12 @@ require("packer").startup(function(use)
   use "tpope/vim-commentary"
   use "tpope/vim-repeat"
   use "romainl/vim-cool"
+  use "ripxorip/aerojump.nvim"
   use "neovim/nvim-lspconfig"
-  use 'hrsh7th/nvim-cmp'
-  use 'hrsh7th/cmp-nvim-lsp'
-  use 'saadparwaiz1/cmp_luasnip'
-  use 'L3MON4D3/LuaSnip'
+  use "hrsh7th/nvim-cmp"
+  use "hrsh7th/cmp-nvim-lsp"
+  use "saadparwaiz1/cmp_luasnip"
+  use "L3MON4D3/LuaSnip"
   use "jacob-ethan/olivia.vim"
 end)
 
@@ -139,6 +140,7 @@ local function map(mode, lhs, rhs, opts)
   vim.api.nvim_set_keymap(mode, lhs, rhs, options)
 end
 
+-- general mappings
 -- make Y work like D or C
 map("n", "Y", "y$")
 
@@ -156,6 +158,14 @@ map("n", "cN", [[?\<<C-R>=expand('<cword>')<CR>\>\C<CR>``cgN]])
 -- better j and k
 map("n", "j", "v:count ? 'j' : 'gj'", {expr = true})
 map("n", "k", "v:count ? 'k' : 'gk'", {expr = true})
+
+-- plugin mappings
+-- better search with '/' key
+-- caveat: n and N don't work with Aerojump
+map("n", "/", "<Plug>(AerojumpSpace)", {noremap = false})
+vim.cmd [[
+  let g:aerojump_keymaps = {"<tab>": "AerojumpSelNext", "<s-tab>": "AerojumpSelPrev", "<esc>": "AerojumpExit"}
+]]
 
 
 -- autocommands
