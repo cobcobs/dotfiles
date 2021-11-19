@@ -10,6 +10,11 @@ require("packer").startup(function()
   use {"hrsh7th/nvim-cmp"}
   use {"hrsh7th/cmp-buffer"}
   use {"hrsh7th/cmp-path"}
+  use {"hrsh7th/cmp-nvim-lua"}
+  use {"hrsh7th/cmp-nvim-lsp"}
+  use {"L3MON4D3/LuaSnip"}
+  use {"saadparwaiz1/cmp_luasnip"}
+  use {"onsails/lspkind-nvim"}
   use {"romainl/vim-cool", event = "VimEnter"}
   use {"jacob-ethan/olivia.vim", event = "ColorSchemePre"}
 end)
@@ -19,20 +24,62 @@ require("mini.comment").setup()
 require("mini.pairs").setup()
 require("mini.surround").setup()
 
--- cmp.nvim
--- if ever this breaks just go to https://github.com/hrsh7th/nvim-cmp/issues/475
+-- completion
+local has_words_before = function()
+  local line, col = unpack(vim.api.nvim_win_get_cursor(0))
+  return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
+end
+
 require("cmp").setup({
-    sources = {
-        {name = "buffer"},
-        {name = "path"},
+    completion = {
+        autocomplete = false
+    },
+    snippet = {
+        expand = function(args)
+            require("luasnip").lsp_expand(args.body)
+        end
     },
     mapping = {
-        ["<Tab>"] = require("cmp").mapping.select_next_item({ behavior = require("cmp").SelectBehavior.Insert }),
-        ["<S-Tab>"] = require("cmp").mapping.select_prev_item({ behavior = require("cmp").SelectBehavior.Insert }),
+        ["<tab>"] = require("cmp").mapping(function(fallback)
+            if require("cmp").visible() then
+                require("cmp").select_next_item()
+            elseif require("luasnip").expand_or_jumpable() then
+                require("luasnip").expand_or_jump()
+            elseif has_words_before() then
+                require("cmp").complete()
+            else
+                fallback()
+            end
+        end, {"i", "s"}),
+        ["<s-tab>"] = require("cmp").mapping(function(fallback)
+            if require("cmp").visible() then
+                require("cmp").select_prev_item()
+            elseif require("luasnip").jumpable(-1) then
+                require("luasnip").jump(-1)
+            else
+                fallback()
+            end
+        end, {"i", "s"}),
         ["<CR>"] = require("cmp").mapping.confirm({
             behavior = require("cmp").ConfirmBehavior.Insert,
             select = false,
         }),
+    },
+    sources = {
+        {name = "nvim_lua"},
+        {name = "nvim_lsp"},
+        {name = "path"},
+        {name = "luasnip"},
+        {name = "buffer"},
+    },
+    formatting = {
+        format = require("lspkind").cmp_format({with_text = true, menu = ({
+            buffer = "[Buffer]",
+            nvim_lsp = "[LSP]",
+            luasnip = "[LuaSnip]",
+            nvim_lua = "[Lua]",
+            latex_symbols = "[Latex]",
+        })}),
     },
 })
 
@@ -69,7 +116,6 @@ vim.opt.splitright = true
 vim.opt.wildcharm = vim.fn.char2nr("^Z")
 vim.opt.cmdheight = 1
 vim.opt.scrolloff = 5
-vim.opt.shortmess = "at"
 vim.opt.laststatus = 0
 vim.opt.softtabstop = 4
 vim.opt.shiftwidth = 4
@@ -78,7 +124,7 @@ vim.opt.shiftround = true
 vim.opt.undofile = true
 vim.opt.undodir = vim.fn.stdpath("config") .. "/undodir"
 vim.opt.completeopt = "menuone,noinsert,noselect"
-vim.opt.shortmess = vim.opt.shortmess + "c"
+vim.opt.shortmess = "cat"
 vim.opt.conceallevel = 2
 vim.opt.title = true
 
