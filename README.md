@@ -5,6 +5,7 @@ Managed with [yadm](https://yadm.io/)
 - [zzzeyez's dotfiles](https://github.com/zzzeyez/dots)
 - [Luke Smith's voidrice](https://github.com/LukeSmithxyz/voidrice)
 - [Gilles Castel's LaTeX setup](https://github.com/gillescastel/latex-snippets)
+- [Expanding Man's neovim setup](https://gitlab.com/ExpandingMan/neovimconfig)
 
 # Dependencies
 - [homebrew](https://brew.sh/)

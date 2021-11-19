@@ -2,20 +2,39 @@
 -- packer.nvim
 require("impatient").enable_profile()
 require("packer").startup(function()
-  use "wbthomason/packer.nvim"
-  use "lewis6991/impatient.nvim"
-  use "nathom/filetype.nvim"
-  use "neovim/nvim-lspconfig"
+  use {"wbthomason/packer.nvim"}
+  use {"lewis6991/impatient.nvim"}
+  use {"nathom/filetype.nvim"}
+  use {"neovim/nvim-lspconfig"}
   use {"echasnovski/mini.nvim"}
+  use {"hrsh7th/nvim-cmp"}
+  use {"hrsh7th/cmp-buffer"}
+  use {"hrsh7th/cmp-path"}
   use {"romainl/vim-cool", event = "VimEnter"}
   use {"jacob-ethan/olivia.vim", event = "ColorSchemePre"}
 end)
 
 -- mini.nvim modules
 require("mini.comment").setup()
-require("mini.completion").setup()
 require("mini.pairs").setup()
 require("mini.surround").setup()
+
+-- cmp.nvim
+-- if ever this breaks just go to https://github.com/hrsh7th/nvim-cmp/issues/475
+require("cmp").setup({
+    sources = {
+        {name = "buffer"},
+        {name = "path"},
+    },
+    mapping = {
+        ["<Tab>"] = require("cmp").mapping.select_next_item({ behavior = require("cmp").SelectBehavior.Insert }),
+        ["<S-Tab>"] = require("cmp").mapping.select_prev_item({ behavior = require("cmp").SelectBehavior.Insert }),
+        ["<CR>"] = require("cmp").mapping.confirm({
+            behavior = require("cmp").ConfirmBehavior.Insert,
+            select = false,
+        }),
+    },
+})
 
 -- disable built in plugins
 vim.g.loaded_gzip = 0
