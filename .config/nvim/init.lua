@@ -6,19 +6,16 @@ require("packer").startup(function()
   use "lewis6991/impatient.nvim"
   use "nathom/filetype.nvim"
   use "neovim/nvim-lspconfig"
+  use {"echasnovski/mini.nvim"}
   use {"romainl/vim-cool", event = "VimEnter"}
-  use {"ripxorip/aerojump.nvim", event = "VimEnter"}
   use {"jacob-ethan/olivia.vim", event = "ColorSchemePre"}
-  use {
-      "echasnovski/mini.nvim",
-      config = function()
-	require("mini.comment").setup()
-	require("mini.completion").setup()
-	require("mini.pairs").setup()
-	require("mini.surround").setup()
-      end,
-  }
 end)
+
+-- mini.nvim modules
+require("mini.comment").setup()
+require("mini.completion").setup()
+require("mini.pairs").setup()
+require("mini.surround").setup()
 
 -- disable built in plugins
 vim.g.loaded_gzip = 0
