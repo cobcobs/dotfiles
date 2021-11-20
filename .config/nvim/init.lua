@@ -8,15 +8,15 @@ require("packer").startup(function()
   use {"neovim/nvim-lspconfig"}
   use {"echasnovski/mini.nvim"}
   use {"hrsh7th/nvim-cmp"}
-  use {"hrsh7th/cmp-buffer"}
-  use {"hrsh7th/cmp-path"}
-  use {"hrsh7th/cmp-nvim-lua"}
-  use {"hrsh7th/cmp-nvim-lsp"}
-  use {"L3MON4D3/LuaSnip"}
-  use {"saadparwaiz1/cmp_luasnip"}
+  use {"hrsh7th/cmp-buffer", event = "InsertEnter"}
+  use {"hrsh7th/cmp-path", event = "InsertEnter"}
+  use {"hrsh7th/cmp-nvim-lua", event = "VimEnter"}
+  use {"hrsh7th/cmp-nvim-lsp", event = "VimEnter"}
+  use {"L3MON4D3/LuaSnip", event = "InsertEnter"}
+  use {"saadparwaiz1/cmp_luasnip", event = "InsertEnter"}
   use {"onsails/lspkind-nvim"}
-  use {"romainl/vim-cool", event = "VimEnter"}
-  use {"jacob-ethan/olivia.vim", event = "ColorSchemePre"}
+  use {"romainl/vim-cool", event = "CmdlineEnter"}
+  use {"jacob-ethan/olivia.vim", event = "VimEnter"}
 end)
 
 -- mini.nvim modules
@@ -32,7 +32,8 @@ end
 
 require("cmp").setup({
     completion = {
-        autocomplete = false
+        autocomplete = false,
+        completeopt = "menu, menuone, noinsert",
     },
     snippet = {
         expand = function(args)
@@ -40,7 +41,7 @@ require("cmp").setup({
         end
     },
     mapping = {
-        ["<tab>"] = require("cmp").mapping(function(fallback)
+        ["<Tab>"] = require("cmp").mapping(function(fallback)
             if require("cmp").visible() then
                 require("cmp").select_next_item()
             elseif require("luasnip").expand_or_jumpable() then
@@ -51,7 +52,7 @@ require("cmp").setup({
                 fallback()
             end
         end, {"i", "s"}),
-        ["<s-tab>"] = require("cmp").mapping(function(fallback)
+        ["<S-Tab>"] = require("cmp").mapping(function(fallback)
             if require("cmp").visible() then
                 require("cmp").select_prev_item()
             elseif require("luasnip").jumpable(-1) then
@@ -82,6 +83,9 @@ require("cmp").setup({
         })}),
     },
 })
+
+-- lspconfig
+require("lspconfig").pyright.setup{}
 
 -- disable built in plugins
 vim.g.loaded_gzip = 0
@@ -123,7 +127,6 @@ vim.opt.expandtab = true
 vim.opt.shiftround = true
 vim.opt.undofile = true
 vim.opt.undodir = vim.fn.stdpath("config") .. "/undodir"
-vim.opt.completeopt = "menuone,noinsert,noselect"
 vim.opt.shortmess = "cat"
 vim.opt.conceallevel = 2
 vim.opt.title = true
