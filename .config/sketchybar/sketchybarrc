@@ -52,6 +52,7 @@ sketchybar -m --add event title_change
 sketchybar -m --add space first left                                                                         \
 	      --set first                                                                                    \
 	            associated_space=1                                                                       \
+	            associated_display=1                                                                     \
 		    icon="一"                                                                                \
 		    icon.padding_left=10                                                                     \
 		    icon.padding_right=4                                                                     \
@@ -61,6 +62,7 @@ sketchybar -m --add space first left                                            
 	      --add space second left                                                                        \
 	      --set second                                                                                   \
 		    associated_space=2                                                                       \
+	            associated_display=1                                                                     \
 		    icon="二"                                                                                \
 		    icon.padding_right=4                                                                     \
 		    script="$PLUGINS_DIR/space.sh"                                                           \
@@ -69,6 +71,7 @@ sketchybar -m --add space first left                                            
 	      --add space third left                                                                         \
 	      --set third                                                                                    \
 		    associated_space=3                                                                       \
+	            associated_display=1                                                                     \
 		    icon="三"                                                                                \
 		    icon.padding_right=4                                                                     \
 		    script="$PLUGINS_DIR/space.sh"                                                           \
@@ -77,6 +80,7 @@ sketchybar -m --add space first left                                            
 	      --add space fourth left                                                                        \
 	      --set fourth                                                                                   \
 		    associated_space=4                                                                       \
+	            associated_display=1                                                                     \
 		    icon="四"                                                                                \
 		    icon.padding_right=4                                                                     \
 		    script="$PLUGINS_DIR/space.sh"                                                           \
@@ -85,6 +89,7 @@ sketchybar -m --add space first left                                            
 	      --add space fifth left                                                                         \
 	      --set fifth                                                                                    \
 		    associated_space=5                                                                       \
+	            associated_display=1                                                                     \
 		    icon="五"                                                                                \
 		    icon.padding_right=4                                                                     \
 		    script="$PLUGINS_DIR/space.sh"                                                           \
@@ -94,6 +99,9 @@ sketchybar -m --add space first left                                            
 		    first second third fourth fifth                                                          \
 	      --set yabai_spaces                                                                             \
 		    background.color=0xAB"${color0//#}"                                                      \
+	      --subscribe yabai_spaces                                                                       \
+		    space_change                                                                             \
+                    display_change                                                                           \
 
 # title
 sketchybar -m --add item title left                                                                          \
