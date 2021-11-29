@@ -16,9 +16,9 @@ packer.init({
 --- startup and add configure plugins
 packer.startup(function()
   local use = use
-  -- add you plugins here like:
+  use {"wbthomason/packer.nvim"}
   use {"lewis6991/impatient.nvim"}
-  use {"nathom/filetype.nvim"}
+  -- use {"nathom/filetype.nvim"}
   use {"neovim/nvim-lspconfig"}
   use {"echasnovski/mini.nvim"}
   use {"hrsh7th/nvim-cmp"}
@@ -94,7 +94,7 @@ require("cmp").setup({
             nvim_lsp = "[LSP]",
             luasnip = "[LuaSnip]",
             nvim_lua = "[Lua]",
-            latex_symbols = "[LaTeX]",
+            latex_symbols = "[LateX]",
         })}),
     },
 })

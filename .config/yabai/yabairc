@@ -6,14 +6,14 @@ sudo yabai --load-sa
 yabai -m signal --add event=dock_did_restart action="sudo yabai --load-sa"
 
 # import the colors
-. "${HOME}/.cache/wal/colors.sh"
+# . "${HOME}/.cache/wal/colors.sh"
 
 # bar
 yabai -m config external_bar all:40:0
 yabai -m config top_padding 10
 
 # set border colors
-yabai_color
+# yabai_color
 
 # global settings
 yabai -m config mouse_follows_focus          off

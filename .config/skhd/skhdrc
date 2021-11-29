@@ -32,9 +32,9 @@ alt + cmd + shift - 0 : scr
 
 # cycle forwards
 alt - tab : yabai -m query --spaces \
-  | jq -re ".[] | select(.visible == 1).index" \
+  | jq -re ".[] | select(.is_visible == true).index" \
   | xargs -I{} yabai -m query --windows --space {} \
-  | jq -sre "add | sort_by(.display, .frame.x, .frame.y, .id) | reverse | nth(index(map(select(.focused == 1))) - 1).id" \
+  | jq -sre "add | sort_by(.display, .frame.x, .frame.y, .id) | reverse | nth(index(map(select(.has_focus == true))) - 1).id" \
   | xargs -I{} yabai -m window --focus {}
 
 # cycle backwards

@@ -6,12 +6,12 @@
 
 ps cax | grep sketchybar > /dev/null
 if [ $? -eq 0 ] ; then
-	launchctl unload /usr/local/opt/sketchybar/homebrew.mxcl.sketchybar.plist
-	sketchybar -m --bar --hidden=on
+	launchctl unload /Users/cobcob/Library/LaunchAgents/homebrew.mxcl.sketchybar.plist
+	sketchybar -m --bar hidden=on
 	yabai -m config external_bar all:0:0
 else
-	launchctl load /usr/local/opt/sketchybar/homebrew.mxcl.sketchybar.plist
-	sketchybar -m --bar --hidden=off
+	launchctl load /Users/cobcob/Library/LaunchAgents/homebrew.mxcl.sketchybar.plist
+	sketchybar -m --bar hidden=off
 	yabai -m config external_bar all:40:0
 fi
 

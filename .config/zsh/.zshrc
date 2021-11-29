@@ -88,9 +88,9 @@ source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 # ________
 eval $(/opt/homebrew/bin/brew shellenv)
 
-# Functions
-# _________
-fpath+=${ZDOTDIR:-~}/.zsh_functions
+# Script Paths
+# ____________
+export PATH="$HOME/.config/scripts:$PATH"
 
 # Terminal Prompt
 # ---------------
