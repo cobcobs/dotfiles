@@ -98,7 +98,7 @@ sketchybar -m --add space first left                                            
 	      --add bracket yabai_spaces                                                                     \
 		    first second third fourth fifth                                                          \
 	      --set yabai_spaces                                                                             \
-		    background.color=0xAB"${color0//#}"                                                      \
+		    background.color=0xE6"${color0//#}"                                                      \
 	      --subscribe yabai_spaces                                                                       \
 		    space_change                                                                             \
                     display_change                                                                           \
@@ -111,7 +111,7 @@ sketchybar -m --add item title left                                             
 		    icon.padding_left=9                                                                      \
 		    icon.padding_right=0                                                                     \
 		    label.padding_right=11                                                                   \
-		    background.color=0xAB"${color0//#}"                                                      \
+		    background.color=0xE6"${color0//#}"                                                      \
 		    background.padding_left=10					                             \
 		    script="$PLUGINS_DIR/window_title.sh"                                                    \
 		    click_script="opener"                                                                    \
@@ -128,7 +128,7 @@ sketchybar -m --add item battery right                                          
 		    icon.padding_left=10                                                                     \
 		    icon.padding_right=2                                                                     \
 		    label.padding_right=10                                                                   \
-		    background.color=0xAB"${color0//#}"                                                      \
+		    background.color=0xE6"${color0//#}"                                                      \
 		    background.padding_left=10                                                               \
 		    script="$PLUGINS_DIR/power.sh"                                                           \
 										                             \
@@ -139,7 +139,7 @@ sketchybar -m --add item battery right                                          
 		    icon.padding_left=10                                                                     \
 		    icon.padding_right=2                                                                     \
 		    label.padding_right=10                                                                   \
-		    background.color=0xAB"${color0//#}"                                                      \
+		    background.color=0xE6"${color0//#}"                                                      \
 		    background.padding_left=10                                                               \
 		    script="$PLUGINS_DIR/clock.sh"                                                           \
 													     \
@@ -150,7 +150,7 @@ sketchybar -m --add item battery right                                          
 		    icon.padding_left=10                                                                     \
 		    icon.padding_right=2                                                                     \
 		    label.padding_right=10                                                                   \
-		    background.color=0xAB"${color0//#}"                                                      \
+		    background.color=0xE6"${color0//#}"                                                      \
 		    background.padding_left=10                                                               \
 		    script="$PLUGINS_DIR/date.sh"                                                            \
 
@@ -161,7 +161,7 @@ sketchybar -m --add item spotifyIndicator right                                 
 	            icon.padding_left=10                                                                     \
 	            icon.padding_right=2                                                                     \
 	            label.padding_right=10                                                                   \
-	            background.color=0xAB"${color0//#}"                                                      \
+	            background.color=0xE6"${color0//#}"                                                      \
 	            script="~/.config/sketchybar/plugins/spotifyIndicator.sh"                                \
                     click_script="osascript -e 'tell application \"Spotify\" to playpause'"                  \
               --subscribe spotifyIndicator spotify_change                                                    \

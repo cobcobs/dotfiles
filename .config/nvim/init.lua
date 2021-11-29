@@ -10,8 +10,8 @@ require("packer").startup(function()
   use {"hrsh7th/nvim-cmp"}
   use {"hrsh7th/cmp-buffer", event = "InsertEnter"}
   use {"hrsh7th/cmp-path", event = "InsertEnter"}
-  use {"hrsh7th/cmp-nvim-lua", event = "VimEnter"}
-  use {"hrsh7th/cmp-nvim-lsp", event = "VimEnter"}
+  use {"hrsh7th/cmp-nvim-lua", event = "InsertEnter"}
+  use {"hrsh7th/cmp-nvim-lsp", event = "InsertEnter"}
   use {"L3MON4D3/LuaSnip", event = "InsertEnter"}
   use {"saadparwaiz1/cmp_luasnip", event = "InsertEnter"}
   use {"onsails/lspkind-nvim"}
@@ -79,13 +79,14 @@ require("cmp").setup({
             nvim_lsp = "[LSP]",
             luasnip = "[LuaSnip]",
             nvim_lua = "[Lua]",
-            latex_symbols = "[Latex]",
+            latex_symbols = "[LaTeX]",
         })}),
     },
 })
 
 -- lspconfig
 require("lspconfig").pyright.setup{}
+require("lspconfig").texlab.setup{}
 
 -- disable built in plugins
 vim.g.loaded_gzip = 0

@@ -120,12 +120,12 @@ compinit -d ~/.config/zsh/zcompdump-$ZSH_VERSION
 source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
+# Functions
+# _________
+fpath+=${ZDOTDIR:-~}/.zsh_functions
+
 # Terminal Prompt
 # ---------------
 source /usr/local/opt/powerlevel10k/powerlevel10k.zsh-theme
 [[ ! -f ~/.config/zsh/.p10k.zsh ]] || source ~/.config/zsh/.p10k.zsh
-
-# Functions
-# _________
-fpath+=${ZDOTDIR:-~}/.zsh_functions
 
