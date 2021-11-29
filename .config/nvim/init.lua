@@ -1,8 +1,22 @@
--- plugins
--- packer.nvim
-require("impatient").enable_profile()
-require("packer").startup(function()
-  use {"wbthomason/packer.nvim"}
+local vim = vim
+local execute = vim.api.nvim_command
+local fn = vim.fn
+-- ensure that packer is installed
+local install_path = fn.stdpath('data')..'/site/pack/packer/opt/packer.nvim'
+if fn.empty(fn.glob(install_path)) > 0 then
+    execute('!git clone https://github.com/wbthomason/packer.nvim '..install_path)
+    execute 'packadd packer.nvim'
+end
+vim.cmd('packadd packer.nvim')
+local packer = require'packer'
+local util = require'packer.util'
+packer.init({
+  package_root = util.join_paths(vim.fn.stdpath('data'), 'site', 'pack')
+})
+--- startup and add configure plugins
+packer.startup(function()
+  local use = use
+  -- add you plugins here like:
   use {"lewis6991/impatient.nvim"}
   use {"nathom/filetype.nvim"}
   use {"neovim/nvim-lspconfig"}
@@ -10,14 +24,15 @@ require("packer").startup(function()
   use {"hrsh7th/nvim-cmp"}
   use {"hrsh7th/cmp-buffer", event = "InsertEnter"}
   use {"hrsh7th/cmp-path", event = "InsertEnter"}
-  use {"hrsh7th/cmp-nvim-lua", event = "VimEnter"}
-  use {"hrsh7th/cmp-nvim-lsp", event = "VimEnter"}
+  use {"hrsh7th/cmp-nvim-lua", event = "InsertEnter"}
+  use {"hrsh7th/cmp-nvim-lsp", event = "InsertEnter"}
   use {"L3MON4D3/LuaSnip", event = "InsertEnter"}
   use {"saadparwaiz1/cmp_luasnip", event = "InsertEnter"}
   use {"onsails/lspkind-nvim"}
   use {"romainl/vim-cool", event = "CmdlineEnter"}
   use {"jacob-ethan/olivia.vim", event = "VimEnter"}
-end)
+  end
+)
 
 -- mini.nvim modules
 require("mini.comment").setup()
