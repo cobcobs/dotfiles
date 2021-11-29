@@ -1,24 +1,13 @@
-local vim = vim
-local execute = vim.api.nvim_command
 local fn = vim.fn
--- ensure that packer is installed
-local install_path = fn.stdpath('data')..'/site/pack/packer/opt/packer.nvim'
+local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
 if fn.empty(fn.glob(install_path)) > 0 then
-    execute('!git clone https://github.com/wbthomason/packer.nvim '..install_path)
-    execute 'packadd packer.nvim'
+  packer_bootstrap = fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
 end
-vim.cmd('packadd packer.nvim')
-local packer = require'packer'
-local util = require'packer.util'
-packer.init({
-  package_root = util.join_paths(vim.fn.stdpath('data'), 'site', 'pack')
-})
+
 --- startup and add configure plugins
-packer.startup(function()
-  local use = use
+require("packer").startup(function(use)
   use {"wbthomason/packer.nvim"}
   use {"lewis6991/impatient.nvim"}
-  -- use {"nathom/filetype.nvim"}
   use {"neovim/nvim-lspconfig"}
   use {"echasnovski/mini.nvim"}
   use {"hrsh7th/nvim-cmp"}
@@ -28,11 +17,15 @@ packer.startup(function()
   use {"hrsh7th/cmp-nvim-lsp", event = "InsertEnter"}
   use {"L3MON4D3/LuaSnip", event = "InsertEnter"}
   use {"saadparwaiz1/cmp_luasnip", event = "InsertEnter"}
+  use {"kdheepak/cmp-latex-symbols", event = "InsertEnter"}
   use {"onsails/lspkind-nvim"}
   use {"romainl/vim-cool", event = "CmdlineEnter"}
   use {"jacob-ethan/olivia.vim", event = "VimEnter"}
+
+  if packer_bootstrap then
+    require("packer").sync()
   end
-)
+end)
 
 -- mini.nvim modules
 require("mini.comment").setup()
@@ -84,6 +77,7 @@ require("cmp").setup({
     sources = {
         {name = "nvim_lua"},
         {name = "nvim_lsp"},
+        {name = "latex_symbols"},
         {name = "path"},
         {name = "luasnip"},
         {name = "buffer"},
@@ -101,7 +95,6 @@ require("cmp").setup({
 
 -- lspconfig
 require("lspconfig").pyright.setup{}
-require("lspconfig").texlab.setup{}
 
 -- disable built in plugins
 vim.g.loaded_gzip = 0
