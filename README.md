@@ -24,3 +24,4 @@ Managed with [yadm](https://yadm.io/)
   - [ ] Fix snippets to work with nvim-cmp completions
 - [ ] Include screenshots
 - [ ] Write an install script
+- [ ] Patch Operator Mono with Nerd Font

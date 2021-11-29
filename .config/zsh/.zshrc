@@ -60,8 +60,6 @@ bindkey '^Z' _zsh_cli_fg
 precmd () { print -Pn "\e]0;%~\a" }
 
 # aliases
-eval $(thefuck --alias frick)
-
 alias bluetooth='bluetoothconnector'
 alias vrc='vim ~/.config/nvim/init.lua'
 alias zrc='vim ~/.config/zsh/.zshrc'
@@ -74,51 +72,21 @@ alias vim='nvim'
 alias vimdiff='nvim -d'
 alias ranger='ranger --choosedir=$HOME/.cache/ranger/rangerdir; LASTDIR=`cat $HOME/.cache/ranger/rangerdir`; cd "$LASTDIR"' # cd into current directory after quitting ranger
 
-# import colorscheme from 'wal' asynchronously
-# &   # Run the process in the background.
-# ( ) # Hide shell job control messages.
-(cat ~/.cache/wal/sequences &)
-
-# # conda
-# # !! Contents within this block are managed by 'conda init' !!
-# __conda_setup="$('/usr/local/Caskroom/miniconda/base/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
-# if [ $? -eq 0 ]; then
-#     eval "$__conda_setup"
-# else
-#     if [ -f "/usr/local/Caskroom/miniconda/base/etc/profile.d/conda.sh" ]; then
-#         . "/usr/local/Caskroom/miniconda/base/etc/profile.d/conda.sh"
-#     else
-#         export PATH="/usr/local/Caskroom/miniconda/base/bin:$PATH"
-#     fi
-# fi
-# unset __conda_setup
-# # <<< conda initialize <<<
-
-# Setup fzf
-# ---------
-if [[ ! "$PATH" == */usr/local/opt/fzf/bin* ]]; then
-  export PATH="${PATH:+${PATH}:}/usr/local/opt/fzf/bin"
-fi
-
-# Auto-completion
-# ---------------
-[[ $- == *i* ]] && source "/usr/local/opt/fzf/shell/completion.zsh" 2> /dev/null
-
 # Speed up tab completion for git commands
 # ----------------------------------------
 __git_files () { 
     _wanted files expl 'local files' _files     
 }
 
-# Key bindings
-# ------------
-source "/usr/local/opt/fzf/shell/key-bindings.zsh"
-
 export HISTFILE="$HOME/.config/zsh/zsh-history"
 compinit -d ~/.config/zsh/zcompdump-$ZSH_VERSION
 
-source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+# Homebrew
+# ________
+eval $(/opt/homebrew/bin/brew shellenv)
 
 # Functions
 # _________
@@ -126,6 +94,6 @@ fpath+=${ZDOTDIR:-~}/.zsh_functions
 
 # Terminal Prompt
 # ---------------
-source /usr/local/opt/powerlevel10k/powerlevel10k.zsh-theme
+source /opt/homebrew/opt/powerlevel10k/powerlevel10k.zsh-theme
 [[ ! -f ~/.config/zsh/.p10k.zsh ]] || source ~/.config/zsh/.p10k.zsh
 
