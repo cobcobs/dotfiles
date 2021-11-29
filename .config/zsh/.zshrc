@@ -88,10 +88,6 @@ source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 # ________
 eval $(/opt/homebrew/bin/brew shellenv)
 
-# Script Paths
-# ____________
-export PATH="$HOME/.config/scripts:$PATH"
-
 # Terminal Prompt
 # ---------------
 source /opt/homebrew/opt/powerlevel10k/powerlevel10k.zsh-theme

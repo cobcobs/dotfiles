@@ -26,6 +26,6 @@ export LESSHISTFILE=$HOME/.cache/less/lesshst
 export VISUAL=nvim
 export EDITOR=$VISUAL
 export RANGER_LOAD_DEFAULT_RC=FALSE
-export PATH="/usr/local/opt/ruby/bin:$PATH"
+export PATH="$HOME/.config/scripts:$PATH"
 
 source $HOME/.cargo/env
