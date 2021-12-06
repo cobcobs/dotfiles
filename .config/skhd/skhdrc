@@ -33,7 +33,7 @@ alt + shift - tab : yabai -m query --spaces \
 
 # restart, quit, or start yabai
 # cmd + shift - r : launchctl kickstart -k "gui/${UID}/homebrew.mxcl.yabai"
-cmd + shift - r : killall yabai && yabai &; disown
+cmd + shift - r : killall yabai && yabai
 cmd + shift - q : launchctl unload /usr/local/opt/yabai/homebrew.mxcl.yabai.plist
 cmd + shift - y : launchctl load /usr/local/opt/yabai/homebrew.mxcl.yabai.plist
 
