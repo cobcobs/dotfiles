@@ -45,11 +45,9 @@ yabai -m config --space 5 layout             stack
 yabai -m rule --add app="^System Preferences$" layer=above manage=off border=off
 yabai -m rule --add app="^Roblox$" manage=off border=off
 yabai -m rule --add app="^csgo_osx64$" border=off
-yabai -m rule --add app="^julia$" manage=on
-yabai -m rule --add app="^SoundSource$" manage=off
 yabai -m rule --add app="^Spotify$" space=4
 yabai -m rule --add app="^choose$" manage=off
-yabai -m rule --add app="alacritty" title="temp" manage="off"
+yabai -m rule --add app="^Stats$" manage=off
 
 # general space settings
 yabai -m config layout                       bsp
