@@ -197,3 +197,4 @@ vim.cmd [[
 -- colorscheme
 vim.opt.termguicolors = true
 vim.cmd("colorscheme olivia")
+
