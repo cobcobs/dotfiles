@@ -108,7 +108,7 @@ sketchybar -m --add item title left                                             
               --set title                                                                                    \
                     icon=""                                                                                  \
                     icon.color=0xFF"${cursor//#}"                                                            \
-                    icon.padding_left=9                                                                      \
+                    icon.padding_left=8                                                                      \
                     icon.padding_right=0                                                                     \
                     label.padding_right=11                                                                   \
                     background.color=0xE6"${color0//#}"                                                      \
