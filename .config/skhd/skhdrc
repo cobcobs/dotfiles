@@ -1,9 +1,7 @@
 # open apps or other stuff
 cmd - space     : opener
-# cmd - return    : alacritty msg create-window || /Applications/Alacritty.app/Contents/MacOS/alacritty
 cmd - return    : /Applications/kitty.app/Contents/MacOS/kitty --single-instance -d ~
 cmd + shift - f : opener finder
-# cmd + shift - s : open -F ~/Documents/School/DP/Grade\ 12/Schedules/schedule.pdf
 cmd + shift - s : zathura ~/Documents/School/DP/Grade\ 12/Schedules/schedule.pdf
 
 # lock screen
@@ -14,17 +12,6 @@ cmd + ctrl - e : emoji
 
 # quickly open a config file in vim
 cmd + ctrl - s : open_dots
-
-# quickly open a vim buffer (the contents then get copied to the clipboard)
-cmd + ctrl - c : open_vim
-t [
-    "inkscape"  : open_vim .tex
-    "LaTeXDraw" : open_vim .tex
-    *          ~
-]
-
-# quick search (for when firefox isn't open and I want to look at a reference as I search)
-cmd + ctrl - t : open_link
 
 # screenshots
 alt + shift - 0       : scr -i
@@ -117,39 +104,10 @@ ctrl + shift - w : yabai_resize north
 ctrl + shift - d : yabai_resize east
 ctrl + shift - b : yabai -m space --balance
 
-# scratchpad
-alt + shift - return : scratchpad
-
-# scroll with vim-style mappings in skim pdf viewer
-ctrl - h [
-    "skim" : skhd -k left
-    *      ~
-]
-ctrl - j [
-    "skim" : skhd -k down
-    *      ~
-]
-ctrl - k [
-    "skim" : skhd -k up
-    *      ~
-]
-ctrl - l [
-    "skim" : skhd -k right
-    *      ~
-]
-ctrl + shift - j [
-    "skim" : skhd -k "cmd - right"
-    *      ~
-]
-ctrl + shift - k [
-    "skim" : skhd -k "cmd - left"
-    *      ~
-]
-
 # passthrough mode
 :: passthrough
-ctrl - p ; passthrough
-passthrough < ctrl - p ; default
+ctrl + shift - p ; passthrough
+passthrough < ctrl + shift - p ; default
 
 # blacklist apps
 .blacklist [
