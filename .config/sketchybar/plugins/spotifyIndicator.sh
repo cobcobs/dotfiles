@@ -22,5 +22,5 @@ if [ $RUNNING -eq 0 ] && [ $PLAYING -eq 0 ]; then
   fi
 else
   sketchybar -m --set $NAME icon=
-  sketchybar -m --set $NAME label="Spotify is currently paused" 
+  sketchybar -m --set $NAME label="No player is running" 
 fi
