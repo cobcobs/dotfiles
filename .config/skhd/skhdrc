@@ -1,8 +1,9 @@
 # open apps or other stuff
-cmd - space     : opener
-cmd - return    : /Applications/kitty.app/Contents/MacOS/kitty --single-instance -d ~
-cmd + shift - f : opener finder
-cmd + shift - s : zathura ~/Documents/School/DP/Grade\ 12/Schedules/schedule.pdf
+# cmd - space     : opener
+cmd - space     : app $(app | choose -f "Cartograph CF" -c "deaf9d" -b "1c1b1d")
+cmd - return    : /Applications/kitty.app/Contents/MacOS/kitty --single-instance -d $HOME
+cmd + shift - f : open -n $HOME
+# cmd + shift - s : zathura $HOME/Documents/School/DP/Grade\ 12/Schedules/schedule.pdf
 
 # lock screen
 cmd + ctrl - q : lock_screen

@@ -1,23 +1,6 @@
 #!/usr/bin/env bash
 
 
-if [[ $1 = "finder" ]]; then
-	osascript <<-EOD
-		tell application "Finder"
-			set myW to make new Finder window
-			set target of myW to home
-			activate
-			set toolbar visible of every Finder window to 1
-			tell column view options of every Finder window
-				set shows icon to true
-				set shows icon preview to true
-				set shows preview column to true
-				set discloses preview pane to true
-			end tell
-		end tell
-	EOD
-else
-	application="$(app | choose -f "Operator Mono" -c "deaf9d" -b "1c1b1d")"
-	app "$application"
-fi
+application="$(app | choose -f "Operator Mono" -c "deaf9d" -b "1c1b1d")"
+app "$application"
 
