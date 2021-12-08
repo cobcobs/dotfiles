@@ -1,5 +1,4 @@
 # open apps or other stuff
-# cmd - space     : opener
 cmd - space     : app $(app | choose -f "Cartograph CF" -c "deaf9d" -b "1c1b1d")
 cmd - return    : /Applications/kitty.app/Contents/MacOS/kitty --single-instance -d $HOME
 cmd + shift - f : open -n $HOME
@@ -33,10 +32,7 @@ alt + shift - tab : yabai -m query --spaces \
   | xargs -I{} yabai -m window --focus {}
 
 # restart, quit, or start yabai
-# cmd + shift - r : launchctl kickstart -k "gui/${UID}/homebrew.mxcl.yabai"
-cmd + shift - r : killall yabai && yabai
-cmd + shift - q : launchctl unload /usr/local/opt/yabai/homebrew.mxcl.yabai.plist
-cmd + shift - y : launchctl load /usr/local/opt/yabai/homebrew.mxcl.yabai.plist
+cmd + shift - r : brew services restart yabai
 
 # toggles
 cmd + shift - b      : toggle_bar
@@ -84,16 +80,16 @@ cmd + shift - k : yabai -m window --warp north
 cmd + shift - l : yabai -m window --warp east
 
 # warp node to space
-cmd + shift - 1 : yabai -m window --space 1 || { yabai -m space --create ; yabai -m window --space last; }
-cmd + shift - 2 : yabai -m window --space 2 || { yabai -m space --create ; yabai -m window --space last; }
-cmd + shift - 3 : yabai -m window --space 3 || { yabai -m space --create ; yabai -m window --space last; }
-cmd + shift - 4 : yabai -m window --space 4 || { yabai -m space --create ; yabai -m window --space last; }
-cmd + shift - 5 : yabai -m window --space 5 || { yabai -m space --create ; yabai -m window --space last; }
-cmd + shift - 6 : yabai -m window --space 6 || { yabai -m space --create ; yabai -m window --space last; }
-cmd + shift - 7 : yabai -m window --space 7 || { yabai -m space --create ; yabai -m window --space last; }
-cmd + shift - 8 : yabai -m window --space 8 || { yabai -m space --create ; yabai -m window --space last; }
-cmd + shift - 9 : yabai -m window --space 9 || { yabai -m space --create ; yabai -m window --space last; }
-cmd + shift - 0 : yabai -m window --space 10 || { yabai -m space --create ; yabai -m window --space last; }
+cmd + shift - 1 : yabai -m window --space 1 || { yabai -m space --create && yabai -m window --space last }
+cmd + shift - 2 : yabai -m window --space 2 || { yabai -m space --create && yabai -m window --space last }
+cmd + shift - 3 : yabai -m window --space 3 || { yabai -m space --create && yabai -m window --space last }
+cmd + shift - 4 : yabai -m window --space 4 || { yabai -m space --create && yabai -m window --space last }
+cmd + shift - 5 : yabai -m window --space 5 || { yabai -m space --create && yabai -m window --space last }
+cmd + shift - 6 : yabai -m window --space 6 || { yabai -m space --create && yabai -m window --space last }
+cmd + shift - 7 : yabai -m window --space 7 || { yabai -m space --create && yabai -m window --space last }
+cmd + shift - 8 : yabai -m window --space 8 || { yabai -m space --create && yabai -m window --space last }
+cmd + shift - 9 : yabai -m window --space 9 || { yabai -m space --create && yabai -m window --space last }
+cmd + shift - 0 : yabai -m window --space 10 || { yabai -m space --create && yabai -m window --space last }
 
 # destroy current space
 cmd + shift - w : yabai -m space --focus "$(yabai -m query --spaces --display | jq 'nth(index(map(select(.focused == 1))) + 1).index // (reverse | nth(index(map(select(.focused == 1))) + 1).index) // 0')" && yabai -m space recent --destroy
