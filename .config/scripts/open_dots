@@ -1,13 +1,13 @@
 #!/usr/bin/env bash
 
 
-choice="$(echo -e "config\nscripts" | choose -f "Operator Mono" -c "deaf9d" -b "1c1b1d")"
+choice="$(echo -e "config\nscripts" | choose -f "Cartograph CF" -c "deaf9d" -b "1c1b1d")"
 
 case "$choice" in
 	config)
 		declare options=("alacritty\nfirefox\nneovim\nskhd\nspacebar\nyabai\nzsh")
 
-		config="$(echo -e "${options[@]}" | choose -f "Operator Mono" -c "deaf9d" -b "1c1b1d")"
+		config="$(echo -e "${options[@]}" | choose -f "Cartograph CF" -c "deaf9d" -b "1c1b1d")"
 
 		case "$config" in
 			quit)
@@ -45,7 +45,7 @@ case "$choice" in
 	;;
 	scripts)
 		directory="$HOME/.config/scripts"
-		script="$(ls $directory | choose -f "Operator Mono" -c "deaf9d" -b "1c1b1d")"
+		script="$(ls $directory | choose -f "Cartograph CF" -c "deaf9d" -b "1c1b1d")"
 		if [[ -n "$script" ]]; then
 			file="$directory/$script"
 			alacritty --command nvim "$file"
