@@ -1,4 +1,6 @@
 #!/usr/bin/env bash
+
+
 RUNNING=$(osascript -e 'if application "Spotify" is running then return 0')
 if [ "$RUNNING" == "" ]; then
   RUNNING=1
@@ -14,6 +16,7 @@ if [ "$(osascript -e 'if application "Spotify" is running then tell application 
   ALBUM=$(osascript -e 'tell application "Spotify" to get album of current track')
 fi
 if [ $RUNNING -eq 0 ] && [ $PLAYING -eq 0 ]; then
+  sketchybar -m --set $NAME drawing=on
   sketchybar -m --set $NAME icon=
   if [ "$ARTIST" == "" ]; then
     sketchybar -m --set $NAME label="$TRACK • $ALBUM"
@@ -21,6 +24,5 @@ if [ $RUNNING -eq 0 ] && [ $PLAYING -eq 0 ]; then
     sketchybar -m --set $NAME label="$TRACK • $ARTIST"
   fi
 else
-  sketchybar -m --set $NAME icon=
-  sketchybar -m --set $NAME label="No player is running" 
+  sketchybar -m --set $NAME drawing=off
 fi
