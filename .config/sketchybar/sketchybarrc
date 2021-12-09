@@ -158,7 +158,7 @@ sketchybar -m --add item battery right                                          
 # spotify
 sketchybar -m --add item spotifyIndicator right                                                              \
               --set spotifyIndicator                                                                         \
-                    icon=                                                                                   \
+                    icon=                                                                                    \
                     icon.padding_left=10                                                                     \
                     icon.padding_right=2                                                                     \
                     label.padding_right=10                                                                   \
