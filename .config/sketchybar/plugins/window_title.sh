@@ -1,12 +1,16 @@
 #!/bin/bash
 
 
-sketchybar -m --set $NAME drawing=on
-
 WINDOW_TITLE=$(yabai -m query --windows --window | jq -r '.title')
 
 if [[ $WINDOW_TITLE = "" ]]; then
   WINDOW_TITLE=$(yabai -m query --windows --window | jq -r '.app')
+fi
+
+if [[ -z "$WINDOW_TITLE" ]]; then
+  sketchybar -m --set $NAME drawing=off
+else
+  sketchybar -m --set $NAME drawing=on
 fi
 
 if [[ ${#WINDOW_TITLE} -gt 50 ]]; then
@@ -17,7 +21,4 @@ fi
 
 sketchybar -m --set $NAME label="$WINDOW_TITLE"
 
-if [[ -z "$WINDOW_TITLE" ]]; then
-  sketchybar -m --set $NAME drawing=off
-fi
 
