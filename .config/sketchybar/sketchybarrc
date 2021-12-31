@@ -92,7 +92,7 @@ sketchybar -m --add space first left                                            
                     associated_space=5                                                                       \
                     associated_display=1                                                                     \
                     icon="五"                                                                                \
-                    icon.padding_right=4                                                                     \
+                    icon.padding_right=0                                                                     \
                     script="$PLUGINS_DIR/space.sh"                                                           \
                     click_script="yabai -m space --focus 5"                                                  \
                                                                                                              \

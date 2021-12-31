@@ -7,5 +7,3 @@ else
   sketchybar -m --set $NAME icon.highlight=off
 fi
 
-echo $SELECTED
-
