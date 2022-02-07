@@ -115,7 +115,7 @@ sketchybar -m --add item title left                                             
                     background.color=0xE6"${color0//#}"                                                      \
                     background.padding_left=10                                                               \
                     script="$PLUGINS_DIR/window_title.sh"                                                    \
-                    click_script="opener"                                                                    \
+                    click_script="app $(app | choose -f "SF Mono" -c "deaf9d" -b "1c1b1d")"                  \
                --subscribe title                                                                             \
                     window_focus                                                                             \
                     front_app_switched                                                                       \
