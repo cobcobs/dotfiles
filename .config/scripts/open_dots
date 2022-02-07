@@ -17,7 +17,7 @@ case "$choice" in
 				file="$HOME/.config/alacritty/alacritty.yml"
 			;;
 			firefox)
-				file="$HOME/Library/Application Support/Firefox/Profiles/fo46dfhz.default-release/chrome/userChrome.css"
+				file="$HOME/.config/firefox/userChrome.css"
 			;;
 			neovim)
 				file="$HOME/.config/nvim/init.vim"
@@ -41,14 +41,16 @@ case "$choice" in
 				exit 1
 			;;
 		esac
-		alacritty --command nvim "$file"
+		# alacritty --command nvim "$file"
+                kitty nvim "$file"
 	;;
 	scripts)
 		directory="$HOME/.config/scripts"
 		script="$(ls $directory | choose -f "Cartograph CF" -c "deaf9d" -b "1c1b1d")"
 		if [[ -n "$script" ]]; then
 			file="$directory/$script"
-			alacritty --command nvim "$file"
+			# alacritty --command nvim "$file"
+			kitty nvim "$file"
 		fi
 	;;
 esac
