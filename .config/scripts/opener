@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
 
-application="$(app | choose -f "Operator Mono" -c "deaf9d" -b "1c1b1d")"
+application="$(app | choose -f "SF Mono" -c "deaf9d" -b "1c1b1d")"
 app "$application"
 

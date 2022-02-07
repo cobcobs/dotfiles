@@ -2,7 +2,7 @@
 
 
 # get user selection
-emoji=$(cut -d ';' -f1 ~/.config/emoji/emoji | choose -f "Cartograph CF" -c "deaf9d" -b "1c1b1d" | sed "s/ .*//")
+emoji=$(cut -d ';' -f1 ~/.config/emoji/emoji | choose -f "SF Mono" -c "deaf9d" -b "1c1b1d" | sed "s/ .*//")
 
 # copy into clipboard
 # copyq is used as pbcopy messes up the output when used from skhd for some reason
