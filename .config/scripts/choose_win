@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+
+choice="$(yabai -m query --windows | jq '.[] | .title + " " + (.id|tostring)' | choose -f "SF Mono" -c "deaf9d" -b "1c1b1d")"
+win="$(echo $choice | tr -d '"' | awk '{print $NF}')"
+
+yabai -m window --focus $win
