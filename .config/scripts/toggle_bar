@@ -1,17 +1,22 @@
 #!/usr/bin/env bash
 
 
-# current_padding = $(yabai -m config window_gap)
-# declare -i current_padding
+current_height=$(sketchybar --query bar | jq '.geometry | .height')
+bar_height=40 # change the bar height here
 
-ps cax | grep sketchybar > /dev/null
-if [ $? -eq 0 ] ; then
-	launchctl unload /Users/cobcob/Library/LaunchAgents/homebrew.mxcl.sketchybar.plist
-	sketchybar -m --bar hidden=on
-	yabai -m config external_bar all:0:0
-else
-	launchctl load /Users/cobcob/Library/LaunchAgents/homebrew.mxcl.sketchybar.plist
+# ps cax | grep sketchybar > /dev/null
+if [ $current_height == 0 ] ; then
+	# launchctl unload /Users/cobcob/Library/LaunchAgents/homebrew.mxcl.sketchybar.plist
 	sketchybar -m --bar hidden=off
-	yabai -m config external_bar all:40:0
+        sketchybar -m --bar height=$bar_height
+
+        current_padding=$(yabai -m config window_gap)
+        y_offset="$(($current_padding + $bar_height))"
+	yabai -m config external_bar all:$y_offset:0
+else
+	# launchctl load /Users/cobcob/Library/LaunchAgents/homebrew.mxcl.sketchybar.plist
+	sketchybar -m --bar hidden=on
+        sketchybar -m --bar height=0
+	yabai -m config external_bar all:0:0
 fi
 
