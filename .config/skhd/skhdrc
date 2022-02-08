@@ -37,7 +37,7 @@ alt + shift - tab : yabai -m query --spaces \
   | xargs -I{} yabai -m window --focus {}
 
 # restart, quit, or start yabai
-cmd + shift - r : brew services restart yabai
+cmd + shift - r : launchctl kickstart -k "gui/${UID}/homebrew.mxcl.yabai"
 
 # toggles
 cmd + shift - b      : toggle_bar
