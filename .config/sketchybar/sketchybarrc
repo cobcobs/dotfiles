@@ -36,7 +36,7 @@ sketchybar -m --default label.color=0xff211a15                                  
 
 # icon defaults
 sketchybar -m --default icon.color=0xff211a15                                                                \
-                        icon.font="SF Mono Square:Bold:14.0"                                                 \
+                        icon.font="Hack Nerd Font:Bold:16.0"                                                 \
                         icon.highlight_color=0xff6b675c                                                      \
                         icon.padding_left=0                                                                  \
                         icon.padding_right=0                                                                 \
@@ -87,7 +87,7 @@ sketchybar -m --add item playpause popup.spotify                                
 sketchybar -m --add item skip popup.spotify                                                                  \
               --set skip                                                                                     \
                     icon=􀊐                                                                                   \
-                    icon.padding_right=10                                                                    \
+                    icon.padding_right=14                                                                    \
                     click_script="osascript -e 'tell application \"Spotify\" to play next track' ;
                                   sketchybar -m --set spotify popup.drawing=off"                             \
 
@@ -98,7 +98,7 @@ sketchybar -m --add space browser left                                          
                     associated_display=1                                                                     \
                     icon=""                                                                                 \
                     icon.padding_right=12                                                                    \
-                    icon.font="SF Mono Square:Bold:12.0"                                                     \
+                    icon.font="Hack Nerd Font:Bold:14.0"                                                     \
                     script="$PLUGINS_DIR/space.sh"                                                           \
                     click_script="yabai -m space --focus 1"                                                  \
 
@@ -108,7 +108,7 @@ sketchybar -m --add space terminal left                                         
                     associated_display=1                                                                     \
                     icon=""                                                                                 \
                     icon.padding_right=12                                                                    \
-                    icon.font="SF Mono Square:Bold:16.0"                                                     \
+                    icon.font="Hack Nerd Font:Bold:18.0"                                                     \
                     script="$PLUGINS_DIR/space.sh"                                                           \
                     click_script="yabai -m space --focus 2"                                                  \
 
@@ -118,7 +118,7 @@ sketchybar -m --add space files left                                            
                     associated_space=3                                                                       \
                     associated_display=1                                                                     \
                     icon=""                                                                                 \
-                    icon.padding_left=6                                                                      \
+                    icon.padding_left=1                                                                      \
                     icon.padding_right=12                                                                    \
                     script="$PLUGINS_DIR/space.sh"                                                           \
                     click_script="yabai -m space --focus 3"                                                  \
@@ -136,7 +136,7 @@ sketchybar -m --add space chat left                                             
               --set chat                                                                                     \
                     associated_space=5                                                                       \
                     associated_display=1                                                                     \
-                    icon=""                                                                                 \
+                    icon="ﭮ"                                                                                 \
                     icon.padding_right=4                                                                     \
                     script="$PLUGINS_DIR/space.sh"                                                           \
                     click_script="yabai -m space --focus 5"                                                  \
