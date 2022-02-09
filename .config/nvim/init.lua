@@ -26,7 +26,8 @@ require("packer").startup(function(use)
     use {"nvim-lua/plenary.nvim"}
     use {"lukas-reineke/indent-blankline.nvim"}
     use {"romainl/vim-cool", event = "CmdlineEnter"}
-    use {"jacob-ethan/olivia.vim", event = "VimEnter"}
+    use {"ellisonleao/gruvbox.nvim"}
+    -- use {"jacob-ethan/olivia.vim", event = "VimEnter"}
 
     if packer_bootstrap then
         require("packer").sync()
@@ -40,7 +41,7 @@ require("mini.surround").setup()
 require("gitsigns").setup {
     yadm = {
         enable = true
-  },
+    },
 }
 require("indent_blankline").setup()
 require("telescope").setup({
@@ -253,5 +254,13 @@ vim.cmd [[
 
 -- colorscheme
 vim.opt.termguicolors = true
-vim.cmd("colorscheme olivia")
+vim.o.background = "light"
+vim.cmd("colorscheme gruvbox")
+vim.cmd [[
+    hi Normal guibg=NONE ctermbg=NONE
+    hi SignColumn guibg=NONE ctermbg=NONE
+    hi GitSignsAdd guibg=NONE ctermbg=NONE
+    hi GitSignsChange guibg=NONE ctermbg=NONE
+    hi GitSignsDelete guibg=NONE ctermbg=NONE
+]]
 
