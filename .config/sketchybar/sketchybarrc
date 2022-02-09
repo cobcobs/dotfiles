@@ -42,8 +42,8 @@ sketchybar -m --default icon.color=0xff211a15                                   
                         icon.padding_right=0                                                                 \
 
 # background defaults
-sketchybar -m --default background.border_color=0xff"${color7//#}"                                           \
-                        background.border_width=0                                                            \
+sketchybar -m --default background.border_color=0xff211a15                                                   \
+                        background.border_width=3                                                            \
                         background.corner_radius=10                                                          \
                         background.height=30                                                                 \
 
@@ -64,7 +64,7 @@ sketchybar -m --add item spotify left                                           
               --set spotify                                                                                  \
                     icon=                                                                                   \
                     icon.padding_left=10                                                                     \
-                    icon.padding_right=40                                                                    \
+                    icon.padding_right=15                                                                    \
                     popup.horizontal=on                                                                      \
                     click_script="sketchybar -m --set \$NAME popup.drawing=toggle"                           \
 
@@ -91,12 +91,22 @@ sketchybar -m --add item skip popup.spotify                                     
                     click_script="osascript -e 'tell application \"Spotify\" to play next track' ;
                                   sketchybar -m --set spotify popup.drawing=off"                             \
 
+# spacer
+sketchybar -m --add item spacer_1 left                                                                       \
+              --set spacer_1                                                                                 \
+                    icon=ㅤ                                                                                    \
+                    icon.padding_right=3                                                                     \
+                    background.color=0xff211a15                                                              \
+                    background.drawing=on                                                                    \
+                    background.height=40                                                                     \
+
 # spaces
 sketchybar -m --add space browser left                                                                       \
               --set browser                                                                                  \
                     associated_space=1                                                                       \
                     associated_display=1                                                                     \
                     icon=""                                                                                 \
+                    icon.padding_left=15                                                                     \
                     icon.padding_right=12                                                                    \
                     icon.font="Hack Nerd Font:Bold:14.0"                                                     \
                     script="$PLUGINS_DIR/space.sh"                                                           \
@@ -112,14 +122,13 @@ sketchybar -m --add space terminal left                                         
                     script="$PLUGINS_DIR/space.sh"                                                           \
                     click_script="yabai -m space --focus 2"                                                  \
 
-
 sketchybar -m --add space files left                                                                         \
               --set files                                                                                    \
                     associated_space=3                                                                       \
                     associated_display=1                                                                     \
                     icon=""                                                                                 \
                     icon.padding_left=1                                                                      \
-                    icon.padding_right=12                                                                    \
+                    icon.padding_right=10                                                                    \
                     script="$PLUGINS_DIR/space.sh"                                                           \
                     click_script="yabai -m space --focus 3"                                                  \
 
@@ -137,9 +146,18 @@ sketchybar -m --add space chat left                                             
                     associated_space=5                                                                       \
                     associated_display=1                                                                     \
                     icon="ﭮ"                                                                                 \
-                    icon.padding_right=4                                                                     \
+                    icon.padding_right=15                                                                    \
                     script="$PLUGINS_DIR/space.sh"                                                           \
                     click_script="yabai -m space --focus 5"                                                  \
+
+# spacer
+sketchybar -m --add item spacer_2 left                                                                       \
+              --set spacer_2                                                                                 \
+                    icon=ㅤ                                                                                    \
+                    icon.padding_right=3                                                                     \
+                    background.color=0xff211a15                                                              \
+                    background.drawing=on                                                                    \
+                    background.height=40                                                                     \
 
 # title
 sketchybar -m --add item title center                                                                        \
@@ -157,11 +175,80 @@ sketchybar -m --add item title center                                           
                     space_change                                                                             \
                     title_change                                                                             \
 
+# spacer
+sketchybar -m --add item spacer_3 right                                                                      \
+              --set spacer_3                                                                                 \
+                    icon=ㅤ                                                                                    \
+                    icon.padding_right=3                                                                     \
+                    background.color=0xff211a15                                                              \
+                    background.drawing=on                                                                    \
+                    background.height=40                                                                     \
+
+# system commands
+# https://apple.stackexchange.com/questions/103571/using-the-terminal-command-to-shutdown-restart-and-sleep-my-mac/103633#103633
+sketchybar -m --add item system right                                                                        \
+              --set system                                                                                   \
+                    icon=                                                                                   \
+                    icon.padding_left=15                                                                     \
+                    icon.padding_right=15                                                                    \
+                    y_offset=1                                                                               \
+                    popup.align=right                                                                        \
+                    click_script="sketchybar -m --set system popup.drawing=toggle"                           \
+
+sketchybar -m --add item preferences popup.system                                                            \
+              --set preferences                                                                              \
+                    icon=                                                                                   \
+                    icon.padding_left=10                                                                     \
+                    icon.padding_right=5                                                                     \
+                    label="Preferences"                                                                      \
+                    label.padding_right=10                                                                   \
+                    click_script="open -a 'System Preferences' ;
+                                  sketchybar -m --set system popup.drawing=off"                              \
+
+sketchybar -m --add item lock popup.system                                                                   \
+              --set lock                                                                                     \
+                    icon=                                                                                   \
+                    icon.padding_left=10                                                                     \
+                    icon.padding_right=5                                                                     \
+                    label="Lock Screen"                                                                      \
+                    label.padding_right=10                                                                   \
+                    click_script="lock ; sketchybar -m --set system popup.drawing=off"                       \
+
+sketchybar -m --add item restart popup.system                                                                \
+              --set restart                                                                                  \
+                    icon=ﰇ                                                                                   \
+                    icon.padding_left=10                                                                     \
+                    icon.padding_right=5                                                                     \
+                    label="Restart"                                                                          \
+                    label.padding_right=10                                                                   \
+                    click_script="osascript -e 'tell app \"loginwindow\" to «event aevtrrst»' ;
+                                  sketchybar -m --set system popup.drawing=off"                              \
+
+sketchybar -m --add item shutdown popup.system                                                               \
+              --set shutdown                                                                                 \
+                    icon=                                                                                   \
+                    icon.padding_left=10                                                                     \
+                    icon.padding_right=5                                                                     \
+                    label="Shutdown"                                                                         \
+                    label.padding_right=10                                                                   \
+                    click_script="osascript -e 'tell app \"loginwindow\" to «event aevtrsdn»' ;
+                                  sketchybar -m --set system popup.drawing=off"                              \
+
+# spacer
+sketchybar -m --add item spacer_4 right                                                                      \
+              --set spacer_4                                                                                 \
+                    icon=ㅤ                                                                                    \
+                    icon.padding_right=3                                                                     \
+                    background.color=0xff211a15                                                              \
+                    background.drawing=on                                                                    \
+                    background.height=40                                                                     \
+
 # time, date, and battery
 sketchybar -m --add item time right                                                                          \
               --set time                                                                                     \
                     update_freq=5                                                                            \
-                    label.padding_right=10                                                                   \
+                    label.padding_left=15                                                                    \
+                    label.padding_right=15                                                                   \
                     popup.align=center                                                                       \
                     script="$PLUGINS_DIR/clock.sh"                                                           \
                     click_script="sketchybar -m --set time popup.drawing=toggle"                             \
@@ -178,6 +265,15 @@ sketchybar -m --add item battery popup.time                                     
                     label.padding_left=5                                                                     \
                     label.padding_right=10                                                                   \
                     script="$PLUGINS_DIR/power.sh"                                                           \
+
+# spacer
+sketchybar -m --add item spacer_5 right                                                                      \
+              --set spacer_5                                                                                 \
+                    icon=ㅤ                                                                                    \
+                    icon.padding_right=3                                                                     \
+                    background.color=0xff211a15                                                              \
+                    background.drawing=on                                                                    \
+                    background.height=40                                                                     \
 
 # load
 sketchybar -m --update
