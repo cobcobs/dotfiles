@@ -7,10 +7,17 @@ end
 
 -- startup and add plugins
 require("packer").startup(function(use)
+    -- package manager
     use {"wbthomason/packer.nvim"}
+
+    -- reduce startup
     use {"lewis6991/impatient.nvim"}
+
+    -- lsp
     use {"neovim/nvim-lspconfig"}
-    use {"echasnovski/mini.nvim"}
+    use {"onsails/lspkind-nvim"}
+
+    -- completion
     use {"hrsh7th/nvim-cmp"}
     use {"hrsh7th/cmp-buffer", event = "InsertEnter"}
     use {"hrsh7th/cmp-path", event = "InsertEnter"}
@@ -19,15 +26,19 @@ require("packer").startup(function(use)
     use {"L3MON4D3/LuaSnip", event = "InsertEnter"}
     use {"saadparwaiz1/cmp_luasnip", event = "InsertEnter"}
     use {"kdheepak/cmp-latex-symbols", event = "InsertEnter"}
-    use {"onsails/lspkind-nvim"}
+
+    -- visuals
     use {"lewis6991/gitsigns.nvim"}
+    use {"lukas-reineke/indent-blankline.nvim"}
+    use {"nvim-treesitter/nvim-treesitter", run = ":TSUpdate"}
+    use {"romainl/vim-cool", event = "CmdlineEnter"}
+    use {"ellisonleao/gruvbox.nvim"}
+
+    -- others
+    use {"echasnovski/mini.nvim"}
     use {"nvim-telescope/telescope.nvim"}
     use {"LinArcX/telescope-command-palette.nvim"}
     use {"nvim-lua/plenary.nvim"}
-    use {"lukas-reineke/indent-blankline.nvim"}
-    use {"romainl/vim-cool", event = "CmdlineEnter"}
-    use {"ellisonleao/gruvbox.nvim"}
-    -- use {"jacob-ethan/olivia.vim", event = "VimEnter"}
 
     if packer_bootstrap then
         require("packer").sync()
@@ -35,16 +46,26 @@ require("packer").startup(function(use)
 end)
 
 -- setup plugins
+-- mini.nvim
 require("mini.comment").setup()
 require("mini.pairs").setup()
 require("mini.surround").setup()
+
+-- visuals
 require("gitsigns").setup {
     yadm = {
         enable = true
     },
 }
 require("indent_blankline").setup()
-require("telescope").setup({
+require('nvim-treesitter.configs').setup {
+    highlight = {
+        enable = true,
+    },
+}
+
+-- telescope.nvim
+require("telescope").setup {
     extensions = {
     command_palette = {
       {"File",
@@ -85,7 +106,7 @@ require("telescope").setup({
       }
     }
   }
-})
+}
 require('telescope').load_extension('command_palette')
 
 -- completion
