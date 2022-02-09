@@ -52,11 +52,12 @@ sketchybar -m --default popup.background.corner_radius=10                       
                         popup.background.border_width=3                                                      \
                         popup.background.border_color=0xff211a15                                             \
                         popup.background.color=0xfff7f1e3                                                    \
+                        popup.y_offset=5                                                                     \
 
 # events
 # sketchybar -m --add event spotify_change "com.spotify.client.PlaybackStateChanged"
-# sketchybar -m --add event window_focus
-# sketchybar -m --add event title_change
+sketchybar -m --add event window_focus
+sketchybar -m --add event title_change
 
 # spotify
 sketchybar -m --add item spotify left                                                                        \
