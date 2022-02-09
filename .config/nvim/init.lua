@@ -22,6 +22,7 @@ require("packer").startup(function(use)
     use {"onsails/lspkind-nvim"}
     use {"lewis6991/gitsigns.nvim"}
     use {"nvim-telescope/telescope.nvim"}
+    use {"LinArcX/telescope-command-palette.nvim"}
     use {"nvim-lua/plenary.nvim"}
     use {"lukas-reineke/indent-blankline.nvim"}
     use {"romainl/vim-cool", event = "CmdlineEnter"}
@@ -42,7 +43,49 @@ require("gitsigns").setup {
   },
 }
 require("indent_blankline").setup()
-require("telescope").setup()
+require("telescope").setup({
+    extensions = {
+    command_palette = {
+      {"File",
+        { "entire selection (C-a)", ':call feedkeys("GVgg")' },
+        { "save current file (C-s)", ':w' },
+        { "save all files (C-A-s)", ':wa' },
+        { "quit (C-q)", ':qa' },
+        { "search word (A-w)", ":lua require('telescope.builtin').live_grep({hidden=true})", 1 },
+        { "git files (A-f)", ":lua require('telescope.builtin').git_files({hidden=true})", 1 },
+        { "files (C-f)",     ":lua require('telescope.builtin').find_files({hidden=true})", 1 },
+      },
+      {"Help",
+        { "tips", ":help tips" },
+        { "cheatsheet", ":help index" },
+        { "tutorial", ":help tutor" },
+        { "summary", ":help summary" },
+        { "quick reference", ":help quickref" },
+        { "search help(F1)", ":lua require('telescope.builtin').help_tags()", 1 },
+      },
+      {"Vim",
+        { "reload vimrc", ":source $MYVIMRC" },
+        { 'check health', ":checkhealth" },
+        { "jumps (Alt-j)", ":lua require('telescope.builtin').jumplist()" },
+        { "commands", ":lua require('telescope.builtin').commands()" },
+        { "command history", ":lua require('telescope.builtin').command_history()" },
+        { "registers (A-e)", ":lua require('telescope.builtin').registers()" },
+        { "colorscheme", ":lua require('telescope.builtin').colorscheme()", 1 },
+        { "vim options", ":lua require('telescope.builtin').vim_options()" },
+        { "keymaps", ":lua require('telescope.builtin').keymaps()" },
+        { "buffers", ":Telescope buffers" },
+        { "search history (C-h)", ":lua require('telescope.builtin').search_history()" },
+        { "paste mode", ':set paste!' },
+        { 'cursor line', ':set cursorline!' },
+        { 'cursor column', ':set cursorcolumn!' },
+        { "spell checker", ':set spell!' },
+        { "relative number", ':set relativenumber!' },
+        { "search highlighting (F12)", ':set hlsearch!' },
+      }
+    }
+  }
+})
+require('telescope').load_extension('command_palette')
 
 -- completion
 local has_words_before = function()
@@ -182,6 +225,9 @@ map("n", "k", "v:count ? 'k' : 'gk'", {expr = true})
 
 -- repeat last edit n times
 map("n", ".", [[:<C-u>execute "norm! " . repeat(".", v:count1)<CR>]])
+
+-- command palette
+map("n", [[<C-p>]], [[:Telescope command_palette<CR>]])
 
 
 -- autocommands
