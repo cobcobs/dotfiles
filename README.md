@@ -1,6 +1,8 @@
 # My Dotfiles
 Managed with [yadm](https://yadm.io/)
 
+Inspired by [this rice](https://github.com/ChocolateBread799/macintosh)
+
 # Dependencies
 - [homebrew](https://brew.sh/)
 - [nvim](https://github.com/neovim/neovim)
