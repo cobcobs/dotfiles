@@ -55,7 +55,7 @@ sketchybar -m --default popup.background.corner_radius=10                       
                         popup.y_offset=5                                                                     \
 
 # events
-# sketchybar -m --add event spotify_change "com.spotify.client.PlaybackStateChanged"
+sketchybar -m --add event spotify_change "com.spotify.client.PlaybackStateChanged"
 sketchybar -m --add event window_focus
 sketchybar -m --add event title_change
 
@@ -72,7 +72,7 @@ sketchybar -m --add item rewind popup.spotify                                   
               --set rewind                                                                                   \
                     icon=􀊎                                                                                   \
                     icon.padding_left=10                                                                     \
-                    icon.padding_right=14                                                                    \
+                    icon.padding_right=15                                                                    \
                     click_script="osascript -e 'tell application \"Spotify\" to play previous track' ;
                     sketchybar -m --set spotify popup.drawing=off"                                           \
 
@@ -83,6 +83,8 @@ sketchybar -m --add item playpause popup.spotify                                
                     click_script="osascript -e 'tell application \"Spotify\" to playpause' ;
                                   sketchybar -m --set spotify popup.drawing=off ;
                                   $PLUGINS_DIR/spotifyIndicator.sh"                                          \
+              --subscribe playpause                                                                          \
+                    spotify_change                                                                           \
 
 sketchybar -m --add item skip popup.spotify                                                                  \
               --set skip                                                                                     \
@@ -127,8 +129,8 @@ sketchybar -m --add space files left                                            
                     associated_space=3                                                                       \
                     associated_display=1                                                                     \
                     icon=""                                                                                 \
-                    icon.padding_left=2                                                                      \
-                    icon.padding_right=15                                                                    \
+                    icon.padding_left=3                                                                      \
+                    icon.padding_right=13                                                                    \
                     y_offset=1                                                                               \
                     script="$PLUGINS_DIR/space.sh"                                                           \
                     click_script="yabai -m space --focus 3"                                                  \
@@ -249,8 +251,8 @@ sketchybar -m --add item spacer_4 right                                         
 sketchybar -m --add item time right                                                                          \
               --set time                                                                                     \
                     update_freq=5                                                                            \
-                    label.padding_left=15                                                                    \
-                    label.padding_right=15                                                                   \
+                    label.padding_left=20                                                                    \
+                    label.padding_right=20                                                                   \
                     popup.align=center                                                                       \
                     script="$PLUGINS_DIR/clock.sh"                                                           \
                     click_script="sketchybar -m --set time popup.drawing=toggle ;
