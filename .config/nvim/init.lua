@@ -15,6 +15,7 @@ require("packer").startup(function(use)
 
     -- lsp
     use {"neovim/nvim-lspconfig"}
+    use {"williamboman/nvim-lsp-installer"}
     use {"onsails/lspkind-nvim"}
 
     -- completion
@@ -26,6 +27,10 @@ require("packer").startup(function(use)
     use {"L3MON4D3/LuaSnip", event = "InsertEnter"}
     use {"saadparwaiz1/cmp_luasnip", event = "InsertEnter"}
     use {"kdheepak/cmp-latex-symbols", event = "InsertEnter"}
+
+    -- debugging
+    use {"mfussenegger/nvim-dap"}
+    use {"Pocco81/DAPInstall.nvim"}
 
     -- visuals
     use {"lewis6991/gitsigns.nvim"}
