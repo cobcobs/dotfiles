@@ -3,14 +3,13 @@ Managed with [yadm](https://yadm.io/)
 
 Inspired by [this rice](https://github.com/ChocolateBread799/macintosh)
 
-# Dependencies
-- [homebrew](https://brew.sh/)
-- [nvim](https://github.com/neovim/neovim)
-- [yabai](https://github.com/koekeishiya/yabai)
-- [skhd](https://github.com/koekeishiya/skhd)
-- [SketchyBar](https://github.com/FelixKratz/SketchyBar)
-- [pngpaste](https://github.com/jcsalterego/pngpaste)
-- [jq](https://github.com/stedolan/jq)
-- [lock-cli](https://github.com/sindresorhus/lock-cli)
-- [app](https://github.com/craigsapp/app)
-- [CopyQ](https://github.com/hluk/CopyQ)
+# Apps
+- [Window Manager](https://github.com/koekeishiya/yabai)
+- [Hotkey Daemon](https://github.com/koekeishiya/skhd)
+- [Bar](https://github.com/FelixKratz/SketchyBar)
+
+# Font
+- [Cartograph CF](https://connary.com/cartograph.html)
+
+# Todo
+- Screenshot
