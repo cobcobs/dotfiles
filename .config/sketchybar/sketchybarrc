@@ -107,7 +107,7 @@ sketchybar -m --add space browser left                                          
                     associated_display=1                                                                     \
                     icon=""                                                                                 \
                     icon.padding_left=15                                                                     \
-                    icon.padding_right=12                                                                    \
+                    icon.padding_right=15                                                                    \
                     icon.font="Hack Nerd Font:Bold:14.0"                                                     \
                     script="$PLUGINS_DIR/space.sh"                                                           \
                     click_script="yabai -m space --focus 1"                                                  \
@@ -117,8 +117,8 @@ sketchybar -m --add space terminal left                                         
                     associated_space=2                                                                       \
                     associated_display=1                                                                     \
                     icon=""                                                                                 \
-                    icon.padding_right=12                                                                    \
-                    icon.font="Hack Nerd Font:Bold:18.0"                                                     \
+                    icon.padding_right=14                                                                    \
+                    icon.font="Hack Nerd Font:Bold:20.0"                                                     \
                     script="$PLUGINS_DIR/space.sh"                                                           \
                     click_script="yabai -m space --focus 2"                                                  \
 
@@ -127,8 +127,9 @@ sketchybar -m --add space files left                                            
                     associated_space=3                                                                       \
                     associated_display=1                                                                     \
                     icon=""                                                                                 \
-                    icon.padding_left=1                                                                      \
-                    icon.padding_right=10                                                                    \
+                    icon.padding_left=2                                                                      \
+                    icon.padding_right=15                                                                    \
+                    y_offset=1                                                                               \
                     script="$PLUGINS_DIR/space.sh"                                                           \
                     click_script="yabai -m space --focus 3"                                                  \
 
@@ -137,7 +138,8 @@ sketchybar -m --add space music left                                            
                     associated_space=4                                                                       \
                     associated_display=1                                                                     \
                     icon=""                                                                                 \
-                    icon.padding_right=12                                                                    \
+                    icon.padding_right=15                                                                    \
+                    y_offset=1                                                                               \
                     script="$PLUGINS_DIR/space.sh"                                                           \
                     click_script="yabai -m space --focus 4"                                                  \
 
