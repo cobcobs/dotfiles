@@ -18,13 +18,16 @@ require("packer").startup(function(use)
     use {"williamboman/nvim-lsp-installer"}
     use {"onsails/lspkind-nvim"}
 
+    -- snippets
+    use {"L3MON4D3/LuaSnip"}
+    use {"rafamadriz/friendly-snippets"}
+
     -- completion
     use {"hrsh7th/nvim-cmp"}
     use {"hrsh7th/cmp-buffer", event = "InsertEnter"}
     use {"hrsh7th/cmp-path", event = "InsertEnter"}
     use {"hrsh7th/cmp-nvim-lua", event = "InsertEnter"}
     use {"hrsh7th/cmp-nvim-lsp", event = "InsertEnter"}
-    use {"L3MON4D3/LuaSnip", event = "InsertEnter"}
     use {"saadparwaiz1/cmp_luasnip", event = "InsertEnter"}
     use {"kdheepak/cmp-latex-symbols", event = "InsertEnter"}
 
@@ -114,6 +117,12 @@ require("telescope").setup {
 }
 require('telescope').load_extension('command_palette')
 
+-- lspconfig
+require("lspconfig").pyright.setup{}
+
+-- snippets
+require("luasnip.loaders.from_vscode").load()
+
 -- completion
 local has_words_before = function()
     local line, col = unpack(vim.api.nvim_win_get_cursor(0))
@@ -174,9 +183,6 @@ require("cmp").setup({
         })}),
     },
 })
-
--- lspconfig
-require("lspconfig").pyright.setup{}
 
 -- disable built in plugins
 vim.g.loaded_gzip = 0
