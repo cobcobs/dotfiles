@@ -251,7 +251,9 @@ sketchybar -m --add item time right                                             
                     label.padding_right=15                                                                   \
                     popup.align=center                                                                       \
                     script="$PLUGINS_DIR/clock.sh"                                                           \
-                    click_script="sketchybar -m --set time popup.drawing=toggle"                             \
+                    click_script="sketchybar -m --set time popup.drawing=toggle ;
+                                  $PLUGINS_DIR/date.sh ;
+                                  $PLUGINS_DIR/power.sh"                                                     \
 
 sketchybar -m --add item date popup.time                                                                     \
               --set date                                                                                     \
