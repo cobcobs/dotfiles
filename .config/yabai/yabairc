@@ -36,6 +36,7 @@ yabai -m config window_border_width          10
 # layouts
 yabai -m config --space 1 layout             stack
 yabai -m config --space 5 layout             stack
+
 # rules
 yabai -m rule --add app="^System Preferences$" layer=above manage=off border=off
 yabai -m rule --add app="^Roblox$" manage=off border=off
