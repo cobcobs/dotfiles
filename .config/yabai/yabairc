@@ -53,15 +53,16 @@ yabai -m config right_padding                10
 yabai -m config window_gap                   10
 
 # bar
-bar_height=$(sketchybar --query bar | jq '.geometry | .height')
-current_gap=$(yabai -m config window_gap)
-y_offset=$((bar_height + 10))
-
-if [ $bar_height == 0 ] ; then
-    yabai -m config external_bar all:0:0
-else
+ps cax | grep sketchybar > /dev/null
+if [ $? -eq 0 ] ; then
+    launchctl load /Users/cobcob/Library/LaunchAgents/homebrew.mxcl.sketchybar.plist
+    bar_height=$(sketchybar --query bar | jq '.geometry | .height')
+    current_gap=$(yabai -m config window_gap)
+    y_offset=$(($bar_height + $current_gap))
     yabai -m config external_bar all:$y_offset:0
-    yabai -m config top_padding 10
+else
+    launchctl unload /Users/cobcob/Library/LaunchAgents/homebrew.mxcl.sketchybar.plist
+    yabai -m config external_bar all:0:0
 fi
 
 # signals
