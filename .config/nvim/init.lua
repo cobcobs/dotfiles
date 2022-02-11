@@ -1,8 +1,8 @@
 -- packer.nvim bootstrap
 local fn = vim.fn
-local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
+local install_path = fn.stdpath("data").."/site/pack/packer/start/packer.nvim"
 if fn.empty(fn.glob(install_path)) > 0 then
-  packer_bootstrap = fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
+  packer_bootstrap = fn.system({"git", "clone", "--depth", "1", "https://github.com/wbthomason/packer.nvim", install_path})
 end
 
 -- startup and add plugins
@@ -37,16 +37,18 @@ require("packer").startup(function(use)
 
     -- visuals
     use {"lewis6991/gitsigns.nvim"}
-    use {"lukas-reineke/indent-blankline.nvim"}
     use {"nvim-treesitter/nvim-treesitter", run = ":TSUpdate"}
     use {"romainl/vim-cool", event = "CmdlineEnter"}
     use {"ellisonleao/gruvbox.nvim"}
 
+    -- telescope.nvim
+    use {"nvim-telescope/telescope.nvim"}
+    use {"nvim-telescope/telescope-fzf-native.nvim", run = "make"}
+    use {"nvim-telescope/telescope-project.nvim"}
+    use {"nvim-lua/plenary.nvim"}
+
     -- others
     use {"echasnovski/mini.nvim"}
-    use {"nvim-telescope/telescope.nvim"}
-    use {'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
-    use {"nvim-lua/plenary.nvim"}
 
     if packer_bootstrap then
         require("packer").sync()
@@ -58,6 +60,12 @@ end)
 require("mini.comment").setup()
 require("mini.pairs").setup()
 require("mini.surround").setup()
+require("mini.indentscope").setup {
+    draw = {
+        animation = require("mini.indentscope").gen_animation("none")
+    },
+    symbol = "│",
+}
 
 -- visuals
 require("gitsigns").setup {
@@ -65,8 +73,7 @@ require("gitsigns").setup {
         enable = true
     },
 }
-require("indent_blankline").setup()
-require('nvim-treesitter.configs').setup {
+require("nvim-treesitter.configs").setup {
     highlight = {
         enable = true,
     },
@@ -75,17 +82,26 @@ require('nvim-treesitter.configs').setup {
 -- telescope.nvim
 require("telescope").setup {
     extensions = {
-        fuzzy = true,
-        override_generic_sorter = true,
-        override_file_sorter = true,
-        case_mode = "smart_case",
+	project = {
+	    hidden_files = true,
+	},
+        fzf = {
+            fuzzy = true,
+            override_generic_sorter = true,
+            override_file_sorter = true,
+            case_mode = "smart_case",
+        },
     },
     pickers = {
+        builtin = {
+            theme = "dropdown"
+        },
         find_files = {
             find_command = {"fd", "--hidden"}
-        }
+        },
     }
 }
+require("telescope").load_extension("project")
 require("telescope").load_extension("fzf")
 
 -- lspconfig
@@ -137,11 +153,11 @@ require("cmp").setup({
         }),
     },
     sources = {
+        {name = "luasnip"},
         {name = "nvim_lua"},
         {name = "nvim_lsp"},
         {name = "latex_symbols"},
         {name = "path"},
-        {name = "luasnip"},
         {name = "buffer"},
     },
     formatting = {
@@ -212,9 +228,6 @@ end
 -- make Y work like D or C
 map("n", "Y", "y$")
 
--- buffer switching
-map("n", "gb", ":Telescope buffers<CR>")
-
 -- quick search/replace
 map("n", "<Space>ip", [[:'{,'}s/\<<C-r>=expand('<cword>')<CR>\>/]])
 map("n", "<Space><Space>", [[:%s/\<<C-r>=expand('<cword>')<CR>\>/]])
@@ -231,7 +244,9 @@ map("n", "k", "v:count ? 'k' : 'gk'", {expr = true})
 map("n", ".", [[:<C-u>execute "norm! " . repeat(".", v:count1)<CR>]])
 
 -- telescope commands
-map("n", [[<C-p>]], [[:Telescope<CR>]])
+map("n", [[<C-p>]], ":Telescope<CR>")
+map("n", "gb", ":Telescope buffers<CR>")
+map("n", [[<C-f>]], ":Telescope current_buffer_fuzzy_find<CR>")
 
 
 -- autocommands
