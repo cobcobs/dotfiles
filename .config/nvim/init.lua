@@ -217,36 +217,28 @@ vim.opt.title = true
 
 
 -- mappings
--- helper function
-local function map(mode, lhs, rhs, opts)
-    local options = {noremap = true}
-    if opts then options = vim.tbl_extend("force", options, opts) end
-    vim.api.nvim_set_keymap(mode, lhs, rhs, options)
-end
-
--- general mappings
 -- make Y work like D or C
-map("n", "Y", "y$")
+vim.keymap.set("n", "Y", "y$")
 
 -- quick search/replace
-map("n", "<Space>ip", [[:'{,'}s/\<<C-r>=expand('<cword>')<CR>\>/]])
-map("n", "<Space><Space>", [[:%s/\<<C-r>=expand('<cword>')<CR>\>/]])
+vim.keymap.set("n", "<Space>ip", [[:'{,'}s/\<<C-r>=expand('<cword>')<CR>\>/]])
+vim.keymap.set("n", "<Space><Space>", [[:%s/\<<C-r>=expand('<cword>')<CR>\>/]])
 
 -- quick change
-map("n", "cn", [[/\<<C-R>=expand('<cword>')<CR>\>\C<CR>``cgn]])
-map("n", "cN", [[?\<<C-R>=expand('<cword>')<CR>\>\C<CR>``cgN]])
+vim.keymap.set("n", "cn", [[/\<<C-R>=expand('<cword>')<CR>\>\C<CR>``cgn]])
+vim.keymap.set("n", "cN", [[?\<<C-R>=expand('<cword>')<CR>\>\C<CR>``cgN]])
 
 -- better j and k
-map("n", "j", "v:count ? 'j' : 'gj'", {expr = true})
-map("n", "k", "v:count ? 'k' : 'gk'", {expr = true})
+vim.keymap.set("n", "j", "v:count ? 'j' : 'gj'", {expr = true})
+vim.keymap.set("n", "k", "v:count ? 'k' : 'gk'", {expr = true})
 
 -- repeat last edit n times
-map("n", ".", [[:<C-u>execute "norm! " . repeat(".", v:count1)<CR>]])
+vim.keymap.set("n", ".", [[:<C-u>execute "norm! " . repeat(".", v:count1)<CR>]])
 
 -- telescope commands
-map("n", [[<C-p>]], ":Telescope<CR>")
-map("n", "gb", ":Telescope buffers<CR>")
-map("n", [[<C-f>]], ":Telescope current_buffer_fuzzy_find<CR>")
+vim.keymap.set("n", [[<C-p>]], ":Telescope<CR>")
+vim.keymap.set("n", "gb", ":Telescope buffers<CR>")
+vim.keymap.set("n", [[<C-f>]], ":Telescope current_buffer_fuzzy_find<CR>")
 
 
 -- autocommands
