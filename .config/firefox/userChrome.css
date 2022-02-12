@@ -1,179 +1,430 @@
-/*=============================================================================*
- *                              F L Y E R F O X                                *
- *                                                                             *
- * description    : FlyerFox - An opinionated Firefox userChrome.css,          *
- *                  optimized for macOS. Bret Michael's slider is still in     *
- *                  beta unfortunately.                                        *
- *                  keep the Proton experience.                                *
- * compatibility  : Firefox 89+                                                *
- * Forked From    : https://github.com/lr-tech/OnelineProton/                  *
- * Repository     : https://github.com/typkrft/FlyerFox/                       *
- *                                                                             *
- * THANKS FOR USING OUR USERCHROME! <3                                         *
- *============================================================================*/
- /* 
-  N O T E : 
-  You might be better off disabling things in testing. 
-  There are a number of quirks and things that I am still working through. 
-  If you have an addition or a fix please let me know. I am not a CSS dev, but I
-  will try to help and resolve issues when possible. 
- */
+/*#If your laptop are surffering by the animation, you could change all the "--*-transition-duration" to 0,esaly using Regular expression in npp++ 
+Find:"duration: .*"  
+Replace: "duration: 0s;"
+#*/
 
-/* S E T T I N G S */
+/*#this fix the urlbar not getting correct params when using userchrome.css#*/
+:root:not([uidensity]) #urlbar[breakout],
+:root:not([uidensity]) #urlbar-container[breakout] {
+	--urlbar-toolbar-height: 40px !important;
+	--urlbar-height: 32px !important;
+	--urlbar-container-height: 40px!important;
+}
 
+:root[uidensity=touch] #urlbar[breakout],
+:root[uidensity=touch] #urlbar-container[breakout] {
+	--urlbar-toolbar-height: 44px !important;
+	--urlbar-height: 34px !important;
+	--urlbar-container-height: 44px!important;
+}
+
+/*
+# Tabs expand when leaved
+# There has some problem I can't fix, when it reach among of tabs, will hardly relocate the current tabs.
+# But I common usage it will not be a problem (when the tabs not overflowing)
+*/
 :root {
-  --navbarWidth     : 400px; /* Set width of navbar. Use px or vw. */
-  --animationSpeed  : 0.15s;
+	--Tabs-transition-duration: 0.3s;
+	--Tabs-transition-delay: 1s;
 }
 
-/* H I D I N G   E L E M E N T S */
-/* Comment or uncomment depending of what elements you want to hide */
-
-/* Back button */
-#back-button {display: none !important}
-
-/* Hide back button only when disabled */
-/* #back-button[disabled="true"] {display: none !important} */
-
-/* Forward button */
-#forward-button {display: none !important}
-
-/* Hide forward button only when disabled */
-/* #forward-button[disabled="true"] {display: none !important} */
-
-/* "Shield" icon */
-/* #tracking-protection-icon-container {display: none !important} */
-
-/* Site information button */
-/* #identity-box:not(:hover) {display: none !important} */
-
-/* This is the "Search with" indicator on the urlbar */
-#urlbar-search-mode-indicator {display: none !important}
-
-/* Zoom button */
-#urlbar-zoom-button {display: none !important}
-
-/* Page action (right three dash button) */
-#pageActionButton {display: none !important}
-
-/* These are the buttons on the right of the urlbar */
-#page-action-buttons {display: none !important}
-
-/* #urlbar-label-box {display: none !important} */
-
-/* This one is the hamburger menu! */
-/* CAUTION: if you hide this some popups may be bugged */
-/* #PanelUI-button {display: none !important} */
-
-/* Tab close button */
-.tab-close-button {
-  -moz-box-ordinal-group: 0;
-  display: -moz-box !important;
-  position: relative;
-  margin-inline: -1px -19px !important;
-  z-index: -1;
-  visibility: hidden;
-  width: unset !important;
-}
-.tabbrowser-tab[pinned] .tab-close-button {display: none !important;}
-.tabbrowser-tab:hover .tab-close-button{
-  background-color: var(--lwt-selected-tab-background-color,var(--toolbar-bgcolor)) !important;
-  background-image: linear-gradient(var(--toolbarbutton-hover-background),var(--toolbarbutton-hover-background))
+#titlebar:not(:hover) .tabbrowser-tab:not([pinned="true"], [visuallyselected=true], [multiselected]) {
+	max-width: 35px!important;
+	min-width: 35px!important;
+	overflow: hidden;
+	transition: all var(--Tabs-transition-duration) ease-out var(--Tabs-transition-delay)!important;
 }
 
-@media (-moz-proton){
-  .tab-close-button{
-    margin-inline: -4px -20px !important;
-    padding-inline-start: 7px !important;
-  }
+#titlebar:not(:hover) .tabbrowser-tab:not([pinned="true"])[visuallyselected=true] {
+	max-width: 100vw!important;
+	overflow: hidden;
+	transition: max-width var(--Tabs-transition-duration) ease-out var(--Tabs-transition-delay)!important;
 }
 
-.tab-icon-stack:hover ~ .tab-close-button,
-.tab-close-button:hover,
-.tabbrowser-tab:not([image]):hover .tab-close-button{visibility: visible; z-index: 1;}
-.tabbrowser-tab:not([image]):hover .tab-close-button{margin-inline-end: 0 !important;}
-
-
-/*============================================================================*/
-
-
-/* Oneline tweak */
-
-#TabsToolbar {
-  margin-left   : var(--navbarWidth) !important;
+.tabbrowser-tab:not([visuallyselected=true]) .tab-close-button {
+	display: none!important;
 }
 
+#titlebar:hover .tabbrowser-tab:not([pinned="true"]) .tab-close-button {
+	display: -moz-inline-box!important;
+}
+
+.tabbrowser-tab:not([fadein]) {
+	display: none;
+}
+
+/* Adjust Mute icon */
+.tabbrowser-tab:not([visuallyselected=true]):not(:hover) .tab-icon-overlay {
+	opacity: 1!important;
+	top: -9.5px!important;
+	inset-inline-end: -6px!important;
+	stroke: var(--tab-icon-overlay-stroke, white)!important;
+	transition: var(--Tabs-transition-duration);
+}
+
+.tabbrowser-tab:not([visuallyselected=true]):not(:hover) .tab-icon-sound {
+	/*! display: none!important; */
+}
+
+/* not to confuse using new tabs button */
+#TabsToolbar:not(:hover) #tabs-newtab-button {
+	opacity: 0!important;
+}
+
+/* 
+# Auto-hide Navigation bar
+Source file https://github.com/MrOtherGuy/firefox-csshacks/tree/master/chrome/autohide_bookmarks_toolbar.css made available under Mozilla Public License v. 2.0
+See the above repository for updates as well as full license text. 
+*/
+:root {
+	--navbar-transition-delay: 0.2s;
+	--navbar-transition-duration: 135ms;
+	--nav-bar-margin: calc(-1 * (var(--tab-block-margin) + var(--tab-min-height)));
+}
+
+:root:not([uidensity]) {
+	--bookmark-bar-margin: -28px;
+}
+
+:root[uidensity=touch] {
+	--bookmark-bar-margin: -34px;
+}
+
+
+/* Auto-hide url-bar */
+:root:not([customizing])[chromehidden=""][sizemode="normal"] #nav-bar,
+:root:not([customizing])[chromehidden=""][sizemode="maximized"] #nav-bar {
+	position: relative;
+	margin-bottom: var(--nav-bar-margin);
+	transform: rotateX(90deg);
+	transform-origin: top;
+	transition: transform var(--navbar-transition-duration) linear var(--navbar-transition-delay) !important;
+	z-index: 101;
+}
+
+:root:not([customizing])[sizemode="normal"] #navigator-toolbox:hover #nav-bar,
+:root:not([customizing])[sizemode="maximized"] #navigator-toolbox:hover #nav-bar,
+:root:not([customizing])[sizemode="normal"] #navigator-toolbox:focus-within #nav-bar,
+:root:not([customizing])[sizemode="maximized"] #navigator-toolbox:focus-within #nav-bar {
+	transform: rotateX(0deg);
+	transition-delay: 0s!important;
+}
+
+/* Auto-hide bookmark bar */
+#PersonalToolbar {
+	--uc-autohide-toolbar-delay: 600ms;
+}
+
+:root:not([customizing])[sizemode="normal"] #PersonalToolbar,
+:root:not([customizing])[sizemode="maximized"] #PersonalToolbar {
+	position: relative;
+	margin-bottom: var(--bookmark-bar-margin);
+	transform: rotateX(90deg) translate(0px, calc(-1 * var(--bookmark-bar-margin)));
+	transform-origin: top;
+	transition: transform var(--navbar-transition-duration) linear var(--navbar-transition-delay)!important;
+	z-index: 99;
+}
+
+:root:not([customizing])[sizemode="normal"] #navigator-toolbox:hover #PersonalToolbar,
+:root:not([customizing])[sizemode="maximized"] #navigator-toolbox:hover #PersonalToolbar {
+	transition-delay: 0s!important;
+	transform: rotateX(0) translate(0px, calc(-1 * var(--nav-bar-margin)));
+}
+
+/* Auto-hide-tab-bar */
+:root {
+	--tabbar-transition-delay: 3s;
+}
+:root[uidensity="normal"] {
+	--tabbar-padding-height:0px;
+}
+:root[uidensity="touch"] {
+	--tabbar-padding-height:1px;
+}
+:root:not([customizing])[chromehidden=""][sizemode="normal"] #navigator-toolbox {
+	border-bottom: none!important;
+	position: absolute;
+	margin-top: calc(-1 * var(--tab-min-height) - 2 * var(--tab-block-margin));
+	transition: var(--navbar-transition-duration) linear var(--tabbar-transition-delay);
+	z-index: 1;
+	transform: translate(0, calc(1 * var(--tab-min-height) + 2 * var(--tab-block-margin)));
+}
+
+:root:not([customizing])[chromehidden=""][sizemode="normal"] #navigator-toolbox:hover,
+:root:not([customizing])[chromehidden=""][sizemode="normal"] #navigator-toolbox:focus-within {
+  padding-bottom: var(--tabbar-padding-height);
+	transform: none;
+	margin-top: 0;
+	transition-delay: 0s;
+	opacity: 1;
+}
+
+:root:not([customizing])[chromehidden=""][sizemode="maximized"] #navigator-toolbox {
+	border-bottom: none!important;
+	padding-bottom: var(--tabbar-padding-height);
+	position: relative;
+	margin-top:calc(-1 * var(--tab-min-height) - 2 * var(--tab-block-margin) + 0.1px );
+	transition-delay: var(--navbar-transition-delay);
+	z-index: 1;
+}
+:root:not([customizing])[chromehidden=""][sizemode="maximized"] #navigator-toolbox:hover,
+:root:not([customizing])[chromehidden=""][sizemode="maximized"] #navigator-toolbox:focus-within {
+	min-height: var(--tab-min-height);
+	transform: translate(0px, calc( 1 * var(--tab-min-height) + 2 * var(--tab-block-margin)));
+	transition-delay: 0s;
+
+}
+
+/* notification-deck */
+#tab-notification-deck {
+	height: 0px!important;
+	position: relative;
+	z-index: 100;
+}
+.notificationbox-stack[notificationside="top"] {
+	margin-top: calc( -1 * var(--tab-min-height) - 2 * var(--tab-block-margin));
+	transition: transform var(--navbar-transition-duration) linear var(--navbar-transition-delay);
+}
+#navigator-toolbox:hover .notificationbox-stack[notificationside="top"], 
+#navigator-toolbox:focus-within .notificationbox-stack[notificationside="top"] {
+	transform: translate( 0, calc( 2 * var(--tab-min-height) + 2 * var(--tab-block-margin)));
+	transition-delay: 0s;
+}
+
+/* adjust theme */
+:root[sizemode="maximized"]{
+	--image-height: calc( var(--tab-min-height) + 2 * var(--tab-block-margin) + 8.1px);
+}
+:root[sizemode="normal"]{
+	--image-height: calc(var(--tab-min-height) + 2 * var(--tab-block-margin));
+}
+
+/* tabs background fix */
+#tabbrowser-tabs:not([movingtab]) > #tabbrowser-arrowscrollbox > .tabbrowser-tab > .tab-stack > .tab-background[multiselected=true]:-moz-lwtheme,
+#tabbrowser-tabs:not([movingtab]) > #tabbrowser-arrowscrollbox > .tabbrowser-tab > .tab-stack > .tab-background[selected=true]:-moz-lwtheme {
+	background-image: linear-gradient(var(--lwt-selected-tab-background-color, transparent), var(--lwt-selected-tab-background-color, transparent)),
+	linear-gradient(var(--toolbar-bgcolor), var(--toolbar-bgcolor))!important;
+}
+
+/* odd line */
 #nav-bar {
-  margin-right  : calc(100vw - var(--navbarWidth)) !important;
-  background    : transparent !important;
-  box-shadow    : none !important;
+	box-shadow:none!important;
 }
 
-#urlbar-container {
-  min-width   : 0px !important;
+/* change background from navigator-toolbox to tabstoolbar */
+:root:not([customizing])[chromehidden=""][sizemode="maximized"] #navigator-toolbox:not(:-moz-lwtheme) {
+	background:-moz-Dialog!important;
+}
+:root:not([customizing])[chromehidden=""] #navigator-toolbox {
+	background:transparent!important;
+	transition-delay:var(--tabbar-transition-delay);
 }
 
-:root[uidensity="compact"] #nav-bar {
-  margin-top  : -37px !important;
-  height      : 37px !important;
+:root:not([customizing])[chromehidden=""][lwtheme-image] #navigator-toolbox:-moz-lwtheme #TabsToolbar:before {
+	background-image: var(--lwt-header-image), var(--lwt-additional-images);
+}
+:root:not([customizing])[chromehidden=""]  #TabsToolbar::before {
+	content:'';
+	position:absolute;
+	right: 0;
+	top: 0;
+	width: 100%;
+	height: var(--image-height);
+	background-image: var(--lwt-additional-images);
+	background-color: var(--lwt-accent-color-inactive, var(--lwt-accent-color))!important;
+	background-repeat: var(--lwt-background-tiling)!important;
+	background-position: var(--lwt-background-alignment)!important;
+	opacity: 0;
+	transition-property: opacity, height;
+	transition-duration: 0s,var(--navbar-transition-duration);
+	transition-delay: var(--tabbar-transition-delay), var(--navbar-transition-delay);
+	z-index: -1;
 }
 
-:root:not([uidensity="compact"]):not([uidensity="touch"]) #nav-bar {
-  margin-top  : -44px !important;
-  height      : 44px !important;
+:root:not([customizing])[chromehidden=""][sizemode="normal"] #navigator-toolbox:-moz-lwtheme:hover #TabsToolbar::before,
+:root:not([customizing])[chromehidden=""][sizemode="normal"] #navigator-toolbox:-moz-lwtheme:focus-within #TabsToolbar::before {
+	height: calc( 2 * var(--tab-min-height) + 3 * var(--tab-block-margin));
+	opacity: 1;
+	transition-delay: 0s;
 }
 
-:root[uidensity="touch"] #nav-bar {
-  margin-top  : -49px !important;
-  height      : 49px !important;
+:root:not([customizing])[chromehidden=""][sizemode="maximized"] #navigator-toolbox:-moz-lwtheme:hover #TabsToolbar::before,
+:root:not([customizing])[chromehidden=""][sizemode="maximized"] #navigator-toolbox:-moz-lwtheme:focus-within #TabsToolbar::before {
+	height: calc( 2 * var(--tab-min-height) + 3 * var(--tab-block-margin));
+	opacity: 1;
+	transition-delay: 0s;
 }
 
-#urlbar:not([breakout][breakout-extend]) > #urlbar-background {
-  border      : none !important;
-  animation  : 0.15s !important;
+/*Able to drop Tabs when all hided*/
+:root:not([customizing])[chromehidden=""][sizemode="normal"] arrowscrollbox,
+:root:not([customizing])[chromehidden=""][sizemode="normal"] .titlebar-buttonbox-container {
+	animation: titlebaropacityoff var(--navbar-transition-duration) linear var(--tabbar-transition-delay) forwards;
 }
 
-
-/* Hide urlbar elements when not active */
-
-.urlbar-icon, #userContext-indicator, #userContext-label {
-  fill              : transparent !important;
-  background-color  : transparent !important;
-  color             : transparent !important;
-  animation        : var(--animationSpeed) !important;
+@keyframes titlebaropacityoff {
+	0% {
+		opacity: 1;
+	}
+	100% {
+		opacity: 0;
+	}
 }
 
-#urlbar:hover .urlbar-icon,
-#urlbar:active .urlbar-icon, 
-#urlbar[focused] .urlbar-icon {
-  fill        : var(--toolbar-color) !important;
+:root:not([customizing])[chromehidden=""][sizemode="normal"] .tab-drop-indicator {
+	animation: indicator 0s forwards;
 }
 
-
-/* animations */
-toolbarbutton,
-.toolbarbutton-icon,
-.subviewbutton,
-.urlbar-input-box, 
-#identity-box,
-#tracking-protection-icon-container,
-[anonid=urlbar-go-button],
-.urlbar-icon-wrapper,
-#tracking-protection-icon,
-#identity-box image,
-stack,
-vbox,
-tab:not(:active) .tab-background,
-tab:not([beforeselected-visible])::after,
-tab[visuallyselected] .tab-background::before,
-tab[visuallyselected] .tab-background::before,
-.tab-close-button {
-  animation        : var(--animationSpeed) !important;
+@keyframes indicator {
+	from {}
+  
+	to {
+		transform: translate(0);
+		background: rgba(10, 132, 255, .5);
+		margin-right: -100vw;
+		margin-left: -40px;
+		width: 100vw;
+		border: 2px dashed rgba(10, 132, 255, 1)
+	}
+}
+:root:not([customizing])[chromehidden=""][sizemode="normal"] #navigator-toolbox:hover arrowscrollbox,
+:root:not([customizing])[chromehidden=""][sizemode="normal"] #navigator-toolbox:focus-within arrowscrollbox,
+:root:not([customizing])[chromehidden=""][sizemode="normal"] #navigator-toolbox:hover .titlebar-buttonbox-container,
+:root:not([customizing])[chromehidden=""][sizemode="normal"] #navigator-toolbox:focus-within .titlebar-buttonbox-container {
+	animation: none;
 }
 
-/* F L Y E R F O X  A D D I T I O N A L  S E T T I N G S */
+/*adjust toolbar-menubar (Alt Key)*/
+:root:not([customizing])[sizemode="maximized"] #navigator-toolbox:not(:hover) #toolbar-menubar:not([inactive]) {
+  margin-top: calc( 1 * var(--tab-min-height) + 2 * var(--tab-block-margin));
+	transition-delay:var(--navbar-transition-delay);
+}
 
-/* A D D I T I O N A L  S E T T I N G S */
+/* 
+# Urlbar lager when active
+*/
+:root:not([customizing])[sizemode="normal"] #urlbar-container:focus-within #urlbar {
+	position: fixed!important;
+	width: 90%!important;
+	margin-left: 5%;
+}
+
+#urlbar[breakout] {
+	z-index: 1;
+}
+
+/*
+# Sidebar Auto Hide
+# https://github.com/Getulio-Mendes/.dotFiles/tree/master/Firefox/chrome
+*/
+:root {
+	--sidebar-button-size: 15px;
+	--sidebar-width: 400px;
+	--sidebar-button-distance: 40px;
+	--sidebar-toolbar-height: 0px;
+	--sidebar-menubar-height: 0px;
+	--sidebar-transition-duration: 0.2s;
+	--sidebar-transition-delay: 0.8s;
+	--sidebar-shadow-color: #28282F;
+	--sidebar-button-color: #000;
+}
+
+#sidebar-switcher-arrow,
+#sidebar-switcher-target,
+#sidebar-switcher-target:active,
+#sidebar-close,
+#sidebar-close:active {
+	padding-bottom: 10px!important;
+	outline: none!important;
+	background: none!important;
+}
+
+#sidebar-box {
+	z-index: 2 !important;
+	position: relative !important;
+	padding-top: calc(-1 * var(--menubar-height));
+	min-width: var(--sidebar-width) !important;
+	max-width: var(--sidebar-width) !important;
+	transition: all var(--sidebar-transition-duration) ease-in-out;
+	margin-top: var(--menubar-height) !important;
+}
+
+#sidebar {
+	border-right: none !important;
+	max-width: var(--sidebar-width)!important;
+}
+
+#sidebar-header {
+	display: -webkit-box!important;
+	position: fixed!important;
+	-webkit-box-pack: justify;
+	border-bottom: none!important;
+	color: var(--sidebar-button-color);
+	height: calc(10px + var(--sidebar-button-size));
+}
+
+#sidebar-switcher-target {
+	z-index: 1;
+}
+
+#sidebar-switcher-arrow,
+#sidebar-title {
+	display: none;
+}
+
+#sidebar-icon,
+#sidebar-close image {
+	padding: 4px;
+	block-size: calc(10px + var(--sidebar-button-size))!important;
+	width: calc(10px + var(--sidebar-button-size))!important;
+	transform: rotate(-90deg);
+	background-color: rgba(241, 241, 241, 0.4);
+	border-radius: 5px 5px 5px 5px;
+}
+
+/* sidebar-button-distance */
+#sidebar-box[style*="-moz-box-ordinal-group: 1"] #sidebar-header {
+	transform: translate(calc(var(--sidebar-width) + var(--sidebar-button-distance) - 70px), 50vh) rotate(90deg);
+}
+
+/* inner width = expanded width & move inner to only show initial-width long section */
+#sidebar-box[style*="-moz-box-ordinal-group: 1"] {
+	margin-left: calc(-1 * var(--sidebar-width));
+}
+
+/* move inner to show entire sidebar */
+#sidebar-box[style*="-moz-box-ordinal-group: 1"]:hover {
+	margin-left: 0px;
+	margin-right: calc(-1 * var(--sidebar-width));
+	box-shadow: 2px 0 100px var(--sidebar-shadow-color);
+	transition-delay: var(--sidebar-transition-delay);
+}
+
+/* When sidebar is move to right */
+#sidebar-box[style*="-moz-box-ordinal-group: 3"] #sidebar-header {
+	transform: translate(calc(-1 * (var(--sidebar-width) + var(--sidebar-button-distance)) + var(--sidebar-width) - 20px), 50vh) rotate(90deg);
+}
+
+#sidebar-box[style*="-moz-box-ordinal-group: 3"] {
+	margin-right: calc(-1 * var(--sidebar-width));
+	margin-left: 0px;
+}
+
+#sidebar-box[style*="-moz-box-ordinal-group: 3"]:hover {
+	margin-right: 0px;
+	margin-left: calc(-1 * var(--sidebar-width));
+	box-shadow: 2px 0 200px var(--sidebar-shadow-color);
+	transition-delay: var(--sidebar-transition-delay);
+}
+
+#sidebar-box[style*="-moz-box-ordinal-group: 3"] #sidebar-switcher-target,
+#sidebar-box[style*="-moz-box-ordinal-group: 3"] #sidebar-close {
+	margin-top: var(--sidebar-button-distance)!important;
+}
+
+/* fix responsive mode */
+.browserContainer.responsive-mode .browserStack > .rdm-toolbar{
+	z-index: 0!important;
+}
 
 /* Hide (x) (-) (+) on macOS */
 .titlebar-buttonbox-container,
@@ -184,279 +435,3 @@ tab[visuallyselected] .tab-background::before,
 }
 
 hbox.titlebar-buttonbox-container:nth-child(4) {visibility: collapse !important;}
-
-/* Hide Spacer between URL and Tabs */
-hbox.titlebar-spacer:nth-child(1) {visibility: collapse !important;}
-
-/* Hide Spacer after Tabs */
-hbox.titlebar-spacer:nth-child(3) {visibility: collapse !important;}
-
-/* Hide Overflow Arrows on either side of the tabs section when not active */
-#scrollbutton-up[disabled="true"] {opacity: 0 !important;}
-#scrollbutton-down[disabled="true"] {opacity: 0 !important;}
-
-/* Hide 'This time, search with:' Section */
-.search-one-offs {
-	visibility: collapse;
-	margin: 0 !important;
-	padding-top: 0px;
-	border-top-style: solid;
-	border-top-width: 1px;
-}
-#urlbar .search-one-offs:not([hidden]) {display: contents !important;}
-
-/* Keep Borders Hidden on the Sides of the URL Bar */
-#nav-bar{
-  border-left-width: 0px !important;
-  border-right-width: 0px !important;
-}
-
-/* Focused URL Bar Takes 100% width */
-#urlbar[focused="true"] {
-	display: block !important;
-	position: fixed !important;
-	width: 100% !important;
-	height: var(--urlbar-height);
-	top: calc((var(--urlbar-toolbar-height) - var(--urlbar-height)) / 2);
-	left: 0;  
-  z-index: 10
-}
-
-/* R A D I U S */
-
-/* Radius of Hover in DropDown Extention Panel */
-:root { --arrowpanel-menuitem-border-radius: 0px !important }
-
-/* Tabs Corner Radius */
-:root { --tab-border-radius: 0px !important }
-
-/* URL Bar Corner Radius */
-:root {	--toolbarbutton-border-radius: 0px !important }
-
-/* Icons in the URL Bar like the Shield Corner Radius  */
-:root { --urlbar-icon-border-radius: 0px !important }
-
-/* Extension Panel, Hamburger Menu, and Extension Menus Corner Radius */
-:root {	--arrowpanel-border-radius: 0px !important }
-
-
-/* A U T O  H I D E */
-/* Uncomment relevant Sections */
-
-/* Configuration 1 - START */
-/* Hide Unless focused with CMD/Ctrl - L or In a New Tab */
-/* Adapted from https://superuser.com/a/1497982/1189696 */
-
-/* @namespace url(http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul);
- */
-
-#navigator-toolbox:not(:hover) {
-  height: 5px !important; /* Adjusts gap to hover over */
-  min-height: 0px !important;
-  overflow: hidden !important;
-}
-
-#navigator-toolbox:focus,
-#navigator-toolbox:focus-within,
-#navigator-toolbox:active,
-#urlbar[focused="true"] {
-  height: auto !important;  
-  overflow: visible !important;
-} 
-/* Configuration 1 - END */
-
-/* Configuration 2 - Start */
-/* Source file https://github.com/MrOtherGuy/firefox-csshacks/tree/master/chrome/autohide_sidebar.css made available under Mozilla Public License v. 2.0
-See the above repository for updates as well as full license text. */
-
-/* Show sidebar only when the cursor is over it  */
-/* The border controlling sidebar width will be removed so you'll need to modify these values to change width */
-
-#sidebar-box{
-  --uc-sidebar-width: 40px;
-  --uc-sidebar-hover-width: 210px;
-  --uc-autohide-sidebar-delay: 200ms; /* Wait 0.2s before hiding sidebar */
-  position: relative;
-  min-width: var(--uc-sidebar-width) !important;
-  width: var(--uc-sidebar-width) !important;
-  max-width: var(--uc-sidebar-width) !important;
-  z-index:1;
-}
-
-#sidebar-box[positionend]{ direction: rtl }
-#sidebar-box[positionend] > *{ direction: ltr }
-
-#sidebar-box[positionend]:-moz-locale-dir(rtl){ direction: ltr }
-#sidebar-box[positionend]:-moz-locale-dir(rtl) > *{ direction: rtl }
-
-#main-window[sizemode="fullscreen"] #sidebar-box{ --uc-sidebar-width: 1px; }
-
-#sidebar-splitter{ display: none }
-
-#sidebar-header{ overflow: hidden; color: var(--chrome-color, inherit) !important}
-
-#sidebar{
-  transition: min-width 115ms linear var(--uc-autohide-sidebar-delay) !important;
-  min-width: var(--uc-sidebar-width) !important;
-  will-change: min-width;
-}
-
-#sidebar-box:hover > #sidebar{ min-width: var(--uc-sidebar-hover-width) !important; transition-delay: 0ms !important }
-
-.sidebar-panel{
-  background-color: transparent !important;
-  color: var(--newtab-text-primary-color) !important;
-}
-
-.sidebar-panel #search-box{
-  -moz-appearance: none !important;
-  background-color: rgba(249,249,250,0.1) !important; 
-  color: inherit !important;
-}
-
-/* Add sidebar divider and give it background */
-
-#sidebar,
-#sidebar-header{
-  background-color: var(--toolbar-bgcolor) !important;
-  border-inline: 1px solid rgb(80,80,80);
-  border-inline-width: 0px 1px;
-}
-
-#sidebar-box:not([positionend]) > :-moz-locale-dir(rtl),
-#sidebar-box[positionend] > *{
-  border-inline-width: 1px 0px;
-}
-
-/* Move statuspanel to the other side when sidebar is hovered so it doesn't get covered by sidebar */
-
-#sidebar-box:not([positionend]):hover ~ #appcontent #statuspanel{ inset-inline: auto 0px !important; }
-#sidebar-box:not([positionend]):hover ~ #appcontent #statuspanel-label{ margin-inline: 0px !important; border-left-style: solid !important; }
-/* Configuration 2 - END */
-
-
-/* T E S T I N G */
-/* Hide Cover Tab Bar Focused URL Bar */
-#urlbar[focused="true"], #searchbar[focused="true"] {
-	min-height: 40px;
-}
-
-/* R I G H T  C L I C K  M E N U S */
-/* Some or all of this is likely macOS specific */
-
-/* Global */
-
-/* Remove Themeing */
-menupopup,
-menuitem,
-menu {
-  -moz-appearance: none !important;
-}
-
-/* Softens the Menu Separator in Right Click Menus */
-menupopup menuseparator {
-  -moz-appearance: meter !important;
-}
-
-/* Corners */
-.panel-arrowcontent,
-#alltabs-popup .arrowscrollbox-scrollbox,
-menupopup:not(#BMB_bookmarksPopup),
-.textbox-contextmenu {
-  border-radius: 0px !important;
-}
-
-/* Right Click Menu */
-
-/*  Sets Background Color, Text Color, and Opacity  */
-#mainPopupSet menupopup {
-  color: var( --lwt-toolbar-field-color); /* Text Color */
-  background-color: var(--autocomplete-popup-highlight-background) !important; /*This is the right click menu color*/
-  opacity: 0.95;
-}
-
-/* Color of hovered menu item */
-menu[_moz-menuactive="true"], menuitem[_moz-menuactive="true"] {
-  background-color: var(--lwt-toolbarbutton-icon-fill-attention) !important;
-}
-
-/* Side Panel Header Drop Down */
-image.panel-arrow {
-  color: var(--autocomplete-popup-highlight-background) !important; /*This is the right click menu color of the little arrow */
-}
-
-/* Side Panel Drop Down Menu Hover Color */
-.subviewbutton:hover {
-  background-color: var(--lwt-toolbarbutton-icon-fill-attention) !important
-}
-
-box.panel-arrowcontent{ 
-  color:var(--lwt-tab-text, var(--toolbar-color)) !important; /* Text Color */
-  background: var(--autocomplete-popup-highlight-background) !important; /*This is the right click menu color*/
-  box-shadow:  var(--autocomplete-popup-highlight-background) !important; 
-  opacity: 0.95;
-}
-
-/* context menus in the ui like the url bar */
-arrowscrollbox.menupopup-arrowscrollbox {
-  color:var(--lwt-tab-text, var(--toolbar-color)) !important; /* Text Color */
-  background: var(--autocomplete-popup-highlight-background) !important; /*This is the right click menu color*/
-  box-shadow:  var(--autocomplete-popup-highlight-background) !important; 
-  opacity: 0.95;
-  border-radius: 5px !important;
-}
-
-image.panel-arrow {
-	fill: var(--autocomplete-popup-highlight-background) !important;
-	stroke:  var(--autocomplete-popup-highlight-background) !important;
-}
-
-/* V I B R A N C Y */
-
-/* Turn on Vibrancy aka macOS Transparency and Blur in the URL Bar, Nav Bar, and Side
-Panel, Findbar, and Bookmarks Bar */
-#main-window,
-#nav-bar,
-#sidebar-header,
-#history-panel,
-#sidebar-search-container,
-#bookmarksPanel,
-#PersonalToolbar,
-findbar {
-  -moz-appearance: -moz-mac-vibrancy-dark !important;
-}
-
-/* Selected Tab Background Color */
-.tab-background[selected="true"] {
-  background: var(--autocomplete-popup-highlight-background) !important;
-  opacity: 0.8;
-}
-
-/* Various Opacities */
-#appMenu-popup,
-#customizationui-widget-panel,
-#pageActionPanel,
-#editBookmarkPanel,
-#protections-popup,
-#pageActionActivatedActionPanel,
-#widget-overflow,
-#urlbar-background,
-#identity-popup,
-.panel-arrowcontent,
-menupopup[hasbeenopened="true"] {
-  opacity: 0.95;
-}
-
-/* Bar between the bookmarks bar and the page  */
-#sidebar-splitter {
-  border: none !important;
-  opacity: 1 !important;
-  -moz-appearance: -moz-mac-vibrancy-dark !important;
-}
-
-/* Possible Bug Fix Keeps sidebar from being weirdly affected by vibrancy settings in find bar*/
-findbar {
-  opacity: 0.9 !important;
-}
-
-#main-window{ background-color: transparent !important }
