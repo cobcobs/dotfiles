@@ -82,8 +82,8 @@ export HISTFILE="$HOME/.config/zsh/zsh-history"
 compinit -d ~/.config/zsh/zcompdump-$ZSH_VERSION
 
 source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-source /opt/homebrew/share/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
-# source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+# source /opt/homebrew/share/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
+source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # Homebrew
 # ________
