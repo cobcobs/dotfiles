@@ -26,6 +26,8 @@ lvim.leader = "\\"
 lvim.keys.normal_mode["<C-s>"] = ":w<cr>"
 lvim.keys.normal_mode["<C-p>"] = ":Telescope<cr>"
 lvim.keys.normal_mode["<C-f>"] = ":Telescope current_buffer_fuzzy_find<cr>"
+lvim.keys.normal_mode["<C-n>"] = ":NvimTreeToggle<cr>"
+
 -- unmap a default keymapping
 -- lvim.keys.normal_mode["<C-Up>"] = false
 -- edit a default keymapping
@@ -63,20 +65,76 @@ lvim.keys.normal_mode["<C-f>"] = ":Telescope current_buffer_fuzzy_find<cr>"
 
 -- TODO: User Config for predefined plugins
 -- After changing plugin config exit and reopen LunarVim, Run :PackerInstall :PackerCompile
+
+-- enable/disable plugins
 lvim.builtin.dashboard.active = true
 lvim.builtin.notify.active = true
 lvim.builtin.terminal.active = true
 lvim.builtin.lualine.active = false
+
+-- nvim-tree
 lvim.builtin.nvimtree.setup.view.side = "left"
 lvim.builtin.nvimtree.show_icons.git = 0
+
+-- gitsigns
 lvim.builtin.gitsigns.opts = {
   yadm = {
     enable = true
   }
 }
-lvim.builtin.cmp.confirm_opts = {
-  select = false
+
+-- nvim-cmp
+local has_words_before = function()
+    local line, col = unpack(vim.api.nvim_win_get_cursor(0))
+    return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
+end
+lvim.builtin.cmp = {
+  completion = {
+    autocomplete = false,
+    completeopt = "menu, menuone, noinsert",
+  },
+  snippet = {
+    expand = function(args)
+      require("luasnip").lsp_expand(args.body)
+    end
+  },
+  mapping = {
+    ["<Tab>"] = require("cmp").mapping(function(fallback)
+      if require("cmp").visible() then
+        require("cmp").select_next_item()
+      elseif require("luasnip").expand_or_jumpable() then
+        require("luasnip").expand_or_jump()
+      elseif has_words_before() then
+        require("cmp").complete()
+      else
+        fallback()
+      end
+    end, {"i", "s"}),
+    ["<S-Tab>"] = require("cmp").mapping(function(fallback)
+        if require("cmp").visible() then
+            require("cmp").select_prev_item()
+        elseif require("luasnip").jumpable(-1) then
+            require("luasnip").jump(-1)
+        else
+            fallback()
+        end
+    end, {"i", "s"}),
+    ["<CR>"] = require("cmp").mapping.confirm({
+        behavior = require("cmp").ConfirmBehavior.Insert,
+        select = false,
+    }),
+  }
 }
+lvim.builtin.cmp.sources = {
+  {name = "luasnip"},
+  {name = "nvim_lsp"},
+  {name = "nvim_lua"},
+  {name = "latex_symbols"},
+  {name = "path"},
+  {name = "buffer"},
+}
+
+-- telescope.nvim
 lvim.builtin.telescope.pickers = {
   find_files = {
     find_command = {"fd", "--hidden"},
@@ -165,6 +223,7 @@ lvim.builtin.treesitter.highlight.enabled = true
 -- Additional Plugins
 lvim.plugins = {
     {"projekt0n/github-nvim-theme"},
+    {"romainl/vim-cool", event = "CmdlineEnter"},
 }
 
 -- Autocommands (https://neovim.io/doc/user/autocmd.html)
