@@ -21,7 +21,6 @@ sketchybar -m --bar height=40                                                   
                     border_color=0xff211a15                                                                  \
                     border_width=3                                                                           \
                     font_smoothing=on                                                                        \
-                    # blur_radius=50                                                                           \
 
 # global defaults
 sketchybar -m --default drawing=on                                                                           \
