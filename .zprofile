@@ -23,9 +23,9 @@ export IPYTHONDIR=$HOME/.config/iPython
 export NPM_CONFIG_USERCONFIG=$HOME/.config/npm/.npmrc
 export SPICETIFY_CONFIG=$HOME/Library/spicetify_data
 export LESSHISTFILE=$HOME/.cache/less/lesshst
-export VISUAL=nvim
+export VISUAL=lvim
 export EDITOR=$VISUAL
 export RANGER_LOAD_DEFAULT_RC=FALSE
-export PATH="$HOME/.config/scripts:$PATH"
+export PATH="$HOME/.config/scripts:$HOME/.local/bin:$PATH"
 
 source $HOME/.cargo/env

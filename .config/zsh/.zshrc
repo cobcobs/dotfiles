@@ -61,15 +61,15 @@ precmd () { print -Pn "\e]0;%~\a" }
 
 # aliases
 alias bluetooth='bluetoothconnector'
-alias vrc='vim ~/.config/nvim/init.lua'
-alias zrc='vim ~/.config/zsh/.zshrc'
-alias yrc='vim ~/.config/yabai/yabairc'
-alias frc='vim ~/.config/firefox/userChrome.css'
-alias barrc='vim ~/.config/sketchybar/sketchybarrc'
-alias src='vim ~/.config/skhd/skhdrc'
-alias arc='vim ~/.config/alacritty/alacritty.yml'
-alias vim='nvim'
-alias vimdiff='nvim -d'
+alias vrc='$EDITOR ~/.config/lvim/config.lua'
+alias zrc='$EDITOR ~/.config/zsh/.zshrc'
+alias yrc='$EDITOR ~/.config/yabai/yabairc'
+alias frc='$EDITOR ~/.config/firefox/userChrome.css'
+alias barrc='$EDITOR ~/.config/sketchybar/sketchybarrc'
+alias src='$EDITOR ~/.config/skhd/skhdrc'
+alias arc='$EDITOR ~/.config/alacritty/alacritty.yml'
+alias vim='lvim'
+alias vimdiff='lvim -d'
 alias ranger='ranger --choosedir=$HOME/.cache/ranger/rangerdir; LASTDIR=`cat $HOME/.cache/ranger/rangerdir`; cd "$LASTDIR"' # cd into current directory after quitting ranger
 
 # Speed up tab completion for git commands
