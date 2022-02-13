@@ -19,8 +19,7 @@ require("packer").startup(function(use)
     use {"onsails/lspkind-nvim"}
 
     -- snippets
-    use {"L3MON4D3/LuaSnip"}
-    use {"rafamadriz/friendly-snippets"}
+    use {"L3MON4D3/LuaSnip", requires = {"rafamadriz/friendly-snippets"}}
 
     -- completion
     use {"hrsh7th/nvim-cmp"}
@@ -42,10 +41,12 @@ require("packer").startup(function(use)
     use {"ellisonleao/gruvbox.nvim"}
 
     -- telescope.nvim
-    use {"nvim-telescope/telescope.nvim"}
+    use {"nvim-telescope/telescope.nvim", requires = {"nvim-lua/plenary.nvim"}}
     use {"nvim-telescope/telescope-fzf-native.nvim", run = "make"}
     use {"nvim-telescope/telescope-project.nvim"}
-    use {"nvim-lua/plenary.nvim"}
+
+    -- nvim-tree
+    use {"kyazdani42/nvim-tree.lua", requires = {"kyazdani42/nvim-web-devicons"}, config = function() require"nvim-tree".setup {} end}
 
     -- others
     use {"echasnovski/mini.nvim"}
@@ -239,6 +240,9 @@ vim.keymap.set("n", ".", [[:<C-u>execute "norm! " . repeat(".", v:count1)<CR>]])
 vim.keymap.set("n", [[<C-p>]], ":Telescope<CR>")
 vim.keymap.set("n", "gb", ":Telescope buffers<CR>")
 vim.keymap.set("n", [[<C-f>]], ":Telescope current_buffer_fuzzy_find<CR>")
+
+-- toggle nvim-tree
+vim.keymap.set("n", [[<C-n>]], ":NvimTreeToggle<CR>")
 
 
 -- autocommands
