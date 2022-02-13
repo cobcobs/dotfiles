@@ -95,7 +95,7 @@ See the above repository for updates as well as full license text.
 
 /* Auto-hide-tab-bar */
 :root {
-	--tabbar-transition-delay: 1s;
+	--tabbar-transition-delay: 2s;
 }
 :root[uidensity="normal"] {
 	--tabbar-padding-height:0px;
