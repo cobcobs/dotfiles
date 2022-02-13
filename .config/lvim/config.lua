@@ -13,6 +13,7 @@ vim.opt.laststatus = 0
 vim.opt.showmode = false
 vim.opt.ruler = false
 vim.opt.cmdheight = 1
+vim.opt.wrap = true
 
 -- general lvim settings
 lvim.log.level = "warn"
@@ -21,12 +22,14 @@ lvim.colorscheme = "github_light"
 lvim.transparent_window = true
 
 -- keymappings [view all the defaults by pressing <leader>Lk]
-lvim.leader = "\\"
+lvim.leader = "space"
 -- add your own keymapping
 lvim.keys.normal_mode["<C-s>"] = ":w<cr>"
 lvim.keys.normal_mode["<C-p>"] = ":Telescope<cr>"
 lvim.keys.normal_mode["<C-f>"] = ":Telescope current_buffer_fuzzy_find<cr>"
 lvim.keys.normal_mode["<C-n>"] = ":NvimTreeToggle<cr>"
+lvim.keys.normal_mode["j"] = {"v:count ? 'j' : 'gj'", {expr = true}}
+lvim.keys.normal_mode["k"] = {"v:count ? 'k' : 'gk'", {expr = true}}
 
 -- unmap a default keymapping
 -- lvim.keys.normal_mode["<C-Up>"] = false
