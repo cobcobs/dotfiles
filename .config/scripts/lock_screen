@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 
-option="$(echo -e "Lock Screen\nCancel" | choose -f "SF Mono" -c "deaf9d" -b "1c1b1d")"
+option="$(echo -e "Lock Screen\nCancel" | choose -u -f "SF Mono" -c "c6eae6" -b "f7f1e3")"
 if [[ $option == "Lock Screen" ]]; then
 	lock
 fi

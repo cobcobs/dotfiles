@@ -1,5 +1,5 @@
 # open apps or other stuff
-cmd - space     : app $(app | choose -f "SF Mono" -c "deaf9d" -b "1c1b1d")
+cmd - space     : app $(app | choose -u -f "SF Mono" -c "c6eae6" -b "f7f1e3")
 # cmd - return    : /Applications/kitty.app/Contents/MacOS/kitty --single-instance -d $HOME
 cmd - return    : kitty --single-instance -d $HOME
 cmd + shift - f : open -n $HOME
@@ -10,9 +10,6 @@ cmd + ctrl - q : lock_screen
 
 # emoji picker
 cmd + ctrl - e : emoji
-
-# quickly open a config file in vim
-cmd + ctrl - s : open_dots
 
 # screenshots
 alt + shift - 0       : scr -i
