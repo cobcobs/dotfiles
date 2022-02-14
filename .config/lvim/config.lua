@@ -84,7 +84,7 @@ lvim.builtin.dashboard.custom_header = {
 }
 lvim.builtin.dashboard.custom_section.a = {
 	command = "Telescope find_files",
-	description = { "﯒  Find File           " },
+	description = { "  Find File           " },
 }
 lvim.builtin.dashboard.custom_section.b = {
 	command = ":ene!",
@@ -116,9 +116,9 @@ lvim.builtin.telescope.pickers = {
 	find_files = {
 		find_command = { "fd", "--hidden" },
 	},
-	builtin = {
-		theme = "dropdown",
-	},
+}
+lvim.builtin.telescope = {
+	defaults = require("telescope.themes").get_dropdown(),
 }
 
 -- if you don't want all the parsers change this to a table of the ones you want
