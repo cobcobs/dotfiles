@@ -54,7 +54,6 @@ lvim.leader = "space"
 lvim.keys.normal_mode["<C-s>"] = ":w<cr>"
 lvim.keys.normal_mode["<C-p>"] = ":Telescope<cr>"
 lvim.keys.normal_mode["<C-f>"] = ":Telescope current_buffer_fuzzy_find<cr>"
-lvim.keys.normal_mode["<C-n>"] = ":NvimTreeToggle<cr>"
 lvim.keys.normal_mode["j"] = { "v:count ? 'j' : 'gj'", { expr = true } }
 lvim.keys.normal_mode["k"] = { "v:count ? 'k' : 'gk'", { expr = true } }
 
@@ -65,6 +64,32 @@ lvim.builtin.dashboard.active = true
 lvim.builtin.lualine.active = false
 lvim.builtin.notify.active = true
 lvim.builtin.terminal.active = true
+
+-- dashboard
+lvim.builtin.dashboard.custom_header = {
+	"⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⡴⠞⢳⠀⠀⠀⠀⠀",
+	"⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡔⠋⠀⢰⠎⠀⠀⠀⠀⠀",
+	"⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣼⢆⣤⡞⠃⠀⠀⠀⠀⠀⠀",
+	"⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣼⢠⠋⠁⠀⠀⠀⠀⠀⠀⠀⠀",
+	"⠀⠀⠀⠀⢀⣀⣾⢳⠀⠀⠀⠀⢸⢠⠃⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀",
+	"⣀⡤⠴⠊⠉⠀⠀⠈⠳⡀⠀⠀⠘⢎⠢⣀⣀⣀⠀⠀⠀⠀⠀⠀⠀",
+	"⠳⣄⠀⠀⡠⡤⡀⠀⠘⣇⡀⠀⠀⠀⠉⠓⠒⠺⠭⢵⣦⡀⠀⠀⠀",
+	"⠀⢹⡆⠀⢷⡇⠁⠀⠀⣸⠇⠀⠀⠀⠀⠀⢠⢤⠀⠀⠘⢷⣆⡀⠀",
+	"⠀⠀⠘⠒⢤⡄⠖⢾⣭⣤⣄⠀⡔⢢⠀⡀⠎⣸⠀⠀⠀⠀⠹⣿⡀",
+	"⠀⠀⢀⡤⠜⠃⠀⠀⠘⠛⣿⢸⠀⡼⢠⠃⣤⡟⠀⠀⠀⠀⠀⣿⡇",
+	"⠀⠀⠸⠶⠖⢏⠀⠀⢀⡤⠤⠇⣴⠏⡾⢱⡏⠁⠀⠀⠀⠀⢠⣿⠃",
+	"⠀⠀⠀⠀⠀⠈⣇⡀⠿⠀⠀⠀⡽⣰⢶⡼⠇⠀⠀⠀⠀⣠⣿⠟⠀",
+	"⠀⠀⠀⠀⠀⠀⠈⠳⢤⣀⡶⠤⣷⣅⡀⠀⠀⠀⣀⡠⢔⠕⠁⠀⠀",
+	"⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠙⠫⠿⠿⠿⠛⠋⠁⠀⠀⠀⠀",
+}
+lvim.builtin.dashboard.custom_section.a = {
+	command = "Telescope find_files",
+	description = { "﯒  Find File           " },
+}
+lvim.builtin.dashboard.custom_section.b = {
+	command = ":ene!",
+	description = { "  New File           " },
+}
 
 -- nvim-tree
 lvim.builtin.nvimtree.setup.view.side = "left"
@@ -82,7 +107,6 @@ lvim.builtin.cmp.sources = {
 	{ name = "luasnip" },
 	{ name = "nvim_lsp" },
 	{ name = "nvim_lua" },
-	{ name = "latex_symbols" },
 	{ name = "path" },
 	{ name = "buffer" },
 }
