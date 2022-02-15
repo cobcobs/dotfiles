@@ -2,8 +2,8 @@
 lvim.plugins = {
 	{ "projekt0n/github-nvim-theme" },
 	{ "romainl/vim-cool", event = "CmdlineEnter" },
-	{ "tpope/vim-repeat" },
-	{ "tpope/vim-surround" },
+	{ "tpope/vim-repeat", event = "BufRead" },
+	{ "tpope/vim-surround", event = "BufRead" },
 	{
 		"lukas-reineke/indent-blankline.nvim",
 		event = "BufRead",
@@ -54,8 +54,13 @@ lvim.leader = "space"
 lvim.keys.normal_mode["<C-s>"] = ":w<cr>"
 lvim.keys.normal_mode["<C-p>"] = ":Telescope<cr>"
 lvim.keys.normal_mode["<C-f>"] = ":Telescope current_buffer_fuzzy_find<cr>"
+
+lvim.keys.normal_mode["cn"] = [[/\<<C-R>=expand('<cword>')<CR>\>\C<CR>``cgn]]
+lvim.keys.normal_mode["cN"] = [[?\<<C-R>=expand('<cword>')<CR>\>\C<CR>``cgN]]
 lvim.keys.normal_mode["j"] = { "v:count ? 'j' : 'gj'", { expr = true } }
 lvim.keys.normal_mode["k"] = { "v:count ? 'k' : 'gk'", { expr = true } }
+
+lvim.builtin.which_key.mappings["f"] = { "<cmd>Telescope find_files<CR>", "Find File" }
 
 -- After changing plugin config exit and reopen LunarVim, Run :PackerInstall :PackerCompile
 -- enable/disable plugins
@@ -116,9 +121,6 @@ lvim.builtin.telescope.pickers = {
 	find_files = {
 		find_command = { "fd", "--hidden" },
 	},
-}
-lvim.builtin.telescope = {
-	defaults = require("telescope.themes").get_dropdown(),
 }
 
 -- if you don't want all the parsers change this to a table of the ones you want
