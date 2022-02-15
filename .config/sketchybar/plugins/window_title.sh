@@ -21,4 +21,3 @@ fi
 
 sketchybar -m --set $NAME label="$WINDOW_TITLE"
 
-

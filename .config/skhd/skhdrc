@@ -94,7 +94,7 @@ cmd + shift - 9 : yabai -m window --space 9 || { yabai -m space --create && yaba
 cmd + shift - 0 : yabai -m window --space 10 || { yabai -m space --create && yabai -m window --space last }
 
 # destroy current space
-cmd + shift - w : yabai -m space --focus "$(yabai -m query --spaces --display | jq 'nth(index(map(select(.focused == 1))) + 1).index // (reverse | nth(index(map(select(.focused == 1))) + 1).index) // 0')" && yabai -m space recent --destroy
+cmd + shift - w : yabai -m space --destroy
 
 # resize node
 ctrl + shift - a : yabai_resize west
