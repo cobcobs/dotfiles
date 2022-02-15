@@ -14,7 +14,7 @@ sketchybar -m --bar height=40                                                   
                     corner_radius=10                                                                         \
                     y_offset=10                                                                              \
                     padding_left=10                                                                          \
-                    padding_right=11                                                                         \
+                    padding_right=10                                                                         \
                     topmost=off                                                                              \
                     hidden=off                                                                               \
                     color=0xfff7f1e3                                                                         \
@@ -165,11 +165,7 @@ sketchybar -m --add item spacer_2 left                                          
 # title
 sketchybar -m --add item title center                                                                        \
               --set title                                                                                    \
-                    icon=""                                                                                  \
-                    icon.color=0xFF"${cursor//#}"                                                            \
-                    icon.padding_left=8                                                                      \
-                    icon.padding_right=0                                                                     \
-                    label.padding_right=11                                                                   \
+                    label.padding_left=17                                                                    \
                     script="$PLUGINS_DIR/window_title.sh"                                                    \
                     click_script=opener                                                                      \
                --subscribe title                                                                             \
