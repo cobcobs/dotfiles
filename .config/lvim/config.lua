@@ -36,10 +36,11 @@ lvim.plugins = {
 
 -- general vim settings
 vim.opt.laststatus = 0
-vim.opt.showmode = false
 vim.opt.ruler = false
+vim.opt.showmode = false
 vim.opt.cmdheight = 1
 vim.opt.wrap = true
+vim.opt.relativenumber = true
 
 -- general lvim settings
 lvim.log.level = "warn"
