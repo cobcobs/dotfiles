@@ -165,7 +165,7 @@ sketchybar -m --add item spacer_2 left                                          
 # title
 sketchybar -m --add item title center                                                                        \
               --set title                                                                                    \
-                    label.padding_left=17                                                                    \
+                    label.padding_left=18                                                                    \
                     script="$PLUGINS_DIR/window_title.sh"                                                    \
                     click_script=opener                                                                      \
                --subscribe title                                                                             \
