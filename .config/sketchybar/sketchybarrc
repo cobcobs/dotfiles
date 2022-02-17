@@ -78,10 +78,10 @@ sketchybar -m --add item rewind popup.spotify                                   
 sketchybar -m --add item playpause popup.spotify                                                             \
               --set playpause                                                                                \
                     icon.padding_right=10                                                                    \
-                    script="$PLUGINS_DIR/spotifyIndicator.sh"                                                \
+                    script="$PLUGINS_DIR/spotify.sh"                                                         \
                     click_script="osascript -e 'tell application \"Spotify\" to playpause' ;
                                   sketchybar -m --set spotify popup.drawing=off ;
-                                  $PLUGINS_DIR/spotifyIndicator.sh"                                          \
+                                  $PLUGINS_DIR/spotify.sh"                                                   \
               --subscribe playpause                                                                          \
                     spotify_change                                                                           \
 
