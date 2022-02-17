@@ -41,6 +41,7 @@ vim.opt.showmode = false
 vim.opt.cmdheight = 1
 vim.opt.wrap = true
 vim.opt.relativenumber = true
+vim.opt.cursorline = false
 
 -- general lvim settings
 lvim.log.level = "warn"
@@ -150,7 +151,4 @@ lvim.autocommands.custom_groups = {
 
 	-- disable auto commenting on newlines
 	{ "FileType", "*", "set formatoptions-=c formatoptions -=r formatoptions -=o" },
-
-	-- colorscheme
-	{ "ColorScheme", "*", ":hi Cursorline ctermbg=none guibg=none" },
 }
