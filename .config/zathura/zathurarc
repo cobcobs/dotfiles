@@ -8,46 +8,47 @@ map J zoom out
 map i recolor
 map p print
 
-set default-fg 			    "#211a15"
-set default-bg 			    "#f7f1e3"
+set default-fg 			        "#211a15"
+set default-bg 			        "#f7f1e3"
 
-set completion-bg		    "#f7f1e3"
-set completion-fg		    "#211a15"
-set completion-highlight-bg	"#575268"
+set completion-bg		        "#f7f1e3"
+set completion-fg		        "#211a15"
+set completion-highlight-bg	"#c6eae6"
 set completion-highlight-fg	"#211a15"
-set completion-group-bg		"#f7f1e3"
-set completion-group-fg		"#211a15"
+set completion-group-bg		  "#f7f1e3"
+set completion-group-fg		  "#211a15"
 
-set statusbar-fg		    "#211a15"
-set statusbar-bg		    "#f7f1e3"
+set statusbar-fg		        "#211a15"
+set statusbar-bg		        "#f7f1e3"
 
-set notification-bg		    "#f7f1e3"
-set notification-fg		    "#211a15"
-set notification-error-bg	"#f7f1e3"
-set notification-error-fg	"#f28fad"
+set notification-bg		      "#f7f1e3"
+set notification-fg		      "#211a15"
+set notification-error-bg	  "#f7f1e3"
+set notification-error-fg	  "#f28fad"
 set notification-warning-bg	"#f7f1e3"
 set notification-warning-fg	"#fae3b0"
 
-set inputbar-fg			    "#211a15"
-set inputbar-bg 		    "#f7f1e3"
+set inputbar-fg			        "#211a15"
+set inputbar-bg 		        "#f7f1e3"
 
-set recolor-lightcolor		"#f7f1e3"
-set recolor-darkcolor		"#211a15"
+set recolor-lightcolor		  "#f7f1e3"
+set recolor-darkcolor		    "#211a15"
 set recolor true
 set recolor-keephue true
 
-set index-fg			    "#211a15"
-set index-bg			    "#f7f1e3"
-set index-active-fg		    "#211a15"
-set index-active-bg		    "#f7f1e3"
+set index-fg			          "#211a15"
+set index-bg			          "#f7f1e3"
+set index-active-fg		      "#211a15"
+set index-active-bg		      "#f7f1e3"
 
-set render-loading-bg		"#f7f1e3"
-set render-loading-fg		"#211a15"
+set render-loading-bg		    "#f7f1e3"
+set render-loading-fg		    "#211a15"
 
-set highlight-color		    "#575268"
-set highlight-fg            "#c6eae6"
-set highlight-active-color	"#c6eae6"
+set highlight-color		      "#c6eae6"
+set highlight-fg            "#575268"
+set highlight-active-color	"#575268"
 
 set selection-clipboard clipboard
 set guioptions none
 set font "monospace normal 16"
+set incremental-search true
