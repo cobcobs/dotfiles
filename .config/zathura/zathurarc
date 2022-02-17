@@ -1,6 +1,3 @@
-set selection-clipboard clipboard
-set recolor true
-
 map u scroll half-up
 map d scroll half-down
 map D toggle_page_mode
@@ -36,6 +33,8 @@ set inputbar-bg 		    "#f7f1e3"
 
 set recolor-lightcolor		"#f7f1e3"
 set recolor-darkcolor		"#211a15"
+set recolor true
+set recolor-keephue true
 
 set index-fg			    "#211a15"
 set index-bg			    "#f7f1e3"
@@ -46,6 +45,9 @@ set render-loading-bg		"#f7f1e3"
 set render-loading-fg		"#211a15"
 
 set highlight-color		    "#575268"
-set highlight-fg            "#f5c2e7"
-set highlight-active-color	"#f5c2e7"
+set highlight-fg            "#c6eae6"
+set highlight-active-color	"#c6eae6"
 
+set selection-clipboard clipboard
+set guioptions none
+set font "monospace normal 16"
