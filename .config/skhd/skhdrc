@@ -15,10 +15,6 @@ cmd + ctrl - e : emoji
 alt + shift - 0       : scr -i
 alt + cmd + shift - 0 : scr
 
-# switch window
-# idk why it doesn't work by simply writing `choose_vim` instead of the full path
-cmd - tab : ~/.config/scripts/choose_win
-
 # cycle forwards
 alt - tab : yabai -m query --spaces \
   | jq -re '.[] | select(."is-visible" == true).index' \
