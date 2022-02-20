@@ -16,3 +16,4 @@ Inspired by [this rice](https://github.com/ChocolateBread799/macintosh)
 
 # Todo
 - Screenshot
+- Startpage
