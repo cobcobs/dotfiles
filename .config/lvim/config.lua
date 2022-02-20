@@ -99,13 +99,14 @@ greeter.section.header.val = {
 	"⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠙⠫⠿⠿⠿⠛⠋⠁⠀⠀⠀⠀",
 }
 greeter.section.buttons.val = {
-	greeter.button("e", "  > New File", ":ene <BAR> startinsert <CR>"),
-	greeter.button("f", "  > Find File", ":Telescope find_files<CR>"),
-	greeter.button("r", "  > Recent File", ":Telescope oldfiles<CR>"),
-	greeter.button("p", "  > Recent Project", ":Telescope projects<CR>"),
-	greeter.button("s", "  > Configuration", ":e $HOME/.config/lvim/config.lua<CR>"),
-	greeter.button("q", "  > Quit NVIM", ":qa<CR>"),
+	greeter.button("e", "  New File", ":ene <BAR> startinsert <CR>"),
+	greeter.button("f", "  Find File", ":Telescope find_files<CR>"),
+	greeter.button("r", "  Recent File", ":Telescope oldfiles<CR>"),
+	greeter.button("p", "  Recent Project", ":Telescope projects<CR>"),
+	greeter.button("s", "  Configuration", ":e $HOME/.config/lvim/config.lua<CR>"),
+	greeter.button("q", "  Quit NVIM", ":qa<CR>"),
 }
+greeter.section.footer.val = { "lunarvim.org" }
 
 -- nvim-tree
 lvim.builtin.nvimtree.setup.view.side = "left"
