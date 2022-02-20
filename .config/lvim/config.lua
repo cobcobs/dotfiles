@@ -10,7 +10,7 @@ lvim.plugins = {
 		setup = function()
 			vim.g.indentLine_enabled = 1
 			vim.g.indent_blankline_char = "▏"
-			vim.g.indent_blankline_filetype_exclude = { "help", "terminal", "dashboard" }
+			vim.g.indent_blankline_filetype_exclude = { "help", "terminal", "alpha" }
 			vim.g.indent_blankline_buftype_exclude = { "terminal" }
 			vim.g.indent_blankline_show_trailing_blankline_indent = false
 			vim.g.indent_blankline_show_first_indent_level = false
@@ -30,6 +30,12 @@ lvim.plugins = {
 				},
 				lastplace_open_folds = true,
 			})
+		end,
+	},
+	{
+		"goolord/alpha-nvim",
+		config = function()
+			require("alpha").setup(require("alpha.themes.dashboard").config)
 		end,
 	},
 }
@@ -53,9 +59,7 @@ lvim.transparent_window = true
 -- keymappings [view all the defaults by pressing <leader>Lk]
 lvim.leader = "space"
 
-lvim.keys.normal_mode["<C-s>"] = ":w<cr>"
-lvim.keys.normal_mode["<C-p>"] = ":Telescope<cr>"
-lvim.keys.normal_mode["<C-f>"] = ":Telescope current_buffer_fuzzy_find<cr>"
+lvim.keys.normal_mode["<C-p>"] = ":Telescope<CR>"
 
 lvim.keys.normal_mode["cn"] = [[/\<<C-R>=expand('<cword>')<CR>\>\C<CR>``cgn]]
 lvim.keys.normal_mode["cN"] = [[?\<<C-R>=expand('<cword>')<CR>\>\C<CR>``cgN]]
@@ -63,17 +67,22 @@ lvim.keys.normal_mode["j"] = { "v:count ? 'j' : 'gj'", { expr = true } }
 lvim.keys.normal_mode["k"] = { "v:count ? 'k' : 'gk'", { expr = true } }
 
 lvim.builtin.which_key.mappings["f"] = { "<cmd>Telescope find_files<CR>", "Find File" }
+lvim.builtin.which_key.mappings["c"] = { "<cmd>lua require('Comment.api').toggle_current_linewise()<CR>", "Comment" }
+lvim.builtin.which_key.mappings["/"] = { "<cmd>Telescope current_buffer_fuzzy_find<CR>", "Fuzzy Find" }
+lvim.builtin.which_key.mappings[";"] = { "<cmd>Alpha<CR>", "Dashboard" }
+lvim.builtin.which_key.mappings["bc"] = { "<cmd>BufferKill<CR>", "Close Buffer" }
 
 -- After changing plugin config exit and reopen LunarVim, Run :PackerInstall :PackerCompile
 -- enable/disable plugins
 lvim.builtin.bufferline.active = true
-lvim.builtin.dashboard.active = true
+lvim.builtin.dashboard.active = false
 lvim.builtin.lualine.active = false
 lvim.builtin.notify.active = true
 lvim.builtin.terminal.active = true
 
--- dashboard
-lvim.builtin.dashboard.custom_header = {
+--alpha-nvim
+local greeter = require("alpha.themes.dashboard")
+greeter.section.header.val = {
 	"⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⡴⠞⢳⠀⠀⠀⠀⠀",
 	"⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡔⠋⠀⢰⠎⠀⠀⠀⠀⠀",
 	"⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣼⢆⣤⡞⠃⠀⠀⠀⠀⠀⠀",
@@ -89,13 +98,13 @@ lvim.builtin.dashboard.custom_header = {
 	"⠀⠀⠀⠀⠀⠀⠈⠳⢤⣀⡶⠤⣷⣅⡀⠀⠀⠀⣀⡠⢔⠕⠁⠀⠀",
 	"⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠙⠫⠿⠿⠿⠛⠋⠁⠀⠀⠀⠀",
 }
-lvim.builtin.dashboard.custom_section.a = {
-	command = "Telescope find_files",
-	description = { "  Find File           " },
-}
-lvim.builtin.dashboard.custom_section.b = {
-	command = ":ene!",
-	description = { "  New File           " },
+greeter.section.buttons.val = {
+	greeter.button("e", "  > New File", ":ene <BAR> startinsert <CR>"),
+	greeter.button("f", "  > Find File", ":Telescope find_files<CR>"),
+	greeter.button("r", "  > Recent File", ":Telescope oldfiles<CR>"),
+	greeter.button("p", "  > Recent Project", ":Telescope projects<CR>"),
+	greeter.button("s", "  > Configuration", ":e $HOME/.config/lvim/config.lua<CR>"),
+	greeter.button("q", "  > Quit NVIM", ":qa<CR>"),
 }
 
 -- nvim-tree
