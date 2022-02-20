@@ -99,12 +99,12 @@ greeter.section.header.val = {
 	"⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠙⠫⠿⠿⠿⠛⠋⠁⠀⠀⠀⠀",
 }
 greeter.section.buttons.val = {
-	greeter.button("e", "  New File", ":ene <BAR> startinsert <CR>"),
-	greeter.button("f", "  Find File", ":Telescope find_files<CR>"),
-	greeter.button("r", "  Recent File", ":Telescope oldfiles<CR>"),
-	greeter.button("p", "  Recent Project", ":Telescope projects<CR>"),
-	greeter.button("s", "  Configuration", ":e $HOME/.config/lvim/config.lua<CR>"),
-	greeter.button("q", "  Quit NVIM", ":qa<CR>"),
+	greeter.button("SPC n", "  New File", ":ene <BAR> startinsert <CR>"),
+	greeter.button("SPC f", "  Find File", ":Telescope find_files<CR>"),
+	greeter.button("SPC s r", "  Recent File", ":Telescope oldfiles<CR>"),
+	greeter.button("SPC P", "  Recent Project", ":Telescope projects<CR>"),
+	greeter.button("SPC L c", "  Configuration", ":e $HOME/.config/lvim/config.lua<CR>"),
+	greeter.button("SPC q", "  Quit NVIM", ":qa<CR>"),
 }
 greeter.section.footer.val = { "lunarvim.org" }
 
@@ -134,6 +134,7 @@ lvim.builtin.telescope.pickers = {
 		find_command = { "fd", "--hidden" },
 	},
 }
+lvim.builtin.telescope.defaults.layout_config.prompt_position = "top"
 
 -- if you don't want all the parsers change this to a table of the ones you want
 lvim.builtin.treesitter.ensure_installed = {
