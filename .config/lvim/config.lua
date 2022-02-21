@@ -104,7 +104,7 @@ greeter.section.buttons.val = {
 	greeter.button("SPC s r", "  Recent File", ":Telescope oldfiles<CR>"),
 	greeter.button("SPC P", "  Recent Project", ":Telescope projects<CR>"),
 	greeter.button("SPC L c", "  Configuration", ":e $HOME/.config/lvim/config.lua<CR>"),
-	greeter.button("SPC q", "  Quit NVIM", ":qa<CR>"),
+	greeter.button("SPC q", "  Quit LunarVim", ":qa<CR>"),
 }
 greeter.section.footer.val = { "lunarvim.org" }
 
