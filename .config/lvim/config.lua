@@ -38,6 +38,13 @@ lvim.plugins = {
 			require("alpha").setup(require("alpha.themes.dashboard").config)
 		end,
 	},
+	{
+		"nvim-telescope/telescope-frecency.nvim",
+		config = function()
+			require("telescope").load_extension("frecency")
+		end,
+	},
+	{ "tami5/sqlite.lua" },
 }
 
 -- general vim settings
@@ -102,7 +109,7 @@ greeter.section.buttons.val = {
 	greeter.button("SPC n", "  New File", ":ene <BAR> startinsert <CR>"),
 	greeter.button("SPC f", "  Find File", ":Telescope find_files<CR>"),
 	greeter.button("SPC s t", "  Find Text", ":Telescope live_grep<CR>"),
-	greeter.button("SPC s r", "  Recent File", ":Telescope oldfiles<CR>"),
+	greeter.button("SPC s r", "  Recent File", ":Telescope frecency<CR>"),
 	greeter.button("SPC P", "  Recent Project", ":Telescope projects<CR>"),
 	greeter.button("SPC L c", "  Configuration", ":e $HOME/.config/lvim/config.lua<CR>"),
 	greeter.button("SPC q", "  Quit LunarVim", ":qa<CR>"),
