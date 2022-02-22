@@ -1,5 +1,5 @@
 # open apps or other stuff
-cmd - space     : app $(app | choose -u -f "SF Mono" -c "c6eae6" -b "f7f1e3")
+cmd - space     : app "$(app | choose -u -f "SF Mono" -c "c6eae6" -b "f7f1e3")"
 # cmd - return    : /Applications/kitty.app/Contents/MacOS/kitty --single-instance -d $HOME
 cmd - return    : kitty --single-instance -d $HOME
 cmd + shift - f : open -n $HOME
