@@ -1,4 +1,4 @@
--- Additional Plugins
+-- additional plugins
 lvim.plugins = {
 	{ "projekt0n/github-nvim-theme" },
 	{ "romainl/vim-cool", event = "CmdlineEnter" },
@@ -79,7 +79,7 @@ lvim.builtin.which_key.mappings["/"] = { "<cmd>Telescope current_buffer_fuzzy_fi
 lvim.builtin.which_key.mappings[";"] = { "<cmd>Alpha<CR>", "Dashboard" }
 lvim.builtin.which_key.mappings["bd"] = { "<cmd>BufferKill<CR>", "Delete Buffer" }
 
--- After changing plugin config exit and reopen LunarVim, Run :PackerInstall :PackerCompile
+-- after changing plugin config exit and reopen LunarVim, run :PackerInstall :PackerCompile
 -- enable/disable plugins
 lvim.builtin.bufferline.active = true
 lvim.builtin.dashboard.active = false
@@ -87,7 +87,7 @@ lvim.builtin.lualine.active = false
 lvim.builtin.notify.active = true
 lvim.builtin.terminal.active = true
 
---alpha-nvim
+-- alpha-nvim
 local greeter = require("alpha.themes.dashboard")
 greeter.section.header.val = {
 	"⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⡴⠞⢳⠀⠀⠀⠀⠀",
@@ -162,7 +162,7 @@ lvim.builtin.treesitter.ensure_installed = {
 lvim.builtin.treesitter.ignore_install = { "haskell" }
 lvim.builtin.treesitter.highlight.enabled = true
 
--- Autocommands (https://neovim.io/doc/user/autocmd.html)
+-- autocommands (https://neovim.io/doc/user/autocmd.html)
 lvim.autocommands.custom_groups = {
 	-- change line numbers depending on vim mode
 	{ "InsertEnter", "*", ":set norelativenumber" },
