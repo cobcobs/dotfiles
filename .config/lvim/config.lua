@@ -1,52 +1,3 @@
--- additional plugins
-lvim.plugins = {
-	{ "projekt0n/github-nvim-theme" },
-	{ "romainl/vim-cool", event = "CmdlineEnter" },
-	{ "tpope/vim-repeat", event = "BufRead" },
-	{ "tpope/vim-surround", event = "BufRead" },
-	{
-		"lukas-reineke/indent-blankline.nvim",
-		event = "BufRead",
-		setup = function()
-			vim.g.indentLine_enabled = 1
-			vim.g.indent_blankline_char = "▏"
-			vim.g.indent_blankline_filetype_exclude = { "help", "terminal", "alpha" }
-			vim.g.indent_blankline_buftype_exclude = { "terminal" }
-			vim.g.indent_blankline_show_trailing_blankline_indent = false
-			vim.g.indent_blankline_show_first_indent_level = false
-		end,
-	},
-	{
-		"ethanholz/nvim-lastplace",
-		event = "BufRead",
-		config = function()
-			require("nvim-lastplace").setup({
-				lastplace_ignore_buftype = { "quickfix", "nofile", "help" },
-				lastplace_ignore_filetype = {
-					"gitcommit",
-					"gitrebase",
-					"svn",
-					"hgcommit",
-				},
-				lastplace_open_folds = true,
-			})
-		end,
-	},
-	{
-		"goolord/alpha-nvim",
-		config = function()
-			require("alpha").setup(require("alpha.themes.dashboard").config)
-		end,
-	},
-	{
-		"nvim-telescope/telescope-frecency.nvim",
-		config = function()
-			require("telescope").load_extension("frecency")
-		end,
-	},
-	{ "tami5/sqlite.lua" },
-}
-
 -- general vim settings
 vim.opt.laststatus = 0
 vim.opt.ruler = false
@@ -177,4 +128,53 @@ lvim.autocommands.custom_groups = {
 
 	-- disable auto commenting on newlines
 	{ "FileType", "*", "set formatoptions-=c formatoptions -=r formatoptions -=o" },
+}
+
+-- additional plugins
+lvim.plugins = {
+	{ "projekt0n/github-nvim-theme" },
+	{ "romainl/vim-cool", event = "CmdlineEnter" },
+	{ "tpope/vim-repeat", event = "BufRead" },
+	{ "tpope/vim-surround", event = "BufRead" },
+	{
+		"lukas-reineke/indent-blankline.nvim",
+		event = "BufRead",
+		setup = function()
+			vim.g.indentLine_enabled = 1
+			vim.g.indent_blankline_char = "▏"
+			vim.g.indent_blankline_filetype_exclude = { "help", "terminal", "alpha" }
+			vim.g.indent_blankline_buftype_exclude = { "terminal" }
+			vim.g.indent_blankline_show_trailing_blankline_indent = false
+			vim.g.indent_blankline_show_first_indent_level = false
+		end,
+	},
+	{
+		"ethanholz/nvim-lastplace",
+		event = "BufRead",
+		config = function()
+			require("nvim-lastplace").setup({
+				lastplace_ignore_buftype = { "quickfix", "nofile", "help" },
+				lastplace_ignore_filetype = {
+					"gitcommit",
+					"gitrebase",
+					"svn",
+					"hgcommit",
+				},
+				lastplace_open_folds = true,
+			})
+		end,
+	},
+	{
+		"goolord/alpha-nvim",
+		config = function()
+			require("alpha").setup(require("alpha.themes.dashboard").config)
+		end,
+	},
+	{
+		"nvim-telescope/telescope-frecency.nvim",
+		config = function()
+			require("telescope").load_extension("frecency")
+		end,
+	},
+	{ "tami5/sqlite.lua" },
 }
