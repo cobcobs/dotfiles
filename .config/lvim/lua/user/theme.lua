@@ -2,9 +2,9 @@ local M = {}
 
 M.hi_colors = function()
 	local colors = {
-		bg = "#16161D",
-		bg_alt = "#1F1F28",
-		fg = "#DCD7BA",
+		bg = "#DED8CC",
+		bg_alt = "#F7F1E3",
+		fg = "#211A15",
 		green = "#76946A",
 		red = "#E46876",
 	}
@@ -19,12 +19,12 @@ M.hi_colors = function()
 		local ret = vim.api.nvim_get_hl_by_name(name.group, true)
 		return string.format("#%06x", ret[name.property])
 	end
-	for k, v in pairs(color_binds) do
-		local found, color = pcall(get_hl_by_name, v)
-		if found then
-			colors[k] = color
-		end
-	end
+	-- for k, v in pairs(color_binds) do
+	-- 	local found, color = pcall(get_hl_by_name, v)
+	-- 	if found then
+	-- 		colors[k] = color
+	-- 	end
+	-- end
 	return colors
 end
 
@@ -40,7 +40,7 @@ M.telescope_theme = function()
 	local colors = M.hi_colors()
 	set_fg_bg("TelescopeBorder", colors.bg_alt, colors.bg)
 	set_fg_bg("TelescopePromptBorder", colors.bg, colors.bg)
-	set_fg_bg("TelescopePromptNormal", colors.fg, colors.bg_alt)
+	set_fg_bg("TelescopePromptNormal", colors.fg, colors.bg)
 	set_fg_bg("TelescopePromptPrefix", colors.red, colors.bg)
 	set_fg_bg("TelescopePreviewTitle", colors.bg, colors.green)
 	set_fg_bg("TelescopePromptTitle", colors.bg, colors.red)
