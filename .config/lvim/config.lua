@@ -98,7 +98,7 @@ lvim.builtin.telescope.defaults.prompt_prefix = "  "
 lvim.builtin.telescope.defaults.borderchars = {
 	prompt = { "─", "│", "─", "│", "╭", "╮", "╯", "╰" },
 	results = { "─", "▐", "─", "│", "╭", "▐", "▐", "╰" },
-	preview = { " ", "│", " ", "▌", "▌", "╮", "╯", "▌" },
+	preview = { " ", " ", " ", "▌", "▌", " ", " ", "▌" },
 }
 lvim.builtin.telescope.defaults.selection_caret = "  "
 
