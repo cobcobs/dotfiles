@@ -2,7 +2,7 @@ local M = {}
 
 M.hi_colors = function()
 	local colors = {
-		bg = "#DED8CC",
+		bg = "#F1E7CF",
 		bg_alt = "#F7F1E3",
 		fg = "#211A15",
 		green = "#76946A",
