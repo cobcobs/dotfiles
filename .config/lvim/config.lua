@@ -143,6 +143,13 @@ lvim.builtin.telescope.pickers = {
 	},
 }
 lvim.builtin.telescope.defaults.layout_config.prompt_position = "top"
+lvim.builtin.telescope.defaults.prompt_prefix = "  "
+lvim.builtin.telescope.defaults.borderchars = {
+	prompt = { "─", "│", "─", "│", "╭", "╮", "╯", "╰" },
+	results = { "─", "▐", "─", "│", "╭", "▐", "▐", "╰" },
+	preview = { " ", "│", " ", "▌", "▌", "╮", "╯", "▌" },
+}
+lvim.builtin.telescope.defaults.selection_caret = "  "
 
 -- if you don't want all the parsers change this to a table of the ones you want
 lvim.builtin.treesitter.ensure_installed = {
