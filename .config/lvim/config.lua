@@ -12,6 +12,9 @@ lvim.log.level = "warn"
 lvim.format_on_save = true
 lvim.lsp.diagnostics.virtual_text = false
 lvim.colorscheme = "github_light"
+require("github-theme").setup({
+	hide_inactive_statusline = false,
+})
 lvim.transparent_window = true
 
 -- keymappings [view all the defaults by pressing <leader>Lk]
