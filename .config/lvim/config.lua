@@ -115,7 +115,6 @@ lvim.builtin.telescope.defaults.layout_config = {
 		height = 0.95,
 		preview_height = 0.5,
 	},
-
 	flex = {
 		horizontal = {
 			preview_width = 0.9,
