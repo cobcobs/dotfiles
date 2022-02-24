@@ -12,9 +12,6 @@ lvim.log.level = "warn"
 lvim.format_on_save = true
 lvim.lsp.diagnostics.virtual_text = false
 lvim.colorscheme = "github_light"
-require("github-theme").setup({
-	hide_inactive_statusline = false,
-})
 lvim.transparent_window = true
 
 -- keymappings [view all the defaults by pressing <leader>Lk]
@@ -96,7 +93,6 @@ lvim.builtin.telescope.pickers = {
 		find_command = { "fd", "--hidden" },
 	},
 }
-lvim.builtin.telescope.defaults.layout_config.prompt_position = "top"
 lvim.builtin.telescope.defaults.prompt_prefix = "  "
 lvim.builtin.telescope.defaults.borderchars = {
 	prompt = { "─", "│", "─", "│", "╭", "╮", "╯", "╰" },
@@ -104,6 +100,34 @@ lvim.builtin.telescope.defaults.borderchars = {
 	preview = { " ", " ", " ", "▌", "▌", " ", " ", "▌" },
 }
 lvim.builtin.telescope.defaults.selection_caret = "  "
+lvim.builtin.telescope.defaults.layout_config = {
+	width = 0.90,
+	height = 0.85,
+	preview_cutoff = 120,
+	prompt_position = "top",
+	horizontal = {
+		preview_width = function(_, cols, _)
+			return math.floor(cols * 0.6)
+		end,
+	},
+	vertical = {
+		width = 0.9,
+		height = 0.95,
+		preview_height = 0.5,
+	},
+
+	flex = {
+		horizontal = {
+			preview_width = 0.9,
+		},
+	},
+}
+lvim.builtin.telescope.defaults.layout_strategy = "horizontal"
+
+-- github-nvim-theme
+require("github-theme").setup({
+	hide_inactive_statusline = false,
+})
 
 -- if you don't want all the parsers change this to a table of the ones you want
 lvim.builtin.treesitter.ensure_installed = {
