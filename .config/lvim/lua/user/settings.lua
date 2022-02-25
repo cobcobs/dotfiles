@@ -8,6 +8,12 @@ M.config = function()
 	vim.opt.wrap = true
 	vim.opt.relativenumber = true
 	vim.opt.cursorline = false
+
+	lvim.leader = "space"
+	lvim.log.level = "warn"
+	lvim.format_on_save = true
+	lvim.lsp.diagnostics.virtual_text = false
+	lvim.colorscheme = "github_light"
 end
 
 return M
