@@ -19,25 +19,7 @@ bindkey -M menuselect 'h' vi-backward-char
 bindkey -M menuselect 'k' vi-up-line-or-history
 bindkey -M menuselect 'l' vi-forward-char
 bindkey -M menuselect 'j' vi-down-line-or-history
-bindkey -v '^?' backward-delete-char
 export KEYTIMEOUT=1
-
-# edit line in vim
-autoload edit-command-line; zle -N edit-command-line
-bindkey '^v' edit-command-line
-
-# cursor shape in vim modes
-function zle-keymap-select zle-line-init zle-line-finish
-{
-  case $KEYMAP in
-      vicmd)      print -n '\033[1 q';; # block cursor
-      viins|main) print -n '\033[5 q';; # line cursor
-  esac
-}
-
-zle -N zle-line-init
-zle -N zle-line-finish
-zle -N zle-keymap-select
 
 # fix pasting
 zstyle ':bracketed-paste-magic' active-widgets '.self-*'
@@ -47,7 +29,6 @@ function vi-yank-xclip {
     zle vi-yank
    echo "$CUTBUFFER" | pbcopy -i
 }
-
 zle -N vi-yank-xclip
 bindkey -M vicmd 'y' vi-yank-xclip
 
@@ -73,26 +54,27 @@ alias vimdiff='lvim -d'
 alias ranger='ranger --choosedir=$HOME/.cache/ranger/rangerdir; LASTDIR=`cat $HOME/.cache/ranger/rangerdir`; cd "$LASTDIR"' # cd into current directory after quitting ranger
 
 # Speed up tab completion for git commands
-# ----------------------------------------
 __git_files () { 
     _wanted files expl 'local files' _files     
 }
 
+# move zsh-history and zcompdump files
 export HISTFILE="$HOME/.config/zsh/zsh-history"
 compinit -d ~/.config/zsh/zcompdump-$ZSH_VERSION
 
+# source plugins and change some settings
 source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source /opt/homebrew/opt/zsh-vi-mode/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh
 typeset -A ZSH_HIGHLIGHT_STYLES
 ZSH_HIGHLIGHT_STYLES[single-quoted-argument]='fg=cyan'
 ZSH_HIGHLIGHT_STYLES[double-quoted-argument]='fg=cyan'
+ZVM_LINE_INIT_MODE=$ZVM_MODE_INSERT
 
 # Homebrew
-# ________
 eval $(/opt/homebrew/bin/brew shellenv)
 
 # Terminal Prompt
-# ---------------
 source /opt/homebrew/opt/powerlevel10k/powerlevel10k.zsh-theme
 [[ ! -f ~/.config/zsh/.p10k.zsh ]] || source ~/.config/zsh/.p10k.zsh
 
