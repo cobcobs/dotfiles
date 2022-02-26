@@ -3,7 +3,7 @@ local M = {}
 M.config = function()
 	lvim.plugins = {
 		{
-			"jacob-ethan/github-nvim-theme",
+			"projekt0n/github-nvim-theme",
 			config = function()
 				require("github-theme").setup({
 					hide_inactive_statusline = false,
