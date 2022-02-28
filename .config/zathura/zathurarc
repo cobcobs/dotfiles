@@ -39,7 +39,7 @@ set recolor-keephue true
 set index-fg			          "#211a15"
 set index-bg			          "#f7f1e3"
 set index-active-fg		      "#211a15"
-set index-active-bg		      "#f7f1e3"
+set index-active-bg		      "#f1e7cf"
 
 set render-loading-bg		    "#f7f1e3"
 set render-loading-fg		    "#211a15"
