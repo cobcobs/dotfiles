@@ -54,6 +54,11 @@ alias vimdiff='lvim -d'
 alias ranger='ranger --choosedir=$HOME/.cache/ranger/rangerdir; LASTDIR=`cat $HOME/.cache/ranger/rangerdir`; cd "$LASTDIR"' # cd into current directory after quitting ranger
 alias icat="kitty +kitten icat"
 
+# feh but for macos
+function feh() {
+    open -b "drabweb.macfeh" "$@"
+}
+
 # Speed up tab completion for git commands
 __git_files () { 
     _wanted files expl 'local files' _files     
