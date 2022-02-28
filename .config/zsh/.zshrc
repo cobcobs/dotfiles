@@ -52,6 +52,7 @@ alias arc='$EDITOR ~/.config/alacritty/alacritty.yml'
 alias vim='lvim'
 alias vimdiff='lvim -d'
 alias ranger='ranger --choosedir=$HOME/.cache/ranger/rangerdir; LASTDIR=`cat $HOME/.cache/ranger/rangerdir`; cd "$LASTDIR"' # cd into current directory after quitting ranger
+alias icat="kitty +kitten icat"
 
 # Speed up tab completion for git commands
 __git_files () { 
