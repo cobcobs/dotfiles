@@ -221,7 +221,7 @@ button.switch {
   padding: 8px;
 }
 .main-trackList-indexable {
-  border-bottom: 16px solid var(--spice-card);
+  border-bottom: 16px solid var(--main);
   border-radius: 0 0 var(--border-radius-1) var(--border-radius-1);
 }
 .main-trackList-trackListRow {
