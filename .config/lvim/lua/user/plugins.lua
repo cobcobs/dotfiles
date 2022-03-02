@@ -55,6 +55,7 @@ M.config = function()
 			end,
 		},
 		{ "tami5/sqlite.lua" },
+		{ "lervag/vimtex" },
 	}
 
 	local greeter = require("alpha.themes.dashboard")
@@ -84,6 +85,8 @@ M.config = function()
 		greeter.button("SPC q", "  Quit LunarVim", ":qa<CR>"),
 	}
 	greeter.section.footer.val = { "lunarvim.org" }
+
+	vim.g.vimtex_view_method = "zathura"
 end
 
 return M
