@@ -53,6 +53,7 @@ alias vim='lvim'
 alias vimdiff='lvim -d'
 alias ranger='ranger --choosedir=$HOME/.cache/ranger/rangerdir; LASTDIR=`cat $HOME/.cache/ranger/rangerdir`; cd "$LASTDIR"' # cd into current directory after quitting ranger
 alias icat="kitty +kitten icat"
+alias pubs="pubs --config $HOME/.config/pubs/pubsrc"
 
 # feh but for macos
 function feh() {
@@ -66,6 +67,13 @@ export DBUS_SESSION_BUS_ADDRESS='unix:path='$DBUS_LAUNCHD_SESSION_BUS_SOCKET
 __git_files () { 
     _wanted files expl 'local files' _files     
 }
+
+# Enable and load bashcompinit
+autoload -Uz compinit bashcompinit
+compinit
+bashcompinit
+# Argcomplete explicit registration for pubs
+eval "$(register-python-argcomplete pubs)"
 
 # move zsh-history and zcompdump files
 export HISTFILE="$HOME/.config/zsh/zsh-history"
