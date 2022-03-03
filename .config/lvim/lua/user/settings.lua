@@ -13,7 +13,8 @@ M.config = function()
 	lvim.log.level = "warn"
 	lvim.format_on_save = true
 	lvim.lsp.diagnostics.virtual_text = false
-	lvim.colorscheme = "github_light"
+	lvim.colorscheme = "rose-pine"
+	lvim.transparent_window = true
 end
 
 return M

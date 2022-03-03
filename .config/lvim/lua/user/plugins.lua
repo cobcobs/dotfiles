@@ -3,13 +3,9 @@ local M = {}
 M.config = function()
 	lvim.plugins = {
 		{
-			"projekt0n/github-nvim-theme",
-			config = function()
-				require("github-theme").setup({
-					hide_inactive_statusline = false,
-					transparent = true,
-				})
-			end,
+			"rose-pine/neovim",
+			as = "rose-pine",
+			tag = "v1.*",
 		},
 		{ "romainl/vim-cool", event = "CmdlineEnter" },
 		{ "tpope/vim-repeat", event = "BufRead" },
