@@ -14,7 +14,6 @@ M.config = function()
 	lvim.format_on_save = true
 	lvim.lsp.diagnostics.virtual_text = false
 	lvim.colorscheme = "rose-pine"
-	lvim.transparent_window = true
 end
 
 return M

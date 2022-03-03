@@ -9,7 +9,12 @@ M.config = function()
 		-- disable auto commenting on newlines
 		{ "FileType", "*", "set formatoptions-=c formatoptions -=r formatoptions -=o" },
 
-		{ "BufWritePost", "/Users/cobcob/.config/lvim/config.lua", "lua require('user.theme').telescope_theme()" },
+		{ "Colorscheme", "*", "runtime plugin/highlights.vim" },
+		{ "Colorscheme", "*", "hi Normal ctermbg=none guibg=none" },
+		{ "Colorscheme", "*", "hi SignColumn ctermbg=none guibg=none" },
+		{ "Colorscheme", "*", "hi NormalNC ctermbg=none guibg=none" },
+		{ "Colorscheme", "*", "hi MsgArea ctermbg=none guibg=none" },
+		{ "Colorscheme", "*", "hi NvimTreeNormal ctermbg=none guibg=none" },
 	}
 end
 

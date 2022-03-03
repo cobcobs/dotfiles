@@ -1,6 +1,6 @@
 local M = {}
 
-M.telescope_theme = function()
+M.hi_colors = function()
 	local colors = {
 		bg = "#F1E7CF",
 		bg_alt = "#F7F1E3",
@@ -8,7 +8,27 @@ M.telescope_theme = function()
 		green = "#76946A",
 		red = "#EB7373",
 	}
+	local color_binds = {
+		bg = { group = "NormalFloat", property = "background" },
+		bg_alt = { group = "Cursor", property = "foreground" },
+		fg = { group = "Cursor", property = "background" },
+		green = { group = "diffAdded", property = "foreground" },
+		red = { group = "diffRemoved", property = "foreground" },
+	}
+	local function get_hl_by_name(name)
+		local ret = vim.api.nvim_get_hl_by_name(name.group, true)
+		return string.format("#%06x", ret[name.property])
+	end
+	for k, v in pairs(color_binds) do
+		local found, color = pcall(get_hl_by_name, v)
+		if found then
+			colors[k] = color
+		end
+	end
+	return colors
+end
 
+M.telescope_theme = function()
 	local function set_bg(group, bg)
 		vim.cmd("hi " .. group .. " guibg=" .. bg)
 	end
@@ -17,6 +37,7 @@ M.telescope_theme = function()
 		vim.cmd("hi " .. group .. " guifg=" .. fg .. " guibg=" .. bg)
 	end
 
+	local colors = M.hi_colors()
 	set_fg_bg("TelescopeBorder", colors.bg, colors.bg)
 	set_fg_bg("TelescopePromptBorder", colors.bg, colors.bg)
 	set_fg_bg("TelescopePromptNormal", colors.fg, colors.bg)
