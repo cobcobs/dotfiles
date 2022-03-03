@@ -25,12 +25,16 @@ export KEYTIMEOUT=1
 zstyle ':bracketed-paste-magic' active-widgets '.self-*'
 
 # yank to the system clipboard
-function vi-yank-xclip {
-    zle vi-yank
-   echo "$CUTBUFFER" | pbcopy -i
+function zvm_vi_yank() {
+	zvm_yank
+	echo ${CUTBUFFER} | pbcopy
+	zvm_exit_visual_mode
 }
-zle -N vi-yank-xclip
-bindkey -M vicmd 'y' vi-yank-xclip
+
+function zvm_yank() {
+	zvm_yank
+  echo ${CUTBUFFER} | pbcopy
+}
 
 # suspend or enter vim
 _zsh_cli_fg() { fg; }
