@@ -1,13 +1,13 @@
 {
   "name": "Macintosh",
-  "userInputBackgroundColor": "#f1e7cf",
+  "userInputBackgroundColor": "#fefaf2",
   "userInputTextColor": "#211a15",
-  "searchResultsBackgroundColor": "#f1e7cf",
-  "searchResultsItemActiveBackgroundColor": "#f1e7cf",
+  "searchResultsBackgroundColor": "#fefaf2",
+  "searchResultsItemActiveBackgroundColor": "#fefaf2",
   "searchResultsItemActiveDescriptionColor": "#211a15",
   "searchResultsItemActiveTextColor": "#211a15",
   "searchResultsItemDescriptionTextColor": "#503f33",
   "searchResultsItemNameTextcolor": "#503f33",
-  "scrollbarBackgroundColor": "#f1e7cf",
-  "scrollbarForegroundColor": "#f1e7cf"
+  "scrollbarBackgroundColor": "#fefaf2",
+  "scrollbarForegroundColor": "#fefaf2"
 }
