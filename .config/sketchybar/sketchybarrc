@@ -14,8 +14,8 @@ sketchybar -m --bar height=40                                                   
                     padding_right=10                                                                         \
                     topmost=off                                                                              \
                     hidden=off                                                                               \
-                    color=0xfff7f1e3                                                                         \
-                    border_color=0xff211a15                                                                  \
+                    color=0xfffaf4ed                                                                         \
+                    border_color=0xff191724                                                                  \
                     border_width=3                                                                           \
                     font_smoothing=on                                                                        \
 
@@ -24,21 +24,21 @@ sketchybar -m --default drawing=on                                              
                         y_offset=0                                                                           \
 
 # label defaults
-sketchybar -m --default label.color=0xff211a15                                                               \
+sketchybar -m --default label.color=0xff191724                                                               \
                         label.font="SF Pro Text:Bold:14.0"                                                   \
-                        label.highlight_color=0xff6b675c                                                     \
+                        label.highlight_color=0xffd7827e                                                     \
                         label.padding_left=0                                                                 \
                         label.padding_right=0                                                                \
 
 # icon defaults
-sketchybar -m --default icon.color=0xff211a15                                                                \
+sketchybar -m --default icon.color=0xff191724                                                                \
                         icon.font="Hack Nerd Font:Bold:16.0"                                                 \
-                        icon.highlight_color=0xff6b675c                                                      \
+                        icon.highlight_color=0xffd7827e                                                      \
                         icon.padding_left=0                                                                  \
                         icon.padding_right=0                                                                 \
 
 # background defaults
-sketchybar -m --default background.border_color=0xff211a15                                                   \
+sketchybar -m --default background.border_color=0xff191724                                                   \
                         background.border_width=3                                                            \
                         background.corner_radius=10                                                          \
                         background.height=30                                                                 \
@@ -46,8 +46,8 @@ sketchybar -m --default background.border_color=0xff211a15                      
 # popup defaults
 sketchybar -m --default popup.background.corner_radius=10                                                    \
                         popup.background.border_width=3                                                      \
-                        popup.background.border_color=0xff211a15                                             \
-                        popup.background.color=0xfff7f1e3                                                    \
+                        popup.background.border_color=0xff191724                                             \
+                        popup.background.color=0xfffaf4ed                                                    \
                         popup.y_offset=5                                                                     \
 
 # events
@@ -94,7 +94,7 @@ sketchybar -m --add item spacer_1 left                                          
               --set spacer_1                                                                                 \
                     icon=ㅤ                                                                                    \
                     icon.padding_right=3                                                                     \
-                    background.color=0xff211a15                                                              \
+                    background.color=0xff191724                                                              \
                     background.drawing=on                                                                    \
                     background.height=40                                                                     \
 
@@ -155,7 +155,7 @@ sketchybar -m --add item spacer_2 left                                          
               --set spacer_2                                                                                 \
                     icon=ㅤ                                                                                    \
                     icon.padding_right=3                                                                     \
-                    background.color=0xff211a15                                                              \
+                    background.color=0xff191724                                                              \
                     background.drawing=on                                                                    \
                     background.height=40                                                                     \
 
@@ -176,7 +176,7 @@ sketchybar -m --add item spacer_3 right                                         
               --set spacer_3                                                                                 \
                     icon=ㅤ                                                                                    \
                     icon.padding_right=3                                                                     \
-                    background.color=0xff211a15                                                              \
+                    background.color=0xff191724                                                              \
                     background.drawing=on                                                                    \
                     background.height=40                                                                     \
 
@@ -235,7 +235,7 @@ sketchybar -m --add item spacer_4 right                                         
               --set spacer_4                                                                                 \
                     icon=ㅤ                                                                                    \
                     icon.padding_right=3                                                                     \
-                    background.color=0xff211a15                                                              \
+                    background.color=0xff191724                                                              \
                     background.drawing=on                                                                    \
                     background.height=40                                                                     \
 
@@ -269,7 +269,7 @@ sketchybar -m --add item spacer_5 right                                         
               --set spacer_5                                                                                 \
                     icon=ㅤ                                                                                    \
                     icon.padding_right=3                                                                     \
-                    background.color=0xff211a15                                                              \
+                    background.color=0xff191724                                                              \
                     background.drawing=on                                                                    \
                     background.height=40                                                                     \
 

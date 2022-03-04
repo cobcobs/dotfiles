@@ -24,8 +24,8 @@ yabai -m config mouse_drop_action            stack
 # borders
 yabai -m config window_border                on
 yabai -m config window_border_width          5
-yabai -m config active_window_border_color   0xff211a15
-yabai -m config normal_window_border_color   0xfff7f1e3
+yabai -m config active_window_border_color   0xff191724
+yabai -m config normal_window_border_color   0xfffaf4ed
 
 # layouts
 yabai -m config --space 1 layout             stack
@@ -37,7 +37,7 @@ yabai -m rule --add app="^System Preferences$" layer=above manage=off border=off
 yabai -m rule --add app="^Roblox$" manage=off border=off
 yabai -m rule --add app="^csgo_osx64$" border=off
 yabai -m rule --add app="^Spotify$" space=4
-yabai -m rule --add app="^Discord$" space=5
+yabai -m rule --add app="^Discord" space=5
 
 # general space settings
 yabai -m config layout                       bsp

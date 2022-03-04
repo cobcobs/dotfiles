@@ -8,45 +8,46 @@ map J zoom out
 map i recolor
 map p print
 
-set default-fg 			        "#211a15"
-set default-bg 			        "#f7f1e3"
+set default-bg                  "#faf4ed"
+set default-fg                  "#575279"
 
-set completion-bg		        "#f7f1e3"
-set completion-fg		        "#211a15"
-set completion-highlight-bg	"#c6eae6"
-set completion-highlight-fg	"#211a15"
-set completion-group-bg		  "#f7f1e3"
-set completion-group-fg		  "#211a15"
+set statusbar-fg                "#9893a5"
+set statusbar-bg                "#fffaf3"
 
-set statusbar-fg		        "#211a15"
-set statusbar-bg		        "#f7f1e3"
+set inputbar-bg                 "#faf4ed"
+set inputbar-fg                 "#575279"
 
-set notification-bg		      "#f7f1e3"
-set notification-fg		      "#211a15"
-set notification-error-bg	  "#f7f1e3"
-set notification-error-fg	  "#f28fad"
-set notification-warning-bg	"#f7f1e3"
-set notification-warning-fg	"#fae3b0"
+set notification-bg             "#faf4ed"
+set notification-fg             "#575279"
 
-set inputbar-fg			        "#211a15"
-set inputbar-bg 		        "#f7f1e3"
+set notification-error-bg       "#faf4ed"
+set notification-error-fg       "#ea9d34"
 
-set recolor-lightcolor		  "#f7f1e3"
-set recolor-darkcolor		    "#211a15"
-set recolor true
-set recolor-keephue true
+set notification-warning-bg     "#faf4ed"
+set notification-warning-fg     "#ea9d34"
 
-set index-fg			          "#211a15"
-set index-bg			          "#f7f1e3"
-set index-active-fg		      "#211a15"
-set index-active-bg		      "#f1e7cf"
+set highlight-color             "#b4637a"
+set highlight-active-color      "#d7827e"
+
+set completion-bg               "#6e6a86"
+set completion-fg               "#d7827e"
+
+set completion-highlight-fg     "#575279"
+set completion-highlight-bg     "#d7827e"
+
+set recolor-lightcolor          "#faf4ed"
+set recolor-darkcolor           "#575279"
+
+set recolor                     "true"
+set recolor-keephue             "true"
+
+set index-fg			          "#575279"
+set index-bg			          "#faf4ed"
+set index-active-fg		      "#575279"
+set index-active-bg		      "#f2e9e1"
 
 set render-loading-bg		    "#f7f1e3"
 set render-loading-fg		    "#211a15"
-
-set highlight-color		      "#c6eae6"
-set highlight-fg            "#575268"
-set highlight-active-color	"#575268"
 
 set selection-clipboard clipboard
 set guioptions none

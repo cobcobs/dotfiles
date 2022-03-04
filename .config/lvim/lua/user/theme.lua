@@ -5,8 +5,8 @@ M.hi_colors = function()
 		bg = "#F1E7CF",
 		bg_alt = "#F7F1E3",
 		fg = "#211A15",
-		green = "#76946A",
-		red = "#EB7373",
+		green = "#ea9d34",
+		red = "#d7827e",
 	}
 	local color_binds = {
 		bg = { group = "NormalFloat", property = "background" },
