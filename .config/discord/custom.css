@@ -1,5 +1,9 @@
 :root {
 	--font:							Whitney, Helvetica Neue, Helvetica, Arial, sans-serif;
+  --mentioncolor: 				215,130,126;
+	--successcolor: 				180,99,122;
+	--warningcolor: 				234,157,52;
+	--dangercolor: 					234,157,52;
   --scrollbar-thin-thumb: var(--background-accent);
   --scrollbar-thin-track: transparent;
   --scrollbar-auto-thumb: var(--background-accent);
