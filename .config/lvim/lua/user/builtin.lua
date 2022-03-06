@@ -7,6 +7,9 @@ M.config = function()
 	lvim.builtin.notify.active = true
 	lvim.builtin.terminal.active = true
 
+  lvim.builtin.terminal.float_opts.border = "none"
+  lvim.builtin.terminal.float_opts.highlights.background = "TelescopeNormal"
+
 	lvim.builtin.treesitter.ignore_install = { "haskell" }
 	lvim.builtin.treesitter.highlight.enabled = true
 	lvim.builtin.treesitter.indent = { enable = true, disable = { "yaml", "python" } }

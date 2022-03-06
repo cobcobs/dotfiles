@@ -27,11 +27,13 @@ M.config = function()
 		{ "FileType", "*", ":lua ensure_treesitter_language_installed()" },
 
 		{ "Colorscheme", "*", "runtime plugin/highlights.vim" },
+
 		{ "Colorscheme", "*", "hi Normal ctermbg=none guibg=none" },
 		{ "Colorscheme", "*", "hi SignColumn ctermbg=none guibg=none" },
 		{ "Colorscheme", "*", "hi NormalNC ctermbg=none guibg=none" },
 		{ "Colorscheme", "*", "hi MsgArea ctermbg=none guibg=none" },
 		{ "Colorscheme", "*", "hi NvimTreeNormal ctermbg=none guibg=none" },
+		{ "Colorscheme", "*", "hi FloatBorder guibg=#faf4ed guifg=#faf4ed" },
 	}
 end
 
