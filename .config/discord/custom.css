@@ -4422,3 +4422,6 @@ html.platform-osx .titleBar-1it3bQ {
 .search-2Mwzzq:not(.open-1F8u2c) .icon-18rqoe {color: var(--text-normal);}
 .search-2Mwzzq:not(.open-1F8u2c):hover .icon-18rqoe {color: var(--text-muted);}
 
+/* Show scrollbar only when hovering */
+*::-webkit-scrollbar { display: none; }
+*:hover::-webkit-scrollbar { display: block; }
