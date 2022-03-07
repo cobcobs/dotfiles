@@ -8,7 +8,7 @@ PLUGINS_DIR="$HOME/.config/sketchybar/plugins"
 sketchybar -m --bar height=40                                                                                \
                     position=top                                                                             \
                     margin=10                                                                                \
-                    corner_radius=10                                                                         \
+                    corner_radius=0                                                                          \
                     y_offset=10                                                                              \
                     padding_left=10                                                                          \
                     padding_right=10                                                                         \
@@ -40,11 +40,11 @@ sketchybar -m --default icon.color=0xff191724                                   
 # background defaults
 sketchybar -m --default background.border_color=0xff191724                                                   \
                         background.border_width=3                                                            \
-                        background.corner_radius=10                                                          \
+                        background.corner_radius=0                                                           \
                         background.height=30                                                                 \
 
 # popup defaults
-sketchybar -m --default popup.background.corner_radius=10                                                    \
+sketchybar -m --default popup.background.corner_radius=0                                                     \
                         popup.background.border_width=3                                                      \
                         popup.background.border_color=0xff191724                                             \
                         popup.background.color=0xfffaf4ed                                                    \
@@ -164,21 +164,21 @@ sketchybar -m --add item title center                                           
               --set title                                                                                    \
                     label.padding_left=18                                                                    \
                     script="$PLUGINS_DIR/window_title.sh"                                                    \
-                    click_script=opener                                                                      \
+                    click_script="skhd -k 'cmd - space'"                                                     \
                --subscribe title                                                                             \
                     window_focus                                                                             \
                     front_app_switched                                                                       \
                     space_change                                                                             \
                     title_change                                                                             \
 
-# spacer
-sketchybar -m --add item spacer_3 right                                                                      \
-              --set spacer_3                                                                                 \
-                    icon=ㅤ                                                                                    \
-                    icon.padding_right=3                                                                     \
-                    background.color=0xff191724                                                              \
-                    background.drawing=on                                                                    \
-                    background.height=40                                                                     \
+# # spacer
+# sketchybar -m --add item spacer_3 right                                                                      \
+#               --set spacer_3                                                                                 \
+#                     icon=ㅤ                                                                                    \
+#                     icon.padding_right=3                                                                     \
+#                     background.color=0xff191724                                                              \
+#                     background.drawing=on                                                                    \
+#                     background.height=40                                                                     \
 
 # system commands
 # https://apple.stackexchange.com/questions/103571/using-the-terminal-command-to-shutdown-restart-and-sleep-my-mac/103633#103633
@@ -186,7 +186,7 @@ sketchybar -m --add item system right                                           
               --set system                                                                                   \
                     icon=                                                                                   \
                     icon.padding_left=15                                                                     \
-                    icon.padding_right=15                                                                    \
+                    icon.padding_right=9                                                                     \
                     y_offset=1                                                                               \
                     popup.align=right                                                                        \
                     click_script="sketchybar -m --set system popup.drawing=toggle"                           \
