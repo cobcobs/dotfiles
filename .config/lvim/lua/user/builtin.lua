@@ -10,8 +10,10 @@ M.config = function()
   lvim.builtin.notify.opts.on_open = function(win)
     vim.api.nvim_win_set_config(win, { border = "none" })
   end
+  lvim.builtin.notify.opts.stages = "static"
 
   lvim.builtin.terminal.float_opts.border = "none"
+  lvim.builtin.terminal.shading_factor = 3
   lvim.builtin.terminal.float_opts.highlights.background = "TelescopeNormal"
 
 	lvim.builtin.treesitter.ignore_install = { "haskell" }
