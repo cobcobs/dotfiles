@@ -12,7 +12,7 @@ set default-bg                  "#faf4ed"
 set default-fg                  "#575279"
 
 set statusbar-fg                "#9893a5"
-set statusbar-bg                "#fffaf3"
+set statusbar-bg                "#faf4ed"
 
 set inputbar-bg                 "#faf4ed"
 set inputbar-fg                 "#575279"
@@ -46,8 +46,8 @@ set index-bg			          "#faf4ed"
 set index-active-fg		      "#575279"
 set index-active-bg		      "#f2e9e1"
 
-set render-loading-bg		    "#f7f1e3"
-set render-loading-fg		    "#211a15"
+set render-loading-bg		    "#faf4ed"
+set render-loading-fg		    "#575279"
 
 set selection-clipboard clipboard
 set guioptions none
