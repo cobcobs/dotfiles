@@ -10,18 +10,6 @@ M.config = function()
 		{ "romainl/vim-cool", event = "CmdlineEnter" },
 		{ "tpope/vim-repeat", event = "BufRead" },
 		{
-			"lukas-reineke/indent-blankline.nvim",
-			event = "BufRead",
-			setup = function()
-				vim.g.indentLine_enabled = 1
-				vim.g.indent_blankline_char = "▏"
-				vim.g.indent_blankline_filetype_exclude = { "help", "terminal", "alpha", "packer" }
-				vim.g.indent_blankline_buftype_exclude = { "terminal" }
-				vim.g.indent_blankline_show_trailing_blankline_indent = false
-				vim.g.indent_blankline_show_first_indent_level = false
-			end,
-		},
-		{
 			"ethanholz/nvim-lastplace",
 			event = "BufRead",
 			config = function()
@@ -50,6 +38,13 @@ M.config = function()
 
   require("mini.surround").setup()
   require("mini.comment").setup()
+  require("mini.indentscope").setup {
+    draw = {
+        animation = require("mini.indentscope").gen_animation("none")
+    },
+    symbol = "│",
+    try_as_border = true,
+  }
   local my_items = {
     { name = "New File", action = ":ene", section = "Commands"},
     { name = "Configuration", action = ":e $HOME/.config/lvim/config.lua", section = "Commands"},
@@ -69,6 +64,7 @@ M.config = function()
   })
 
   vim.g.vimtex_view_method = "zathura"
+  vim.g.vimtex_compiler_progname = "nvr"
 	-- vim.g.vimtex_view_general_viewer = "kitty"
 	-- vim.g.vimtex_view_general_options = "--single-instance termpdf.py @pdf"
   vim.cmd([[
