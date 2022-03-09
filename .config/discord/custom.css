@@ -131,7 +131,7 @@ svg [fill="#4F545C"] {
 }
 
 ::selection {
-	background: rgb(var(--mentioncolor, --warningcolor));
+	background: rgba(var(--mentioncolor, --warningcolor),.3);
 }
 .highlight {
 	background: rgba(var(--mentioncolor, --warningcolor),.3);
