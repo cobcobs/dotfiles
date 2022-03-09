@@ -68,8 +68,9 @@ M.config = function()
     },
   })
 
-	vim.g.vimtex_view_general_viewer = "kitty"
-	vim.g.vimtex_view_general_options = "--single-instance termpdf.py @pdf"
+  vim.g.vimtex_view_method = "zathura"
+	-- vim.g.vimtex_view_general_viewer = "kitty"
+	-- vim.g.vimtex_view_general_options = "--single-instance termpdf.py @pdf"
   vim.cmd([[
     let g:vimtex_compiler_latexmk = {
     \ 'options' : [

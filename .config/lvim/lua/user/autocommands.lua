@@ -29,6 +29,9 @@ M.config = function()
     -- load telescope theme
 		{ "Colorscheme", "*", "runtime plugin/highlights.vim" },
 
+    -- vimtex
+    -- { "User", "VimtexEventCompileSuccess", "VimtexView"},
+
     -- match notify colors with rose-pine
     { "Colorscheme", "*", "hi NotifyERRORTitle guifg=#eb6f92"},
     { "Colorscheme", "*", "hi NotifyWARNTitle guifg=#eb6f92"},
