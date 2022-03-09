@@ -51,7 +51,7 @@ M.config = function()
   require("mini.surround").setup()
   require("mini.comment").setup()
   local my_items = {
-    { name = "New File", action = ":ene <BAR> startinsert", section = "Commands"},
+    { name = "New File", action = ":ene", section = "Commands"},
     { name = "Configuration", action = ":e $HOME/.config/lvim/config.lua", section = "Commands"},
     { name = "File", action = ":Telescope find_files", section = "Telescope"},
     { name = "Grep", action = ":Telescope live_grep", section = "Telescope"},
