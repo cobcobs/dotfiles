@@ -9,7 +9,6 @@ M.config = function()
 		},
 		{ "romainl/vim-cool", event = "CmdlineEnter" },
 		{ "tpope/vim-repeat", event = "BufRead" },
-		{ "tpope/vim-surround", event = "BufRead" },
 		{
 			"lukas-reineke/indent-blankline.nvim",
 			event = "BufRead",
@@ -39,12 +38,6 @@ M.config = function()
 			end,
 		},
 		{
-			"goolord/alpha-nvim",
-			config = function()
-				require("alpha").setup(require("alpha.themes.dashboard").config)
-			end,
-		},
-		{
 			"nvim-telescope/telescope-frecency.nvim",
 			config = function()
 				require("telescope").load_extension("frecency")
@@ -52,35 +45,28 @@ M.config = function()
 		},
 		{ "tami5/sqlite.lua" },
 		{ "lervag/vimtex" },
+    { "echasnovski/mini.nvim" }
 	}
 
-	local greeter = require("alpha.themes.dashboard")
-	greeter.section.header.val = {
-		"⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⡴⠞⢳⠀⠀⠀⠀⠀",
-		"⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡔⠋⠀⢰⠎⠀⠀⠀⠀⠀",
-		"⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣼⢆⣤⡞⠃⠀⠀⠀⠀⠀⠀",
-		"⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣼⢠⠋⠁⠀⠀⠀⠀⠀⠀⠀⠀",
-		"⠀⠀⠀⠀⢀⣀⣾⢳⠀⠀⠀⠀⢸⢠⠃⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀",
-		"⣀⡤⠴⠊⠉⠀⠀⠈⠳⡀⠀⠀⠘⢎⠢⣀⣀⣀⠀⠀⠀⠀⠀⠀⠀",
-		"⠳⣄⠀⠀⡠⡤⡀⠀⠘⣇⡀⠀⠀⠀⠉⠓⠒⠺⠭⢵⣦⡀⠀⠀⠀",
-		"⠀⢹⡆⠀⢷⡇⠁⠀⠀⣸⠇⠀⠀⠀⠀⠀⢠⢤⠀⠀⠘⢷⣆⡀⠀",
-		"⠀⠀⠘⠒⢤⡄⠖⢾⣭⣤⣄⠀⡔⢢⠀⡀⠎⣸⠀⠀⠀⠀⠹⣿⡀",
-		"⠀⠀⢀⡤⠜⠃⠀⠀⠘⠛⣿⢸⠀⡼⢠⠃⣤⡟⠀⠀⠀⠀⠀⣿⡇",
-		"⠀⠀⠸⠶⠖⢏⠀⠀⢀⡤⠤⠇⣴⠏⡾⢱⡏⠁⠀⠀⠀⠀⢠⣿⠃",
-		"⠀⠀⠀⠀⠀⠈⣇⡀⠿⠀⠀⠀⡽⣰⢶⡼⠇⠀⠀⠀⠀⣠⣿⠟⠀",
-		"⠀⠀⠀⠀⠀⠀⠈⠳⢤⣀⡶⠤⣷⣅⡀⠀⠀⠀⣀⡠⢔⠕⠁⠀⠀",
-		"⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠙⠫⠿⠿⠿⠛⠋⠁⠀⠀⠀⠀",
-	}
-	greeter.section.buttons.val = {
-		greeter.button("SPC n", "  New File", ":ene <BAR> startinsert <CR>"),
-		greeter.button("SPC f", "  Find File", ":Telescope find_files<CR>"),
-		greeter.button("SPC s t", "  Find Text", ":Telescope live_grep<CR>"),
-		greeter.button("SPC s r", "  Recent File", ":Telescope frecency<CR>"),
-		greeter.button("SPC s P", "  Recent Project", ":Telescope projects<CR>"),
-		greeter.button("SPC L c", "  Configuration", ":e $HOME/.config/lvim/config.lua<CR>"),
-		greeter.button("SPC q", "  Quit LunarVim", ":qa<CR>"),
-	}
-	greeter.section.footer.val = { "lunarvim.org" }
+  require("mini.surround").setup()
+  require("mini.comment").setup()
+  local my_items = {
+    { name = "New File", action = ":ene <BAR> startinsert", section = "Commands"},
+    { name = "Configuration", action = ":e $HOME/.config/lvim/config.lua", section = "Commands"},
+    { name = "File", action = ":Telescope find_files", section = "Telescope"},
+    { name = "Grep", action = ":Telescope live_grep", section = "Telescope"},
+    { name = "Frecency", action = ":Telescope frecency", section = "Telescope"},
+    { name = "Project", action = ":Telescope projects", section = "Telescope"},
+  }
+  local starter = require('mini.starter')
+  starter.setup({
+    items = my_items,
+    footer = "lunarvim.org",
+    content_hooks = {
+      starter.gen_hook.adding_bullet(),
+      starter.gen_hook.aligning('center', 'center'),
+    },
+  })
 
 	vim.g.vimtex_view_method = "zathura"
   vim.cmd([[

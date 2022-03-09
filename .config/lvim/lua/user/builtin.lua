@@ -6,6 +6,7 @@ M.config = function()
 	lvim.builtin.lualine.active = false
 	lvim.builtin.notify.active = true
 	lvim.builtin.terminal.active = true
+  lvim.builtin.comment.active = false
 
   lvim.builtin.notify.opts.on_open = function(win)
     vim.api.nvim_win_set_config(win, { border = "none" })
