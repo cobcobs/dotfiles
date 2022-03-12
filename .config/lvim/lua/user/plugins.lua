@@ -27,11 +27,12 @@ M.config = function()
 		},
 		{
 			"nvim-telescope/telescope-frecency.nvim",
+      after = "telescope.nvim",
+      requires = {"tami5/sqlite.lua"},
 			config = function()
 				require("telescope").load_extension("frecency")
 			end,
 		},
-		{ "tami5/sqlite.lua" },
 		{ "lervag/vimtex" },
     { "echasnovski/mini.nvim" }
 	}
@@ -48,10 +49,11 @@ M.config = function()
   local my_items = {
     { name = "New File", action = ":ene", section = "Commands"},
     { name = "Configuration", action = ":e $HOME/.config/lvim/config.lua", section = "Commands"},
-    { name = "File", action = ":Telescope find_files", section = "Telescope"},
-    { name = "Grep", action = ":Telescope live_grep", section = "Telescope"},
-    { name = "Frecency", action = ":Telescope frecency", section = "Telescope"},
-    { name = "Project", action = ":Telescope projects", section = "Telescope"},
+    { name = "File", action = ":Telescope find_files", section = "Commands"},
+    { name = "Grep", action = ":Telescope live_grep", section = "Commands"},
+    { name = "Frecency", action = ":Telescope frecency", section = "Commands"},
+    { name = "Project", action = ":Telescope projects", section = "Commands"},
+    { name = "Quit", action = ":q", section = "Commands"},
   }
   local starter = require('mini.starter')
   starter.setup({
