@@ -62,6 +62,10 @@ cmd + shift - return : \
 	      yabai -m window --swap $(cat "${TMPDIR}/yabai_last_window_swapped_wid");\
 	    fi;
 
+# zoom fullscreen
+ctrl - d : yabai -m window --toggle zoom-parent
+ctrl - f : toggle_bar ; yabai -m window --toggle zoom-fullscreen
+
 # warp node
 cmd + shift - h : yabai -m window --warp west
 cmd + shift - j : yabai -m window --warp south
