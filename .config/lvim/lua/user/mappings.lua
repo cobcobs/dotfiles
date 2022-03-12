@@ -20,7 +20,7 @@ M.config = function()
 	lvim.builtin.which_key.mappings["f"] = { "<cmd>Telescope find_files<CR>", "Find File" }
 	lvim.builtin.which_key.mappings["n"] = { ":ene <BAR> startinsert <CR>", "New File" }
 	lvim.builtin.which_key.mappings["/"] = { "<cmd>Telescope current_buffer_fuzzy_find<CR>", "Fuzzy Find" }
-	lvim.builtin.which_key.mappings[";"] = { "<cmd>Alpha<CR>", "Dashboard" }
+	lvim.builtin.which_key.mappings[";"] = { ":lua MiniStarter.open()<CR>", "Dashboard" }
 
 	lvim.builtin.which_key.mappings["sP"] = { "<cmd>Telescope projects<CR>", "Recent Project" }
 	lvim.builtin.which_key.mappings["sr"] = { "<cmd>Telescope frecency<CR>", "Recent Files" }
