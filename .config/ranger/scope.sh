@@ -40,12 +40,12 @@ FILE_EXTENSION_LOWER="$(printf "%s" "${FILE_EXTENSION}" | tr '[:upper:]' '[:lowe
 
 ## Settings
 HIGHLIGHT_SIZE_MAX=262143  # 256KiB
-HIGHLIGHT_TABWIDTH=${HIGHLIGHT_TABWIDTH:-8}
-HIGHLIGHT_STYLE=${HIGHLIGHT_STYLE:-pablo}
+HIGHLIGHT_TABWIDTH="${HIGHLIGHT_TABWIDTH:-8}"
+HIGHLIGHT_STYLE="${HIGHLIGHT_STYLE:-pablo}"
 HIGHLIGHT_OPTIONS="--replace-tabs=${HIGHLIGHT_TABWIDTH} --style=${HIGHLIGHT_STYLE} ${HIGHLIGHT_OPTIONS:-}"
-PYGMENTIZE_STYLE=${PYGMENTIZE_STYLE:-autumn}
-OPENSCAD_IMGSIZE=${RNGR_OPENSCAD_IMGSIZE:-1000,1000}
-OPENSCAD_COLORSCHEME=${RNGR_OPENSCAD_COLORSCHEME:-Tomorrow Night}
+PYGMENTIZE_STYLE="${PYGMENTIZE_STYLE:-autumn}"
+OPENSCAD_IMGSIZE="${RNGR_OPENSCAD_IMGSIZE:-1000,1000}"
+OPENSCAD_COLORSCHEME="${RNGR_OPENSCAD_COLORSCHEME:-Tomorrow Night}"
 
 handle_extension() {
     case "${FILE_EXTENSION_LOWER}" in
@@ -80,11 +80,15 @@ handle_extension() {
             exit 1;;
 
         ## OpenDocument
-        odt|ods|odp|sxw)
+        odt|sxw)
             ## Preview as text conversion
             odt2txt "${FILE_PATH}" && exit 5
             ## Preview as markdown conversion
             pandoc -s -t markdown -- "${FILE_PATH}" && exit 5
+            exit 1;;
+        ods|odp)
+            ## Preview as text conversion (unsupported by pandoc for markdown)
+            odt2txt "${FILE_PATH}" && exit 5
             exit 1;;
 
         ## XLSX
@@ -104,7 +108,7 @@ handle_extension() {
             ;;
 
         ## JSON
-        json)
+        json|ipynb)
             jq --color-output . "${FILE_PATH}" && exit 5
             python -m json.tool -- "${FILE_PATH}" && exit 5
             ;;
@@ -128,9 +132,11 @@ handle_image() {
     local mimetype="${1}"
     case "${mimetype}" in
         ## SVG
-        # image/svg+xml|image/svg)
-        #     convert -- "${FILE_PATH}" "${IMAGE_CACHE_PATH}" && exit 6
-        #     exit 1;;
+        image/svg+xml|image/svg)
+            rsvg-convert --keep-aspect-ratio --width "${DEFAULT_SIZE%x*}" "${FILE_PATH}" -o "${IMAGE_CACHE_PATH}.png" \
+                && mv "${IMAGE_CACHE_PATH}.png" "${IMAGE_CACHE_PATH}" \
+                && exit 6
+            exit 1;;
 
         ## DjVu
         # image/vnd.djvu)
@@ -149,25 +155,33 @@ handle_image() {
                 convert -- "${FILE_PATH}" -auto-orient "${IMAGE_CACHE_PATH}" && exit 6
             fi
 
-            ## `w3mimgdisplay` will be called for all images (unless overriden
+            ## `w3mimgdisplay` will be called for all images (unless overridden
             ## as above), but might fail for unsupported types.
             exit 7;;
 
         ## Video
         # video/*)
-        #     # Thumbnail
+        #     # Get embedded thumbnail
+        #     ffmpeg -i "${FILE_PATH}" -map 0:v -map -0:V -c copy "${IMAGE_CACHE_PATH}" && exit 6
+        #     # Get frame 10% into video
         #     ffmpegthumbnailer -i "${FILE_PATH}" -o "${IMAGE_CACHE_PATH}" -s 0 && exit 6
         #     exit 1;;
 
-        # PDF
-         application/pdf)
-             pdftoppm -f 1 -l 1 \
-                      -scale-to-x "${DEFAULT_SIZE%x*}" \
-                      -scale-to-y -1 \
-                      -singlefile \
-                      -jpeg -tiffcompression jpeg \
-                      -- "${FILE_PATH}" "${IMAGE_CACHE_PATH%.*}" \
-                 && exit 6 || exit 1;;
+        ## Audio
+        # audio/*)
+        #     # Get embedded thumbnail
+        #     ffmpeg -i "${FILE_PATH}" -map 0:v -map -0:V -c copy \
+        #       "${IMAGE_CACHE_PATH}" && exit 6;;
+
+        ## PDF
+        # application/pdf)
+        #     pdftoppm -f 1 -l 1 \
+        #              -scale-to-x "${DEFAULT_SIZE%x*}" \
+        #              -scale-to-y -1 \
+        #              -singlefile \
+        #              -jpeg -tiffcompression jpeg \
+        #              -- "${FILE_PATH}" "${IMAGE_CACHE_PATH%.*}" \
+        #         && exit 6 || exit 1;;
 
 
         ## ePub, MOBI, FB2 (using Calibre)
@@ -218,7 +232,8 @@ handle_image() {
         #     { [ "$rar" ] && fn=$(unrar lb -p- -- "${FILE_PATH}"); } || \
         #     { [ "$zip" ] && fn=$(zipinfo -1 -- "${FILE_PATH}"); } || return
         #
-        #     fn=$(echo "$fn" | python -c "import sys; import mimetypes as m; \
+        #     fn=$(echo "$fn" | python -c "from __future__ import print_function; \
+        #             import sys; import mimetypes as m; \
         #             [ print(l, end='') for l in sys.stdin if \
         #               (m.guess_type(l[:-1])[0] or '').startswith('image/') ]" |\
         #         sort -V | head -n 1)
@@ -281,6 +296,12 @@ handle_mime() {
             pandoc -s -t markdown -- "${FILE_PATH}" && exit 5
             exit 1;;
 
+	## E-mails
+	message/rfc822)
+	    ## Parsing performed by mu: https://github.com/djcb/mu
+	    mu view -- "${FILE_PATH}" && exit 5
+	    exit 1;;
+
         ## XLS
         *ms-excel)
             ## Preview as csv conversion
@@ -289,32 +310,31 @@ handle_mime() {
             xls2csv -- "${FILE_PATH}" && exit 5
             exit 1;;
 
+        # ## Text
+        # text/* | */xml)
+        #     ## Syntax highlight
+        #     if [[ "$( stat --printf='%s' -- "${FILE_PATH}" )" -gt "${HIGHLIGHT_SIZE_MAX}" ]]; then
+        #         exit 2
+        #     fi
+        #     if [[ "$( tput colors )" -ge 256 ]]; then
+        #         local pygmentize_format='terminal256'
+        #         local highlight_format='xterm256'
+        #     else
+        #         local pygmentize_format='terminal'
+        #         local highlight_format='ansi'
+        #     fi
+        #     env HIGHLIGHT_OPTIONS="${HIGHLIGHT_OPTIONS}" highlight \
+        #         --out-format="${highlight_format}" \
+        #         --force -- "${FILE_PATH}" && exit 5
+        #     env COLORTERM=8bit bat --color=always --style="plain" \
+        #         -- "${FILE_PATH}" && exit 5
+        #     pygmentize -f "${pygmentize_format}" -O "style=${PYGMENTIZE_STYLE}"\
+        #         -- "${FILE_PATH}" && exit 5
+        #     exit 2;;
+
         ## Text
         text/* | */xml)
-            # Syntax highlight
-             if [[ "$( stat --printf='%s' -- "${FILE_PATH}" )" -gt "${HIGHLIGHT_SIZE_MAX}" ]]; then
-                 exit 2
-             fi
-             if [[ "$( tput colors )" -ge 256 ]]; then
-                 local pygmentize_format='terminal256'
-                 local highlight_format='xterm256'
-             else
-                 local pygmentize_format='terminal'
-                 local highlight_format='ansi'
-             fi
-             env HIGHLIGHT_OPTIONS="${HIGHLIGHT_OPTIONS}" highlight \
-                 --out-format="${highlight_format}" \
-                 --force -- "${FILE_PATH}" && exit 5
-             # env COLORTERM=8bit bat --color=always --style="plain" \
-             #     -- "${FILE_PATH}" && exit 5
-             # pygmentize -f "${pygmentize_format}" -O "style=${PYGMENTIZE_STYLE}"\
-             #     -- "${FILE_PATH}" && exit 5
-             exit 2;;
-
-	## Text (vimcat)
-        # text/* | */xml)
-	    # vimcat -o - "${FILE_PATH}" && exit 5
-	    # exit 2;;
+            exit 2;;
 
         ## DjVu
         image/vnd.djvu)
@@ -334,6 +354,11 @@ handle_mime() {
         video/* | audio/*)
             mediainfo "${FILE_PATH}" && exit 5
             exiftool "${FILE_PATH}" && exit 5
+            exit 1;;
+            
+        ## ELF files (executables and shared objects)
+        application/x-executable | application/x-pie-executable | application/x-sharedlib)
+            readelf -WCa "${FILE_PATH}" && exit 5
             exit 1;;
     esac
 }
