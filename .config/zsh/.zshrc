@@ -53,12 +53,21 @@ alias frc='$EDITOR ~/.config/firefox/userChrome.css'
 alias barrc='$EDITOR ~/.config/sketchybar/sketchybarrc'
 alias src='$EDITOR ~/.config/skhd/skhdrc'
 alias arc='$EDITOR ~/.config/alacritty/alacritty.yml'
-alias vim='nvim'
 alias vimdiff='nvim -d'
 alias nvprofile='rm ~/.cache/nvim/startup.log ; env AK_PROFILER=1 nvim 2>~/.cache/nvim/startup.log >/dev/null && nvim ~/.cache/nvim/startup.log'
 alias ranger='. ranger'
 alias icat="kitty +kitten icat"
 alias pubs="pubs --config $HOME/.config/pubs/pubsrc"
+
+vim() {
+  if [ "$1" != "" ]
+  then
+    $EDITOR "$1"
+  else
+    $EDITOR .
+  fi
+}
+alias nvim='vim'
 
 # feh but for macos
 function feh() {
