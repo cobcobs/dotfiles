@@ -9,8 +9,8 @@ M.config = function()
 
 	lvim.builtin.which_key.mappings["r"] = {
 		name = "Replace",
-		a = { [[:'{,'}s/<C-r><C-w>//g<Left><Left>]], "In Paragraph" },
-		p = { [[:%s/<C-r><C-w>//g<Left><Left>]], "All" },
+		a = { [[:%s/<C-r><C-w>//g<Left><Left>]], "All" },
+		p = { [[:'{,'}s/<C-r><C-w>//g<Left><Left>]], "In Paragraph" },
 	}
 
 	lvim.builtin.which_key.mappings["c"] = {
