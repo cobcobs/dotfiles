@@ -45,24 +45,24 @@ bindkey '^Z' _zsh_cli_fg
 precmd () { print -Pn "\e]0;%~\a" }
 
 # aliases
-alias bluetooth='bluetoothconnector'
-alias vrc='$EDITOR ~/.config/nvim/fnl/conf/config.fnl'
-alias zrc='$EDITOR ~/.config/zsh/.zshrc'
-alias yrc='$EDITOR ~/.config/yabai/yabairc'
-alias frc='$EDITOR ~/.config/firefox/userChrome.css'
-alias barrc='$EDITOR ~/.config/sketchybar/sketchybarrc'
-alias src='$EDITOR ~/.config/skhd/skhdrc'
-alias arc='$EDITOR ~/.config/alacritty/alacritty.yml'
-alias vimdiff='nvim -d'
-alias nvprofile='rm ~/.cache/nvim/startup.log ; env AK_PROFILER=1 nvim 2>~/.cache/nvim/startup.log >/dev/null && nvim ~/.cache/nvim/startup.log'
-alias ranger='. ranger'
+alias vrc="$EDITOR ~/.config/nvim/fnl/conf/config.fnl"
+alias zrc="$EDITOR ~/.config/zsh/.zshrc"
+alias yrc="$EDITOR ~/.config/yabai/yabairc"
+alias frc="$EDITOR ~/.config/firefox/userChrome.css"
+alias barrc="$EDITOR ~/.config/sketchybar/sketchybarrc"
+alias src="$EDITOR ~/.config/skhd/skhdrc"
+alias arc="$EDITOR ~/.config/alacritty/alacritty.yml"
+alias vimdiff="nvim -d"
+alias nvprofile="rm ~/.cache/nvim/startup.log ; env AK_PROFILER=1 nvim 2>~/.cache/nvim/startup.log >/dev/null && nvim ~/.cache/nvim/startup.log"
+alias nvsync="nvim +'au User PackerComplete qa' +PackerSync"
+alias ranger=". ranger"
 alias icat="kitty +kitten icat"
 alias pubs="pubs --config $HOME/.config/pubs/pubsrc"
 
 vim() {
   if [ "$1" != "" ]
   then
-    $EDITOR "$1"
+    $EDITOR "$@"
   else
     $EDITOR .
   fi
