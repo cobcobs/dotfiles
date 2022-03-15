@@ -46,7 +46,7 @@ precmd () { print -Pn "\e]0;%~\a" }
 
 # aliases
 alias bluetooth='bluetoothconnector'
-alias vrc='$EDITOR ~/.config/lvim/config.lua'
+alias vrc='$EDITOR ~/.config/nvim/fnl/conf/config.fnl'
 alias zrc='$EDITOR ~/.config/zsh/.zshrc'
 alias yrc='$EDITOR ~/.config/yabai/yabairc'
 alias frc='$EDITOR ~/.config/firefox/userChrome.css'
