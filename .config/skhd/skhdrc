@@ -1,3 +1,5 @@
+#!/usr/bin/env sh
+
 # open apps or other stuff
 cmd - return    : kitty --single-instance -d $HOME
 cmd + shift - f : open -n $HOME
