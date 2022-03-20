@@ -46,7 +46,7 @@ yabai -m config right_padding 10
 yabai -m config window_gap 10
 
 # bar
-ps cax | grep sketchybar >/dev/null
+pgrep sketchybar >/dev/null
 if [ $? -eq 0 ]; then
 	launchctl load /Users/cobcob/Library/LaunchAgents/homebrew.mxcl.sketchybar.plist
 	bar_height=$(sketchybar --query bar | jq '.geometry | .height')
