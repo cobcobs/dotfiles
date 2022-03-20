@@ -45,13 +45,13 @@ bindkey '^Z' _zsh_cli_fg
 precmd () { print -Pn "\e]0;%~\a" }
 
 # aliases
-alias vrc="$EDITOR ~/.config/nvim/fnl/conf/config.fnl"
-alias zrc="$EDITOR ~/.config/zsh/.zshrc"
-alias yrc="$EDITOR ~/.config/yabai/yabairc"
-alias frc="$EDITOR ~/.config/firefox/userChrome.css"
-alias barrc="$EDITOR ~/.config/sketchybar/sketchybarrc"
-alias src="$EDITOR ~/.config/skhd/skhdrc"
-alias arc="$EDITOR ~/.config/alacritty/alacritty.yml"
+alias vrc="yadm enter $EDITOR ~/.config/nvim/fnl/conf/config.fnl"
+alias zrc="yadm enter $EDITOR ~/.config/zsh/.zshrc"
+alias yrc="yadm enter $EDITOR ~/.config/yabai/yabairc"
+alias frc="yadm enter $EDITOR ~/.config/firefox/userChrome.css"
+alias barrc="yadm enter $EDITOR ~/.config/sketchybar/sketchybarrc"
+alias src="yadm enter $EDITOR ~/.config/skhd/skhdrc"
+alias arc="yadm enter $EDITOR ~/.config/alacritty/alacritty.yml"
 alias vimdiff="nvim -d"
 alias nvprofile="rm ~/.cache/nvim/startup.log ; env AK_PROFILER=1 nvim 2>~/.cache/nvim/startup.log >/dev/null && nvim ~/.cache/nvim/startup.log"
 alias nvsync="nvim +'au User PackerComplete qa' +PackerSync"
