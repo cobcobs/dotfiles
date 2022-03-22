@@ -45,7 +45,7 @@ bindkey '^Z' _zsh_cli_fg
 precmd () { print -Pn "\e]0;%~\a" }
 
 # aliases
-alias vrc="yadm enter $EDITOR ~/.config/nvim/fnl/conf/config.fnl"
+alias vrc="$EDITOR ~/.config/nvim/fnl/conf/config.fnl"
 alias zrc="yadm enter $EDITOR ~/.config/zsh/.zshrc"
 alias yrc="yadm enter $EDITOR ~/.config/yabai/yabairc"
 alias frc="yadm enter $EDITOR ~/.config/firefox/userChrome.css"
