@@ -105,6 +105,9 @@ ZVM_LINE_INIT_MODE=$ZVM_MODE_INSERT
 # Homebrew
 eval $(/opt/homebrew/bin/brew shellenv)
 
+# thefuck
+eval $(thefuck --alias)
+
 # Terminal Prompt
 source /opt/homebrew/opt/powerlevel10k/powerlevel10k.zsh-theme
 [[ ! -f ~/.config/zsh/.p10k.zsh ]] || source ~/.config/zsh/.p10k.zsh
