@@ -57,10 +57,10 @@ cmd - 0 : yabai_focus 10
 cmd + shift - return : \
 	    largest_id=$(yabai -m query --windows --window largest | jq -r '.id');\
 	    current_id=$(yabai -m query --windows --window | jq -r '.id');\
-	    if [ "$largest_id" != "$current_id" ]; then;\
+	    if [ "$largest_id" != "$current_id" ]; then\
 	      echo "$largest_id" > "${TMPDIR}/yabai_last_window_swapped_wid";\
 	      yabai -m window --swap largest;\
-	    elif test -f "${TMPDIR}/yabai_last_window_swapped_wid"; then;\
+	    elif test -f "${TMPDIR}/yabai_last_window_swapped_wid"; then\
 	      yabai -m window --swap $(cat "${TMPDIR}/yabai_last_window_swapped_wid");\
 	    fi;
 
