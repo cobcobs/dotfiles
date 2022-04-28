@@ -58,6 +58,7 @@ alias nvsync="nvim +'au User PackerComplete qa' +PackerSync"
 alias ranger=". ranger"
 alias icat="kitty +kitten icat"
 alias pubs="pubs --config $HOME/.config/pubs/pubsrc"
+alias kbd="$EDITOR ~/.config/qmk_firmware/keyboards/hhkb/jp/keymaps/cobcobs/keymap.c"
 
 vim() {
   if [ "$1" != "" ]
