@@ -105,3 +105,6 @@ passthrough < ctrl + shift - p ; default
 .blacklist [
     "Roblox"
 ]
+
+# delete previous word
+ctrl - backspace : skhd -k "alt - backspace"

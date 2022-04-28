@@ -41,34 +41,6 @@
                                 "type": "basic"
                             }
                         ]
-                    },
-                    {
-                        "description": "Add Ctrl+Backward-Delete to Option+Delete (delete current word).",
-                        "manipulators": [
-                            {
-                                "from": {
-                                    "key_code": "delete_or_backspace",
-                                    "modifiers": {
-                                        "mandatory": [
-                                            "control"
-                                        ],
-                                        "optional": [
-                                            "any"
-                                        ]
-                                    }
-                                },
-                                "to": [
-                                    {
-                                        "key_code": "delete_or_backspace",
-                                        "modifiers": [
-                                            "option"
-                                        ]
-                                    }
-                                ],
-                                "type": "basic"
-                            }
-                        ],
-                        "type": "basic"
                     }
                 ]
             },
