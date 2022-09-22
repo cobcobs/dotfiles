@@ -45,7 +45,7 @@ bindkey '^Z' _zsh_cli_fg
 precmd () { print -Pn "\e]0;%~\a" }
 
 # aliases
-alias vrc="$EDITOR ~/.config/nvim/fnl/conf/config.fnl"
+alias vrc="$EDITOR ~/.config/nvim/fnl/modules/config/default/config.fnl"
 alias zrc="yadm enter $EDITOR ~/.config/zsh/.zshrc"
 alias yrc="yadm enter $EDITOR ~/.config/yabai/yabairc"
 alias frc="yadm enter $EDITOR ~/.config/firefox/userChrome.css"
@@ -53,12 +53,18 @@ alias barrc="yadm enter $EDITOR ~/.config/sketchybar/sketchybarrc"
 alias src="yadm enter $EDITOR ~/.config/skhd/skhdrc"
 alias arc="yadm enter $EDITOR ~/.config/alacritty/alacritty.yml"
 alias vimdiff="nvim -d"
-alias nvprofile="rm ~/.cache/nvim/startup.log ; env AK_PROFILER=1 nvim 2>~/.cache/nvim/startup.log >/dev/null && nvim ~/.cache/nvim/startup.log"
-alias nvsync="nvim +'au User PackerComplete qa' +PackerSync"
-alias ranger=". ranger"
+# alias nvprofile="rm ~/.cache/nvim/startup.log ; env AK_PROFILER=1 nvim 2>~/.cache/nvim/startup.log >/dev/null && nvim ~/.cache/nvim/startup.log"
+# alias nvsync="nvim +'au User PackerComplete qa' +PackerSync"
+# alias ranger=". ranger"
 alias icat="kitty +kitten icat"
 alias pubs="pubs --config $HOME/.config/pubs/pubsrc"
 alias kbd="$EDITOR ~/.config/qmk_firmware/keyboards/hhkb/jp/keymaps/cobcobs/keymap.c"
+alias bop="python3 ~/github/python/worldBopper9000.py"
+alias librewolf="/Applications/LibreWolf.app/Contents/MacOS/librewolf"
+
+nyoom() {
+  cd $HOME/.config/nvim && bin/nyoom $1 ; cd - &> /dev/null
+}
 
 vim() {
   if [ "$1" != "" ]
@@ -108,6 +114,9 @@ eval $(/opt/homebrew/bin/brew shellenv)
 
 # thefuck
 eval $(thefuck --alias)
+
+# pyenv
+eval "$(pyenv init -)"
 
 # Terminal Prompt
 source /opt/homebrew/opt/powerlevel10k/powerlevel10k.zsh-theme

@@ -8,7 +8,7 @@ PLUGINS_DIR="$HOME/.config/sketchybar/plugins"
 sketchybar -m --bar height=40                                                                                \
                     position=top                                                                             \
                     margin=10                                                                                \
-                    corner_radius=0                                                                          \
+                    corner_radius=12                                                                          \
                     y_offset=10                                                                              \
                     padding_left=10                                                                          \
                     padding_right=10                                                                         \
@@ -16,7 +16,7 @@ sketchybar -m --bar height=40                                                   
                     hidden=off                                                                               \
                     color=0xfffaf4ed                                                                         \
                     border_color=0xff191724                                                                  \
-                    border_width=3                                                                           \
+                    border_width=4                                                                           \
                     font_smoothing=on                                                                        \
 
 # global defaults
@@ -32,7 +32,7 @@ sketchybar -m --default label.color=0xff191724                                  
 
 # icon defaults
 sketchybar -m --default icon.color=0xff191724                                                                \
-                        icon.font="Hack Nerd Font:Bold:16.0"                                                 \
+                        icon.font="CartographCF Nerd Font:Bold:14.0"                                                 \
                         icon.highlight_color=0xffd7827e                                                      \
                         icon.padding_left=0                                                                  \
                         icon.padding_right=0                                                                 \
@@ -93,68 +93,32 @@ sketchybar -m --add item skip popup.spotify                                     
 sketchybar -m --add item spacer_1 left                                                                       \
               --set spacer_1                                                                                 \
                     icon=ㅤ                                                                                    \
-                    icon.padding_right=3                                                                     \
+                    icon.padding_right=2                                                                     \
                     background.color=0xff191724                                                              \
                     background.drawing=on                                                                    \
                     background.height=40                                                                     \
+                    background.padding_right=8                                                               \
 
 # spaces
-sketchybar -m --add space browser left                                                                       \
-              --set browser                                                                                  \
-                    associated_space=1                                                                       \
-                    associated_display=1                                                                     \
-                    icon=""                                                                                 \
-                    icon.padding_left=15                                                                     \
-                    icon.padding_right=15                                                                    \
-                    icon.font="Hack Nerd Font:Bold:14.0"                                                     \
-                    script="$PLUGINS_DIR/space.sh"                                                           \
-                    click_script="yabai -m space --focus 1"                                                  \
+SPACE_ICONS=("一" "二" "三" "四" "五" "六" "七" "八" "九" "十")
 
-sketchybar -m --add space terminal left                                                                      \
-              --set terminal                                                                                 \
-                    associated_space=2                                                                       \
-                    associated_display=1                                                                     \
-                    icon=""                                                                                 \
-                    icon.padding_right=14                                                                    \
-                    icon.font="Hack Nerd Font:Bold:20.0"                                                     \
-                    script="$PLUGINS_DIR/space.sh"                                                           \
-                    click_script="yabai -m space --focus 2"                                                  \
-
-sketchybar -m --add space files left                                                                         \
-              --set files                                                                                    \
-                    associated_space=3                                                                       \
-                    associated_display=1                                                                     \
-                    icon=""                                                                                 \
-                    icon.padding_left=3                                                                      \
-                    icon.padding_right=13                                                                    \
-                    y_offset=1                                                                               \
-                    script="$PLUGINS_DIR/space.sh"                                                           \
-                    click_script="yabai -m space --focus 3"                                                  \
-
-sketchybar -m --add space music left                                                                         \
-              --set music                                                                                    \
-                    associated_space=4                                                                       \
-                    associated_display=1                                                                     \
-                    icon=""                                                                                 \
-                    icon.padding_right=15                                                                    \
-                    y_offset=1                                                                               \
-                    script="$PLUGINS_DIR/space.sh"                                                           \
-                    click_script="yabai -m space --focus 4"                                                  \
-
-sketchybar -m --add space chat left                                                                          \
-              --set chat                                                                                     \
-                    associated_space=5                                                                       \
-                    associated_display=1                                                                     \
-                    icon="ﭮ"                                                                                 \
-                    icon.padding_right=15                                                                    \
-                    script="$PLUGINS_DIR/space.sh"                                                           \
-                    click_script="yabai -m space --focus 5"                                                  \
+for i in "${!SPACE_ICONS[@]}"
+do
+  sid=$(($i+1))
+  sketchybar --add space space.$sid left                                                                     \
+             --set space.$sid associated_space=$sid                                                          \
+                              icon="${SPACE_ICONS[i]}"                                                       \
+                              icon.padding_left=8                                                            \
+                              icon.padding_right=8                                                           \
+                              script="$PLUGINS_DIR/space.sh"                                                 \
+                              click_script="yabai -m space --focus $sid"
+done
 
 # spacer
 sketchybar -m --add item spacer_2 left                                                                       \
               --set spacer_2                                                                                 \
                     icon=ㅤ                                                                                    \
-                    icon.padding_right=3                                                                     \
+                    icon.padding_right=2                                                                     \
                     background.color=0xff191724                                                              \
                     background.drawing=on                                                                    \
                     background.height=40                                                                     \
@@ -234,7 +198,7 @@ sketchybar -m --add item shutdown popup.system                                  
 sketchybar -m --add item spacer_4 right                                                                      \
               --set spacer_4                                                                                 \
                     icon=ㅤ                                                                                    \
-                    icon.padding_right=3                                                                     \
+                    icon.padding_right=2                                                                     \
                     background.color=0xff191724                                                              \
                     background.drawing=on                                                                    \
                     background.height=40                                                                     \
@@ -253,12 +217,14 @@ sketchybar -m --add item time right                                             
 
 sketchybar -m --add item date popup.time                                                                     \
               --set date                                                                                     \
+                    updates=when_shown                                                                       \
                     label.padding_left=10                                                                    \
                     label.padding_right=10                                                                   \
                     script="$PLUGINS_DIR/date.sh"                                                            \
 
 sketchybar -m --add item battery popup.time                                                                  \
               --set battery                                                                                  \
+                    updates=when_shown                                                                       \
                     icon.padding_left=10                                                                     \
                     label.padding_left=5                                                                     \
                     label.padding_right=10                                                                   \
@@ -268,13 +234,13 @@ sketchybar -m --add item battery popup.time                                     
 sketchybar -m --add item spacer_5 right                                                                      \
               --set spacer_5                                                                                 \
                     icon=ㅤ                                                                                    \
-                    icon.padding_right=3                                                                     \
+                    icon.padding_right=2                                                                     \
                     background.color=0xff191724                                                              \
                     background.drawing=on                                                                    \
                     background.height=40                                                                     \
 
 # load
-sketchybar -m --update
+sketchybar --update
 
 echo "sketchybar configuration loaded.."
 

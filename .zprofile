@@ -28,6 +28,7 @@ export GNUPGHOME=$HOME/.local/share/gnupg
 export VISUAL=nvim
 export EDITOR=$VISUAL
 export RANGER_LOAD_DEFAULT_RC=FALSE
+export BW_SESSION="6cAZEigtEVSWDWDIzcjKcbpL16Gyg1TwGdaLuAD1xNLIGF5itecXzBBafcVEYDf7eD6HWgbqkLmp8sVyRm7G0Q=="
 export PATH="$HOME/.config/scripts:$HOME/.local/bin:$PATH"
 
 source $HOME/.cargo/env

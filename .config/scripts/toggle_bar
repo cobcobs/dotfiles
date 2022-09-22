@@ -1,17 +1,20 @@
 #!/usr/bin/env bash
 
 
-current_height=$(sketchybar --query bar | jq '.geometry | .height')
-bar_height=40 # change the bar height here
+current_height=$(sketchybar --query bar | jq '.height')
+bar_height=$(grep 'sketchybar -m --bar height' ~/.config/sketchybar/sketchybarrc | sed 's/[^0-9]*//g')
 
-ps cax | grep sketchybar > /dev/null
-if [ $? -eq 0 ] ; then
-	launchctl unload /Users/cobcob/Library/LaunchAgents/homebrew.mxcl.sketchybar.plist
+
+if [ "$current_height" == "$bar_height" ] ; then
+	# launchctl unload /Users/cobcob/Library/LaunchAgents/homebrew.mxcl.sketchybar.plist
+    sketchybar -m --animate linear 10 --bar height=40 height=0
 	yabai -m config external_bar all:0:0
 else
-	launchctl load /Users/cobcob/Library/LaunchAgents/homebrew.mxcl.sketchybar.plist
-        current_padding=$(yabai -m config window_gap)
-        y_offset="$(($current_padding + $bar_height))"
-	yabai -m config external_bar all:$y_offset:0
+	# launchctl load /Users/cobcob/Library/LaunchAgents/homebrew.mxcl.sketchybar.plist
+    current_padding=$(yabai -m config window_gap)
+    y_offset="$((current_padding + bar_height))"
+    sketchybar -m --animate linear 10 --bar height=0 height=40
+    sketchybar --update
+    yabai -m config external_bar all:$y_offset:0
 fi
 
