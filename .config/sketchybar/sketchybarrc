@@ -108,6 +108,7 @@ do
   sketchybar --add space space.$sid left                                                                     \
              --set space.$sid associated_space=$sid                                                          \
                               icon="${SPACE_ICONS[i]}"                                                       \
+                              icon.width=30                                                                  \
                               icon.padding_left=8                                                            \
                               icon.padding_right=8                                                           \
                               script="$PLUGINS_DIR/space.sh"                                                 \
@@ -134,15 +135,6 @@ sketchybar -m --add item title center                                           
                     front_app_switched                                                                       \
                     space_change                                                                             \
                     title_change                                                                             \
-
-# # spacer
-# sketchybar -m --add item spacer_3 right                                                                      \
-#               --set spacer_3                                                                                 \
-#                     icon=ㅤ                                                                                    \
-#                     icon.padding_right=3                                                                     \
-#                     background.color=0xff191724                                                              \
-#                     background.drawing=on                                                                    \
-#                     background.height=40                                                                     \
 
 # system commands
 # https://apple.stackexchange.com/questions/103571/using-the-terminal-command-to-shutdown-restart-and-sleep-my-mac/103633#103633
