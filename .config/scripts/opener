@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
 
-application="$(app | choose -f "SF Mono" -c "deaf9d" -b "1c1b1d")"
+application="$(app | choose -f "SF Mono" -c "d7827e" -b "faf4ed")"
 app "$application"
 
