@@ -10,17 +10,17 @@ alt + shift - 0       : scr -i
 alt + cmd + shift - 0 : scr
 
 # cycle forwards
-alt - tab : yabai -m query --spaces \
-  | jq -re '.[] | select(."is-visible" == true).index' \
+alt - tab : yabai -m query --spaces --space \
+  | jq -re ".index" \
   | xargs -I{} yabai -m query --windows --space {} \
-  | jq -sre 'add | sort_by(.display, .frame.x, .frame.y, .id) | reverse | nth(index(map(select(."has-focus" == true))) - 1).id' \
+  | jq -sre 'add | map(select(."is-minimized"==false)) | . as $array | length as $array_length | index(map(select(."has-focus"==true))) as $has_index | if $has_index > 0 then nth($has_index - 1).id else nth($array_length - 1).id end'  \
   | xargs -I{} yabai -m window --focus {}
 
 # cycle backwards
-alt + shift - tab : yabai -m query --spaces \
-  | jq -re '.[] | select(."is-visible" == true).index' \
+alt + shift - tab : yabai -m query --spaces --space \
+  | jq -re ".index" \
   | xargs -I{} yabai -m query --windows --space {} \
-  | jq -sre 'add | sort_by(.display, .frame.x, .frame.y, .id) | nth(index(map(select(."has-focus" == true))) - 1).id' \
+  | jq -sre 'add | map(select(."is-minimized"==false)) | . as $array | length as $array_length | index(map(select(."has-focus"==true))) as $has_index | if $array_length - 1 > $has_index then nth($has_index + 1).id else nth(0).id end' \
   | xargs -I{} yabai -m window --focus {}
 
 # restart, quit, or start yabai
@@ -31,10 +31,12 @@ cmd + shift - b      : toggle_bar
 cmd + shift - d      : yabai_border
 cmd - 0x29           : yabai -m space --padding rel:-5:-5:-5:-5 ; yabai -m space --gap rel:-5
 cmd - 0x27           : yabai -m space --padding rel:5:5:5:5 ; yabai -m space --gap rel:5
-cmd + shift - p      : yabai -m space --toggle padding ; yabai -m space --toggle gap
+cmd + shift - p      : yabai -m space --toggle padding yabai --toggle gap
 ctrl + shift - space : yabai -m window --toggle float && yabai -m window --grid 4:4:1:1:2:2 && /tmp/yabai-restore/$(yabai -m query --windows --window | jq -re '.id').restore 2>/dev/null || true
 cmd + shift - space  : yabai -m space --layout $(yabai -m query --spaces --space | jq -r 'if .type == "bsp" then "float" elif .type == "float" then "stack" else "bsp" end')
 ctrl + shift - i     : yabai -m window --toggle split
+ctrl + shift - s     : yabai -m window --toggle sticky
+ctrl + shift - t     : yabai -m window --toggle topmost
 
 # focus node
 cmd - h : yabai -m window --focus west
@@ -64,10 +66,6 @@ cmd + shift - return : \
 	    elif test -f "${TMPDIR}/yabai_last_window_swapped_wid"; then\
 	      yabai -m window --swap $(cat "${TMPDIR}/yabai_last_window_swapped_wid");\
 	    fi;
-
-# zoom fullscreen
-# ctrl - d : yabai -m window --toggle zoom-parent
-# ctrl - f : toggle_bar ; yabai -m window --toggle zoom-fullscreen
 
 # warp node
 cmd + shift - h : yabai -m window --warp west
