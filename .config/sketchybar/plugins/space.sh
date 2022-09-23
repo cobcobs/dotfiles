@@ -2,7 +2,7 @@
 
 
 WIN=$(yabai -m query --spaces --space "$SID" | jq '.windows[0]')
-WIDTH=$(sketchybar --query space.1 | jq '.icon.width')
+WIDTH=$(grep 'icon.width' "$HOME"/.config/sketchybar/sketchybarrc | sed 's/[^0-9]*//g' | head -n 1)
 
 if [ "$SELECTED" = "true" ]; then
   sketchybar --set "$NAME" icon.drawing=true
