@@ -56,13 +56,13 @@ yabai -m config window_gap 10
 
 # bar
 if pgrep sketchybar; then
-	launchctl load $HOME/Library/LaunchAgents/homebrew.mxcl.sketchybar.plist
+	launchctl load "$HOME"/Library/LaunchAgents/homebrew.mxcl.sketchybar.plist
 	bar_offset=$(sketchybar --query bar | jq '.y_offset')
     bar_height=$(sketchybar --query bar | jq '.height')
 	y_offset=$((bar_offset + bar_height))
 	yabai -m config external_bar all:$y_offset:0
 else
-	launchctl unload $HOME/Library/LaunchAgents/homebrew.mxcl.sketchybar.plist
+	launchctl unload "$HOME"/Library/LaunchAgents/homebrew.mxcl.sketchybar.plist
 	yabai -m config external_bar all:0:0
 fi
 
