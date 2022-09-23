@@ -7,7 +7,7 @@ bar_height=$(grep 'sketchybar -m --bar height' ~/.config/sketchybar/sketchybarrc
 
 if [ "$current_height" == "$bar_height" ] ; then
 	# launchctl unload /Users/cobcob/Library/LaunchAgents/homebrew.mxcl.sketchybar.plist
-    sketchybar -m --animate linear 10 --bar height=40 height=0
+    sketchybar -m --animate linear 5 --bar height=40 height=0
 	yabai -m config external_bar all:0:0
 else
 	# launchctl load /Users/cobcob/Library/LaunchAgents/homebrew.mxcl.sketchybar.plist
