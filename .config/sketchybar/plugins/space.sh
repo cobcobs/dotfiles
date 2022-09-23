@@ -12,6 +12,9 @@ elif [ "$WIN" = "null" ]; then
   sketchybar -m --animate tanh 10 --set "$NAME" icon.width=0
   sleep 0.2
   sketchybar --set "$NAME" icon.drawing=false
+elif [ "$WIN" != "null" ]; then
+  sketchybar --set "$NAME" icon.drawing=true icon.highlight=off
+  sketchybar -m --animate tanh 10 --set "$NAME" icon.width="$WIDTH"
 else
   sketchybar -m --animate tanh 10 --set "$NAME" icon.highlight=on icon.highlight=off
 fi
