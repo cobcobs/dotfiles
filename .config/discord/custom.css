@@ -4427,7 +4427,3 @@ html.platform-osx .titleBar-1it3bQ {
 /* *:hover::-webkit-scrollbar { display: inline-block; } */
 *:not(:hover)::-webkit-scrollbar { visibility: hidden; }
 
-/* Windows style scrollbar */
-*::-webkit-scrollbar-thumb {
-    border-radius: 0px !important;
-}
