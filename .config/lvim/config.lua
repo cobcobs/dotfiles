@@ -1,6 +1,0 @@
-require("user.settings").config()
-require("user.builtin").config()
-require("user.plugins").config()
-require("user.autocommands").config()
-require("user.mappings").config()
-require("user.theme").telescope_theme()
