@@ -45,7 +45,7 @@ sketchybar -m --default background.border_color=0xff191724                      
 
 # popup defaults
 sketchybar -m --default popup.background.corner_radius=0                                                     \
-                        popup.background.border_width=3                                                      \
+                        popup.background.border_width=4                                                      \
                         popup.background.border_color=0xff191724                                             \
                         popup.background.color=0xfffaf4ed                                                    \
                         popup.y_offset=5                                                                     \
