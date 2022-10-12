@@ -29,11 +29,6 @@ yabai -m config window_border_radius 12
 yabai -m config active_window_border_color 0xff191724
 yabai -m config normal_window_border_color 0xfffaf4ed
 
-# layouts
-yabai -m config --space 1 layout stack
-yabai -m config --space 4 layout stack
-yabai -m config --space 5 layout stack
-
 # rules
 yabai -m rule --add app="^System Preferences$" manage=off
 yabai -m rule --add app="^Roblox$" manage=off border=off
@@ -44,7 +39,7 @@ yabai -m rule --add app="^Mail$" space=4
 yabai -m rule --add app="^ProtonVPN$" space=4
 yabai -m rule --add app="^Discord" space=5
 yabai -m rule --add app="^eqMac$" manage=off
-yabai -m rule --add app="^Windscribe$" manage=off border=off
+yabai -m rule --add app="^Remedy Pro$" manage=off border=off
 
 # general space settings
 yabai -m config layout bsp
