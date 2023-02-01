@@ -34,7 +34,7 @@ yabai -m rule --add app="^System Preferences$" manage=off
 yabai -m rule --add app="^Roblox$" manage=off border=off
 yabai -m rule --add app="^csgo_osx64$" border=off
 yabai -m rule --add app="^Firefox$" space=1
-yabai -m rule --add app="^Spotify$" space=4
+yabai -m rule --add app="^Spotify$" space=5
 yabai -m rule --add app="^Mail$" space=4
 yabai -m rule --add app="^ProtonVPN$" space=4
 yabai -m rule --add app="^Discord" space=5
@@ -68,7 +68,7 @@ yabai -m signal --add event=window_destroyed active=yes action="yabai -m query -
 yabai -m signal --add event=application_terminated action="yabai -m query --windows --window &> /dev/null || yabai -m window --focus recent || yabai -m window --focus first"
 
 # autoupdate
-YABAI_CERT=yabai-cert sh -c "$(curl -fsSL "https://git.io/update-yabai")" &
+# YABAI_CERT=yabai-cert sh -c "$(curl -fsSL "https://git.io/update-yabai")" &
 
 # hash
 yabai_hash &

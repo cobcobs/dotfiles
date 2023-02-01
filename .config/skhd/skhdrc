@@ -3,7 +3,7 @@
 # open apps or other stuff
 cmd - return    : /Applications/kitty.app/Contents/MacOS/kitty --single-instance $HOME
 cmd + shift - f : open -R $HOME
-cmd + shift - w : /Applications/LibreWolf.app/Contents/MacOS/librewolf-bin
+# cmd + shift - w : /Applications/LibreWolf.app/Contents/MacOS/librewolf-bin
 
 # screenshots
 alt + shift - 0       : scr -i
@@ -55,6 +55,9 @@ cmd - 7 : yabai_focus 7
 cmd - 8 : yabai_focus 8
 cmd - 9 : yabai_focus 9
 cmd - 0 : yabai_focus 10
+
+# delete current space
+cmd + shift - w : yabai -m space --destroy
 
 # swap current and biggest node
 cmd + shift - return : \

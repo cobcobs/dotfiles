@@ -52,29 +52,16 @@ alias frc="yadm enter $EDITOR ~/.config/firefox/userChrome.css"
 alias barrc="yadm enter $EDITOR ~/.config/sketchybar/sketchybarrc"
 alias src="yadm enter $EDITOR ~/.config/skhd/skhdrc"
 alias arc="yadm enter $EDITOR ~/.config/alacritty/alacritty.yml"
+alias vim="nvim"
 alias vimdiff="nvim -d"
-# alias nvprofile="rm ~/.cache/nvim/startup.log ; env AK_PROFILER=1 nvim 2>~/.cache/nvim/startup.log >/dev/null && nvim ~/.cache/nvim/startup.log"
-# alias nvsync="nvim +'au User PackerComplete qa' +PackerSync"
+alias nvprofile="rm ~/.cache/nvim/startup.log ; env AK_PROFILER=1 nvim 2>~/.cache/nvim/startup.log >/dev/null && nvim ~/.cache/nvim/startup.log"
+alias nvsync="nvim +'au User PackerComplete qa' +PackerSync"
 # alias ranger=". ranger"
 alias icat="kitty +kitten icat"
 alias pubs="pubs --config $HOME/.config/pubs/pubsrc"
 alias kbd="$EDITOR ~/.config/qmk_firmware/keyboards/hhkb/jp/keymaps/cobcobs/keymap.c"
 alias bop="python3 ~/github/python/worldBopper9000.py"
 alias librewolf="/Applications/LibreWolf.app/Contents/MacOS/librewolf"
-
-nyoom() {
-  cd $HOME/.config/nvim && bin/nyoom $1 ; cd - &> /dev/null
-}
-
-vim() {
-  if [ "$1" != "" ]
-  then
-    $EDITOR "$@"
-  else
-    $EDITOR .
-  fi
-}
-alias nvim='vim'
 
 # feh but for macos
 function feh() {

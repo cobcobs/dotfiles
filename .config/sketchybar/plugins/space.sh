@@ -7,7 +7,7 @@ WIDTH=$(grep 'icon.width' "$HOME"/.config/sketchybar/sketchybarrc | sed 's/[^0-9
 if [ "$SELECTED" = "true" ]; then
   sketchybar --set "$NAME" icon.drawing=true
   sketchybar -m --animate tanh 10 --set "$NAME" icon.width="$WIDTH"
-  sketchybar -m --animate tanh 10 --set "$NAME" icon.highlight=off icon.highlight=on
+  sketchybar -m --animate tanh 10 --set "$NAME" icon.highlight=on
 elif [ "$WIN" = "null" ]; then
   sketchybar -m --animate tanh 10 --set "$NAME" icon.width=0
   sleep 0.2

@@ -12,6 +12,7 @@ else
     bar_offset="$((current_padding + bar_height))"
     yabai -m config external_bar all:$bar_offset:0
     sketchybar -m --animate tanh 10 --bar y_offset="$current_padding"
-    sketchybar --update
 fi
+
+sketchybar --update
 
