@@ -6,7 +6,7 @@ cmd + shift - f : open -R $HOME
 # cmd + shift - w : /Applications/LibreWolf.app/Contents/MacOS/librewolf-bin
 
 # screenshots
-alt + shift - 0       : scr -i
+alt + cmd - 0         : scr -i
 alt + cmd + shift - 0 : scr
 
 # cycle forwards
