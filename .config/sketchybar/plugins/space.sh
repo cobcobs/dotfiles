@@ -1,20 +1,39 @@
-#!/usr/bin/env bash
+#!/bin/sh
 
+update() {
+	WIDTH="dynamic"
+	if [ "$SELECTED" = "true" ]; then
+		WIDTH="0"
+	fi
 
-WIN=$(yabai -m query --spaces --space "$SID" | jq '.windows[0]')
-WIDTH=$(grep 'icon.width' "$HOME"/.config/sketchybar/sketchybarrc | sed 's/[^0-9]*//g' | head -n 1)
+	FULLSCREEN=$(yabai -m query --windows --window | jq '.["is-native-fullscreen"]')
+	bar_height=$(sketchybar --query bar | jq '.height')
+	current_offset=$(sketchybar --query bar | jq '.y_offset')
 
-if [ "$SELECTED" = "true" ]; then
-  sketchybar --set "$NAME" icon.drawing=true
-  sketchybar -m --animate tanh 10 --set "$NAME" icon.width="$WIDTH"
-  sketchybar -m --animate tanh 10 --set "$NAME" icon.highlight=on
-elif [ "$WIN" = "null" ]; then
-  sketchybar -m --animate tanh 10 --set "$NAME" icon.width=0
-  sleep 0.2
-  sketchybar --set "$NAME" icon.drawing=false
-elif [ "$WIN" != "null" ]; then
-  sketchybar --set "$NAME" icon.drawing=true icon.highlight=off
-  sketchybar -m --animate tanh 10 --set "$NAME" icon.width="$WIDTH"
-else
-  sketchybar -m --animate tanh 10 --set "$NAME" icon.highlight=on icon.highlight=off
-fi
+	if [ "$FULLSCREEN" = "true" ]; then
+		launchctl load -F /System/Library/LaunchAgents/com.apple.OSDUIHelper.plist >/dev/null 2>&1 &
+	elif [ "$((-current_offset))" != "$bar_height" ]; then
+		launchctl unload -F /System/Library/LaunchAgents/com.apple.OSDUIHelper.plist >/dev/null 2>&1 &
+	fi
+
+	sketchybar --animate tanh 20 --set $NAME icon.highlight=$SELECTED label.width=$WIDTH
+
+}
+
+mouse_clicked() {
+	if [ "$BUTTON" = "right" ]; then
+		yabai -m space --destroy $SID
+		sketchybar --trigger space_change
+	else
+		yabai -m space --focus $SID 2>/dev/null
+	fi
+}
+
+case "$SENDER" in
+"mouse.clicked")
+	mouse_clicked
+	;;
+*)
+	update
+	;;
+esac

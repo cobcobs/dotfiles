@@ -31,12 +31,22 @@ cmd + shift - b      : toggle_bar
 cmd + shift - d      : yabai_border
 cmd - 0x29           : yabai -m space --padding rel:-5:-5:-5:-5 ; yabai -m space --gap rel:-5
 cmd - 0x27           : yabai -m space --padding rel:5:5:5:5 ; yabai -m space --gap rel:5
-cmd + shift - p      : yabai -m space --toggle padding yabai --toggle gap
-ctrl + shift - space : yabai -m window --toggle float && yabai -m window --grid 4:4:1:1:2:2 && /tmp/yabai-restore/$(yabai -m query --windows --window | jq -re '.id').restore 2>/dev/null || true
+cmd + shift - p      : ~/.config/scripts/yabai_gaps
+ctrl + shift - space : yabai -m window --toggle float && sketchybar --trigger window_focus && yabai -m window --grid 4:4:1:1:2:2 && /tmp/yabai-restore/$(yabai -m query --windows --window | jq -re '.id').restore 2>/dev/null || true
 cmd + shift - space  : yabai -m space --layout $(yabai -m query --spaces --space | jq -r 'if .type == "bsp" then "float" elif .type == "float" then "stack" else "bsp" end')
 ctrl + shift - i     : yabai -m window --toggle split
 ctrl + shift - s     : yabai -m window --toggle sticky
 ctrl + shift - t     : yabai -m window --toggle topmost
+
+# toggle margin of sketchybar
+cmd + ctrl - b : CURRENT="$(sketchybar --query bar | jq -r '.y_offset')"; \
+                  if [ "$CURRENT" -eq "0" ]; then \
+                    yabai -m config external_bar all:49:0; \
+                    sketchybar --animate sin 15 --bar margin=10 y_offset=10 corner_radius=9; \
+                  else \
+                    yabai -m config external_bar all:39:0; \
+                    sketchybar --animate sin 15 --bar margin=0 y_offset=0 corner_radius=0; \
+                  fi \
 
 # focus node
 cmd - h : yabai -m window --focus west
@@ -76,17 +86,31 @@ cmd + shift - j : yabai -m window --warp south
 cmd + shift - k : yabai -m window --warp north
 cmd + shift - l : yabai -m window --warp east
 
+# # warp node to space
+# cmd + shift - 1 : yabai -m window --space 1 || { yabai -m space --create && yabai -m window --space last } && sketchybar --update
+# cmd + shift - 2 : yabai -m window --space 2 || { yabai -m space --create && yabai -m window --space last } && sketchybar --update
+# cmd + shift - 3 : yabai -m window --space 3 || { yabai -m space --create && yabai -m window --space last } && sketchybar --update
+# cmd + shift - 4 : yabai -m window --space 4 || { yabai -m space --create && yabai -m window --space last } && sketchybar --update
+# cmd + shift - 5 : yabai -m window --space 5 || { yabai -m space --create && yabai -m window --space last } && sketchybar --update
+# cmd + shift - 6 : yabai -m window --space 6 || { yabai -m space --create && yabai -m window --space last } && sketchybar --update
+# cmd + shift - 7 : yabai -m window --space 7 || { yabai -m space --create && yabai -m window --space last } && sketchybar --update
+# cmd + shift - 8 : yabai -m window --space 8 || { yabai -m space --create && yabai -m window --space last } && sketchybar --update
+# cmd + shift - 9 : yabai -m window --space 9 || { yabai -m space --create && yabai -m window --space last } && sketchybar --update
+# cmd + shift - 0 : yabai -m window --space 10 || { yabai -m space --create && yabai -m window --space last } && sketchybar --update
+
 # warp node to space
-cmd + shift - 1 : yabai -m window --space 1 || { yabai -m space --create && yabai -m window --space last } && sketchybar --update
-cmd + shift - 2 : yabai -m window --space 2 || { yabai -m space --create && yabai -m window --space last } && sketchybar --update
-cmd + shift - 3 : yabai -m window --space 3 || { yabai -m space --create && yabai -m window --space last } && sketchybar --update
-cmd + shift - 4 : yabai -m window --space 4 || { yabai -m space --create && yabai -m window --space last } && sketchybar --update
-cmd + shift - 5 : yabai -m window --space 5 || { yabai -m space --create && yabai -m window --space last } && sketchybar --update
-cmd + shift - 6 : yabai -m window --space 6 || { yabai -m space --create && yabai -m window --space last } && sketchybar --update
-cmd + shift - 7 : yabai -m window --space 7 || { yabai -m space --create && yabai -m window --space last } && sketchybar --update
-cmd + shift - 8 : yabai -m window --space 8 || { yabai -m space --create && yabai -m window --space last } && sketchybar --update
-cmd + shift - 9 : yabai -m window --space 9 || { yabai -m space --create && yabai -m window --space last } && sketchybar --update
-cmd + shift - 0 : yabai -m window --space 10 || { yabai -m space --create && yabai -m window --space last } && sketchybar --update
+cmd + shift - 1 : yabai -m window --space 1 || { yabai -m space --create && yabai -m window --space last } && sketchybar --trigger windows_on_spaces
+cmd + shift - 2 : yabai -m window --space 2 || { yabai -m space --create && yabai -m window --space last } && sketchybar --trigger windows_on_spaces
+cmd + shift - 3 : yabai -m window --space 3 || { yabai -m space --create && yabai -m window --space last } && sketchybar --trigger windows_on_spaces
+cmd + shift - 4 : yabai -m window --space 4 || { yabai -m space --create && yabai -m window --space last } && sketchybar --trigger windows_on_spaces
+cmd + shift - 5 : yabai -m window --space 5 || { yabai -m space --create && yabai -m window --space last } && sketchybar --trigger windows_on_spaces
+cmd + shift - 6 : yabai -m window --space 6 || { yabai -m space --create && yabai -m window --space last } && sketchybar --trigger windows_on_spaces
+cmd + shift - 7 : yabai -m window --space 7 || { yabai -m space --create && yabai -m window --space last } && sketchybar --trigger windows_on_spaces
+cmd + shift - 8 : yabai -m window --space 8 || { yabai -m space --create && yabai -m window --space last } && sketchybar --trigger windows_on_spaces
+cmd + shift - 9 : yabai -m window --space 9 || { yabai -m space --create && yabai -m window --space last } && sketchybar --trigger windows_on_spaces
+cmd + shift - 0 : yabai -m window --space 10 || { yabai -m space --create && yabai -m window --space last } && sketchybar --trigger windows_on_spaces
+
+
 
 # resize node
 ctrl + shift - a : yabai_resize west
@@ -104,6 +128,3 @@ passthrough < ctrl + shift - p ; default
 .blacklist [
     "Roblox"
 ]
-
-# delete previous word
-ctrl - backspace : skhd -k "alt - backspace"

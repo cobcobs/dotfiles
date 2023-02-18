@@ -1,238 +1,72 @@
-#!/usr/bin/env bash
+#!/bin/sh
 
+source "$HOME/.config/sketchybar/colors.sh" # Loads all defined colors
+source "$HOME/.config/sketchybar/icons.sh"  # Loads all defined icons
 
-# plugin directory variable
-PLUGINS_DIR="$HOME/.config/sketchybar/plugins"
+ITEM_DIR="$HOME/.config/sketchybar/items"     # Directory where the items are configured
+PLUGIN_DIR="$HOME/.config/sketchybar/plugins" # Directory where all the plugin scripts are stored
 
-# set bar
-sketchybar -m --bar height=40                                                                                \
-                    position=top                                                                             \
-                    margin=10                                                                                \
-                    corner_radius=12                                                                          \
-                    y_offset=10                                                                              \
-                    padding_left=10                                                                          \
-                    padding_right=10                                                                         \
-                    topmost=off                                                                              \
-                    hidden=off                                                                               \
-                    color=0xfffaf4ed                                                                         \
-                    border_color=0xff191724                                                                  \
-                    border_width=4                                                                           \
-                    font_smoothing=on                                                                        \
+FONT="Cartograph CF" # Needs to have Regular, Bold, Semibold, Heavy and Black variants
+PADDINGS=3           # All paddings use this value (icon, label, background)
 
-# global defaults
-sketchybar -m --default drawing=on                                                                           \
-                        y_offset=0                                                                           \
+# Setting up and starting the helper process
+HELPER=git.felix.helper
+killall helper
+cd $HOME/.config/sketchybar/helper && make
+$HOME/.config/sketchybar/helper/helper $HELPER >/dev/null 2>&1 &
 
-# label defaults
-sketchybar -m --default label.color=0xff191724                                                               \
-                        label.font="SF Pro Text:Bold:14.0"                                                   \
-                        label.highlight_color=0xffd7827e                                                     \
-                        label.padding_left=0                                                                 \
-                        label.padding_right=0                                                                \
+# Unload the macOS on screen indicator overlay for volume change
+# launchctl unload -F /System/Library/LaunchAgents/com.apple.OSDUIHelper.plist >/dev/null 2>&1 &
 
-# icon defaults
-sketchybar -m --default icon.color=0xff191724                                                                \
-                        icon.font="CartographCF Nerd Font:Bold:14.0"                                                 \
-                        icon.highlight_color=0xffd7827e                                                      \
-                        icon.padding_left=0                                                                  \
-                        icon.padding_right=0                                                                 \
+# Setting up the general bar appearance and default values
+sketchybar --bar height=39 \
+	color=$BAR_COLOR \
+	shadow=off \
+	position=top \
+	sticky=on \
+	padding_right=10 \
+	padding_left=10 \
+	corner_radius=9 \
+	y_offset=10 \
+	margin=10 \
+	blur_radius=20 \
+	notch_width=0 \
+	\
+	--default updates=when_shown \
+	icon.font="$FONT:Bold:14.0" \
+	icon.color=$ICON_COLOR \
+	icon.padding_left=$PADDINGS \
+	icon.padding_right=$PADDINGS \
+	label.font="$FONT:Bold:14.0" \
+	label.color=$LABEL_COLOR \
+	label.padding_left=$PADDINGS \
+	label.padding_right=$PADDINGS \
+	padding_right=$PADDINGS \
+	padding_left=$PADDINGS \
+	background.height=30 \
+	background.corner_radius=9 \
+	popup.background.border_width=2 \
+	popup.background.corner_radius=9 \
+	popup.background.border_color=$POPUP_BORDER_COLOR \
+	popup.background.color=$POPUP_BACKGROUND_COLOR \
+	popup.background.shadow.drawing=off
 
-# background defaults
-sketchybar -m --default background.border_color=0xff191724                                                   \
-                        background.border_width=3                                                            \
-                        background.corner_radius=0                                                           \
-                        background.height=30                                                                 \
+# Left
+source "$ITEM_DIR/apple.sh"
+source "$ITEM_DIR/spaces.sh"
+source "$ITEM_DIR/front_app.sh"
 
-# popup defaults
-sketchybar -m --default popup.background.corner_radius=0                                                     \
-                        popup.background.border_width=4                                                      \
-                        popup.background.border_color=0xff191724                                             \
-                        popup.background.color=0xfffaf4ed                                                    \
-                        popup.y_offset=5                                                                     \
+# Center
+source "$ITEM_DIR/spotify.sh"
 
-# events
-sketchybar -m --add event spotify_change "com.spotify.client.PlaybackStateChanged"
-sketchybar -m --add event window_focus
-sketchybar -m --add event title_change
+# Right
+source "$ITEM_DIR/calendar.sh"
+source "$ITEM_DIR/brew.sh"
+source "$ITEM_DIR/github.sh"
+source "$ITEM_DIR/battery.sh"
+source "$ITEM_DIR/volume.sh"
 
-# spotify
-sketchybar -m --add item spotify left                                                                        \
-              --set spotify                                                                                  \
-                    icon=                                                                                   \
-                    icon.padding_left=10                                                                     \
-                    icon.padding_right=15                                                                    \
-                    popup.horizontal=on                                                                      \
-                    click_script="sketchybar -m --set \$NAME popup.drawing=toggle"                           \
-
-sketchybar -m --add item rewind popup.spotify                                                                \
-              --set rewind                                                                                   \
-                    icon=􀊎                                                                                   \
-                    icon.padding_left=10                                                                     \
-                    icon.padding_right=15                                                                    \
-                    click_script="osascript -e 'tell application \"Spotify\" to play previous track' ;
-                    sketchybar -m --set spotify popup.drawing=off"                                           \
-
-sketchybar -m --add item playpause popup.spotify                                                             \
-              --set playpause                                                                                \
-                    icon.padding_right=10                                                                    \
-                    script="$PLUGINS_DIR/spotify.sh"                                                         \
-                    click_script="osascript -e 'tell application \"Spotify\" to playpause' ;
-                                  sketchybar -m --set spotify popup.drawing=off ;
-                                  $PLUGINS_DIR/spotify.sh"                                                   \
-              --subscribe playpause                                                                          \
-                    spotify_change                                                                           \
-
-sketchybar -m --add item skip popup.spotify                                                                  \
-              --set skip                                                                                     \
-                    icon=􀊐                                                                                   \
-                    icon.padding_right=14                                                                    \
-                    click_script="osascript -e 'tell application \"Spotify\" to play next track' ;
-                                  sketchybar -m --set spotify popup.drawing=off"                             \
-
-# spacer
-sketchybar -m --add item spacer_1 left                                                                       \
-              --set spacer_1                                                                                 \
-                    icon=ㅤ                                                                                    \
-                    icon.padding_right=2                                                                     \
-                    background.color=0xff191724                                                              \
-                    background.drawing=on                                                                    \
-                    background.height=40                                                                     \
-                    background.padding_right=8                                                               \
-
-# spaces
-SPACE_ICONS=("一" "二" "三" "四" "五" "六" "七" "八" "九" "十")
-
-for i in "${!SPACE_ICONS[@]}"
-do
-  sid=$(($i+1))
-  sketchybar --add space space.$sid left                                                                     \
-             --set space.$sid associated_space=$sid                                                          \
-                              icon="${SPACE_ICONS[i]}"                                                       \
-                              icon.width=30                                                                  \
-                              icon.padding_left=8                                                            \
-                              icon.padding_right=8                                                           \
-                              script="$PLUGINS_DIR/space.sh"                                                 \
-                              click_script="yabai -m space --focus $sid"
-done
-
-# spacer
-sketchybar -m --add item spacer_2 left                                                                       \
-              --set spacer_2                                                                                 \
-                    icon=ㅤ                                                                                    \
-                    icon.padding_right=2                                                                     \
-                    background.color=0xff191724                                                              \
-                    background.drawing=on                                                                    \
-                    background.height=40                                                                     \
-
-# title
-sketchybar -m --add item title center                                                                        \
-              --set title                                                                                    \
-                    label.padding_left=18                                                                    \
-                    script="$PLUGINS_DIR/window_title.sh"                                                    \
-                    click_script="skhd -k 'cmd - space'"                                                     \
-               --subscribe title                                                                             \
-                    window_focus                                                                             \
-                    front_app_switched                                                                       \
-                    space_change                                                                             \
-                    title_change                                                                             \
-
-# system commands
-# https://apple.stackexchange.com/questions/103571/using-the-terminal-command-to-shutdown-restart-and-sleep-my-mac/103633#103633
-sketchybar -m --add item system right                                                                        \
-              --set system                                                                                   \
-                    icon=                                                                                   \
-                    icon.padding_left=15                                                                     \
-                    icon.padding_right=9                                                                     \
-                    y_offset=1                                                                               \
-                    popup.align=right                                                                        \
-                    click_script="sketchybar -m --set system popup.drawing=toggle"                           \
-
-sketchybar -m --add item preferences popup.system                                                            \
-              --set preferences                                                                              \
-                    icon=                                                                                   \
-                    icon.padding_left=10                                                                     \
-                    icon.padding_right=5                                                                     \
-                    label="Preferences"                                                                      \
-                    label.padding_right=10                                                                   \
-                    click_script="open -a 'System Preferences' ;
-                                  sketchybar -m --set system popup.drawing=off"                              \
-
-sketchybar -m --add item lock popup.system                                                                   \
-              --set lock                                                                                     \
-                    icon=                                                                                   \
-                    icon.padding_left=10                                                                     \
-                    icon.padding_right=5                                                                     \
-                    label="Lock Screen"                                                                      \
-                    label.padding_right=10                                                                   \
-                    click_script="lock ; sketchybar -m --set system popup.drawing=off"                       \
-
-sketchybar -m --add item restart popup.system                                                                \
-              --set restart                                                                                  \
-                    icon=ﰇ                                                                                   \
-                    icon.padding_left=10                                                                     \
-                    icon.padding_right=5                                                                     \
-                    label="Restart"                                                                          \
-                    label.padding_right=10                                                                   \
-                    click_script="osascript -e 'tell app \"loginwindow\" to «event aevtrrst»' ;
-                                  sketchybar -m --set system popup.drawing=off"                              \
-
-sketchybar -m --add item shutdown popup.system                                                               \
-              --set shutdown                                                                                 \
-                    icon=                                                                                   \
-                    icon.padding_left=10                                                                     \
-                    icon.padding_right=5                                                                     \
-                    label="Shutdown"                                                                         \
-                    label.padding_right=10                                                                   \
-                    click_script="osascript -e 'tell app \"loginwindow\" to «event aevtrsdn»' ;
-                                  sketchybar -m --set system popup.drawing=off"                              \
-
-# spacer
-sketchybar -m --add item spacer_4 right                                                                      \
-              --set spacer_4                                                                                 \
-                    icon=ㅤ                                                                                    \
-                    icon.padding_right=2                                                                     \
-                    background.color=0xff191724                                                              \
-                    background.drawing=on                                                                    \
-                    background.height=40                                                                     \
-
-# time, date, and battery
-sketchybar -m --add item time right                                                                          \
-              --set time                                                                                     \
-                    update_freq=5                                                                            \
-                    label.padding_left=20                                                                    \
-                    label.padding_right=20                                                                   \
-                    popup.align=center                                                                       \
-                    script="$PLUGINS_DIR/clock.sh"                                                           \
-                    click_script="sketchybar -m --set time popup.drawing=toggle ;
-                                  $PLUGINS_DIR/date.sh ;
-                                  $PLUGINS_DIR/power.sh"                                                     \
-
-sketchybar -m --add item date popup.time                                                                     \
-              --set date                                                                                     \
-                    updates=when_shown                                                                       \
-                    label.padding_left=10                                                                    \
-                    label.padding_right=10                                                                   \
-                    script="$PLUGINS_DIR/date.sh"                                                            \
-
-sketchybar -m --add item battery popup.time                                                                  \
-              --set battery                                                                                  \
-                    updates=when_shown                                                                       \
-                    icon.padding_left=10                                                                     \
-                    label.padding_left=5                                                                     \
-                    label.padding_right=10                                                                   \
-                    script="$PLUGINS_DIR/power.sh"                                                           \
-
-# spacer
-sketchybar -m --add item spacer_5 right                                                                      \
-              --set spacer_5                                                                                 \
-                    icon=ㅤ                                                                                    \
-                    icon.padding_right=2                                                                     \
-                    background.color=0xff191724                                                              \
-                    background.drawing=on                                                                    \
-                    background.height=40                                                                     \
-
-# load
+# Forcing all item scripts to run (never do this outside of sketchybarrc)
 sketchybar --update
 
-echo "sketchybar configuration loaded.."
-
+echo "sketchybar configuation loaded.."

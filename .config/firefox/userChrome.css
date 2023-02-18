@@ -1,4 +1,10 @@
-/* this fix the urlbar not getting correct params when using userchrome.css */
+/*#If your laptop are surffering by the animation, you could change all the "--*-transition-duration" to 0,esaly using Regular expression in npp++ 
+Find:"duration: .*"  
+Replace: "duration: 0s;"
+#*/
+
+/*#this fix the urlbar not getting correct params when using userchrome.css#*/
+
 :root:not([uidensity]) #urlbar[breakout],
 :root:not([uidensity]) #urlbar-container[breakout] {
 	--urlbar-toolbar-height: 40px !important;
@@ -13,11 +19,14 @@
 	--urlbar-container-height: 44px!important;
 }
 
+
 /*
 # Tabs expand when leaved
+# This will break firefox. When you close tabs, it won't actually close and still running at background, like still playing video. You may check by entering about:performance
 # There has some problem I can't fix, when it reach among of tabs, will hardly relocate the current tabs.
 # But I common usage it will not be a problem (when the tabs not overflowing)
-*/
+
+
 :root {
 	--Tabs-transition-duration: 0.3s;
 	--Tabs-transition-delay: 1s;
@@ -36,7 +45,21 @@
 	transition: max-width var(--Tabs-transition-duration) ease-out var(--Tabs-transition-delay)!important;
 }
 
-/* Adjust Mute icon */
+.tabbrowser-tab:not([visuallyselected=true]) .tab-close-button {
+	display: none!important;
+}
+
+#titlebar:hover .tabbrowser-tab:not([pinned="true"]) .tab-close-button {
+	display: -moz-inline-box!important;
+}
+
+.tabbrowser-tab:not([fadein]) {
+	display: none;
+}
+*/
+
+/*Adjust Mute icon*/
+
 .tabbrowser-tab:not([visuallyselected=true]):not(:hover) .tab-icon-overlay {
 	opacity: 1!important;
 	top: -9.5px!important;
@@ -49,16 +72,20 @@
 	/*! display: none!important; */
 }
 
-/* not to confuse using new tabs button */
+
+/*not to confuse using new tabs button*/
+
 #TabsToolbar:not(:hover) #tabs-newtab-button {
 	opacity: 0!important;
 }
+
 
 /* 
 # Auto-hide Navigation bar
 Source file https://github.com/MrOtherGuy/firefox-csshacks/tree/master/chrome/autohide_bookmarks_toolbar.css made available under Mozilla Public License v. 2.0
 See the above repository for updates as well as full license text. 
 */
+
 :root {
 	--navbar-transition-delay: 0.2s;
 	--navbar-transition-duration: 135ms;
@@ -74,7 +101,8 @@ See the above repository for updates as well as full license text.
 }
 
 
-/* Auto-hide url-bar */
+/*Auto-hide url-bar*/
+
 :root:not([customizing])[chromehidden=""][sizemode="normal"] #nav-bar,
 :root:not([customizing])[chromehidden=""][sizemode="maximized"] #nav-bar {
 	position: relative;
@@ -93,9 +121,34 @@ See the above repository for updates as well as full license text.
 	transition-delay: 0s!important;
 }
 
-/* Auto-hide-tab-bar */
+
+/* Auto-hide bookmark bar */
+
+#PersonalToolbar {
+	--uc-autohide-toolbar-delay: 600ms;
+}
+
+:root:not([customizing])[sizemode="normal"] #PersonalToolbar,
+:root:not([customizing])[sizemode="maximized"] #PersonalToolbar {
+	position: relative;
+	margin-bottom: var(--bookmark-bar-margin);
+	transform: rotateX(90deg) translate(0px, calc(-1 * var(--bookmark-bar-margin)));
+	transform-origin: top;
+	transition: transform var(--navbar-transition-duration) linear var(--navbar-transition-delay)!important;
+	z-index: 99;
+}
+
+:root:not([customizing])[sizemode="normal"] #navigator-toolbox:hover #PersonalToolbar,
+:root:not([customizing])[sizemode="maximized"] #navigator-toolbox:hover #PersonalToolbar {
+	transition-delay: 0s!important;
+	transform: rotateX(0) translate(0px, calc(-1 * var(--nav-bar-margin)));
+}
+
+
+/*Auto-hide-tab-bar*/
+
 :root {
-	--tabbar-transition-delay: 2s;
+	--tabbar-transition-delay: 3s;
 }
 :root[uidensity="normal"] {
 	--tabbar-padding-height:0px;
@@ -105,10 +158,10 @@ See the above repository for updates as well as full license text.
 }
 :root:not([customizing])[chromehidden=""][sizemode="normal"] #navigator-toolbox {
 	border-bottom: none!important;
-	position: absolute;
 	margin-top: calc(-1 * var(--tab-min-height) - 2 * var(--tab-block-margin));
 	transition: var(--navbar-transition-duration) linear var(--tabbar-transition-delay);
 	z-index: 1;
+	opacity: 0;
 	transform: translate(0, calc(1 * var(--tab-min-height) + 2 * var(--tab-block-margin)));
 }
 
@@ -137,7 +190,8 @@ See the above repository for updates as well as full license text.
 
 }
 
-/* notification-deck */
+/*notification-deck*/
+#PersonalToolbar ~ div,
 #tab-notification-deck {
 	height: 0px!important;
 	position: relative;
@@ -153,27 +207,25 @@ See the above repository for updates as well as full license text.
 	transition-delay: 0s;
 }
 
-/* adjust theme */
+/*adjust theme*/
+
 :root[sizemode="maximized"]{
-	--image-height: calc( var(--tab-min-height) + 2 * var(--tab-block-margin) + 8.1px);
+	--image-height: calc( var(--tab-min-height) + 2 * var(--tab-block-margin) + 0.5px);
 }
 :root[sizemode="normal"]{
 	--image-height: calc(var(--tab-min-height) + 2 * var(--tab-block-margin));
 }
-
-/* tabs background fix */
+/*tabs background fix*/
 #tabbrowser-tabs:not([movingtab]) > #tabbrowser-arrowscrollbox > .tabbrowser-tab > .tab-stack > .tab-background[multiselected=true]:-moz-lwtheme,
 #tabbrowser-tabs:not([movingtab]) > #tabbrowser-arrowscrollbox > .tabbrowser-tab > .tab-stack > .tab-background[selected=true]:-moz-lwtheme {
 	background-image: linear-gradient(var(--lwt-selected-tab-background-color, transparent), var(--lwt-selected-tab-background-color, transparent)),
 	linear-gradient(var(--toolbar-bgcolor), var(--toolbar-bgcolor))!important;
 }
-
-/* odd line */
+/*odd line*/
 #nav-bar {
 	box-shadow:none!important;
 }
-
-/* change background from navigator-toolbox to tabstoolbar */
+/*change background from navigator-toolbox to tabstoolbar */
 :root:not([customizing])[chromehidden=""][sizemode="maximized"] #navigator-toolbox:not(:-moz-lwtheme) {
 	background:-moz-Dialog!important;
 }
@@ -185,7 +237,7 @@ See the above repository for updates as well as full license text.
 :root:not([customizing])[chromehidden=""][lwtheme-image] #navigator-toolbox:-moz-lwtheme #TabsToolbar:before {
 	background-image: var(--lwt-header-image), var(--lwt-additional-images);
 }
-:root:not([customizing])[chromehidden=""]  #TabsToolbar::before {
+:root:not([customizing])[chromehidden=""] #TabsToolbar::before {
 	content:'';
 	position:absolute;
 	right: 0;
@@ -216,8 +268,8 @@ See the above repository for updates as well as full license text.
 	opacity: 1;
 	transition-delay: 0s;
 }
-
 /*Able to drop Tabs when all hided*/
+
 :root:not([customizing])[chromehidden=""][sizemode="normal"] arrowscrollbox,
 :root:not([customizing])[chromehidden=""][sizemode="normal"] .titlebar-buttonbox-container {
 	animation: titlebaropacityoff var(--navbar-transition-duration) linear var(--tabbar-transition-delay) forwards;
@@ -254,16 +306,18 @@ See the above repository for updates as well as full license text.
 :root:not([customizing])[chromehidden=""][sizemode="normal"] #navigator-toolbox:focus-within .titlebar-buttonbox-container {
 	animation: none;
 }
-
 /*adjust toolbar-menubar (Alt Key)*/
+
 :root:not([customizing])[sizemode="maximized"] #navigator-toolbox:not(:hover) #toolbar-menubar:not([inactive]) {
   margin-top: calc( 1 * var(--tab-min-height) + 2 * var(--tab-block-margin));
 	transition-delay:var(--navbar-transition-delay);
 }
 
+
 /* 
 # Urlbar lager when active
 */
+
 :root:not([customizing])[sizemode="normal"] #urlbar-container:focus-within #urlbar {
 	position: fixed!important;
 	width: 90%!important;
@@ -274,10 +328,12 @@ See the above repository for updates as well as full license text.
 	z-index: 1;
 }
 
+
 /*
 # Sidebar Auto Hide
 # https://github.com/Getulio-Mendes/.dotFiles/tree/master/Firefox/chrome
 */
+
 :root {
 	--sidebar-button-size: 15px;
 	--sidebar-width: 400px;
@@ -343,17 +399,26 @@ See the above repository for updates as well as full license text.
 	border-radius: 5px 5px 5px 5px;
 }
 
-/* sidebar-button-distance */
+
+/*When sidebar is move to left */
+
+
+/*sidebar-button-distance*/
+
 #sidebar-box[style*="-moz-box-ordinal-group: 1"] #sidebar-header {
 	transform: translate(calc(var(--sidebar-width) + var(--sidebar-button-distance) - 70px), 50vh) rotate(90deg);
 }
 
+
 /* inner width = expanded width & move inner to only show initial-width long section */
+
 #sidebar-box[style*="-moz-box-ordinal-group: 1"] {
 	margin-left: calc(-1 * var(--sidebar-width));
 }
 
+
 /* move inner to show entire sidebar */
+
 #sidebar-box[style*="-moz-box-ordinal-group: 1"]:hover {
 	margin-left: 0px;
 	margin-right: calc(-1 * var(--sidebar-width));
@@ -361,7 +426,9 @@ See the above repository for updates as well as full license text.
 	transition-delay: var(--sidebar-transition-delay);
 }
 
+
 /* When sidebar is move to right */
+
 #sidebar-box[style*="-moz-box-ordinal-group: 3"] #sidebar-header {
 	transform: translate(calc(-1 * (var(--sidebar-width) + var(--sidebar-button-distance)) + var(--sidebar-width) - 20px), 50vh) rotate(90deg);
 }
@@ -383,7 +450,7 @@ See the above repository for updates as well as full license text.
 	margin-top: var(--sidebar-button-distance)!important;
 }
 
-/* fix responsive mode */
+/*fix responsive mode*/
 .browserContainer.responsive-mode .browserStack > .rdm-toolbar{
 	z-index: 0!important;
 }

@@ -25,10 +25,11 @@ export SPICETIFY_CONFIG=$HOME/.config/spicetify
 export LESSHISTFILE=$HOME/.cache/less/lesshst
 export SQLITE_HISTORY=$HOME/.cache/sqlite_history
 export GNUPGHOME=$HOME/.local/share/gnupg
-export VISUAL=nvim
+export VISUAL=hx
 export EDITOR=$VISUAL
 export RANGER_LOAD_DEFAULT_RC=FALSE
 export BW_SESSION="6cAZEigtEVSWDWDIzcjKcbpL16Gyg1TwGdaLuAD1xNLIGF5itecXzBBafcVEYDf7eD6HWgbqkLmp8sVyRm7G0Q=="
-export PATH="$HOME/.config/scripts:$HOME/.local/bin:$PATH"
+export HOMEBREW_NO_INSTALL_FROM_API=1
+export PATH="$HOME/.config/scripts:$HOME/.local/bin:/opt/homebrew/opt/llvm/bin:$PATH"
 
 source $HOME/.cargo/env

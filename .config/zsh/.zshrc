@@ -31,32 +31,28 @@ function zvm_vi_yank() {
 	zvm_exit_visual_mode
 }
 
-function zvm_yank() {
-	zvm_yank
-  echo ${CUTBUFFER} | pbcopy
-}
-
-# suspend or enter vim
+bindkey -v
 _zsh_cli_fg() { fg; }
 zle -N _zsh_cli_fg
 bindkey '^Z' _zsh_cli_fg
+bindkey -v '^?' backward-delete-char
 
 # change terminal title to current working directory
 precmd () { print -Pn "\e]0;%~\a" }
 
 # aliases
-alias vrc="$EDITOR ~/.config/nvim/fnl/modules/config/default/config.fnl"
-alias zrc="yadm enter $EDITOR ~/.config/zsh/.zshrc"
-alias yrc="yadm enter $EDITOR ~/.config/yabai/yabairc"
-alias frc="yadm enter $EDITOR ~/.config/firefox/userChrome.css"
-alias barrc="yadm enter $EDITOR ~/.config/sketchybar/sketchybarrc"
-alias src="yadm enter $EDITOR ~/.config/skhd/skhdrc"
-alias arc="yadm enter $EDITOR ~/.config/alacritty/alacritty.yml"
+alias vrc="$EDITOR ~/.config/nvim/fnl/config.fnl"
+alias hrc="$EDITOR ~/.config/helix/config.toml"
+alias zrc="$EDITOR ~/.config/zsh/.zshrc"
+alias yrc="$EDITOR ~/.config/yabai/yabairc"
+alias frc="$EDITOR ~/.config/firefox/userChrome.css"
+alias barrc="$EDITOR ~/.config/sketchybar/sketchybarrc"
+alias src="$EDITOR ~/.config/skhd/skhdrc"
+alias arc="$EDITOR ~/.config/alacritty/alacritty.yml"
 alias vim="nvim"
 alias vimdiff="nvim -d"
-alias nvprofile="rm ~/.cache/nvim/startup.log ; env AK_PROFILER=1 nvim 2>~/.cache/nvim/startup.log >/dev/null && nvim ~/.cache/nvim/startup.log"
 alias nvsync="nvim +'au User PackerComplete qa' +PackerSync"
-# alias ranger=". ranger"
+alias ranger=". ranger"
 alias icat="kitty +kitten icat"
 alias pubs="pubs --config $HOME/.config/pubs/pubsrc"
 alias kbd="$EDITOR ~/.config/qmk_firmware/keyboards/hhkb/jp/keymaps/cobcobs/keymap.c"
@@ -69,7 +65,7 @@ function feh() {
 }
 
 # synctex stuff
-export DBUS_SESSION_BUS_ADDRESS='unix:path='$DBUS_LAUNCHD_SESSION_BUS_SOCKET
+export DBUS_SESSION_BUS_ADDRESS="unix:path=$DBUS_LAUNCHD_SESSION_BUS_SOCKET"
 
 # Speed up tab completion for git commands
 __git_files () { 
@@ -90,14 +86,27 @@ compinit -d ~/.config/zsh/zcompdump-$ZSH_VERSION
 # source plugins and change some settings
 source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-source /opt/homebrew/opt/zsh-vi-mode/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh
+# source /opt/homebrew/opt/zsh-vi-mode/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh
 typeset -A ZSH_HIGHLIGHT_STYLES
 ZSH_HIGHLIGHT_STYLES[single-quoted-argument]='fg=cyan'
 ZSH_HIGHLIGHT_STYLES[double-quoted-argument]='fg=cyan'
 ZVM_LINE_INIT_MODE=$ZVM_MODE_INSERT
 
 # Homebrew
-eval $(/opt/homebrew/bin/brew shellenv)
+function brew() {
+  command brew "$@" 
+
+  if [[ $* =~ "upgrade" ]] || [[ $* =~ "update" ]] || [[ $* =~ "outdated" ]]; then
+    sketchybar --trigger brew_update
+  fi
+}
+
+if [[ $(uname -m) == 'arm64' ]]; then
+    BREWPATH=/opt/homebrew/bin
+else
+    BREWPATH=/usr/local/bin
+fi
+export PATH=$BREWPATH:$PATH
 
 # thefuck
 eval $(thefuck --alias)

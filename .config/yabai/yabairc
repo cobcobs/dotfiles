@@ -11,8 +11,9 @@ yabai -m config window_placement second_child
 yabai -m config window_topmost on
 yabai -m config window_opacity off
 yabai -m config window_shadow off
-yabai -m config window_animation_duration 0.1
-yabai -m config window_border_hidpi on
+yabai -m config window_animation_duration 0.3
+yabai -m config window_border_hidpi off
+yabai -m config window_border_blur off
 yabai -m config window_origin_display focused
 yabai -m config split_ratio 0.50
 yabai -m config split_type auto
@@ -30,7 +31,7 @@ yabai -m config active_window_border_color 0xff191724
 yabai -m config normal_window_border_color 0xfffaf4ed
 
 # rules
-yabai -m rule --add app="^System Preferences$" manage=off
+yabai -m rule --add app="^System Settings$" manage=off
 yabai -m rule --add app="^Roblox$" manage=off border=off
 yabai -m rule --add app="^csgo_osx64$" border=off
 yabai -m rule --add app="^Firefox$" space=1
@@ -39,6 +40,7 @@ yabai -m rule --add app="^Mail$" space=4
 yabai -m rule --add app="^ProtonVPN$" space=4
 yabai -m rule --add app="^Discord" space=5
 yabai -m rule --add app="^eqMac$" manage=off
+yabai -m rule --add app="^NVIDIA GeForce NOW$" space=4
 yabai -m rule --add app="^Remedy Pro$" manage=off border=off
 
 # general space settings
@@ -53,7 +55,7 @@ yabai -m config window_gap 10
 if pgrep sketchybar; then
 	launchctl load "$HOME"/Library/LaunchAgents/homebrew.mxcl.sketchybar.plist
 	bar_offset=$(sketchybar --query bar | jq '.y_offset')
-    bar_height=$(sketchybar --query bar | jq '.height')
+	bar_height=$(sketchybar --query bar | jq '.height')
 	y_offset=$((bar_offset + bar_height))
 	yabai -m config external_bar all:$y_offset:0
 else
@@ -62,10 +64,10 @@ else
 fi
 
 # signals
-yabai -m signal --add event=window_focused action="sketchybar -m --trigger window_focus &> /dev/null"
-yabai -m signal --add event=window_title_changed action="sketchybar -m --trigger title_change &> /dev/null"
-yabai -m signal --add event=window_destroyed active=yes action="yabai -m query --windows --window &> /dev/null || yabai -m window --focus mouse &> /dev/null || yabai -m window --focus \$(yabai -m query --windows --space | jq .[0].id) &> /dev/null"
-yabai -m signal --add event=application_terminated action="yabai -m query --windows --window &> /dev/null || yabai -m window --focus recent || yabai -m window --focus first"
+yabai -m signal --add event=window_focused action="sketchybar --trigger window_focus"
+yabai -m signal --add event=window_created action="sketchybar --trigger windows_on_spaces"
+yabai -m signal --add event=window_resized action="sketchybar --trigger windows_on_spaces"
+yabai -m signal --add event=window_destroyed action="sketchybar --trigger windows_on_spaces"
 
 # autoupdate
 # YABAI_CERT=yabai-cert sh -c "$(curl -fsSL "https://git.io/update-yabai")" &
