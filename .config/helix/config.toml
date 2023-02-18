@@ -1,0 +1,31 @@
+theme = "rose_pine_dawn"
+
+[editor]
+mouse = true
+auto-save = true
+line-number = "relative"
+idle-timeout = 0
+completion-trigger-len = 1
+
+[editor.cursor-shape]
+insert = "bar"
+normal = "block"
+select = "underline"
+
+[editor.file-picker]
+hidden = false
+
+[editor.indent-guides]
+render = true
+skip-levels = 1
+
+[editor.lsp]
+display-messages = true
+
+[keys.normal]
+";" = "command_mode"
+"esc" = "collapse_selection"
+d = ["yank_joined_to_clipboard", "delete_selection"]
+y = "yank_joined_to_clipboard"
+p = "paste_clipboard_after"
+P = "paste_clipboard_before"

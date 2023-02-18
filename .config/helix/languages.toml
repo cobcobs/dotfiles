@@ -1,0 +1,7 @@
+[[language]]
+name = "c"
+auto-format = true
+
+[[language]]
+name = "python"
+auto-format = true
