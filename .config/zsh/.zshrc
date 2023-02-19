@@ -76,8 +76,9 @@ __git_files () {
 autoload -Uz compinit bashcompinit
 compinit
 bashcompinit
+
 # Argcomplete explicit registration for pubs
-eval "$(register-python-argcomplete pubs)"
+# eval "$(register-python-argcomplete pubs)"
 
 # move zsh-history and zcompdump files
 export HISTFILE="$HOME/.config/zsh/zsh-history"
