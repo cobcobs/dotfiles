@@ -2,6 +2,8 @@ theme = "rose_pine_dawn"
 
 [editor]
 mouse = true
+color-modes = true
+soft-wrap.enable = true
 line-number = "relative"
 bufferline = "multiple"
 idle-timeout = 0
