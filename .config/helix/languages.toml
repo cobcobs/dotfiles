@@ -5,3 +5,18 @@ auto-format = true
 [[language]]
 name = "python"
 auto-format = true
+
+[[language]]
+name = "latex"
+auto-format = true
+
+[language.config.texlab.build]
+onSave = true
+forwardSearchAfter = true
+
+[language.config.texlab.forwardSearch]
+executable = "sioyek"
+args = [ "--forward-search-file", "%f", "--forward-search-line", "%l", "%p" ]
+
+[language.config.texlab.chktex]
+onEdit = true
