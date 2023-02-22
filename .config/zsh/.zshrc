@@ -58,6 +58,18 @@ alias pubs="pubs --config $HOME/.config/pubs/pubsrc"
 alias kbd="$EDITOR ~/.config/qmk_firmware/keyboards/hhkb/jp/keymaps/cobcobs/keymap.c"
 alias bop="python3 ~/github/python/worldBopper9000.py"
 alias librewolf="/Applications/LibreWolf.app/Contents/MacOS/librewolf"
+alias template="cp -r $HOME/Documents/notes . && cd notes && $EDITOR main.tex"
+
+# open file picker when launching helix without arguments
+helix() {
+  if [ "$1" != "" ]
+  then
+    $EDITOR "$@"
+  else
+    $EDITOR .
+  fi
+}
+alias hx="helix"
 
 # feh but for macos
 function feh() {
