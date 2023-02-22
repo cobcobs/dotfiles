@@ -26,7 +26,7 @@ yabai -m config mouse_drop_action stack
 # borders
 yabai -m config window_border on
 yabai -m config window_border_width 3
-yabai -m config window_border_radius 12
+yabai -m config window_border_radius 11
 yabai -m config active_window_border_color 0xff191724
 yabai -m config normal_window_border_color 0xfffaf4ed
 
@@ -66,8 +66,8 @@ fi
 # signals
 yabai -m signal --add event=window_focused action="sketchybar --trigger window_focus"
 yabai -m signal --add event=window_created action="sketchybar --trigger windows_on_spaces"
-yabai -m signal --add event=window_resized action="sketchybar --trigger windows_on_spaces"
-yabai -m signal --add event=window_destroyed action="sketchybar --trigger windows_on_spaces"
+yabai -m signal --add event=window_destroyed action="sketchybar --trigger windows_on_spaces && (yabai -m query --windows --window &> /dev/null || yabai -m window --focus mouse)"
+yabai -m signal --add event=application_terminated action="sketchybar --trigger windows_on_spaces && (yabai -m query --windows --window &> /dev/null || yabai -m window --focus mouse)"
 
 # autoupdate
 # YABAI_CERT=yabai-cert sh -c "$(curl -fsSL "https://git.io/update-yabai")" &
