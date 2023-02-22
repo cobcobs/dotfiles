@@ -33,7 +33,8 @@ cmd - 0x29           : yabai -m space --padding rel:-5:-5:-5:-5 ; yabai -m space
 cmd - 0x27           : yabai -m space --padding rel:5:5:5:5 ; yabai -m space --gap rel:5
 cmd + shift - p      : ~/.config/scripts/yabai_gaps
 ctrl + shift - space : yabai -m window --toggle float && sketchybar --trigger window_focus && yabai -m window --grid 4:4:1:1:2:2 && /tmp/yabai-restore/$(yabai -m query --windows --window | jq -re '.id').restore 2>/dev/null || true
-cmd + shift - space  : yabai -m space --layout $(yabai -m query --spaces --space | jq -r 'if .type == "bsp" then "float" elif .type == "float" then "stack" else "bsp" end')
+# cmd + shift - space  : yabai -m space --layout $(yabai -m query --spaces --space | jq -r 'if .type == "bsp" then "float" elif .type == "float" then "stack" else "bsp" end')
+cmd + shift - space  : yabai -m space --layout $(yabai -m query --spaces --space | jq -r 'if .type == "bsp" then "stack" else "bsp" end')
 ctrl + shift - i     : yabai -m window --toggle split
 ctrl + shift - s     : yabai -m window --toggle sticky
 ctrl + shift - t     : yabai -m window --toggle topmost
