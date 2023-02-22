@@ -4,8 +4,9 @@ theme = "rose_pine_dawn"
 mouse = true
 color-modes = true
 soft-wrap.enable = true
-line-number = "relative"
+# line-number = "relative"
 bufferline = "multiple"
+gutters = ["diagnostics", "spacer", "diff"]
 idle-timeout = 0
 completion-trigger-len = 1
 
