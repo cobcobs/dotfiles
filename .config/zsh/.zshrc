@@ -71,14 +71,6 @@ helix() {
 }
 alias hx="helix"
 
-# feh but for macos
-function feh() {
-    open -b "drabweb.macfeh" "$@"
-}
-
-# synctex stuff
-export DBUS_SESSION_BUS_ADDRESS="unix:path=$DBUS_LAUNCHD_SESSION_BUS_SOCKET"
-
 # Speed up tab completion for git commands
 __git_files () { 
     _wanted files expl 'local files' _files     
