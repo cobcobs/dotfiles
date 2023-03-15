@@ -9,19 +9,19 @@ cmd + shift - f : open -R $HOME
 alt + cmd - 0         : scr -i
 alt + cmd + shift - 0 : scr
 
-# cycle forwards
-alt - tab : yabai -m query --spaces --space \
-  | jq -re ".index" \
-  | xargs -I{} yabai -m query --windows --space {} \
-  | jq -sre 'add | map(select(."is-minimized"==false)) | . as $array | length as $array_length | index(map(select(."has-focus"==true))) as $has_index | if $has_index > 0 then nth($has_index - 1).id else nth($array_length - 1).id end'  \
-  | xargs -I{} yabai -m window --focus {}
+# # cycle forwards
+# alt - tab : yabai -m query --spaces --space \
+#   | jq -re ".index" \
+#   | xargs -I{} yabai -m query --windows --space {} \
+#   | jq -sre 'add | map(select(."is-minimized"==false)) | . as $array | length as $array_length | index(map(select(."has-focus"==true))) as $has_index | if $has_index > 0 then nth($has_index - 1).id else nth($array_length - 1).id end'  \
+#   | xargs -I{} yabai -m window --focus {}
 
-# cycle backwards
-alt + shift - tab : yabai -m query --spaces --space \
-  | jq -re ".index" \
-  | xargs -I{} yabai -m query --windows --space {} \
-  | jq -sre 'add | map(select(."is-minimized"==false)) | . as $array | length as $array_length | index(map(select(."has-focus"==true))) as $has_index | if $array_length - 1 > $has_index then nth($has_index + 1).id else nth(0).id end' \
-  | xargs -I{} yabai -m window --focus {}
+# # cycle backwards
+# alt + shift - tab : yabai -m query --spaces --space \
+#   | jq -re ".index" \
+#   | xargs -I{} yabai -m query --windows --space {} \
+#   | jq -sre 'add | map(select(."is-minimized"==false)) | . as $array | length as $array_length | index(map(select(."has-focus"==true))) as $has_index | if $array_length - 1 > $has_index then nth($has_index + 1).id else nth(0).id end' \
+#   | xargs -I{} yabai -m window --focus {}
 
 # restart, quit, or start yabai
 cmd + shift - r : launchctl kickstart -k "gui/${UID}/homebrew.mxcl.yabai"
@@ -34,7 +34,7 @@ cmd - 0x27           : yabai -m space --padding rel:5:5:5:5 ; yabai -m space --g
 cmd + shift - p      : ~/.config/scripts/yabai_gaps
 ctrl + shift - space : yabai -m window --toggle float && sketchybar --trigger window_focus && yabai -m window --grid 4:4:1:1:2:2 && /tmp/yabai-restore/$(yabai -m query --windows --window | jq -re '.id').restore 2>/dev/null || true
 # cmd + shift - space  : yabai -m space --layout $(yabai -m query --spaces --space | jq -r 'if .type == "bsp" then "float" elif .type == "float" then "stack" else "bsp" end')
-cmd + shift - space  : yabai -m space --layout $(yabai -m query --spaces --space | jq -r 'if .type == "bsp" then "stack" else "bsp" end')
+cmd + shift - space  : yabai -m space --layout $(yabai -m query --spaces --space | jq -r 'if .type == "bsp" then "stack" else "bsp" end') && sketchybar --trigger window_focus
 ctrl + shift - i     : yabai -m window --toggle split
 ctrl + shift - s     : yabai -m window --toggle sticky
 ctrl + shift - t     : yabai -m window --toggle topmost

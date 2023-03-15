@@ -9,6 +9,7 @@ auto-format = true
 [[language]]
 name = "latex"
 auto-format = true
+indent = { tab-width = 4, unit = "\t" }
 
 [language.config.texlab.build]
 onSave = true

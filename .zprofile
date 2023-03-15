@@ -32,4 +32,4 @@ export BW_SESSION="6cAZEigtEVSWDWDIzcjKcbpL16Gyg1TwGdaLuAD1xNLIGF5itecXzBBafcVEY
 export HOMEBREW_NO_INSTALL_FROM_API=1
 export PATH="$HOME/.config/scripts:$HOME/.local/bin:/opt/homebrew/opt/llvm/bin:$PATH"
 
-source $HOME/.cargo/env
+source "$HOME/.cargo/env"

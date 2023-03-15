@@ -35,7 +35,7 @@ bindkey -v
 _zsh_cli_fg() { fg; }
 zle -N _zsh_cli_fg
 bindkey '^Z' _zsh_cli_fg
-bindkey -v '^?' backward-delete-char
+bindkey '^?' backward-delete-char
 
 # change terminal title to current working directory
 precmd () { print -Pn "\e]0;%~\a" }
@@ -59,17 +59,6 @@ alias kbd="$EDITOR ~/.config/qmk_firmware/keyboards/hhkb/jp/keymaps/cobcobs/keym
 alias bop="python3 ~/github/python/worldBopper9000.py"
 alias librewolf="/Applications/LibreWolf.app/Contents/MacOS/librewolf"
 alias template="cp -r $HOME/Documents/notes . && cd notes && $EDITOR main.tex"
-
-# open file picker when launching helix without arguments
-helix() {
-  if [ "$1" != "" ]
-  then
-    $EDITOR "$@"
-  else
-    $EDITOR .
-  fi
-}
-alias hx="helix"
 
 # Speed up tab completion for git commands
 __git_files () { 
