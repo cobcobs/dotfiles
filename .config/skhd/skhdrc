@@ -23,8 +23,8 @@ alt + cmd + shift - 0 : scr
 #   | jq -sre 'add | map(select(."is-minimized"==false)) | . as $array | length as $array_length | index(map(select(."has-focus"==true))) as $has_index | if $array_length - 1 > $has_index then nth($has_index + 1).id else nth(0).id end' \
 #   | xargs -I{} yabai -m window --focus {}
 
-# restart, quit, or start yabai
-cmd + shift - r : launchctl kickstart -k "gui/${UID}/homebrew.mxcl.yabai"
+# restart yabai
+cmd + shift - r : yabai --restart-service
 
 # toggles
 cmd + shift - b      : toggle_bar
@@ -111,8 +111,6 @@ cmd + shift - 8 : yabai -m window --space 8 || { yabai -m space --create && yaba
 cmd + shift - 9 : yabai -m window --space 9 || { yabai -m space --create && yabai -m window --space last } && sketchybar --trigger windows_on_spaces
 cmd + shift - 0 : yabai -m window --space 10 || { yabai -m space --create && yabai -m window --space last } && sketchybar --trigger windows_on_spaces
 
-
-
 # resize node
 ctrl + shift - a : yabai_resize west
 ctrl + shift - s : yabai_resize south
@@ -124,8 +122,3 @@ ctrl + shift - b : yabai -m space --balance
 :: passthrough
 ctrl + shift - p ; passthrough
 passthrough < ctrl + shift - p ; default
-
-# blacklist apps
-.blacklist [
-    "Roblox"
-]
