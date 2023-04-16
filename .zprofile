@@ -1,18 +1,3 @@
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-# __conda_setup="$('/usr/local/Caskroom/miniconda/base/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
-# if [ $? -eq 0 ]; then
-#     eval "$__conda_setup"
-# else
-#     if [ -f "/usr/local/Caskroom/miniconda/base/etc/profile.d/conda.sh" ]; then
-#         . "/usr/local/Caskroom/miniconda/base/etc/profile.d/conda.sh"
-#     else
-#         export PATH="/usr/local/Caskroom/miniconda/base/bin:$PATH"
-#     fi
-# fi
-# unset __conda_setup
-# <<< conda initialize <<<
-
 export ZDOTDIR=$HOME/.config/zsh
 export GOPATH=$HOME/Library/go
 export PYTHONSTARTUP=$HOME/.config/python/.pythonrc
@@ -30,6 +15,8 @@ export EDITOR=$VISUAL
 export RANGER_LOAD_DEFAULT_RC=FALSE
 export BW_SESSION="6cAZEigtEVSWDWDIzcjKcbpL16Gyg1TwGdaLuAD1xNLIGF5itecXzBBafcVEYDf7eD6HWgbqkLmp8sVyRm7G0Q=="
 export HOMEBREW_NO_INSTALL_FROM_API=1
-export PATH="$HOME/.config/scripts:$HOME/.local/bin:/opt/homebrew/opt/llvm/bin:$PATH"
+export CARGO_HOME=$HOME/.config/cargo
+export RUSTUP_HOME=$HOME/.config/rustup
+export PATH="$HOME/.config/cargo/bin:$HOME/.config/scripts:$HOME/.local/bin:/opt/homebrew/opt/llvm/bin:$PATH"
 
-source "$HOME/.cargo/env"
+source "$HOME/.config/cargo/env"
