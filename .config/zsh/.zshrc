@@ -25,11 +25,34 @@ export KEYTIMEOUT=1
 zstyle ':bracketed-paste-magic' active-widgets '.self-*'
 
 # yank to the system clipboard
-function zvm_vi_yank() {
-	zvm_yank
+function vi-yank-pbcopy() {
+	zle vi-yank
 	echo ${CUTBUFFER} | pbcopy
-	zvm_exit_visual_mode
 }
+
+function vi-yank-eol-pbcopy() {
+ 	zle vi-yank-eol
+	echo ${CUTBUFFER} | pbcopy
+}
+
+function vi-delete-pbcopy() {
+  zle vi-delete
+	echo ${CUTBUFFER} | pbcopy
+}
+
+function vi-delete-char-pbcopy() {
+  zle vi-delete-char
+	echo ${CUTBUFFER} | pbcopy
+}
+
+zle -N vi-yank-pbcopy
+zle -N vi-yank-eol-pbcopy
+zle -N vi-delete-pbcopy
+zle -N vi-delete-char-pbcopy
+bindkey -M vicmd 'y' vi-yank-pbcopy
+bindkey -M vicmd 'Y' vi-yank-eol-pbcopy
+bindkey -M vicmd 'd' vi-delete-pbcopy
+bindkey -M vicmd 'x' vi-delete-char-pbcopy
 
 bindkey -v
 _zsh_cli_fg() { fg; }
