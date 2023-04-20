@@ -82,7 +82,7 @@ alias kbd="$EDITOR ~/.config/qmk_firmware/keyboards/hhkb/jp/keymaps/cobcobs/keym
 alias bop="python3 ~/github/python/worldBopper9001.py"
 alias cat="bat"
 alias ls="exa"
-alias librewolf="/Applications/LibreWolf.app/Contents/MacOS/librewolf"
+alias rp="rust-project"
 alias template="cp -r $HOME/Documents/notes . && cd notes && $EDITOR main.tex"
 
 # Speed up tab completion for git commands
