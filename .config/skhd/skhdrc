@@ -1,7 +1,7 @@
 #!/usr/bin/env sh
 
 # open apps or other stuff
-cmd - return    : /Applications/kitty.app/Contents/MacOS/kitty --single-instance $HOME
+cmd - return    : kitty --single-instance $HOME
 cmd + shift - f : open -R $HOME
 # cmd + shift - w : /Applications/LibreWolf.app/Contents/MacOS/librewolf-bin
 
@@ -26,12 +26,16 @@ alt + cmd + shift - 0 : scr
 # restart yabai
 cmd + shift - r : yabai --restart-service
 
+# trigger notification that shows date and time
+# cmd + shift - b : DATE="$(date '+%A, %b %d')"; \
+#                   TIME="$(date '+%H:%M')"; \
+#                   terminal-notifier -title "Today is $DATE" -message "It is $TIME" -group 'date-time'\
+
 # toggles
 cmd + shift - b      : toggle_bar
 cmd + shift - d      : yabai_border
 cmd - 0x29           : yabai -m space --padding rel:-5:-5:-5:-5 ; yabai -m space --gap rel:-5
 cmd - 0x27           : yabai -m space --padding rel:5:5:5:5 ; yabai -m space --gap rel:5
-cmd + shift - p      : ~/.config/scripts/yabai_gaps
 ctrl + shift - space : yabai -m window --toggle float && sketchybar --trigger window_focus && yabai -m window --grid 4:4:1:1:2:2 && /tmp/yabai-restore/$(yabai -m query --windows --window | jq -re '.id').restore 2>/dev/null || true
 # cmd + shift - space  : yabai -m space --layout $(yabai -m query --spaces --space | jq -r 'if .type == "bsp" then "float" elif .type == "float" then "stack" else "bsp" end')
 cmd + shift - space  : yabai -m space --layout $(yabai -m query --spaces --space | jq -r 'if .type == "bsp" then "stack" else "bsp" end') && sketchybar --trigger window_focus
