@@ -1,6 +1,14 @@
 [[language]]
+name = "cpp"
+auto-format = true
+indent = { tab-width = 4, unit = "    " }
+language-server = {command = "clangd", args = ["--fallback-style=WebKit"]}
+
+[[language]]
 name = "c"
 auto-format = true
+indent = { tab-width = 4, unit = "    " }
+language-server = {command = "clangd", args = ["--fallback-style=WebKit"]}
 
 [[language]]
 name = "python"
@@ -9,7 +17,7 @@ auto-format = true
 [[language]]
 name = "latex"
 auto-format = true
-indent = { tab-width = 4, unit = "\t" }
+indent = { tab-width = 4, unit = "    " }
 
 [language.config.texlab.build]
 onSave = true
