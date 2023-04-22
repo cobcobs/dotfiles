@@ -29,7 +29,7 @@ fn to_string(vec: Vec<char>) -> String {
 }
 
 fn solve() {
-    // code
+    
 }
 
 fn main() {
