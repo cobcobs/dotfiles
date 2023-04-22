@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+
+function cpbooster_cd() {
+	\cpbooster clone | tee /tmp/cpb.txt
+	directory=$(grep 'contest' /tmp/cpb.txt | cut -d'"' -f2)
+	rm /tmp/cpb.txt
+	cd "$directory" || return
+}
+
+case "$1" in
+  "clone")
+		cpbooster_cd
+    ;;
+  *)
+		\cpbooster "$@"
+    ;;
+esac
+

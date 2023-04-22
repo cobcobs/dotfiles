@@ -1,7 +1,7 @@
 {
   "contestsDirectory": "/Users/cobcob/Documents/Programming/Contests",
   "port": 1327,
-  "editor": "kitty",
+  "editor": "default",
   "closeAfterClone": false,
   "showStatusPageOnSubmit": true,
   "useUserDefaultBrowser": true,

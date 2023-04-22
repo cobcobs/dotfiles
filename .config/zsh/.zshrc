@@ -84,6 +84,8 @@ alias cat="bat"
 alias ls="exa"
 alias rp="rust-project"
 alias template="cp -r $HOME/Documents/notes . && cd notes && $EDITOR main.tex"
+alias cpb=". cpb_cd"
+alias cpbooster=". cpb_cd"
 
 # Speed up tab completion for git commands
 __git_files () { 
