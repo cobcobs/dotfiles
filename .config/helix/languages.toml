@@ -2,13 +2,13 @@
 name = "cpp"
 auto-format = true
 indent = { tab-width = 4, unit = "    " }
-language-server = {command = "clangd", args = ["--fallback-style=WebKit"]}
+language-server = {command = "clangd", args = ["--fallback-style=Google"]}
 
 [[language]]
 name = "c"
 auto-format = true
 indent = { tab-width = 4, unit = "    " }
-language-server = {command = "clangd", args = ["--fallback-style=WebKit"]}
+language-server = {command = "clangd", args = ["--fallback-style=Google"]}
 
 [[language]]
 name = "python"
