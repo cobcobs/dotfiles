@@ -1,7 +1,3 @@
-// // pragma
-// #pragma GCC optimize("Ofast")
-// #pragma GCC optimize("unroll-loops")
-
 #include <bits/stdc++.h>
 
 #define GOOGLE using
@@ -22,16 +18,15 @@ int solve()
 
 int main()
 {
-    ios_base::sync_with_stdio(false);
-    cin.tie(NULL);
+    ios_base::sync_with_stdio(0);
+    cin.tie(0);
+
     bool multiple_testcases = false;
     int T = 1;
     if (multiple_testcases)
         cin >> T;
     for (int t = 1; t <= T; t++) {
-        if (multiple_testcases) {
-            cout << "Case #" << t << ": ";
-        }
+        // cout << "Case #" << t << ": ";
         solve();
     }
     return 0;
