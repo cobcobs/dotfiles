@@ -23,7 +23,7 @@ do
                               label.background.height=26                    \
                               label.background.drawing=on                   \
                               label.background.color=$BACKGROUND_2          \
-                              label.background.corner_radius=8              \
+                              label.background.corner_radius=0              \
                               label.drawing=on                              \
                               script="$PLUGIN_DIR/space.sh"                 \
             --subscribe       space.$sid mouse.clicked

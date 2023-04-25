@@ -18,7 +18,7 @@ sketchybar --add       item            github.bell right                  \
                                                                           \
            --add       item            github.template popup.github.bell  \
            --set       github.template drawing=off                        \
-                                       background.corner_radius=12        \
+                                       background.corner_radius=0         \
                                        padding_left=7                     \
                                        padding_right=7                    \
                                        icon.background.height=2           \

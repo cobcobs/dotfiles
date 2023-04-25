@@ -98,7 +98,7 @@ sketchybar --add event spotify_change $SPOTIFY_EVENT \
 	--add item spotify.play popup.spotify.anchor \
 	--set spotify.play icon=􀊔 \
 	background.height=40 \
-	background.corner_radius=20 \
+	background.corner_radius=0 \
 	width=40 \
 	align=center \
 	background.color=$BLACK \
@@ -144,7 +144,7 @@ sketchybar --add event spotify_change $SPOTIFY_EVENT \
 	spotify.next \
 	spotify.repeat \
 	--set spotify background.color=$GREEN \
-	background.corner_radius=11 \
+	background.corner_radius=0 \
 	background.drawing=on \
 	y_offset=-45 \
 	drawing=off
