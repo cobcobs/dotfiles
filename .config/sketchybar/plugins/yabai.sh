@@ -11,7 +11,7 @@ window_state() {
   if [[ $CURRENT -gt 0 ]]; then
     LAST=$(yabai -m query --windows --window stack.last | jq '.["stack-index"]')
     args+=(--set $NAME icon=$YABAI_STACK icon.color=$RED label.drawing=on label=$(printf "[%s/%s]" "$CURRENT" "$LAST"))
-    yabai -m config active_window_border_color $RED > /dev/null 2>&1 &
+    yabai -m config active_window_border_color $BLUE > /dev/null 2>&1 &
 
   else 
     args+=(--set $NAME label.drawing=off)
@@ -25,7 +25,7 @@ window_state() {
           yabai -m config active_window_border_color $BLUE > /dev/null 2>&1 &
         else
           args+=(--set $NAME icon=$YABAI_GRID icon.color=$ORANGE)
-          yabai -m config active_window_border_color $BLACK > /dev/null 2>&1 &
+          yabai -m config active_window_border_color $RED > /dev/null 2>&1 &
         fi
         ;;
       "true")
