@@ -9,6 +9,7 @@
   "hideTestCaseInput": false,
   "maxLinesToShowFromInput": 50,
   "cloneInCurrentDir": false,
+  "executableFileExtension": "",
   "languages": {
     "cpp": {
       "template": "/Users/cobcob/.config/cpbooster/templates/template.cpp",
