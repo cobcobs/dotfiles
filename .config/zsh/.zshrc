@@ -113,15 +113,6 @@ ZSH_HIGHLIGHT_STYLES[single-quoted-argument]='fg=cyan'
 ZSH_HIGHLIGHT_STYLES[double-quoted-argument]='fg=cyan'
 ZVM_LINE_INIT_MODE=$ZVM_MODE_INSERT
 
-# Homebrew
-function brew() {
-  command brew "$@" 
-
-  if [[ $* =~ "upgrade" ]] || [[ $* =~ "update" ]] || [[ $* =~ "outdated" ]]; then
-    sketchybar --trigger brew_update
-  fi
-}
-
 if [[ $(uname -m) == 'arm64' ]]; then
     BREWPATH=/opt/homebrew/bin
 else

@@ -43,15 +43,15 @@ ctrl + shift - i     : yabai -m window --toggle split
 ctrl + shift - s     : yabai -m window --toggle sticky
 ctrl + shift - t     : yabai -m window --toggle topmost
 
-# toggle margin of sketchybar
-cmd + ctrl - b : CURRENT="$(sketchybar --query bar | jq -r '.y_offset')"; \
-                  if [ "$CURRENT" -eq "0" ]; then \
-                    yabai -m config external_bar all:49:0; \
-                    sketchybar --animate sin 15 --bar margin=10 y_offset=10 corner_radius=9; \
-                  else \
-                    yabai -m config external_bar all:39:0; \
-                    sketchybar --animate sin 15 --bar margin=0 y_offset=0 corner_radius=0; \
-                  fi \
+# # toggle margin of sketchybar
+# cmd + ctrl - b : CURRENT="$(sketchybar --query bar | jq -r '.y_offset')"; \
+#                   if [ "$CURRENT" -eq "0" ]; then \
+#                     yabai -m config external_bar all:49:0; \
+#                     sketchybar --animate sin 15 --bar margin=10 y_offset=10 corner_radius=9; \
+#                   else \
+#                     yabai -m config external_bar all:39:0; \
+#                     sketchybar --animate sin 15 --bar margin=0 y_offset=0 corner_radius=0; \
+#                   fi \
 
 # focus node
 cmd - h : yabai -m window --focus west
@@ -70,6 +70,9 @@ cmd - 7 : yabai_focus 7
 cmd - 8 : yabai_focus 8
 cmd - 9 : yabai_focus 9
 cmd - 0 : yabai_focus 10
+
+# focus display
+ctrl - 0x30 : yabai -m display --focus next || yabai -m display --focus prev
 
 # delete current space
 cmd + shift - w : yabai -m space --destroy
@@ -90,18 +93,6 @@ cmd + shift - h : yabai -m window --warp west
 cmd + shift - j : yabai -m window --warp south
 cmd + shift - k : yabai -m window --warp north
 cmd + shift - l : yabai -m window --warp east
-
-# # warp node to space
-# cmd + shift - 1 : yabai -m window --space 1 || { yabai -m space --create && yabai -m window --space last } && sketchybar --update
-# cmd + shift - 2 : yabai -m window --space 2 || { yabai -m space --create && yabai -m window --space last } && sketchybar --update
-# cmd + shift - 3 : yabai -m window --space 3 || { yabai -m space --create && yabai -m window --space last } && sketchybar --update
-# cmd + shift - 4 : yabai -m window --space 4 || { yabai -m space --create && yabai -m window --space last } && sketchybar --update
-# cmd + shift - 5 : yabai -m window --space 5 || { yabai -m space --create && yabai -m window --space last } && sketchybar --update
-# cmd + shift - 6 : yabai -m window --space 6 || { yabai -m space --create && yabai -m window --space last } && sketchybar --update
-# cmd + shift - 7 : yabai -m window --space 7 || { yabai -m space --create && yabai -m window --space last } && sketchybar --update
-# cmd + shift - 8 : yabai -m window --space 8 || { yabai -m space --create && yabai -m window --space last } && sketchybar --update
-# cmd + shift - 9 : yabai -m window --space 9 || { yabai -m space --create && yabai -m window --space last } && sketchybar --update
-# cmd + shift - 0 : yabai -m window --space 10 || { yabai -m space --create && yabai -m window --space last } && sketchybar --update
 
 # warp node to space
 cmd + shift - 1 : yabai -m window --space 1 || { yabai -m space --create && yabai -m window --space last } && sketchybar --trigger windows_on_spaces

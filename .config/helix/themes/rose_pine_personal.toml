@@ -2,6 +2,8 @@ inherits = "rose_pine_dawn"
 
 "variable.parameter" = { fg = "iris", modifiers = ["italic"] }
 "variable.other.member" = { fg = "iris", modifiers = ["italic"] }
+
 "keyword.control" = { fg = "pine", modifiers = ["italic"] }
 
+"ui.bufferline.active" = { fg = "subtle", bg = "surface", modifiers = ["italic"] }
 "ui.virtual.inlay-hint" = { fg = "subtle", modifiers = ["italic"] }

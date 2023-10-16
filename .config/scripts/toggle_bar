@@ -3,8 +3,8 @@
 bar_height=$(sketchybar --query bar | jq '.height')
 current_offset=$(sketchybar --query bar | jq '.y_offset')
 
-if [ "$((-current_offset))" != "$bar_height" ]; then
-	sketchybar -m --animate tanh 20 --bar y_offset=$((-bar_height))
+if [ "$((-current_offset))" != "$((bar_height + 1))" ]; then
+	sketchybar -m --animate tanh 20 --bar y_offset=$((-bar_height - 1))
 	yabai -m config external_bar all:0:0
 	launchctl load -F /System/Library/LaunchAgents/com.apple.OSDUIHelper.plist >/dev/null 2>&1 &
 else

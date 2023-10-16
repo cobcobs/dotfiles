@@ -466,43 +466,50 @@ hbox.titlebar-buttonbox-container:nth-child(4) {visibility: collapse !important;
 
 /* Show tab close button when cursor is over the tab icon */
 
+.tab-content{
+  pointer-events: none
+}
+.tab-icon-image:not([busy]){ display: block !important; }
+:where(.tab-content:hover) .tab-icon-image,
+:where(.tab-content:hover) > .tab-icon-stack{
+  visibility: hidden;
+}
 .tab-close-button{
-  -moz-box-ordinal-group: 0;
-  display: -moz-box !important;
+  -moz-box-ordinal-group: 0; /* Firefox <112 compatibility */
+  order: -1;
+  display: flex !important;
   position: relative;
   margin-inline: -4px -20px !important;
   padding-inline-start: 7px !important;
-  z-index: -1;
-  visibility: hidden;
+  opacity: 0;
   width: unset !important;
+  pointer-events: auto;
 }
+.tab-close-button:hover{ opacity: 1 }
 .tabbrowser-tab[pinned] .tab-close-button{ display: none !important; }
-.tabbrowser-tab:hover .tab-close-button{
-  background-color: var(--lwt-selected-tab-background-color,var(--toolbar-bgcolor)) !important;
-  background-image: linear-gradient(var(--toolbarbutton-hover-background),var(--toolbarbutton-hover-background))
+
+/* Shows tab audio icons next to the tab icon, and by default removes the tab secondary line */
+
+.tabbrowser-tab:not([pinned]) .tab-icon-stack:is([muted],[soundplaying],[activemedia-blocked]){
+  grid-template-areas: "a s";
+}
+.tabbrowser-tab:not([pinned]) .tab-icon-overlay:is([muted],[soundplaying],[activemedia-blocked]){ grid-area: s; }
+.tab-icon-overlay,
+.tab-icon-image,
+.tab-throbber{ opacity: 1 !important; }
+
+.tab-icon-overlay:not([pinned]){
+  padding: 0px !important;
+  margin-inline: -3px 1px !important;
 }
 
-/**** ONLY USE ONE OF THE FOLLOWING ****/
-/**** These select the behavior of a scenario where the page has no favicon ****/
+/* secondary audio label ain't much use with this style, but feel free to remove the next line if you want to show it. */
+.tab-secondary-label{ display: none }
 
-/*** Option 1 - no favicon - no close-button ***/
+/* show the secondary label when video is in PiP */
+.tab-secondary-label[pictureinpicture]{ display: flex }
 
-/*
-.tab-icon-stack:hover ~ .tab-close-button, .tab-close-button:hover{ visibility: visible; z-index: 1 }
-*/
-
-/*** Option 2 - No icon - always show close-button ***/
-
-/*
-.tab-icon-stack:hover ~ .tab-close-button,
-.tab-close-button:hover,
-.tabbrowser-tab:not([image]) .tab-close-button{ visibility: visible; z-index: 1 }
-.tabbrowser-tab:not([image]) .tab-close-button{ margin-inline-end: 0 !important; }
-*/
-
-/*** Option 3 - No icon - show close-button when cursor is over the tab ***/
-
-.tab-icon-stack:hover ~ .tab-close-button,
-.tab-close-button:hover,
-.tabbrowser-tab:not([image]):hover .tab-close-button{ visibility: visible; z-index: 1;  }
-.tabbrowser-tab:not([image]):hover .tab-close-button{ margin-inline-end: 0 !important; }
+/* These exist for compatibility with combined_favicon_and_tab_close_button.css */
+.tab-icon-overlay{ pointer-events: auto }
+.tab-content > .tab-icon-stack,
+.tab-icon-stack:hover > .tab-icon-image{ visibility: visible }

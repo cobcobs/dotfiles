@@ -1,12 +1,28 @@
+[language-server.clangd]
+command = "clangd"
+args = [ "--fallback-style=Google" ]
+
+[language-server.mdpls]
+command = "mdpls"
+config = { markdown.preview.auto = true, markdown.preview.codeTheme = "base16/ros-pine-dawn" }
+
+[language-server.texlab]
+command = "texlab"
+
+[language-server.texlab.config.texlab]
+build = { onSave = true, forwardSearchAfter = true }
+forwardSearch = { executable = "sioyek", args = [ "--forward-search-file", "%f", "--forward-search-line", "%l", "%p" ] }
+chktex = {onEdit = true }
+
 [[language]]
 name = "cpp"
 auto-format = true
-language-server = {command = "clangd", args = ["--fallback-style=Google"]}
+language-servers = [ "clangd" ]
 
 [[language]]
 name = "c"
 auto-format = true
-language-server = {command = "clangd", args = ["--fallback-style=Google"]}
+language-servers = [ "clangd" ]
 
 [[language]]
 name = "python"
@@ -16,20 +32,9 @@ auto-format = true
 name = "latex"
 auto-format = true
 indent = { tab-width = 4, unit = "    " }
-
-[language.config.texlab.build]
-onSave = true
-forwardSearchAfter = true
-
-[language.config.texlab.forwardSearch]
-executable = "sioyek"
-args = [ "--forward-search-file", "%f", "--forward-search-line", "%l", "%p" ]
-
-[language.config.texlab.chktex]
-onEdit = true
+language-servers = [ "texlab" ]
 
 [[language]]
 name = "markdown"
 file-types = [ "md", "markdown" ]
-language-server = { command = "mdpls" }
-config = { markdown.preview.auto = true, markdown.preview.codeTheme = "base16/ros-pine-dawn" }
+language-servers = [ "mdpls" ]
