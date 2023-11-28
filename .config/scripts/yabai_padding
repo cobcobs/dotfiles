@@ -1,0 +1,10 @@
+#!/bin/bash
+
+auto_padding_width=$(yabai -m config auto_padding_width)
+auto_padding_height=$(yabai -m config auto_padding_height)
+
+if [ $((auto_padding_width + auto_padding_height)) -le 3000 ]; then
+  yabai -m config auto_padding_height 2000
+else
+  yabai -m config auto_padding_height 1300
+fi
