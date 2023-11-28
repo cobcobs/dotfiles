@@ -1,18 +1,38 @@
-#!/usr/bin/env bash
+#!/bin/bash
 
-bar_height=$(sketchybar --query bar | jq '.height')
-current_offset=$(sketchybar --query bar | jq '.y_offset')
+# # horizontal bar
+# bar_height=$(sketchybar --query bar | jq '.height')
+# current_offset=$(sketchybar --query bar | jq '.y_offset')
 
-if [ "$((-current_offset))" != "$((bar_height + 1))" ]; then
-	sketchybar -m --animate tanh 20 --bar y_offset=$((-bar_height - 1))
-	yabai -m config external_bar all:0:0
-	launchctl load -F /System/Library/LaunchAgents/com.apple.OSDUIHelper.plist >/dev/null 2>&1 &
+# if [ "$((-current_offset))" != "$((bar_height + 1))" ]; then
+# 	sketchybar -m --animate tanh 20 --bar y_offset=$((-bar_height - 1))
+# 	yabai -m config external_bar all:0:0
+# 	launchctl load -F /System/Library/LaunchAgents/com.apple.OSDUIHelper.plist >/dev/null 2>&1 &
+# else
+# 	current_padding=$(sketchybar --query bar | jq -r '.margin')
+# 	bar_offset="$((current_padding + bar_height))"
+# 	yabai -m config external_bar all:$bar_offset:0
+# 	sketchybar -m --animate tanh 10 --bar y_offset="$current_padding"
+# 	launchctl unload -F /System/Library/LaunchAgents/com.apple.OSDUIHelper.plist >/dev/null 2>&1 &
+# fi
+
+# vertical bar
+CONFIG_DIR="$HOME/.config/sketchybar"
+. "$CONFIG_DIR/globals.sh"
+
+left_padding=$(yabai -m config left_padding)
+right_padding=$(yabai -m config right_padding)
+bar_margin=$(sketchybar --query bar | jq -r '.margin')
+
+if [ "$left_padding" != "$right_padding" ]; then
+	# hide bar
+	sketchybar -m --animate tanh 10 --bar height=0
+	yabai -m config left_padding "$right_padding"
 else
-	current_padding=$(sketchybar --query bar | jq -r '.margin')
-	bar_offset="$((current_padding + bar_height))"
-	yabai -m config external_bar all:$bar_offset:0
-	sketchybar -m --animate tanh 10 --bar y_offset="$current_padding"
-	launchctl unload -F /System/Library/LaunchAgents/com.apple.OSDUIHelper.plist >/dev/null 2>&1 &
+	# show bar
+	sketchybar -m --animate tanh 10 --bar height="$WIDTH"
+	yabai -m config left_padding $((WIDTH + 2 * bar_margin))
 fi
+
 
 sketchybar --update

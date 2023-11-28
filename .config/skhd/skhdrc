@@ -36,12 +36,14 @@ cmd + shift - b      : toggle_bar
 cmd + shift - d      : yabai_border
 cmd - 0x29           : yabai -m space --padding rel:-5:-5:-5:-5 ; yabai -m space --gap rel:-5
 cmd - 0x27           : yabai -m space --padding rel:5:5:5:5 ; yabai -m space --gap rel:5
-ctrl + shift - space : yabai -m window --toggle float && sketchybar --trigger window_focus && yabai -m window --grid 4:4:1:1:2:2 && /tmp/yabai-restore/$(yabai -m query --windows --window | jq -re '.id').restore 2>/dev/null || true
+ctrl + shift - space : yabai -m window --toggle float && yabai -m window --grid 4:4:1:1:2:2 && /tmp/yabai-restore/$(yabai -m query --windows --window | jq -re '.id').restore 2>/dev/null || true
 # cmd + shift - space  : yabai -m space --layout $(yabai -m query --spaces --space | jq -r 'if .type == "bsp" then "float" elif .type == "float" then "stack" else "bsp" end')
-cmd + shift - space  : yabai -m space --layout $(yabai -m query --spaces --space | jq -r 'if .type == "bsp" then "stack" else "bsp" end') && sketchybar --trigger window_focus
-ctrl + shift - i     : yabai -m window --toggle split
-ctrl + shift - s     : yabai -m window --toggle sticky
-ctrl + shift - t     : yabai -m window --toggle topmost
+cmd + shift - space  : yabai -m space --layout $(yabai -m query --spaces --space | jq -r 'if .type == "bsp" then "stack" else "bsp" end')
+lalt + shift - i     : yabai -m window --toggle split
+lalt + shift - s     : yabai -m window --toggle sticky
+# lalt + shift - t     : yabai -m window --toggle topmost
+lalt + shift - f     : yabai -m window --toggle zoom-fullscreen
+lalt + shift - p     : yabai_padding
 
 # # toggle margin of sketchybar
 # cmd + ctrl - b : CURRENT="$(sketchybar --query bar | jq -r '.y_offset')"; \
@@ -54,10 +56,10 @@ ctrl + shift - t     : yabai -m window --toggle topmost
 #                   fi \
 
 # focus node
-cmd - h : yabai -m window --focus west
-cmd - j : yabai -m window --focus south
-cmd - k : yabai -m window --focus north
-cmd - l : yabai -m window --focus east
+cmd - h : yabai -m window --focus west || $(yabai -m display --focus west && yabai -m window --focus last)
+cmd - j : yabai -m window --focus south || $(yabai -m display --focus south && yabai -m window --focus largest)
+cmd - k : yabai -m window --focus north || $(yabai -m display --focus north && yabai -m window --focus largest)
+cmd - l : yabai -m window --focus east || $(yabai -m display --focus east && yabai -m window --focus first)
 
 # focus space
 cmd - 1 : yabai_focus 1
@@ -89,10 +91,10 @@ cmd + shift - return : \
 	    fi;
 
 # warp node
-cmd + shift - h : yabai -m window --warp west
-cmd + shift - j : yabai -m window --warp south
-cmd + shift - k : yabai -m window --warp north
-cmd + shift - l : yabai -m window --warp east
+cmd + shift - h : yabai -m window --warp west || $(yabai -m window --display west && sketchybar --trigger windows_on_spaces && yabai -m display --focus west && yabai -m window --warp last) || yabai -m window --move rel:-10:0
+cmd + shift - j : yabai -m window --warp south || $(yabai -m window --display south && sketchybar --trigger windows_on_spaces && yabai -m display --focus south) || yabai -m window --move rel:0:10
+cmd + shift - k : yabai -m window --warp north || $(yabai -m window --display north && sketchybar --trigger windows_on_spaces && yabai -m display --focus north) || yabai -m window --move rel:0:-10
+cmd + shift - l : yabai -m window --warp east || $(yabai -m window --display east && sketchybar --trigger windows_on_spaces && yabai -m display --focus east && yabai -m window --warp first) || yabai -m window --move rel:10:0
 
 # warp node to space
 cmd + shift - 1 : yabai -m window --space 1 || { yabai -m space --create && yabai -m window --space last } && sketchybar --trigger windows_on_spaces

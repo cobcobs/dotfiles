@@ -1,7 +1,13 @@
 #!/usr/bin/env bash
 
-if yabai -m config window_border | grep -q 'on'; then
-	yabai -m config window_border off
+# if yabai -m config window_border | grep -q 'on'; then
+# 	yabai -m config window_border off
+# else
+# 	yabai -m config window_border on
+# fi
+
+if pgrep borders; then
+  killall borders
 else
-	yabai -m config window_border on
+  borders active_color=0xffd7827e inactive_color=0xfff2e9e1 width=8.0 style=round 2>/dev/null 1>&2 &
 fi

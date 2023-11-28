@@ -4,16 +4,16 @@
 sudo yabai --load-sa
 yabai -m signal --add event=dock_did_restart action="sudo yabai --load-sa"
 
+# borders
+borders active_color=0xffd7827e inactive_color=0xfff2e9e1 width=8.0 style=round &
+
 # global settings
 yabai -m config mouse_follows_focus off
-yabai -m config focus_follows_mouse autofocus
+yabai -m config focus_follows_mouse autoraise
 yabai -m config window_placement second_child
-yabai -m config window_topmost on
 yabai -m config window_opacity off
 yabai -m config window_shadow off
 yabai -m config window_animation_duration 0.1
-yabai -m config window_border_hidpi on
-yabai -m config window_border_blur off
 yabai -m config window_origin_display focused
 yabai -m config split_ratio 0.50
 yabai -m config split_type auto
@@ -22,53 +22,58 @@ yabai -m config mouse_modifier cmd
 yabai -m config mouse_action1 move
 yabai -m config mouse_action2 resize
 yabai -m config mouse_drop_action stack
-
-# borders
-yabai -m config window_border on
-yabai -m config window_border_width 3
-yabai -m config window_border_radius 12
-yabai -m config active_window_border_color 0xffd7827e
-yabai -m config normal_window_border_color 0xfff2e9e1
+yabai -m config auto_padding on
+yabai -m config auto_padding_width 1100
+yabai -m config auto_padding_height 1300
 
 # rules
-yabai -m rule --add app="^System Settings$" manage=off
+yabai -m rule --add app="^System Settings$" layer=above manage=off
 yabai -m rule --add app="^Roblox$" manage=off border=off
 yabai -m rule --add app="^csgo_osx64$" border=off
 yabai -m rule --add app="^Firefox$" space=1
 yabai -m rule --add app="^Spotify$" space=5
-yabai -m rule --add app="^Mail$" space=4
-yabai -m rule --add app="^ProtonVPN$" space=4
 yabai -m rule --add app="^Discord" space=5
 yabai -m rule --add app="^eqMac$" manage=off
 yabai -m rule --add app="^NVIDIA GeForce NOW$" space=4
 yabai -m rule --add app="^Remedy Pro$" manage=off border=off
 
 # general space settings
+padding=12
 yabai -m config layout bsp
-yabai -m config top_padding 10
-yabai -m config bottom_padding 10
-yabai -m config left_padding 10
-yabai -m config right_padding 10
-yabai -m config window_gap 10
+yabai -m config top_padding $padding
+yabai -m config bottom_padding $padding
+yabai -m config left_padding $padding
+yabai -m config right_padding $padding
+yabai -m config window_gap $padding
 
 # specfic space settings
 yabai -m config --space 5 layout stack
 yabai -m config --space 6 layout stack
 
-# bar
+# # horizontal bar
+# if pgrep sketchybar; then
+# 	launchctl load "$HOME"/Library/LaunchAgents/homebrew.mxcl.sketchybar.plist
+# 	bar_offset=$(sketchybar --query bar | jq '.y_offset')
+# 	bar_height=$(sketchybar --query bar | jq '.height')
+# 	y_offset=$((bar_offset + bar_height))
+# 	yabai -m config external_bar all:$y_offset:0
+# else
+# 	launchctl unload "$HOME"/Library/LaunchAgents/homebrew.mxcl.sketchybar.plist
+# 	yabai -m config external_bar all:0:0
+# fi
+
+# vertical bar
 if pgrep sketchybar; then
 	launchctl load "$HOME"/Library/LaunchAgents/homebrew.mxcl.sketchybar.plist
-	bar_offset=$(sketchybar --query bar | jq '.y_offset')
-	bar_height=$(sketchybar --query bar | jq '.height')
-	y_offset=$((bar_offset + bar_height))
-	yabai -m config external_bar all:$y_offset:0
-else
-	launchctl unload "$HOME"/Library/LaunchAgents/homebrew.mxcl.sketchybar.plist
-	yabai -m config external_bar all:0:0
+	bar_width=$(sketchybar --query bar | jq '.height')
+	bar_margin=$(sketchybar --query bar | jq -r '.margin')
+  yabai -m config left_padding $((bar_width + 2 * bar_margin))
 fi
 
+
 # signals
-yabai -m signal --add event=window_focused action="sketchybar --trigger window_focus"
+yabai -m signal --add event=window_focused action="sketchybar --trigger space_change"
+yabai -m signal --add event=space_changed action="sketchybar --trigger space_change"
 yabai -m signal --add event=window_created action="sketchybar --trigger windows_on_spaces"
 yabai -m signal --add event=window_destroyed action="sketchybar --trigger windows_on_spaces && (yabai -m query --windows --window &> /dev/null || yabai -m window --focus mouse)"
 yabai -m signal --add event=application_terminated action="sketchybar --trigger windows_on_spaces && (yabai -m query --windows --window &> /dev/null || yabai -m window --focus mouse)"

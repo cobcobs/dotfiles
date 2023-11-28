@@ -10,5 +10,3 @@ else
 	yabai -m space --focus last
     fi
 fi
-
-nc -U /tmp/yabai-indicator.socket
