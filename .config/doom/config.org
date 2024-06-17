@@ -1,0 +1,207 @@
+#+TITLE: Jacob's Doom Emacs Configuration
+#+AUTHOR: Jacob Frio (cobcobs)
+#+DESCRIPTION: Jacob's personal Doom Emacs config.
+#+STARTUP: showeverything
+
+* ABOUT THIS CONFIG
+This is my personal Doom Emacs config. Mostly stock (for now) while I'm still learning about Doom Emacs.
+
+* DASHBOARD
+I added a photo of Xiao pookie to my dashboard and removed all the items in the shortmenu as well as the github footer. I also disabled the box cursor.
+
+#+begin_src emacs-lisp
+(setq fancy-splash-image "~/.config/doom/images/xiao_resized.png")
+(setq-hook! '+doom-dashboard-mode-hook evil-normal-state-cursor (list nil))
+(remove-hook '+doom-dashboard-functions #'doom-dashboard-widget-shortmenu)
+(remove-hook '+doom-dashboard-functions #'doom-dashboard-widget-footer)
+#+end_src
+
+* DIRED
+I use dired with dired-preview. I also changed some bindings (basically copied DistroTube).
+
+| COMMAND    | DESCRIPTION                        | KEYBINDING |
+|------------+------------------------------------+------------|
+| dired      | /Open dired file manager/            | SPC d d    |
+| dired-jump | /Jump to current directory in dired/ | SPC d j    |
+
+** Keybindings Within Dired
+*** Basic dired commands
+
+| COMMAND                | DESCRIPTION                                 | KEYBINDING |
+|------------------------+---------------------------------------------+------------|
+| dired-view-file        | /View file in dired/                          | SPC d v    |
+| dired-up-directory     | /Go up in directory tree/                     | h          |
+| dired-find-file        | /Go down in directory tree (or open if file)/ | l          |
+| dired-next-line        | /Move down to next line/                      | j          |
+| dired-previous-line    | /Move up to previous line/                    | k          |
+| dired-mark             | /Mark file at point/                          | m          |
+| dired-unmark           | /Unmark file at point/                        | u          |
+| dired-do-copy          | /Copy current file or marked files/           | C          |
+| dired-do-rename        | /Rename current file or marked files/         | R          |
+| dired-hide-details     | /Toggle detailed listings on/off/             | (          |
+| dired-git-info-mode    | /Toggle git information on/off/               | )          |
+| dired-create-directory | /Create new empty directory/                  | +          |
+| dired-diff             | /Compare file at point with another/          | =          |
+| dired-subtree-toggle   | /Toggle viewing subtree at point/             | TAB        |
+
+*** Dired commands using regex
+
+| COMMAND                 | DESCRIPTION                | KEYBINDING |
+|-------------------------+----------------------------+------------|
+| dired-mark-files-regexp | /Mark files using regex/     | % m        |
+| dired-do-copy-regexp    | /Copy files using regex/     | % C        |
+| dired-do-rename-regexp  | /Rename files using regex/   | % R        |
+| dired-mark-files-regexp | /Mark all files using regex/ | * %        |
+
+*** File permissions and ownership
+
+| COMMAND         | DESCRIPTION                        | KEYBINDING |
+|-----------------+------------------------------------+------------|
+| dired-do-chgrp  | /Change the group of marked files/ | g G        |
+| dired-do-chmod  | /Change the mode of marked files/  | M          |
+| dired-do-chown  | /Change the owner of marked files/ | O          |
+| dired-do-rename | /Rename file or all marked files/  | R          |
+
+#+begin_src emacs-lisp
+(map! :leader
+      (:prefix ("d" . "dired")
+       :desc "Open dired" "d" #'dired
+       :desc "Dired jump to current" "j" #'dired-jump)
+      (:after dired
+       (:map dired-mode-map
+        :desc "Dired view file"           "d v" #'dired-view-file)))
+(setq delete-by-moving-to-trash t
+      trash-directory "~/.Trash/")
+(dired-preview-global-mode 1)
+(setq dired-preview-delay 0.1)
+
+(evil-define-key 'normal dired-mode-map
+  (kbd "M-RET") 'dired-display-file
+  (kbd "h") 'dired-up-directory
+  (kbd "l") 'dired-find-file ; use dired-find-file instead of dired-open.
+  (kbd "m") 'dired-mark
+  (kbd "t") 'dired-toggle-marks
+  (kbd "u") 'dired-unmark
+  (kbd "C") 'dired-do-copy
+  (kbd "D") 'dired-do-delete
+  (kbd "J") 'dired-goto-file
+  (kbd "M") 'dired-do-chmod
+  (kbd "O") 'dired-do-chown
+  (kbd "P") 'dired-do-print
+  (kbd "R") 'dired-do-rename
+  (kbd "T") 'dired-do-touch
+  (kbd "Y") 'dired-copy-filenamecopy-filename-as-kill ; copies filename to kill ring.
+  (kbd "Z") 'dired-do-compress
+  (kbd "+") 'dired-create-directory
+  (kbd "-") 'dired-do-kill-lines
+  (kbd "% l") 'dired-downcase
+  (kbd "% m") 'dired-mark-files-regexp
+  (kbd "% u") 'dired-upcase
+  (kbd "* %") 'dired-mark-files-regexp
+  (kbd "* .") 'dired-mark-extension
+  (kbd "* /") 'dired-mark-directories
+  (kbd "; d") 'epa-dired-do-decrypt
+  (kbd "; e") 'epa-dired-do-encrypt)
+#+end_src
+
+* DOOM THEME
+I use rose-pine-dawn because I like light themes.
+
+#+begin_src emacs-lisp
+(setq doom-theme 'doom-rose-pine-dawn)
+#+end_src
+
+* FONT
+I use a beautiful font called Cartograph CF, mostly for its cursive italics.
+
+#+begin_src emacs-lisp
+(setq doom-font (font-spec :family "Cartograph CF" :size 16 :weight 'regular))
+#+end_src
+
+* LINE SETTINGS
+I use bindings like from vim-commentary. Other than that, I like to disable line numbers.
+
+#+begin_src emacs-lisp
+(evil-commentary-mode)
+(setq display-line-numbers-type 'nil)
+#+end_src
+
+* MODELINE
+I use doom-nano-modeline because it's minimalistic and uses space at the top instead of cramping the bottom.
+
+#+begin_src emacs-lisp
+(use-package! doom-nano-modeline
+  :config
+  (doom-nano-modeline-mode 1)
+  (global-hide-mode-line-mode 1))
+#+end_src
+
+* ORG
+If you use `org' and don't want your org files in the default location below, change `org-directory'. It must be set before org loads!
+
+#+begin_src emacs-lisp
+(setq org-directory "~/Documents/org/")
+(setq org-agenda-files '("~/Documents/org/agenda/"))
+#+end_src
+
+* SPACIOUS PADDING
+I use the spacious-padding package to provide small window padding like what I use on my terminal windows.
+
+#+begin_src emacs-lisp
+(use-package spacious-padding
+  :ensure t
+  :init
+  (setq spacious-padding-widths
+        '( :internal-border-width 15
+         :header-line-width 0
+         :mode-line-width 0
+         :tab-width 4
+         :right-divider-width 30
+         :scroll-bar-width 1))
+  (spacious-padding-mode t))
+#+end_src
+
+* MISCELLANEOUS
+** Cursor
+I like to disable the cursorline because it looks to awkward on an ultrawide display.
+
+#+begin_src emacs-lisp
+(global-hl-line-mode -1)
+(remove-hook 'doom-first-buffer-hook #'global-hl-line-mode)
+#+end_src
+
+** Global Auto Revert
+A buffer can get out of sync with respect to its visited file on disk if that file is changed by another program. To keep it up to date, you can enable Auto Revert mode by typing M-x auto-revert-mode, or you can set it to be turned on globally with 'global-auto-revert-mode'.  I have also turned on Global Auto Revert on non-file buffers, which is especially useful for 'dired' buffers.
+
+#+begin_src
+(global-auto-revert-mode 1)
+(setq global-auto-revert-non-file-buffers t)
+#+end_src
+
+** Quit Message
+I like to disable the quit confirmation message.
+
+#+begin_src
+(setq confirm-kill-emacs nil)
+#+end_src
+
+** Scrolloff
+Small amount of scrolloff.
+
+#+begin_src emacs-lisp
+(setq scroll-margin 7)
+#+end_src
+
+** Title Bar
+I like to disable the titlebar on MacOS.
+
+#+begin_src emacs-lisp
+(add-to-list 'default-frame-alist '(undecorated-round . t))
+#+end_src
+
+** Whitespace
+I like to disable whitespace mode.
+
+#+begin_src emacs-lisp
+(global-whitespace-mode -1)
+#+end_src
