@@ -27,22 +27,23 @@ I use dired with dired-preview. I also changed some bindings (basically copied D
 ** Keybindings Within Dired
 *** Basic dired commands
 
-| COMMAND                | DESCRIPTION                                 | KEYBINDING |
-|------------------------+---------------------------------------------+------------|
-| dired-view-file        | /View file in dired/                          | SPC d v    |
-| dired-up-directory     | /Go up in directory tree/                     | h          |
-| dired-find-file        | /Go down in directory tree (or open if file)/ | l          |
-| dired-next-line        | /Move down to next line/                      | j          |
-| dired-previous-line    | /Move up to previous line/                    | k          |
-| dired-mark             | /Mark file at point/                          | m          |
-| dired-unmark           | /Unmark file at point/                        | u          |
-| dired-do-copy          | /Copy current file or marked files/           | C          |
-| dired-do-rename        | /Rename current file or marked files/         | R          |
-| dired-hide-details     | /Toggle detailed listings on/off/             | (          |
-| dired-git-info-mode    | /Toggle git information on/off/               | )          |
-| dired-create-directory | /Create new empty directory/                  | +          |
-| dired-diff             | /Compare file at point with another/          | =          |
-| dired-subtree-toggle   | /Toggle viewing subtree at point/             | TAB        |
+| COMMAND                 | DESCRIPTION                                   | KEYBINDING |
+|-------------------------+-----------------------------------------------+------------|
+| dired-view-file         | /View file in dired/                          | SPC d v    |
+| dired-up-directory      | /Go up in directory tree/                     | h          |
+| dired-find-file         | /Go down in directory tree (or open if file)/ | l          |
+| dired-next-line         | /Move down to next line/                      | j          |
+| dired-previous-line     | /Move up to previous line/                    | k          |
+| dired-mark              | /Mark file at point/                          | m          |
+| dired-unmark            | /Unmark file at point/                        | u          |
+| dired-do-copy           | /Copy current file or marked files/           | C          |
+| dired-do-rename         | /Rename current file or marked files/         | R          |
+| dired-hide-details      | /Toggle detailed listings on/off/             | (          |
+| dired-git-info-mode     | /Toggle git information on/off/               | )          |
+| dired-create-directory  | /Create new empty directory/                  | +          |
+| dired-create-empty-file | /Create new empty file/                       | f          |
+| dired-diff              | /Compare file at point with another/          | =          |
+| dired-subtree-toggle    | /Toggle viewing subtree at point/             | TAB        |
 
 *** Dired commands using regex
 
@@ -94,6 +95,7 @@ I use dired with dired-preview. I also changed some bindings (basically copied D
   (kbd "Z") 'dired-do-compress
   (kbd "+") 'dired-create-directory
   (kbd "-") 'dired-do-kill-lines
+  (kbd "f") 'dired-create-empty-file
   (kbd "% l") 'dired-downcase
   (kbd "% m") 'dired-mark-files-regexp
   (kbd "% u") 'dired-upcase

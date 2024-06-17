@@ -34,6 +34,7 @@
   (kbd "Z") 'dired-do-compress
   (kbd "+") 'dired-create-directory
   (kbd "-") 'dired-do-kill-lines
+  (kbd "f") 'dired-create-empty-file
   (kbd "% l") 'dired-downcase
   (kbd "% m") 'dired-mark-files-regexp
   (kbd "% u") 'dired-upcase
